@@ -50,13 +50,8 @@
 		<aop:pointcut expression="execution(* zgld.api.*.*(..))" id="serviceMethod"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
 	</aop:config>
-<!-- 	<import resource="classpath:/config/spring/applicationContext_bean.xml"/> -->
+<!--	<import resource="classpath:/config/spring/applicationContext_bean.xml"/>-->
 	<import resource="classpath:/config/spring/applicationContext_dao.xml"/>
 	<import resource="classpath:/config/spring/applicationContext_biz.xml"/>
 	<import resource="classpath:/config/spring/applicationContext_action.xml"/>
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-		<property name="configLocation"
-			value="classpath:hibernate.cfg.xml">
-		</property>
-	</bean></beans>
+</beans>
