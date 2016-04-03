@@ -10,7 +10,7 @@ import com.zgld.api.biz.BaseBiz;
 
 public class SpringTest {
 	public static void main(String[] args) {
-		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 		BaseBiz baseBiz = (BaseBiz) ac.getBean("baseBiz");
 		List<YWxpayConfig> list = (List<YWxpayConfig>)baseBiz.findAll(" from YWxpayConfig");
 		for (YWxpayConfig yWxpayConfig : list) {
