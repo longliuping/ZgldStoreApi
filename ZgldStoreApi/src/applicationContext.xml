@@ -50,7 +50,7 @@
 		<aop:pointcut expression="execution(* zgld.api.*.*(..))" id="serviceMethod"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
 	</aop:config>
-	<import resource="classpath:/config/spring/applicationContext_bean.xml"/>
+<!-- 	<import resource="classpath:/config/spring/applicationContext_bean.xml"/> -->
 	<import resource="classpath:/config/spring/applicationContext_dao.xml"/>
 	<import resource="classpath:/config/spring/applicationContext_biz.xml"/>
 	<import resource="classpath:/config/spring/applicationContext_action.xml"/>
