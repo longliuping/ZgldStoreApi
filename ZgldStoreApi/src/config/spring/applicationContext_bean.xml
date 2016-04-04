@@ -166,7 +166,7 @@
 				<value>com/zgld/api/beans/YWorker.hbm.xml</value>
 				<value>com/zgld/api/beans/YWorkerClass.hbm.xml</value>
 				<value>com/zgld/api/beans/YWorkerClassMatch.hbm.xml</value>
-				<value>com/zgld/api/beans/YWxpayConfig.hbm.xml</value>	
+				<value>com/zgld/api/beans/YWxpayConfig.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
