@@ -40,7 +40,7 @@
         <property name="isDelete" type="java.lang.Integer">
             <column name="Is_Delete" />
         </property>
-        <property name="noTime" type="java.sql.Timestamp">
+        <property name="noTime" type="java.util.Date">
             <column name="No_Time" length="16" not-null="true" />
         </property>
     </class>

@@ -16,7 +16,7 @@
         <property name="unitSetId" type="java.lang.Integer">
             <column name="Unit_Set_ID" />
         </property>
-        <property name="leaderClassMatchTime" type="java.sql.Timestamp">
+        <property name="leaderClassMatchTime" type="java.util.Date">
             <column name="Leader_Class_Match_Time" length="16" not-null="true" />
         </property>
     </class>

@@ -22,7 +22,7 @@
         <property name="isShow" type="java.lang.Integer">
             <column name="Is_Show" />
         </property>
-        <property name="labelTime" type="java.sql.Timestamp">
+        <property name="labelTime" type="java.util.Date">
             <column name="Label_Time" length="16" not-null="true" />
         </property>
     </class>

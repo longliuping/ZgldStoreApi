@@ -46,7 +46,7 @@
         <property name="msgScanState" type="java.lang.Integer">
             <column name="Msg_Scan_State" />
         </property>
-        <property name="msgTime" type="java.sql.Timestamp">
+        <property name="msgTime" type="java.util.Date">
             <column name="Msg_Time" length="16" />
         </property>
         <property name="msgReContent" type="java.lang.String">
@@ -61,7 +61,7 @@
         <property name="isDelete" type="java.lang.Integer">
             <column name="Is_Delete" />
         </property>
-        <property name="msgReTime" type="java.sql.Timestamp">
+        <property name="msgReTime" type="java.util.Date">
             <column name="Msg_ReTime" length="16" not-null="true" />
         </property>
     </class>

@@ -31,7 +31,7 @@
         <property name="shipGoodsAddPrice" type="java.lang.Double">
             <column name="Ship_Goods_Add_Price" scale="4" />
         </property>
-        <property name="shipPriceTime" type="java.sql.Timestamp">
+        <property name="shipPriceTime" type="java.util.Date">
             <column name="Ship_Price_Time" length="16" not-null="true" />
         </property>
     </class>

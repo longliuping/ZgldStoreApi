@@ -70,7 +70,7 @@
         <property name="unitState" type="java.lang.Integer">
             <column name="Unit_State" />
         </property>
-        <property name="unitTime" type="java.sql.Timestamp">
+        <property name="unitTime" type="java.util.Date">
             <column name="Unit_Time" length="16" not-null="true" />
         </property>
     </class>

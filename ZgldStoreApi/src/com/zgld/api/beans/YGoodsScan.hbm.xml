@@ -16,7 +16,7 @@
         <property name="accountActId" type="java.lang.Integer">
             <column name="Account_Act_ID" />
         </property>
-        <property name="goScanTime" type="java.sql.Timestamp">
+        <property name="goScanTime" type="java.util.Date">
             <column name="Go_Scan_Time" length="16" not-null="true" />
         </property>
     </class>

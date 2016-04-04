@@ -22,7 +22,7 @@
         <property name="isDelete" type="java.lang.Integer">
             <column name="Is_Delete" />
         </property>
-        <property name="emailScanTime" type="java.sql.Timestamp">
+        <property name="emailScanTime" type="java.util.Date">
             <column name="Email_Scan_Time" length="16" not-null="true" />
         </property>
     </class>

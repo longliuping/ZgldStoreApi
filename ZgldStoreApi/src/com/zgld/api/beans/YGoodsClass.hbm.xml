@@ -49,7 +49,7 @@
         <property name="isDelete" type="java.lang.Integer">
             <column name="Is_Delete" />
         </property>
-        <property name="goClassTime" type="java.sql.Timestamp">
+        <property name="goClassTime" type="java.util.Date">
             <column name="Go_Class_Time" length="16" not-null="true" />
         </property>
     </class>

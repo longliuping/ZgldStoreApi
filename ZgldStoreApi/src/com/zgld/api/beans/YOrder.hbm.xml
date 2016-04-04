@@ -37,7 +37,7 @@
         <property name="orderState" type="java.lang.Integer">
             <column name="Order_State" />
         </property>
-        <property name="orderTime" type="java.sql.Timestamp">
+        <property name="orderTime" type="java.util.Date">
             <column name="Order_Time" length="16" not-null="true" />
         </property>
     </class>

@@ -28,7 +28,7 @@
         <property name="isDefault" type="java.lang.Integer">
             <column name="Is_Default" />
         </property>
-        <property name="addressTime" type="java.sql.Timestamp">
+        <property name="addressTime" type="java.util.Date">
             <column name="Address_Time" length="16" not-null="true" />
         </property>
     </class>

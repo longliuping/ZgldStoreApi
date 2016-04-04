@@ -25,7 +25,7 @@
         <property name="isDelete" type="java.lang.Integer">
             <column name="Is_Delete" />
         </property>
-        <property name="imgCutTime" type="java.sql.Timestamp">
+        <property name="imgCutTime" type="java.util.Date">
             <column name="Img_Cut_Time" length="16" not-null="true" />
         </property>
     </class>

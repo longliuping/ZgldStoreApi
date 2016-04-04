@@ -22,7 +22,7 @@
         <property name="controlValue" type="java.lang.String">
             <column name="Control_Value" />
         </property>
-        <property name="controlTime" type="java.sql.Timestamp">
+        <property name="controlTime" type="java.util.Date">
             <column name="Control_Time" length="16" not-null="true" />
         </property>
     </class>

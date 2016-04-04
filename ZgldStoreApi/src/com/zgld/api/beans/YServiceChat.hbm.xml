@@ -22,7 +22,7 @@
         <property name="isDelete" type="java.lang.Integer">
             <column name="Is_Delete" />
         </property>
-        <property name="chatTime" type="java.sql.Timestamp">
+        <property name="chatTime" type="java.util.Date">
             <column name="Chat_Time" length="16" not-null="true" />
         </property>
     </class>

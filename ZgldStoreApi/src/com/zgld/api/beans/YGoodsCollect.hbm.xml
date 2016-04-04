@@ -16,7 +16,7 @@
         <property name="goId" type="java.lang.Integer">
             <column name="Go_ID" />
         </property>
-        <property name="goCollectTime" type="java.sql.Timestamp">
+        <property name="goCollectTime" type="java.util.Date">
             <column name="Go_Collect_Time" length="16" not-null="true" />
         </property>
     </class>

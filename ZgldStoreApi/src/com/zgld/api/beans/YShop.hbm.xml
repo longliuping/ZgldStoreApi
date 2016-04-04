@@ -52,7 +52,7 @@
         <property name="shopIsVerify" type="java.lang.Integer">
             <column name="Shop_Is_Verify" />
         </property>
-        <property name="shopTime" type="java.sql.Timestamp">
+        <property name="shopTime" type="java.util.Date">
             <column name="Shop_Time" length="16" not-null="true" />
         </property>
     </class>

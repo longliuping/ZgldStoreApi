@@ -37,7 +37,7 @@
         <property name="isDelete" type="java.lang.Integer">
             <column name="Is_Delete" />
         </property>
-        <property name="unitWebApplyTime" type="java.sql.Timestamp">
+        <property name="unitWebApplyTime" type="java.util.Date">
             <column name="Unit_Web_Apply_Time" length="16" not-null="true" />
         </property>
     </class>

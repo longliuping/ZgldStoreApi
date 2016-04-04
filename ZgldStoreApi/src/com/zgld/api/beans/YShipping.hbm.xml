@@ -25,7 +25,7 @@
         <property name="shipSendInTime" type="java.lang.Integer">
             <column name="Ship_Send_In_Time" />
         </property>
-        <property name="shipTime" type="java.sql.Timestamp">
+        <property name="shipTime" type="java.util.Date">
             <column name="Ship_Time" length="16" not-null="true" />
         </property>
     </class>

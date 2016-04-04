@@ -31,7 +31,7 @@
         <property name="goReplyContent" type="java.lang.String">
             <column name="Go_Reply_Content" />
         </property>
-        <property name="goCommentTime" type="java.sql.Timestamp">
+        <property name="goCommentTime" type="java.util.Date">
             <column name="Go_Comment_Time" length="16" not-null="true" />
         </property>
     </class>
