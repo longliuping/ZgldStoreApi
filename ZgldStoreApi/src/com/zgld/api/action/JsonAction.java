@@ -23,17 +23,11 @@ public class JsonAction extends BaseAction {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
 			List<HomeBanner> listBanner = new ArrayList<HomeBanner>();
-			HomeBanner banner = new HomeBanner();
-			banner.setImgUrl("/banner/banner1.jpg");
-			listBanner.add(banner);
-			banner.setImgUrl("/banner/banner2.jpg");
-			listBanner.add(banner);
-			banner.setImgUrl("/banner/banner3.jpg");
-			listBanner.add(banner);
-			banner.setImgUrl("/banner/banner4.jpg");
-			listBanner.add(banner);
-			banner.setImgUrl("/banner/banner5.jpg");
-			listBanner.add(banner);
+			for (int i = 1; i < 6; i++) {
+				HomeBanner banner = new HomeBanner();
+				banner.setImgUrl("http://115.28.20.167:8090/webapi/banner/banner"+i+".jpg");
+				listBanner.add(banner);
+			}
 			json.put("items", listBanner);
 			form.setJsonMsg(SUCCESS, true, json, 200);
 		} catch (Exception e) {

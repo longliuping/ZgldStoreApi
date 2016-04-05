@@ -1,8 +1,11 @@
 package com.zgld.api.action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.zgld.api.beans.UserProfile;
+import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.utils.EmailUtil;
 import com.zgld.api.utils.ImageBase64;
@@ -26,21 +29,23 @@ public class UserAction extends BaseAction {
 			} else if (form.getId() == null) {
 				form.setJsonMsg("id不能为空", false, json, 1001);
 			} else {
-				YAccount user = baseBiz.findUserinfoByUserName(form.getName());
-				if (user != null) {
-					if (user == null) {
-						form.setJsonMsg("用户名或者密码错误", false, json, 1001);
-					} else {
-//						AspnetMembers members = (AspnetMembers) baseBiz.bean(" from AspnetMembers as u where u.userId = " + user.getUserId());
-//						user.setAspnetMembers(members);
-//						user.setUserToken(setUserToken(user.getUserId()));
-						json.put(INFO, user);
-						form.setJsonMsg("登录成功", true, json, 200);
-					}
-				} else {
+				Object obj = baseBiz.bean(" from YAccount as y, Users as u,UserProfile as p where u.userId = p.userId and p.userId = y.accountId and y.accountName = '"+form.getName()+"'");
+				Object[] object = (Object[])obj;
+				if(object == null || object.length<0){
 					form.setJsonMsg("用户名不存在", false, json, 1001);
+				}else if(!form.getPassword().equals(((YAccount)object[0]).getAccountPassword())){
+					form.setJsonMsg("密码错误", false, json, 1001);
+				}else {
+					YAccount account = (YAccount)object[0];
+					if(object.length>1){
+						account.setUsers((Users)object[1]);
+						if(object.length>2){
+							account.setUserProfile((UserProfile)object[2]);
+						}
+					}
+					json.put(INFO, account);
+					form.setJsonMsg("登录成功", true, json, 200);
 				}
-
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

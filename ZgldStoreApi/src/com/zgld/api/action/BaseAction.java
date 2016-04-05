@@ -23,6 +23,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.zgld.api.base.BaseForm;
 import com.zgld.api.beans.GsonBean;
 import com.zgld.api.beans.JyPwd;
+import com.zgld.api.beans.UserProfile;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.biz.BaseBiz;
@@ -251,24 +252,27 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	 * @return
 	 */
 	public YAccount getUserInfo() {
-		// form.setToken("f43d04f6-8110-45c8-b68f-9e3cca84c9c1");
-		// form.setUserId(1145);
+		 form.setToken("123456");
+		 form.setUserId(6);
 		String token = form.getToken();
 		int userId = form.getUserId();
 		if (token == null) {
 			token = "";
 		}
-		Users userToken = (Users) baseBiz.bean(" from Users as u where u.userId = " + userId);
-		YAccount users = (YAccount) baseBiz.bean(" from YAccount as u where u.accountId = " + userId);
-		if (userToken != null && users != null) {
-			if (userToken.getAppUserToken().equals(token)) {
-				users.setUserToken(userToken);
-				return users;
-
-			} else {
+		Object obj = baseBiz.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId=6 and u.appUserToken = '"+token+"') and u.userId = p.userId and p.userId = y.accountId");
+		Object[] object = (Object[])obj;
+		if(object!=null & object.length>0){
+			YAccount account = (YAccount)object[0];
+			if(object.length>1){
+				account.setUsers((Users)object[1]);
+				if(object.length>2){
+					account.setUserProfile((UserProfile)object[2]);
+				}
+				return account;
+			}else{
 				return null;
 			}
-		} else {
+		}else{
 			return null;
 		}
 	}
