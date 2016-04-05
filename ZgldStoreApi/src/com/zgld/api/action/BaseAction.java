@@ -149,61 +149,63 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		String passwordformat = "n2FiT+glPSuqrahoRrP7Og==";
 		Date date = DateUtils.strToDateLong("1754-01-01 00:00:00");
 		YAccount user = new YAccount();
-//		user.setUserName(form.getName());
-//		user.setLoweredUserName(form.getName());
-//		user.setPassword(pwd(form.getPassword(), passwordformat));
-//		user.setPasswordSalt(passwordformat);
-//		user.setPasswordFormat(1);
-//		user.setIsAnonymous(false);
-//		user.setIsApproved(true);
-//		user.setSessionId(UUID.randomUUID().toString());
-//		user.setUserRole(3);
-//		user.setCreateDate(new Timestamp(new Date().getTime()));
-//		user.setLastLoginDate(new Timestamp(new Date().getTime()));
-//		user.setLastActivityDate(new Timestamp(new Date().getTime()));
-//		user.setLastPasswordChangedDate(new Timestamp(new Date().getTime()));
-//		user.setFailedPasswordAttemptCount(0);
-//		user.setFailedPasswordAnswerAttemptCount(0);
-//		user.setIsLockedOut(false);
-//
-//		user.setGender(0);
-//
-//		user.setLastLockoutDate(new Timestamp(date.getTime()));
-//		user.setFailedPasswordAttemptWindowStart(new Timestamp(date.getTime()));
-//		user.setFailedPasswordAnswerAttemptWindowStart(new Timestamp(date.getTime()));
-//
-//		Serializable s = baseBiz.save(user);
-//
-//		AspnetUsersInRoles inRoles = new AspnetUsersInRoles();
-//
-//		inRoles.setRoleId("5922DF6C-7B8D-4DCE-80FE-A27C59373E5F");
-//
-//		int userId = s.hashCode();
-//		user.setUserId(userId);
-//
-//		inRoles.setUserId(userId);
-//		baseBiz.save(inRoles);
-//
-//		AspnetMembers members = new AspnetMembers();
-//		members.setUserId(userId);
-//		members.setGradeId(1);
-//		if (form.getId() != null && form.getId() > 100) {
-//			members.setReferralUserId(form.getId());// 邀请人用户userid
-//		}
-//		members.setIsOpenBalance(false);
-//		members.setTradePasswordFormat(1);
-//		members.setOrderNumber(0);
-//		members.setExpenditure(new Double(0.0d));
-//		members.setPoints(0);
-//		members.setBalance(new Double(0.0d));
-//		members.setRequestBalance(new Double(0.0d));
-//		members.setTopRegionId(0);
-//		members.setRegionId(0);
-//		members.setTradePasswordSalt(passwordformat);
-//		members.setTradePassword(jypwd(form.getPassword(), passwordformat));
-//		baseBiz.save(members);
-//		user.setAspnetMembers(members);
-//		user.setUserToken(setUserToken(userId));
+		// user.setUserName(form.getName());
+		// user.setLoweredUserName(form.getName());
+		// user.setPassword(pwd(form.getPassword(), passwordformat));
+		// user.setPasswordSalt(passwordformat);
+		// user.setPasswordFormat(1);
+		// user.setIsAnonymous(false);
+		// user.setIsApproved(true);
+		// user.setSessionId(UUID.randomUUID().toString());
+		// user.setUserRole(3);
+		// user.setCreateDate(new Timestamp(new Date().getTime()));
+		// user.setLastLoginDate(new Timestamp(new Date().getTime()));
+		// user.setLastActivityDate(new Timestamp(new Date().getTime()));
+		// user.setLastPasswordChangedDate(new Timestamp(new Date().getTime()));
+		// user.setFailedPasswordAttemptCount(0);
+		// user.setFailedPasswordAnswerAttemptCount(0);
+		// user.setIsLockedOut(false);
+		//
+		// user.setGender(0);
+		//
+		// user.setLastLockoutDate(new Timestamp(date.getTime()));
+		// user.setFailedPasswordAttemptWindowStart(new
+		// Timestamp(date.getTime()));
+		// user.setFailedPasswordAnswerAttemptWindowStart(new
+		// Timestamp(date.getTime()));
+		//
+		// Serializable s = baseBiz.save(user);
+		//
+		// AspnetUsersInRoles inRoles = new AspnetUsersInRoles();
+		//
+		// inRoles.setRoleId("5922DF6C-7B8D-4DCE-80FE-A27C59373E5F");
+		//
+		// int userId = s.hashCode();
+		// user.setUserId(userId);
+		//
+		// inRoles.setUserId(userId);
+		// baseBiz.save(inRoles);
+		//
+		// AspnetMembers members = new AspnetMembers();
+		// members.setUserId(userId);
+		// members.setGradeId(1);
+		// if (form.getId() != null && form.getId() > 100) {
+		// members.setReferralUserId(form.getId());// 邀请人用户userid
+		// }
+		// members.setIsOpenBalance(false);
+		// members.setTradePasswordFormat(1);
+		// members.setOrderNumber(0);
+		// members.setExpenditure(new Double(0.0d));
+		// members.setPoints(0);
+		// members.setBalance(new Double(0.0d));
+		// members.setRequestBalance(new Double(0.0d));
+		// members.setTopRegionId(0);
+		// members.setRegionId(0);
+		// members.setTradePasswordSalt(passwordformat);
+		// members.setTradePassword(jypwd(form.getPassword(), passwordformat));
+		// baseBiz.save(members);
+		// user.setAspnetMembers(members);
+		// user.setUserToken(setUserToken(userId));
 		return user;
 	}
 
@@ -220,7 +222,10 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	}
 
 	public String pwd(String pwd, String passwordformat) {
-		String json = HttpUtil.submitPost("http://114.215.198.143:55/Home/index", "password=" + pwd + "&passwordformat=1&PasswordSalt=" + passwordformat).toString();
+		String json = HttpUtil.submitPost(
+				"http://114.215.198.143:55/Home/index",
+				"password=" + pwd + "&passwordformat=1&PasswordSalt="
+						+ passwordformat).toString();
 		if (json != null && !json.isEmpty()) {
 			Gson g = new Gson();
 			Type entityType = new TypeToken<GsonBean>() {
@@ -233,7 +238,10 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	}
 
 	public String jypwd(String pwd, String passwordformat) {
-		String json = HttpUtil.submitPost("http://114.215.198.143:56/Home/trade", "password=" + pwd + "&passwordformat=1&PasswordSalt=" + passwordformat).toString();
+		String json = HttpUtil.submitPost(
+				"http://114.215.198.143:56/Home/trade",
+				"password=" + pwd + "&passwordformat=1&PasswordSalt="
+						+ passwordformat).toString();
 		if (json != null && !json.isEmpty()) {
 			Gson g = new Gson();
 			Type entityType = new TypeToken<JyPwd>() {
@@ -252,27 +260,30 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	 * @return
 	 */
 	public YAccount getUserInfo() {
-		 form.setToken("123456");
-		 form.setUserId(6);
+		form.setToken("123456");
+		form.setUserId(6);
 		String token = form.getToken();
 		int userId = form.getUserId();
 		if (token == null) {
 			token = "";
 		}
-		Object obj = baseBiz.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId=6 and u.appUserToken = '"+token+"') and u.userId = p.userId and p.userId = y.accountId");
-		Object[] object = (Object[])obj;
-		if(object!=null & object.length>0){
-			YAccount account = (YAccount)object[0];
-			if(object.length>1){
-				account.setUsers((Users)object[1]);
-				if(object.length>2){
-					account.setUserProfile((UserProfile)object[2]);
+		Object obj = baseBiz
+				.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId=6 and u.appUserToken = '"
+						+ token
+						+ "') and u.userId = p.userId and p.userId = y.accountId");
+		Object[] object = (Object[]) obj;
+		if (object != null & object.length > 0) {
+			YAccount account = (YAccount) object[0];
+			if (object.length > 1) {
+				account.setUsers((Users) object[1]);
+				if (object.length > 2) {
+					account.setUserProfile((UserProfile) object[2]);
 				}
 				return account;
-			}else{
+			} else {
 				return null;
 			}
-		}else{
+		} else {
 			return null;
 		}
 	}

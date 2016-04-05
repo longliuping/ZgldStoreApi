@@ -25,7 +25,8 @@ public class JsonAction extends BaseAction {
 			List<HomeBanner> listBanner = new ArrayList<HomeBanner>();
 			for (int i = 1; i < 6; i++) {
 				HomeBanner banner = new HomeBanner();
-				banner.setImgUrl("http://115.28.20.167:8090/webapi/banner/banner"+i+".jpg");
+				banner.setImgUrl("http://115.28.20.167:8090/webapi/banner/banner"
+						+ i + ".jpg");
 				listBanner.add(banner);
 			}
 			json.put("items", listBanner);
@@ -46,7 +47,8 @@ public class JsonAction extends BaseAction {
 	public String home_hot_category() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			List<Categories> listInfo = (List<Categories>) baseBiz.findAll(" from Categories as h ");
+			List<Categories> listInfo = (List<Categories>) baseBiz
+					.findAll(" from Categories as h ");
 			json.put(LISTINFO, listInfo);
 			form.setJsonMsg(SUCCESS, true, json, 200);
 		} catch (Exception e) {
