@@ -1,0 +1,11 @@
+IP：115.28.20.167,1433
+数据库名：www.shop.com
+用户名：www.shop.com
+密码：www.shop.com
+
+远程桌面：
+姚猛 21:02:03
+IP:115.28.20.167
+帐号：administrator
+密码：yaomeng629821
+Coobic123456

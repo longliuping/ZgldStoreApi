@@ -2,6 +2,8 @@ package com.zgld.api.action;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.zgld.api.beans.YAccount;
 import com.zgld.api.utils.EmailUtil;
 import com.zgld.api.utils.ImageBase64;
 
@@ -17,29 +19,29 @@ public class UserAction extends BaseAction {
 	public String user_login() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-//			if (form.getName() == null || form.getName().isEmpty()) {
-//				form.setJsonMsg("用户名不能为空", false, json, 1001);
-//			} else if (form.getPassword() == null || form.getPassword().isEmpty()) {
-//				form.setJsonMsg("密码不能为空", false, json, 1001);
-//			} else if (form.getId() == null) {
-//				form.setJsonMsg("id不能为空", false, json, 1001);
-//			} else {
-//				AspnetUsers user = baseBiz.findUserinfoByUserName(form.getName());
-//				if (user != null) {
-//					if (user == null || !user.getPassword().equals(pwd(form.getPassword(), user.getPasswordSalt()))) {
-//						form.setJsonMsg("用户名或者密码错误", false, json, 1001);
-//					} else {
+			if (form.getName() == null || form.getName().isEmpty()) {
+				form.setJsonMsg("用户名不能为空", false, json, 1001);
+			} else if (form.getPassword() == null || form.getPassword().isEmpty()) {
+				form.setJsonMsg("密码不能为空", false, json, 1001);
+			} else if (form.getId() == null) {
+				form.setJsonMsg("id不能为空", false, json, 1001);
+			} else {
+				YAccount user = baseBiz.findUserinfoByUserName(form.getName());
+				if (user != null) {
+					if (user == null) {
+						form.setJsonMsg("用户名或者密码错误", false, json, 1001);
+					} else {
 //						AspnetMembers members = (AspnetMembers) baseBiz.bean(" from AspnetMembers as u where u.userId = " + user.getUserId());
 //						user.setAspnetMembers(members);
 //						user.setUserToken(setUserToken(user.getUserId()));
-//						json.put(INFO, user);
-//						form.setJsonMsg("登录成功", true, json, 200);
-//					}
-//				} else {
-//					form.setJsonMsg("用户名不存在", false, json, 1001);
-//				}
-//
-//			}
+						json.put(INFO, user);
+						form.setJsonMsg("登录成功", true, json, 200);
+					}
+				} else {
+					form.setJsonMsg("用户名不存在", false, json, 1001);
+				}
+
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
