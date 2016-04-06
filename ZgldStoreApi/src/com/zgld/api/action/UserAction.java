@@ -111,13 +111,13 @@ public class UserAction extends BaseAction {
 	public String userinfo() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			// AspnetUsers aspnetUsers = getUserInfo();
-			// if (aspnetUsers == null) {
-			// form.setJsonMsg(NO_USER, false, json, 201);
-			// } else {
-			// json.put(INFO, aspnetUsers);
-			// form.setJsonMsg(SUCCESS, true, json, 200);
-			// }
+			YAccount account = getUserInfo();
+			if (account == null) {
+				form.setJsonMsg(NO_USER, false, json, 201);
+			} else {
+				json.put(INFO, account);
+				form.setJsonMsg(SUCCESS, true, json, 200);
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -134,29 +134,25 @@ public class UserAction extends BaseAction {
 	public String update_user_password() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			// AspnetUsers aspnetUsers = getUserInfo();
-			// if (aspnetUsers == null) {
-			// form.setJsonMsg(NO_USER, false, json, 201);
-			// } else if (form.getOldPassword() == null) {
-			// form.setJsonMsg("密码oldPassword不能为空", false, json, 1001);
-			// } else if (form.getPassword() == null) {
-			// form.setJsonMsg("密码password不能为空", false, json, 1001);
-			// } else if (form.getPassword().length() < 6) {
-			// form.setJsonMsg("新密码长度不能小于6位数", false, json, 1001);
-			// } else {
-			// String pwd = pwd(form.getOldPassword(),
-			// aspnetUsers.getPasswordSalt());
-			// if (!pwd.equals(aspnetUsers.getPassword())) {
-			// form.setJsonMsg("旧密码错误", false, json, 1001);
-			// } else {
-			// aspnetUsers.setPassword(pwd(form.getPassword(),
-			// aspnetUsers.getPasswordSalt()));
-			// aspnetUsers.setUserToken(setUserToken(aspnetUsers.getUserId()));
-			// baseBiz.update(aspnetUsers);
-			// json.put(INFO, aspnetUsers);
-			// form.setJsonMsg("修改成功", true, json, 200);
-			// }
-			// }
+			YAccount account = getUserInfo();
+			if (account == null) {
+				form.setJsonMsg(NO_USER, false, json, 201);
+			} else if (form.getOldPassword() == null) {
+				form.setJsonMsg("密码oldPassword不能为空", false, json, 1001);
+			} else if (form.getPassword() == null) {
+				form.setJsonMsg("密码password不能为空", false, json, 1001);
+			} else if (form.getPassword().length() < 6) {
+				form.setJsonMsg("新密码长度不能小于6位数", false, json, 1001);
+			} else {
+				if (!form.getPassword().equals(account.getAccountPassword())) {
+					form.setJsonMsg("旧密码错误", false, json, 1001);
+				} else {
+					account.setAccountPassword(form.getPassword());
+					baseBiz.update(account);
+					json.put(INFO, account);
+					form.setJsonMsg("修改成功", true, json, 200);
+				}
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -173,20 +169,20 @@ public class UserAction extends BaseAction {
 	public String update_user_gender() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			// AspnetUsers aspnetUsers = getUserInfo();
-			// if (aspnetUsers == null) {
-			// form.setJsonMsg(NO_USER, false, json, 201);
-			// } else if (form.getUserinfo().getGender() == null) {
-			// form.setJsonMsg("userinfo.gender不能为空", false, json, 1001);
-			// } else if (form.getUserinfo().getGender() > 1 ||
-			// form.getUserinfo().getGender() < 0) {
-			// form.setJsonMsg("userinfo.gender数据传输错误(0|1)", false, json, 1001);
-			// } else {
-			// aspnetUsers.setGender(form.getUserinfo().getGender());
-			// baseBiz.update(aspnetUsers);
-			// json.put(INFO, aspnetUsers);
-			// form.setJsonMsg("修改成功", true, json, 200);
-			// }
+			YAccount account = getUserInfo();
+			if (account == null) {
+				form.setJsonMsg(NO_USER, false, json, 201);
+			} else if (form.getUserinfo() == null) {
+				form.setJsonMsg("userinfo.gender不能为空", false, json, 1001);
+			} else if (form.getUserinfo().getAccountSex() > 1
+					|| form.getUserinfo().getAccountSex() < 0) {
+				form.setJsonMsg("userinfo.accountSex数据传输错误(0|1)", false, json, 1001);
+			} else {
+				account.setAccountSex(form.getUserinfo().getAccountSex());
+				baseBiz.update(account);
+				json.put(INFO, account);
+				form.setJsonMsg("修改成功", true, json, 200);
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -203,20 +199,21 @@ public class UserAction extends BaseAction {
 	public String update_user_email() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			// AspnetUsers aspnetUsers = getUserInfo();
-			// if (aspnetUsers == null) {
-			// form.setJsonMsg(NO_USER, false, json, 201);
-			// } else if (form.getUserinfo().getEmail() == null) {
-			// form.setJsonMsg("userinfo.email不能为空", false, json, 1001);
-			// } else if
-			// (!EmailUtil.emailMatches(form.getUserinfo().getEmail())) {
-			// form.setJsonMsg("email格式输入错误", false, json, 1001);
-			// } else {
-			// aspnetUsers.setEmail(form.getUserinfo().getEmail());
-			// baseBiz.update(aspnetUsers);
-			// json.put(INFO, aspnetUsers);
-			// form.setJsonMsg("修改成功", true, json, 200);
-			// }
+			YAccount account = getUserInfo();
+			if (account == null) {
+				form.setJsonMsg(NO_USER, false, json, 201);
+				form.setJsonMsg(NO_USER, false, json, 201);
+			} else if (form.getUserinfo().getAccountEmail() == null) {
+				form.setJsonMsg("userinfo.accountEmail不能为空", false, json, 1001);
+			} else if (!EmailUtil.emailMatches(form.getUserinfo()
+					.getAccountEmail())) {
+				form.setJsonMsg("userinfo.accountEmail格式输入错误", false, json, 1001);
+			} else {
+				account.setAccountEmail(form.getUserinfo().getAccountEmail());
+				baseBiz.update(account);
+				json.put(INFO, account);
+				form.setJsonMsg("修改成功", true, json, 200);
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -233,23 +230,23 @@ public class UserAction extends BaseAction {
 	public String update_user_head() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			// AspnetUsers aspnetUsers = getUserInfo();
-			// if (aspnetUsers == null) {
-			// form.setJsonMsg(NO_USER, false, json, 201);
-			// } else if (form.getUserinfo().getHead() == null) {
-			// form.setJsonMsg("userinfo.head不能为空", false, json, 1001);
-			// } else {
-			// String url = ImageBase64.GenerateImage(aspnetUsers.getUserId(),
-			// "0.png", form.getUserinfo().getHead());
-			// if (url != null && url.length() > 10) {
-			// aspnetUsers.setHead(url);
-			// baseBiz.update(aspnetUsers);
-			// json.put(INFO, aspnetUsers);
-			// form.setJsonMsg("修改成功", true, json, 200);
-			// } else {
-			// form.setJsonMsg("base64图片处理失败,请重试", false, json, 1001);
-			// }
-			// }
+			YAccount account = getUserInfo();
+			if (account == null) {
+				form.setJsonMsg(NO_USER, false, json, 201);
+			} else if (form.getUserinfo().getAccountHead() == null) {
+				form.setJsonMsg("userinfo.accountEmail不能为空", false, json, 1001);
+			} else {
+				String url = ImageBase64.GenerateImage(account.getAccountId(),
+						"0.png", form.getUserinfo().getAccountHead());
+				if (url != null && url.length() > 10) {
+					account.setAccountHead(url);
+					baseBiz.update(account);
+					json.put(INFO, account);
+					form.setJsonMsg("修改成功", true, json, 200);
+				} else {
+					form.setJsonMsg("base64图片处理失败,请重试", false, json, 1001);
+				}
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -261,18 +258,18 @@ public class UserAction extends BaseAction {
 	public String update_telphone() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			// AspnetUsers aspnetUsers = getUserInfo();
-			// if (aspnetUsers == null) {
-			// form.setJsonMsg(NO_USER, false, json, 201);
-			// } else if (form.getTelPhone() == null) {
-			// form.setJsonMsg("telPhone不能为空", false, json, 1001);
-			// } else {
-			// aspnetUsers.getAspnetMembers().setTelPhone(form.getTelPhone());
-			// baseBiz.update(aspnetUsers.getAspnetMembers());
-			// json.put(INFO, aspnetUsers);
-			// form.setJsonMsg("修改成功", true, json, 200);
-			//
-			// }
+			YAccount account = getUserInfo();
+			if (account == null) {
+				form.setJsonMsg(NO_USER, false, json, 201);
+			} else if (form.getTelPhone() == null) {
+				form.setJsonMsg("userinfo.telPhone不能为空", false, json, 1001);
+			} else {
+				account.getUserProfile().setTelPhone(form.getTelPhone());
+				baseBiz.update(account.getUserProfile());
+				json.put(INFO, account);
+				form.setJsonMsg("修改成功", true, json, 200);
+
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -284,17 +281,17 @@ public class UserAction extends BaseAction {
 	public String update_cellphone() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			// AspnetUsers aspnetUsers = getUserInfo();
-			// if (aspnetUsers == null) {
-			// form.setJsonMsg(NO_USER, false, json, 201);
-			// } else if (form.getCellPhone() == null) {
-			// form.setJsonMsg("cellPhone不能为空", false, json, 1001);
-			// } else {
-			// aspnetUsers.getAspnetMembers().setCellPhone(form.getCellPhone());
-			// baseBiz.update(aspnetUsers.getAspnetMembers());
-			// json.put(INFO, aspnetUsers);
-			// form.setJsonMsg("修改成功", true, json, 200);
-			// }
+			YAccount account = getUserInfo();
+			if (account == null) {
+				form.setJsonMsg(NO_USER, false, json, 201);
+			} else if (form.getCellPhone() == null) {
+				form.setJsonMsg("userinfo.cellPhone不能为空", false, json, 1001);
+			} else {
+				account.getUserProfile().setCellPhone(form.getCellPhone());
+				baseBiz.update(account.getUserProfile());
+				json.put(INFO, account);
+				form.setJsonMsg("修改成功", true, json, 200);
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
