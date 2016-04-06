@@ -160,8 +160,9 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		account.setIsDelete(0);
 		account.setAccountRegisterTime(new Date());
 		Serializable s = baseBiz.save(account);
-
+		
 		int userId = s.hashCode();
+		account.setAccountId(userId);
 		Users users = new Users();
 		users.setUserId(userId);
 		users.setUserAccountStatus(1);
@@ -241,7 +242,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 						+ token
 						+ "') and u.userId = p.userId and p.userId = y.accountId");
 		Object[] object = (Object[]) obj;
-		if (object != null & object.length > 0) {
+		if (object != null && object.length > 0) {
 			YAccount account = (YAccount) object[0];
 			if (object.length > 1) {
 				account.setUsers((Users) object[1]);
