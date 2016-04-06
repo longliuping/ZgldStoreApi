@@ -67,12 +67,12 @@ public class BaseBizImpl implements BaseBiz {
 
 	public YAccount findUserinfoByUserid(int userid) {
 		// TODO Auto-generated method stub
-		return (YAccount) baseDao.bean(" from AspnetUsers as u where u.userId = " + userid + "");
+		return (YAccount) baseDao.bean(" from YAccount as u where u.accountId = " + userid + "");
 	}
 
 	public YAccount findUserinfoByUserName(String username) {
 		// TODO Auto-generated method stub
-		return (YAccount) baseDao.bean(" from AspnetUsers as u where u.userName = '" + username + "' order by u.userId desc ");
+		return (YAccount) baseDao.bean(" from YAccount as u where u.accountName = '" + username + "' order by u.accountId desc ");
 	}
 
 	public Object getObjectInfo(String hql) {
@@ -82,7 +82,7 @@ public class BaseBizImpl implements BaseBiz {
 
 	public YAccount login(String name, String password) {
 		// TODO Auto-generated method stub
-		return (YAccount) baseDao.bean(" from AspnetUsers as au where au.userName = '" + name + "' and au.password = '" + password + "'");
+		return (YAccount) baseDao.bean(" from YAccount as au where au.accountName = '" + name + "' and au.accountPassword = '" + password + "'");
 	}
 
 	public int saveUserinfo(YAccount account) {

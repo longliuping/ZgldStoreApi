@@ -68,33 +68,34 @@ public class UserAction extends BaseAction {
 
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			// if (form.getName() == null || form.getName().isEmpty()) {
-			// form.setJsonMsg("用户名name不能为空", false, json, 1001);
-			// } else if (form.getPassword() == null ||
-			// form.getPassword().isEmpty()) {
-			// form.setJsonMsg("密码password不能为空", false, json, 1001);
-			// } else {
-			// AspnetUsers user =
-			// baseBiz.findUserinfoByUserName(form.getName());
-			// if (user != null) {
-			// form.setJsonMsg("用户名已经存在", false, json, 1001);
-			// } else {
-			// if (form.getId() != null && form.getId() > 10) {
-			// AspnetUsers u = (AspnetUsers)
-			// baseBiz.bean(" from AspnetUsers as u where u.userId = " +
-			// form.getId());
-			// if (u == null) {
-			// form.setJsonMsg("邀请码不存在", false, json, 1001);
-			// } else {
-			// json.put(INFO, reg_user());
-			// form.setJsonMsg("注册成功", true, json, 200);
-			// }
-			// } else {
-			// json.put(INFO, reg_user());
-			// form.setJsonMsg("注册成功", true, json, 200);
-			// }
-			// }
-			// }
+			if (form.getName() == null || form.getName().isEmpty()) {
+				form.setJsonMsg("用户名name不能为空", false, json, 1001);
+			} else if (form.getPassword() == null
+					|| form.getPassword().isEmpty()) {
+				form.setJsonMsg("密码password不能为空", false, json, 1001);
+			} else if(form.getPassword().length()<6){
+				form.setJsonMsg("密码password长度不能小于6位数", false, json, 1001);
+			}else{
+				YAccount user = baseBiz.findUserinfoByUserName(form.getName());
+				if (user != null) {
+					form.setJsonMsg("用户名已经存在", false, json, 1001);
+				} else {
+					if (form.getId() != null && form.getId() > 10) {
+						YAccount u = (YAccount) baseBiz
+								.bean(" from YAccount as u where u.accountId = "
+										+ form.getId());
+						if (u == null) {
+							form.setJsonMsg("邀请码不存在", false, json, 1001);
+						} else {
+							json.put(INFO, reg_user());
+							form.setJsonMsg("注册成功", true, json, 200);
+						}
+					} else {
+						json.put(INFO, reg_user());
+						form.setJsonMsg("注册成功", true, json, 200);
+					}
+				}
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -144,7 +145,7 @@ public class UserAction extends BaseAction {
 			} else if (form.getPassword().length() < 6) {
 				form.setJsonMsg("新密码长度不能小于6位数", false, json, 1001);
 			} else {
-				if (!form.getPassword().equals(account.getAccountPassword())) {
+				if (!form.getOldPassword().equals(account.getAccountPassword())) {
 					form.setJsonMsg("旧密码错误", false, json, 1001);
 				} else {
 					account.setAccountPassword(form.getPassword());
@@ -176,7 +177,8 @@ public class UserAction extends BaseAction {
 				form.setJsonMsg("userinfo.gender不能为空", false, json, 1001);
 			} else if (form.getUserinfo().getAccountSex() > 1
 					|| form.getUserinfo().getAccountSex() < 0) {
-				form.setJsonMsg("userinfo.accountSex数据传输错误(0|1)", false, json, 1001);
+				form.setJsonMsg("userinfo.accountSex数据传输错误(0|1)", false, json,
+						1001);
 			} else {
 				account.setAccountSex(form.getUserinfo().getAccountSex());
 				baseBiz.update(account);
@@ -207,7 +209,8 @@ public class UserAction extends BaseAction {
 				form.setJsonMsg("userinfo.accountEmail不能为空", false, json, 1001);
 			} else if (!EmailUtil.emailMatches(form.getUserinfo()
 					.getAccountEmail())) {
-				form.setJsonMsg("userinfo.accountEmail格式输入错误", false, json, 1001);
+				form.setJsonMsg("userinfo.accountEmail格式输入错误", false, json,
+						1001);
 			} else {
 				account.setAccountEmail(form.getUserinfo().getAccountEmail());
 				baseBiz.update(account);

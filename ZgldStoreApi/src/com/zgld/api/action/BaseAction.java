@@ -146,67 +146,36 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	public static final String NO_USER = "该账号已经在其它设备登录";
 
 	public YAccount reg_user() {
-		String passwordformat = "n2FiT+glPSuqrahoRrP7Og==";
 		Date date = DateUtils.strToDateLong("1754-01-01 00:00:00");
-		YAccount user = new YAccount();
-		// user.setUserName(form.getName());
-		// user.setLoweredUserName(form.getName());
-		// user.setPassword(pwd(form.getPassword(), passwordformat));
-		// user.setPasswordSalt(passwordformat);
-		// user.setPasswordFormat(1);
-		// user.setIsAnonymous(false);
-		// user.setIsApproved(true);
-		// user.setSessionId(UUID.randomUUID().toString());
-		// user.setUserRole(3);
-		// user.setCreateDate(new Timestamp(new Date().getTime()));
-		// user.setLastLoginDate(new Timestamp(new Date().getTime()));
-		// user.setLastActivityDate(new Timestamp(new Date().getTime()));
-		// user.setLastPasswordChangedDate(new Timestamp(new Date().getTime()));
-		// user.setFailedPasswordAttemptCount(0);
-		// user.setFailedPasswordAnswerAttemptCount(0);
-		// user.setIsLockedOut(false);
-		//
-		// user.setGender(0);
-		//
-		// user.setLastLockoutDate(new Timestamp(date.getTime()));
-		// user.setFailedPasswordAttemptWindowStart(new
-		// Timestamp(date.getTime()));
-		// user.setFailedPasswordAnswerAttemptWindowStart(new
-		// Timestamp(date.getTime()));
-		//
-		// Serializable s = baseBiz.save(user);
-		//
-		// AspnetUsersInRoles inRoles = new AspnetUsersInRoles();
-		//
-		// inRoles.setRoleId("5922DF6C-7B8D-4DCE-80FE-A27C59373E5F");
-		//
-		// int userId = s.hashCode();
-		// user.setUserId(userId);
-		//
-		// inRoles.setUserId(userId);
-		// baseBiz.save(inRoles);
-		//
-		// AspnetMembers members = new AspnetMembers();
-		// members.setUserId(userId);
-		// members.setGradeId(1);
-		// if (form.getId() != null && form.getId() > 100) {
-		// members.setReferralUserId(form.getId());// 邀请人用户userid
-		// }
-		// members.setIsOpenBalance(false);
-		// members.setTradePasswordFormat(1);
-		// members.setOrderNumber(0);
-		// members.setExpenditure(new Double(0.0d));
-		// members.setPoints(0);
-		// members.setBalance(new Double(0.0d));
-		// members.setRequestBalance(new Double(0.0d));
-		// members.setTopRegionId(0);
-		// members.setRegionId(0);
-		// members.setTradePasswordSalt(passwordformat);
-		// members.setTradePassword(jypwd(form.getPassword(), passwordformat));
-		// baseBiz.save(members);
-		// user.setAspnetMembers(members);
-		// user.setUserToken(setUserToken(userId));
-		return user;
+		YAccount account = new YAccount();
+		account.setRoleSetId(4);
+		account.setUnitSetId(1);
+		account.setAccountName(form.getName());
+		account.setAccountPassword(form.getPassword());
+		account.setAccountSex(0);
+		account.setAccountState(1);
+		account.setAccountIntro("暂无");
+		account.setAccountPlace("贵州.贵阳");
+		account.setAccountLeavel(1);
+		account.setIsDelete(0);
+		account.setAccountRegisterTime(new Date());
+		Serializable s = baseBiz.save(account);
+
+		int userId = s.hashCode();
+		Users users = new Users();
+		users.setUserId(userId);
+		users.setUserAccountStatus(1);
+		users.setAppUserToken(UUID.randomUUID().toString());
+		users.setDeleted(0);
+		users.setUserType(3);
+		baseBiz.save(users);
+		account.setUsers(users);
+
+		UserProfile profile = new UserProfile();
+		profile.setUserId(userId);
+		baseBiz.save(profile);
+		account.setUserProfile(profile);
+		return account;
 	}
 
 	public String error() {
@@ -260,8 +229,8 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	 * @return
 	 */
 	public YAccount getUserInfo() {
-		form.setToken("123456");
-		form.setUserId(6);
+//		form.setToken("123456");
+//		form.setUserId(6);
 		String token = form.getToken();
 		int userId = form.getUserId();
 		if (token == null) {
