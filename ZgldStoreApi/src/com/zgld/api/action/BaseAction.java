@@ -238,7 +238,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 			token = "";
 		}
 		Object obj = baseBiz
-				.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId=6 and u.appUserToken = '"
+				.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId="+userId+" and u.appUserToken = '"
 						+ token
 						+ "') and u.userId = p.userId and p.userId = y.accountId");
 		Object[] object = (Object[]) obj;
