@@ -24,20 +24,16 @@ public class UserAction extends BaseAction {
 		try {
 			if (form.getName() == null || form.getName().isEmpty()) {
 				form.setJsonMsg("用户名不能为空", false, json, 1001);
-			} else if (form.getPassword() == null
-					|| form.getPassword().isEmpty()) {
+			} else if (form.getPassword() == null || form.getPassword().isEmpty()) {
 				form.setJsonMsg("密码不能为空", false, json, 1001);
 			} else if (form.getId() == null) {
 				form.setJsonMsg("id不能为空", false, json, 1001);
 			} else {
-				Object obj = baseBiz
-						.bean(" from YAccount as y, Users as u,UserProfile as p where u.userId = p.userId and p.userId = y.accountId and y.accountName = '"
-								+ form.getName() + "'");
+				Object obj = baseBiz.bean(" from YAccount as y, Users as u,UserProfile as p where u.userId = p.userId and p.userId = y.accountId and y.accountName = '" + form.getName() + "'");
 				Object[] object = (Object[]) obj;
 				if (object == null || object.length < 0) {
 					form.setJsonMsg("用户名不存在", false, json, 1001);
-				} else if (!form.getPassword().equals(
-						((YAccount) object[0]).getAccountPassword())) {
+				} else if (!form.getPassword().equals(((YAccount) object[0]).getAccountPassword())) {
 					form.setJsonMsg("密码错误", false, json, 1001);
 				} else {
 					YAccount account = (YAccount) object[0];
@@ -70,20 +66,17 @@ public class UserAction extends BaseAction {
 		try {
 			if (form.getName() == null || form.getName().isEmpty()) {
 				form.setJsonMsg("用户名name不能为空", false, json, 1001);
-			} else if (form.getPassword() == null
-					|| form.getPassword().isEmpty()) {
+			} else if (form.getPassword() == null || form.getPassword().isEmpty()) {
 				form.setJsonMsg("密码password不能为空", false, json, 1001);
-			} else if(form.getPassword().length()<6){
+			} else if (form.getPassword().length() < 6) {
 				form.setJsonMsg("密码password长度不能小于6位数", false, json, 1001);
-			}else{
+			} else {
 				YAccount user = baseBiz.findUserinfoByUserName(form.getName());
 				if (user != null) {
 					form.setJsonMsg("用户名已经存在", false, json, 1001);
 				} else {
 					if (form.getId() != null && form.getId() > 10) {
-						YAccount u = (YAccount) baseBiz
-								.bean(" from YAccount as u where u.accountId = "
-										+ form.getId());
+						YAccount u = (YAccount) baseBiz.bean(" from YAccount as u where u.accountId = " + form.getId());
 						if (u == null) {
 							form.setJsonMsg("邀请码不存在", false, json, 1001);
 						} else {
@@ -175,10 +168,8 @@ public class UserAction extends BaseAction {
 				form.setJsonMsg(NO_USER, false, json, 201);
 			} else if (form.getUserinfo() == null) {
 				form.setJsonMsg("userinfo.gender不能为空", false, json, 1001);
-			} else if (form.getUserinfo().getAccountSex() > 1
-					|| form.getUserinfo().getAccountSex() < 0) {
-				form.setJsonMsg("userinfo.accountSex数据传输错误(0|1)", false, json,
-						1001);
+			} else if (form.getUserinfo().getAccountSex() > 1 || form.getUserinfo().getAccountSex() < 0) {
+				form.setJsonMsg("userinfo.accountSex数据传输错误(0|1)", false, json, 1001);
 			} else {
 				account.setAccountSex(form.getUserinfo().getAccountSex());
 				baseBiz.update(account);
@@ -207,10 +198,8 @@ public class UserAction extends BaseAction {
 				form.setJsonMsg(NO_USER, false, json, 201);
 			} else if (form.getUserinfo().getAccountEmail() == null) {
 				form.setJsonMsg("userinfo.accountEmail不能为空", false, json, 1001);
-			} else if (!EmailUtil.emailMatches(form.getUserinfo()
-					.getAccountEmail())) {
-				form.setJsonMsg("userinfo.accountEmail格式输入错误", false, json,
-						1001);
+			} else if (!EmailUtil.emailMatches(form.getUserinfo().getAccountEmail())) {
+				form.setJsonMsg("userinfo.accountEmail格式输入错误", false, json, 1001);
 			} else {
 				account.setAccountEmail(form.getUserinfo().getAccountEmail());
 				baseBiz.update(account);
@@ -239,8 +228,7 @@ public class UserAction extends BaseAction {
 			} else if (form.getUserinfo().getAccountHead() == null) {
 				form.setJsonMsg("userinfo.accountEmail不能为空", false, json, 1001);
 			} else {
-				String url = ImageBase64.GenerateImage(account.getAccountId(),
-						"0.png", form.getUserinfo().getAccountHead());
+				String url = ImageBase64.GenerateImage(account.getAccountId(), "0.png", form.getUserinfo().getAccountHead());
 				if (url != null && url.length() > 10) {
 					account.setAccountHead(url);
 					baseBiz.update(account);

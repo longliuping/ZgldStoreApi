@@ -160,7 +160,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		account.setIsDelete(0);
 		account.setAccountRegisterTime(new Date());
 		Serializable s = baseBiz.save(account);
-		
+
 		int userId = s.hashCode();
 		account.setAccountId(userId);
 		Users users = new Users();
@@ -192,10 +192,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	}
 
 	public String pwd(String pwd, String passwordformat) {
-		String json = HttpUtil.submitPost(
-				"http://114.215.198.143:55/Home/index",
-				"password=" + pwd + "&passwordformat=1&PasswordSalt="
-						+ passwordformat).toString();
+		String json = HttpUtil.submitPost("http://114.215.198.143:55/Home/index", "password=" + pwd + "&passwordformat=1&PasswordSalt=" + passwordformat).toString();
 		if (json != null && !json.isEmpty()) {
 			Gson g = new Gson();
 			Type entityType = new TypeToken<GsonBean>() {
@@ -208,10 +205,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	}
 
 	public String jypwd(String pwd, String passwordformat) {
-		String json = HttpUtil.submitPost(
-				"http://114.215.198.143:56/Home/trade",
-				"password=" + pwd + "&passwordformat=1&PasswordSalt="
-						+ passwordformat).toString();
+		String json = HttpUtil.submitPost("http://114.215.198.143:56/Home/trade", "password=" + pwd + "&passwordformat=1&PasswordSalt=" + passwordformat).toString();
 		if (json != null && !json.isEmpty()) {
 			Gson g = new Gson();
 			Type entityType = new TypeToken<JyPwd>() {
@@ -230,17 +224,14 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	 * @return
 	 */
 	public YAccount getUserInfo() {
-//		form.setToken("123456");
-//		form.setUserId(6);
+		// form.setToken("123456");
+		// form.setUserId(6);
 		String token = form.getToken();
 		int userId = form.getUserId();
 		if (token == null) {
 			token = "";
 		}
-		Object obj = baseBiz
-				.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId="+userId+" and u.appUserToken = '"
-						+ token
-						+ "') and u.userId = p.userId and p.userId = y.accountId");
+		Object obj = baseBiz.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId=" + userId + " and u.appUserToken = '" + token + "') and u.userId = p.userId and p.userId = y.accountId");
 		Object[] object = (Object[]) obj;
 		if (object != null && object.length > 0) {
 			YAccount account = (YAccount) object[0];

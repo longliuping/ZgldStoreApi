@@ -26,11 +26,7 @@ public class AddressesAction extends BaseAction {
 				form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId();
-				UserShippingAddresses info = (UserShippingAddresses) baseBiz
-						.bean(" from UserShippingAddresses as hu where hu.userId = "
-								+ userId
-								+ " and hu.addressId = "
-								+ form.getAddress().getAddressId());
+				UserShippingAddresses info = (UserShippingAddresses) baseBiz.bean(" from UserShippingAddresses as hu where hu.userId = " + userId + " and hu.addressId = " + form.getAddress().getAddressId());
 				if (info == null) {
 					form.setJsonMsg("要删除的地址信息不存在", false, json, 1001);
 				} else {
@@ -101,9 +97,7 @@ public class AddressesAction extends BaseAction {
 				form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId();
-				List<UserShippingAddresses> listInfo = (List<UserShippingAddresses>) baseBiz
-						.findAll(" from UserShippingAddresses as hu where hu.userId = "
-								+ userId);
+				List<UserShippingAddresses> listInfo = (List<UserShippingAddresses>) baseBiz.findAll(" from UserShippingAddresses as hu where hu.userId = " + userId);
 				json.put(LISTINFO, listInfo);
 				form.setJsonMsg(SUCCESS, true, json, 200);
 			}
@@ -146,11 +140,7 @@ public class AddressesAction extends BaseAction {
 					// form.setJsonMsg("address.cellPhone不能为空", false, json,
 					// 1001);
 				} else {
-					UserShippingAddresses info = (UserShippingAddresses) baseBiz
-							.bean(" from UserShippingAddresses as hu where hu.userId = "
-									+ userId
-									+ " and hu.addressId = "
-									+ form.getAddress().getAddressId());
+					UserShippingAddresses info = (UserShippingAddresses) baseBiz.bean(" from UserShippingAddresses as hu where hu.userId = " + userId + " and hu.addressId = " + form.getAddress().getAddressId());
 					if (info == null) {
 						form.setJsonMsg("要修改的地址信息不存在", false, json, 1001);
 					} else if (!info.getUserId().equals(userId)) {
