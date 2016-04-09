@@ -1,6 +1,7 @@
 package com.zgld.api.beans;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 /**
  * AbstractYShop entity provides the base persistence definition of the YShop

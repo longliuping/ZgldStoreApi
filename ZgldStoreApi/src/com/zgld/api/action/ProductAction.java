@@ -3,9 +3,12 @@ package com.zgld.api.action;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.zgld.api.beans.Categories;
+import com.zgld.api.beans.ProductImages;
 import com.zgld.api.beans.Products;
 import com.zgld.api.beans.Sku;
+import com.zgld.api.beans.Skugroup;
 import com.zgld.api.beans.YShop;
 
 public class ProductAction extends BaseAction {
@@ -38,6 +41,7 @@ public class ProductAction extends BaseAction {
 	}
 
 	/**
+	 * https://item.taobao.com/item.htm?spm=a219r.lm872.14.3.0VYus8&id=527158437669&ns=1&abbucket=1
 	 * 产品详细页面
 	 */
 	public String product_detail() {
@@ -49,13 +53,21 @@ public class ProductAction extends BaseAction {
 				int productId = form.getId();
 				// 查询产品详细
 				Products product = (Products) baseBiz.bean(" from Products as p where p.productId = " + productId);
-				YShop info = (YShop) baseBiz.bean(" from YShop as s where s.shopId = " + product.getShopId());
-				// 规格
-				List<Sku> listSkus = (List<Sku>) baseBiz.findAll(" from Sku as s where s.productId = " + productId);
-				product.setListSkus(listSkus);
-				info.setProducts(product);
-				json.put(INFO, info);
-				form.setJsonMsg(SUCCESS, true, json, 200);
+				if(product==null){
+					form.setJsonMsg("产品不存在", false, json, 1001);
+				}else{
+					List<ProductImages> listImages = (List<ProductImages>)baseBiz.findAll(" from ProductImages as pi where pi.productId = "+product.getProductId());
+					product.setListProductImages(listImages);
+					YShop info = (YShop) baseBiz.bean(" from YShop as s where s.shopId = " + product.getShopId());
+					List<Skugroup> listSkugroups = (List<Skugroup>)baseBiz.findAll(" from Skugroup as sg where sg.productId = "+productId);
+					for (int i = 0; i < listSkugroups.size(); i++) {
+						listSkugroups.get(i).setListSkus((List<Sku>)baseBiz.findAll(" from Sku as s where s.skugroupId = "+listSkugroups.get(i).getSkugroupId()));
+					}
+					product.setListSkugroups(listSkugroups);
+					info.setProducts(product);
+					json.put(INFO, info);
+					form.setJsonMsg(SUCCESS, true, json, 200);
+				}
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

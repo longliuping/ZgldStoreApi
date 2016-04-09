@@ -19,8 +19,18 @@ public class Products extends AbstractProducts implements java.io.Serializable {
 		super(shopId, categoryId, brandId, productName, shortDescription, unit, weight, description, title, metaDescription, metaKeywords, thumbnailsUrl, inFocusImageUrl, recommended, latest, hotsale, specialOffer, costPrice, marketPrice, upselling, salePrice, stock, quantityLimit, minQuantity, addedDate, vistiCounts, order, productionDate, isCustom, customCycle, minCustomQuantity, maxCustomQuantity, attachment, shipperId, createdDate, userId, updatedDate, updatedUserId, expiryTime);
 	}
 	Sku sku;
+	List<Skugroup> listSkugroups;
 	List<Sku> listSkus;
 	List<ProductImages> listProductImages;
+	
+	public List<Skugroup> getListSkugroups() {
+		return listSkugroups;
+	}
+
+	public void setListSkugroups(List<Skugroup> listSkugroups) {
+		this.listSkugroups = listSkugroups;
+	}
+
 	public Sku getSku() {
 		return sku;
 	}
