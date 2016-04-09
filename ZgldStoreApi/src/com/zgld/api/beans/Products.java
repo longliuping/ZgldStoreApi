@@ -20,7 +20,7 @@ public class Products extends AbstractProducts implements java.io.Serializable {
 	}
 	Sku sku;
 	List<Sku> listSkus;
-	
+	List<ProductImages> listProductImages;
 	public Sku getSku() {
 		return sku;
 	}
@@ -36,5 +36,14 @@ public class Products extends AbstractProducts implements java.io.Serializable {
 	public void setListSkus(List<Sku> listSkus) {
 		this.listSkus = listSkus;
 	}
+
+	public List<ProductImages> getListProductImages() {
+		return listProductImages;
+	}
+
+	public void setListProductImages(List<ProductImages> listProductImages) {
+		this.listProductImages = listProductImages;
+	}
+	
 	
 }
