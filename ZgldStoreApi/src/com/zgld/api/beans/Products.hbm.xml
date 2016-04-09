@@ -89,7 +89,7 @@
             <column name="VistiCounts" />
         </property>
         <property name="order" type="java.lang.Integer">
-            <column name="Order" />
+            <column name="Product_Order" />
         </property>
         <property name="productionDate" type="java.util.Date">
             <column name="ProductionDate" length="16" />

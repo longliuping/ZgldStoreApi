@@ -75,7 +75,9 @@ public class ProductAction extends BaseAction {
 		try {
 			List<Categories> listCategories = (List<Categories>) baseBiz.findAll(" from Categories as hc where hc.depth = 1");
 			for (int i = 0; i < listCategories.size(); i++) {
-				listCategories.get(i).setListProducts((List<Products>) baseBiz.findPage(1, 3, " from Products as hp where pc.categoryId =" + listCategories.get(i).getCategoryId() + " order by hp.addedDate asc "));
+				String hql = " from Products as hp where hp.categoryId =" + listCategories.get(i).getCategoryId() + " order by hp.addedDate asc ";
+				List<Products> listInfo = (List<Products>) baseBiz.findPage(1, 3, hql);
+				listCategories.get(i).setListProducts(listInfo);
 			}
 			json.put(LISTINFO, listCategories);
 			form.setJsonMsg(SUCCESS, true, json, 200);
