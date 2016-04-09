@@ -18,6 +18,6 @@
 		</action>
 		<action name="addresses_*" class="com.zgld.api.action.AddressesAction" method="{1}">
 		</action>
-		<action name="reviews_" class="com.zgld.api.action.ReviewsAction" method="{1}"></action>
+		<action name="reviews_*" class="com.zgld.api.action.ReviewsAction" method="{1}"></action>
 	</package>
 </struts>

@@ -6,7 +6,11 @@ import java.util.Map;
 
 import com.zgld.api.beans.UserShippingAddresses;
 import com.zgld.api.beans.YAccount;
-
+/**
+ * 地址
+ * @author Am
+ *
+ */
 public class AddressesAction extends BaseAction {
 	/**
 	 * 

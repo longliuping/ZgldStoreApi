@@ -11,7 +11,11 @@ import com.zgld.api.beans.ShoppingCarts;
 import com.zgld.api.beans.Sku;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.beans.YShop;
-
+/**
+ * 购物车
+ * @author Am
+ *
+ */
 public class CarAction extends BaseAction {
 	/**
 	 * 

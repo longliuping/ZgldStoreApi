@@ -10,7 +10,11 @@ import com.zgld.api.beans.Products;
 import com.zgld.api.beans.Sku;
 import com.zgld.api.beans.Skugroup;
 import com.zgld.api.beans.YShop;
-
+/**
+ * 产品
+ * @author Am
+ *
+ */
 public class ProductAction extends BaseAction {
 	/**
 	 * 
