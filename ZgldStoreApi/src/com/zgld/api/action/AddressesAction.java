@@ -12,7 +12,7 @@ import com.zgld.api.beans.YAccount;
  *
  */
 public class AddressesAction extends BaseAction {
-	public void aa11(){
+	public void aa1122(){
 		
 	}
 	/**
