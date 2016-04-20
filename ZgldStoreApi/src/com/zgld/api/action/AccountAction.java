@@ -5,7 +5,8 @@ import com.zgld.api.beans.BalanceDetails;
 import com.zgld.api.beans.BalanceDrawRequest;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
-import com.zgld.api.biz.BaseBiz;
+import com.zgld.api.service.BaseService;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class AccountAction extends BaseAction {
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 
-				List listInfo = this.baseBiz.findPage(this.form.getPageNum().intValue(),
+				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(), " from InpourRequest as hsc where hsc.userId = " + userId);
 				json.put("listInfo", listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
@@ -43,7 +44,7 @@ public class AccountAction extends BaseAction {
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 
-				List listInfo = this.baseBiz.findPage(this.form.getPageNum().intValue(),
+				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(), " from PointDetails as hsc where hsc.userId = " + userId);
 				json.put("listInfo", listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
@@ -64,7 +65,7 @@ public class AccountAction extends BaseAction {
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 
-				List listInfo = this.baseBiz.findPage(this.form.getPageNum().intValue(),
+				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(), " from BalanceDetails as hsc where hsc.userId = " + userId);
 				json.put("listInfo", listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
@@ -85,7 +86,7 @@ public class AccountAction extends BaseAction {
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 
-				List listInfo = this.baseBiz.findPage(this.form.getPageNum().intValue(),
+				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(),
 						" from BalanceDrawRequest as hsc where hsc.userId = " + userId);
 				json.put("listInfo", listInfo);
@@ -107,7 +108,7 @@ public class AccountAction extends BaseAction {
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 
-				List listInfo = this.baseBiz.findPage(this.form.getPageNum().intValue(),
+				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(),
 						" from BalanceFreezeDetails as hsc where hsc.userId = " + userId);
 				json.put("listInfo", listInfo);
@@ -136,7 +137,7 @@ public class AccountAction extends BaseAction {
 				req.setRequestStatus(Integer.valueOf(0));
 				req.setAmount(this.form.getAmount());
 				req.setRemark(this.form.getRemark());
-				this.baseBiz.save(req);
+				this.baseService.save(req);
 				this.form.setJsonMsg("申请成功，等待审核!(接口调试中...)", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -161,8 +162,8 @@ public class AccountAction extends BaseAction {
 				req.setUserId(Integer.valueOf(userId));
 				req.setIncome(this.form.getAmount());
 				req.setRemark(this.form.getRemark());
-				Serializable id = this.baseBiz.save(req);
-				BalanceDetails info = (BalanceDetails) this.baseBiz
+				Serializable id = this.baseService.save(req);
+				BalanceDetails info = (BalanceDetails) this.baseService
 						.bean(" from BalanceDetails as b where b.balanceId = " + id.toString());
 				json.put("info", info);
 				this.form.setJsonMsg("success", true, json, 200);

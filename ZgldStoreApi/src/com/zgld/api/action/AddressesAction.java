@@ -4,7 +4,8 @@ import com.zgld.api.base.BaseForm;
 import com.zgld.api.beans.UserShippingAddresses;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
-import com.zgld.api.biz.BaseBiz;
+import com.zgld.api.service.BaseService;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,13 +21,13 @@ public class AddressesAction extends BaseAction {
 				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
-				UserShippingAddresses info = (UserShippingAddresses) this.baseBiz
+				UserShippingAddresses info = (UserShippingAddresses) this.baseService
 						.bean(" from UserShippingAddresses as hu where hu.userId = " + userId + " and hu.addressId = "
 								+ this.form.getAddress().getAddressId());
 				if (info == null) {
 					this.form.setJsonMsg("要删除的地址信息不存在", false, json, 1001);
 				} else {
-					this.baseBiz.delete(info);
+					this.baseService.delete(info);
 					this.form.setJsonMsg("删除成功", true, json, 200);
 				}
 			}
@@ -58,7 +59,7 @@ public class AddressesAction extends BaseAction {
 					this.form.setJsonMsg("address.mobile不能为空", false, json, 1001);
 				} else {
 					info.setUserId(Integer.valueOf(userId));
-					this.baseBiz.save(info);
+					this.baseService.save(info);
 					this.form.setJsonMsg("添加成功", true, json, 200);
 				}
 			}
@@ -77,7 +78,7 @@ public class AddressesAction extends BaseAction {
 				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
-				List listInfo = this.baseBiz.findAll(" from UserShippingAddresses as hu where hu.userId = " + userId);
+				List listInfo = this.baseService.findAll(" from UserShippingAddresses as hu where hu.userId = " + userId);
 				json.put("listInfo", listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
@@ -110,7 +111,7 @@ public class AddressesAction extends BaseAction {
 				} else if (obj.getMobile() == null) {
 					this.form.setJsonMsg("address.mobile不能为空", false, json, 1001);
 				} else {
-					UserShippingAddresses info = (UserShippingAddresses) this.baseBiz
+					UserShippingAddresses info = (UserShippingAddresses) this.baseService
 							.bean(" from UserShippingAddresses as hu where hu.userId = " + userId
 									+ " and hu.addressId = " + this.form.getAddress().getAddressId());
 					if (info == null) {
@@ -123,7 +124,7 @@ public class AddressesAction extends BaseAction {
 						info.setShipTo(this.form.getAddress().getShipTo());
 						info.setMobile(this.form.getAddress().getMobile());
 						info.setZipcode(this.form.getAddress().getZipcode());
-						this.baseBiz.update(info);
+						this.baseService.update(info);
 						this.form.setJsonMsg("修改成功", true, json, 200);
 					}
 				}

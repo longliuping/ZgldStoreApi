@@ -10,7 +10,7 @@ import com.zgld.api.beans.JyPwd;
 import com.zgld.api.beans.UserProfile;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
-import com.zgld.api.biz.BaseBiz;
+import com.zgld.api.service.BaseService;
 import com.zgld.api.utils.DateUtils;
 import com.zgld.api.utils.HttpUtil;
 import com.zgld.api.utils.PasswordUtils;
@@ -38,7 +38,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	protected int rowCount = 0;
 	private static final long serialVersionUID = 1L;
 	protected static final String JSON_PAGE = "jsonPage";
-	protected BaseBiz baseBiz;
+	protected BaseService baseService;
 	public static final String INFO = "info";
 	public static final String LISTINFO = "listInfo";
 	public static final String NO_USER = "该账号已经在其它设备登录";
@@ -96,12 +96,13 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		return sdf.format(new Date());
 	}
 
-	public BaseBiz getBaseBiz() {
-		return this.baseBiz;
+
+	public BaseService getBaseService() {
+		return baseService;
 	}
 
-	public void setBaseBiz(BaseBiz baseBiz) {
-		this.baseBiz = baseBiz;
+	public void setBaseService(BaseService baseService) {
+		this.baseService = baseService;
 	}
 
 	protected void initPage() {
@@ -134,7 +135,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		account.setAccountLeavel(Integer.valueOf(1));
 		account.setIsDelete(Integer.valueOf(0));
 		account.setAccountRegisterTime(new Date());
-		Serializable s = this.baseBiz.save(account);
+		Serializable s = this.baseService.save(account);
 
 		int userId = s.hashCode();
 		account.setAccountId(Integer.valueOf(userId));
@@ -144,12 +145,12 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		users.setAppUserToken(UUID.randomUUID().toString());
 		users.setDeleted(Integer.valueOf(0));
 		users.setUserType(Integer.valueOf(3));
-		this.baseBiz.save(users);
+		this.baseService.save(users);
 		account.setUsers(users);
 
 		UserProfile profile = new UserProfile();
 		profile.setUserId(Integer.valueOf(userId));
-		this.baseBiz.save(profile);
+		this.baseService.save(profile);
 		account.setUserProfile(profile);
 		return account;
 	}
@@ -197,7 +198,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		if (token == null) {
 			token = "";
 		}
-		Object obj = this.baseBiz.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId=" + userId
+		Object obj = this.baseService.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId=" + userId
 				+ " and u.appUserToken = '" + token + "') and u.userId = p.userId and p.userId = y.accountId");
 		Object[] object = (Object[]) obj;
 		if ((object != null) && (object.length > 0)) {
@@ -224,7 +225,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 			userToken.setLastActivity(new Date());
 			userToken.setDeleted(Integer.valueOf(1));
 			userToken.setUserType(Integer.valueOf(3));
-			this.baseBiz.save(userToken);
+			this.baseService.save(userToken);
 			return userToken;
 		} catch (Exception e) {
 			e.printStackTrace();

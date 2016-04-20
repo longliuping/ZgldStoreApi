@@ -11,5 +11,5 @@
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd ">
 		
-	<bean name="baseBiz" class="com.zgld.api.biz.impl.BaseBizImpl" autowire="byName"></bean>
+	<bean name="baseService" class="com.zgld.api.service.impl.BaseServiceImpl" autowire="byName"></bean>
 </beans>

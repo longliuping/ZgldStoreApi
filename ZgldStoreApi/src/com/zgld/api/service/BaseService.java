@@ -1,11 +1,11 @@
-package com.zgld.api.biz;
+package com.zgld.api.service;
 
 import java.io.Serializable;
 import java.util.List;
 
 import com.zgld.api.beans.YAccount;
 
-public interface BaseBiz {
+public interface BaseService {
 	/**
 	 * 分页查询
 	 * 

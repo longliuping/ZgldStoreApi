@@ -3,7 +3,8 @@ package com.zgld.api.action;
 import com.zgld.api.base.BaseForm;
 import com.zgld.api.beans.ProductReviews;
 import com.zgld.api.beans.YAccount;
-import com.zgld.api.biz.BaseBiz;
+import com.zgld.api.service.BaseService;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -19,7 +20,7 @@ public class ReviewsAction extends BaseAction {
 			} else {
 				int productId = this.form.getProductId().intValue();
 				List listInfo = new ArrayList();
-				List listObj = this.baseBiz.findPage(this.form.getPageNum().intValue(),
+				List listObj = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(),
 						" from ProductReviews as pv, YAccount as ya where pv.productId = " + productId
 								+ " and pv.userId = ya.accountId order by pv.reviewDate desc ");

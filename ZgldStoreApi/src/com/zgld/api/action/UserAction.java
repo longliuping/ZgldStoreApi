@@ -5,7 +5,7 @@ import com.zgld.api.beans.UserProfile;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.beans.YRebateRelation;
-import com.zgld.api.biz.BaseBiz;
+import com.zgld.api.service.BaseService;
 import com.zgld.api.utils.EmailUtil;
 import com.zgld.api.utils.ImageBase64;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ public class UserAction extends BaseAction {
 			} else if (this.form.getId() == null) {
 				this.form.setJsonMsg("id不能为空", false, json, 1001);
 			} else {
-				Object obj = this.baseBiz
+				Object obj = this.baseService
 						.bean(" from YAccount as y, Users as u,UserProfile as p where u.userId = p.userId and p.userId = y.accountId and y.accountName = '"
 								+ this.form.getName() + "'");
 				Object[] object = (Object[]) obj;
@@ -61,11 +61,11 @@ public class UserAction extends BaseAction {
 			} else if (this.form.getPassword().length() < 6) {
 				this.form.setJsonMsg("密码password长度不能小于6位数", false, json, 1001);
 			} else {
-				YAccount user = this.baseBiz.findUserinfoByUserName(this.form.getName());
+				YAccount user = this.baseService.findUserinfoByUserName(this.form.getName());
 				if (user != null) {
 					this.form.setJsonMsg("用户名已经存在", false, json, 1001);
 				} else if ((this.form.getId() != null) && (this.form.getId().intValue() > 10)) {
-					YAccount u = (YAccount) this.baseBiz
+					YAccount u = (YAccount) this.baseService
 							.bean(" from YAccount as u where u.accountId = " + this.form.getId());
 					if (u == null) {
 						this.form.setJsonMsg("邀请码不存在", false, json, 1001);
@@ -74,7 +74,7 @@ public class UserAction extends BaseAction {
 						YRebateRelation re = new YRebateRelation();
 						re.setParentUserId(this.form.getId());
 						re.setCurrentUserId(account.getUserProfile().getUserId());
-						this.baseBiz.save(re);
+						this.baseService.save(re);
 						json.put("info", account);
 						this.form.setJsonMsg("注册成功", true, json, 200);
 					}
@@ -123,7 +123,7 @@ public class UserAction extends BaseAction {
 				this.form.setJsonMsg("旧密码错误", false, json, 1001);
 			} else {
 				account.setAccountPassword(this.form.getPassword());
-				this.baseBiz.update(account);
+				this.baseService.update(account);
 				json.put("info", account);
 				this.form.setJsonMsg("修改成功", true, json, 200);
 			}
@@ -147,7 +147,7 @@ public class UserAction extends BaseAction {
 				this.form.setJsonMsg("userinfo.accountSex数据传输错误(0|1)", false, json, 1001);
 			} else {
 				account.setAccountSex(this.form.getUserinfo().getAccountSex());
-				this.baseBiz.update(account);
+				this.baseService.update(account);
 				json.put("info", account);
 				this.form.setJsonMsg("修改成功", true, json, 200);
 			}
@@ -171,7 +171,7 @@ public class UserAction extends BaseAction {
 				this.form.setJsonMsg("userinfo.accountEmail格式输入错误", false, json, 1001);
 			} else {
 				account.setAccountEmail(this.form.getUserinfo().getAccountEmail());
-				this.baseBiz.update(account);
+				this.baseService.update(account);
 				json.put("info", account);
 				this.form.setJsonMsg("修改成功", true, json, 200);
 			}
@@ -195,7 +195,7 @@ public class UserAction extends BaseAction {
 						this.form.getUserinfo().getAccountHead());
 				if ((url != null) && (url.length() > 10)) {
 					account.setAccountHead(url);
-					this.baseBiz.update(account);
+					this.baseService.update(account);
 					json.put("info", account);
 					this.form.setJsonMsg("修改成功", true, json, 200);
 				} else {
@@ -219,7 +219,7 @@ public class UserAction extends BaseAction {
 				this.form.setJsonMsg("userinfo.telPhone不能为空", false, json, 1001);
 			} else {
 				account.getUserProfile().setTelPhone(this.form.getTelPhone());
-				this.baseBiz.update(account.getUserProfile());
+				this.baseService.update(account.getUserProfile());
 				json.put("info", account);
 				this.form.setJsonMsg("修改成功", true, json, 200);
 			}
@@ -240,7 +240,7 @@ public class UserAction extends BaseAction {
 				this.form.setJsonMsg("userinfo.cellPhone不能为空", false, json, 1001);
 			} else {
 				account.getUserProfile().setCellPhone(this.form.getCellPhone());
-				this.baseBiz.update(account.getUserProfile());
+				this.baseService.update(account.getUserProfile());
 				json.put("info", account);
 				this.form.setJsonMsg("修改成功", true, json, 200);
 			}

@@ -9,7 +9,7 @@ import com.zgld.api.beans.Sku;
 import com.zgld.api.beans.UserShippingAddresses;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
-import com.zgld.api.biz.BaseBiz;
+import com.zgld.api.service.BaseService;
 import com.zgld.api.utils.AddressXmlUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class OrderAction extends BaseAction {
 			} else if (this.form.getOrderid() == null) {
 				this.form.setJsonMsg("orderid不能为空", false, json, 1001);
 			} else {
-				Orders order = (Orders) this.baseBiz
+				Orders order = (Orders) this.baseService
 						.bean(" from Orders as o where o.orderId = " + this.form.getOrderid());
 				if (order == null) {
 					this.form.setJsonMsg("订单不存在", false, json, 1001);
@@ -40,7 +40,7 @@ public class OrderAction extends BaseAction {
 				} else {
 					String subject = "众观利达：";
 					String body = "众观利达：";
-					List listItem = this.baseBiz.findAll(
+					List listItem = this.baseService.findAll(
 							" from OrderItems as oi,Products as p where oi.productId = p.productId and oi.orderId="
 									+ order.getOrderId());
 					if (listItem != null) {
@@ -97,7 +97,7 @@ public class OrderAction extends BaseAction {
 				String message = "";
 				String skuIdStr = "";
 				for (int i = 0; i < skuId.length; i++) {
-					Sku hishopSkus = (Sku) this.baseBiz.bean(" from Sku as hs where hs.sku = " + skuId[i]);
+					Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
 					if (hishopSkus != null) {
 						int number = Integer.parseInt(skuNumber[i]);
 						if (number > hishopSkus.getStock().intValue())
@@ -116,7 +116,7 @@ public class OrderAction extends BaseAction {
 					int userId = account.getUsers().getUserId().intValue();
 					Users users = account.getUsers();
 
-					UserShippingAddresses address = (UserShippingAddresses) this.baseBiz
+					UserShippingAddresses address = (UserShippingAddresses) this.baseService
 							.bean(" from UserShippingAddresses as usa where usa.addressId = "
 									+ this.form.getShippingId() + " and usa.userId = " + userId);
 					if (address == null) {
@@ -140,11 +140,11 @@ public class OrderAction extends BaseAction {
 						orders.setAddress(
 								AddressXmlUtils.readXML(address.getRegionId().intValue()) + " " + address.getAddress());
 						orders.setZipcode(address.getZipcode());
-						Serializable s = this.baseBiz.save(orders);
+						Serializable s = this.baseService.save(orders);
 						String orderId = s.toString();
 						double salePrice = 0.0D;
 						for (int i = 0; i < skuId.length; i++) {
-							Sku hishopSkus = (Sku) this.baseBiz.bean(" from Sku as hs where hs.sku = " + skuId[i]);
+							Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
 							OrderItems items = new OrderItems();
 							items.setOrderId(Integer.valueOf(Integer.parseInt(orderId)));
 							items.setProductId(hishopSkus.getProductId());
@@ -155,14 +155,14 @@ public class OrderAction extends BaseAction {
 							items.setCellPrice(hishopSkus.getPrice());
 							items.setRemark("");
 							salePrice += Integer.parseInt(skuNumber[i]) * hishopSkus.getPrice().doubleValue();
-							this.baseBiz.updateListObject(" delete from ShoppingCarts as hsc where hsc.sku = '"
+							this.baseService.updateListObject(" delete from ShoppingCarts as hsc where hsc.sku = '"
 									+ hishopSkus.getSku() + "' and hsc.userId = " + userId);
-							this.baseBiz.save(items);
+							this.baseService.save(items);
 						}
-						Orders ho = (Orders) this.baseBiz.bean(" from Orders as ho where ho.orderId = " + orderId);
+						Orders ho = (Orders) this.baseService.bean(" from Orders as ho where ho.orderId = " + orderId);
 						if (ho != null) {
 							ho.setOrderTotalPrice(Double.valueOf(salePrice));
-							this.baseBiz.update(ho);
+							this.baseService.update(ho);
 						}
 						json.put("orderId", orderId);
 						this.form.setJsonMsg("提交订单成功", true, json, 200);
@@ -189,10 +189,10 @@ public class OrderAction extends BaseAction {
 					sb.append(" and ho.paymentStatus = " + this.form.getId());
 				}
 				sb.append(" order by ho.orderDate desc ");
-				List hishopOrders = this.baseBiz.findPage(this.form.getPageNum().intValue(),
+				List hishopOrders = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(), sb.toString());
 				for (int i = 0; i < hishopOrders.size(); i++) {
-					List list = this.baseBiz.findAll(
+					List list = this.baseService.findAll(
 							" from OrderItems as oi, Products as p where oi.productId = p.productId and oi.orderId = "
 									+ ((Orders) hishopOrders.get(i)).getOrderId());
 					List items = new ArrayList();

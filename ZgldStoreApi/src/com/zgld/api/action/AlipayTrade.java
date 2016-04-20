@@ -2,27 +2,27 @@ package com.zgld.api.action;
 
 import com.alipay.util.AlipayInfo;
 import com.zgld.api.beans.Orders;
-import com.zgld.api.biz.BaseBiz;
+import com.zgld.api.service.BaseService;
+import com.zgld.api.utils.Contents;
 import com.zgld.api.utils.DateUtils;
 import java.io.PrintStream;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class AlipayTrade {
-	static BaseBiz baseBiz;
+	static BaseService baseService;
 	static {
-		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-		baseBiz = (BaseBiz) ac.getBean("baseBiz");
+		baseService = Contents.getBaseService();
 	}
 
 	public static String alipay_recharge(AlipayInfo info) {
 		String result = "fail";
 		try {
 			if (info != null) {
-				Orders order = (Orders) baseBiz.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
+				Orders order = (Orders) baseService.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
 				if ((order != null) && (order.getPaymentStatus().intValue() != 1)) {
 					order.setPaymentStatus(Integer.valueOf(1));
-					baseBiz.update(order);
+					baseService.update(order);
 					result = "success";
 				}
 			}
@@ -36,7 +36,7 @@ public class AlipayTrade {
 		String result = "fail";
 		try {
 			if (info != null) {
-				Orders order = (Orders) baseBiz.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
+				Orders order = (Orders) baseService.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
 				if ((order != null) && (!"1".equals(order.getPaymentStatus()))) {
 					System.out.println("修改订单付款状态");
 					order.setPaymentStatus(Integer.valueOf(1));
@@ -46,7 +46,7 @@ public class AlipayTrade {
 					order.setPayTotalFee(Double.valueOf(Double.parseDouble(info.getTotal_fee())));
 					order.setBuyerId(info.getBuyer_id());
 					order.setBuyerAccount(info.getBuyer_email());
-					baseBiz.update(order);
+					baseService.update(order);
 					result = "success";
 					System.out.println("修改订单状态成功");
 				}
@@ -72,14 +72,14 @@ public class AlipayTrade {
 		String result = "fail";
 		try {
 			if (info != null) {
-				Orders order = (Orders) baseBiz.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
+				Orders order = (Orders) baseService.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
 				if ((order != null) && (!"1".equals(order.getPaymentStatus()))
 						&& (!"1".equals(order.getRefundStatus()))) {
 					System.out.println("修改订单退款状态");
 					order.setRefundStatus(Integer.valueOf(1));
 					order.setRefundDateTime(DateUtils.strDateTimeToDate(info.getGmt_refund()));
 					order.setRefundTotalFee(Double.valueOf(Double.parseDouble(info.getTotal_fee())));
-					baseBiz.update(order);
+					baseService.update(order);
 					result = "success";
 					System.out.println("修改订单退款状态成功");
 				}

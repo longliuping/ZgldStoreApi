@@ -12,15 +12,15 @@ import com.zgld.api.beans.UserProfile;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.beans.YWxpayConfig;
-import com.zgld.api.biz.BaseBiz;
+import com.zgld.api.service.BaseService;
+import com.zgld.api.utils.Contents;
 
 public class SpringTest {
 	public static void main(String[] args) {
 		String token = "123456";
 		int userId = 6;
-		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-		BaseBiz baseBiz = (BaseBiz) ac.getBean("baseBiz");
-		// Object obj = baseBiz.bean(" from YAccount as y, Users as
+		BaseService baseService = Contents.getBaseService();
+		// Object obj = baseService.bean(" from YAccount as y, Users as
 		// u,UserProfile as p where (u.userId=6 and u.appUserToken =
 		// '"+token+"') and u.userId = p.userId and p.userId = y.accountId");
 		// Object[] object = (Object[])obj;
@@ -39,9 +39,9 @@ public class SpringTest {
 		//
 		// }
 		try {
-			List<Skugroup> listInfo = (List<Skugroup>) baseBiz.findAll(" from Skugroup as sg where sg.productId = 1");
+			List<Skugroup> listInfo = (List<Skugroup>) baseService.findAll(" from Skugroup as sg where sg.productId = 1");
 			for (int i = 0; i < listInfo.size(); i++) {
-				listInfo.get(i).setListSkus((List<Sku>) baseBiz
+				listInfo.get(i).setListSkus((List<Sku>) baseService
 						.findAll(" from Sku as s where s.skugroupId = " + listInfo.get(i).getSkugroupId()));
 			}
 			System.out.println("");

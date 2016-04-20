@@ -2,7 +2,8 @@ package com.zgld.api.action;
 
 import com.zgld.api.base.BaseForm;
 import com.zgld.api.beans.HomeBanner;
-import com.zgld.api.biz.BaseBiz;
+import com.zgld.api.service.BaseService;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,7 @@ public class JsonAction extends BaseAction {
 	public String home_hot_category() {
 		Map json = new HashMap();
 		try {
-			List listInfo = this.baseBiz.findAll(" from HotCategory as h ");
+			List listInfo = this.baseService.findAll(" from HotCategory as h ");
 			json.put("listInfo", listInfo);
 			this.form.setJsonMsg("success", true, json, 200);
 		} catch (Exception e) {

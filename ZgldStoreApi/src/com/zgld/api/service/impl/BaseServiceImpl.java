@@ -1,4 +1,4 @@
-package com.zgld.api.biz.impl;
+package com.zgld.api.service.impl;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -6,10 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.zgld.api.beans.YAccount;
-import com.zgld.api.biz.BaseBiz;
 import com.zgld.api.dao.BaseDao;
+import com.zgld.api.service.BaseService;
 
-public class BaseBizImpl implements BaseBiz {
+public class BaseServiceImpl implements BaseService {
 	private BaseDao baseDao;
 
 	public BaseDao getBaseDao() {
