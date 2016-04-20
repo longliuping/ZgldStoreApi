@@ -182,7 +182,7 @@
 		<mapping resource="com/zgld/api/beans/Gifts.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/YGoodsComment.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/YArea.hbm.xml" />
-
+		<mapping resource="com/zgld/api/beans/HotCategory.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>
