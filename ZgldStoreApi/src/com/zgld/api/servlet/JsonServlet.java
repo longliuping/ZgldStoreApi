@@ -64,7 +64,6 @@ public class JsonServlet extends HttpServlet {
 		String currentPath = request.getRequestURL().toString();
 		response.setContentType("text/html;charset=utf-8");
 		String u = request.getRequestDispatcher(currentPath).toString();
-		System.out.println(u);
 		request.setCharacterEncoding("UTF-8");
 		if (currentPath.length() >= 6) {
 			int index = currentPath.indexOf("/json") + 6;
