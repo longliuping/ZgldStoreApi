@@ -65,8 +65,8 @@ public class UserAction extends BaseAction {
 				if (user != null) {
 					this.form.setJsonMsg("用户名已经存在", false, json, 1001);
 				} else if ((this.form.getId() != null) && (this.form.getId().intValue() > 10)) {
-					YAccount u = (YAccount) this.baseService
-							.bean(" from YAccount as u where u.accountId = " + this.form.getId());
+					Users u = (Users) this.baseService
+							.bean(" from Users as u where u.userId = " + this.form.getId());
 					if (u == null) {
 						this.form.setJsonMsg("邀请码不存在", false, json, 1001);
 					} else {

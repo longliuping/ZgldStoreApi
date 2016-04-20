@@ -137,20 +137,22 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		account.setAccountRegisterTime(new Date());
 		Serializable s = this.baseService.save(account);
 
-		int userId = s.hashCode();
-		account.setAccountId(Integer.valueOf(userId));
+		int accountId = s.hashCode();
+		account.setAccountId(accountId);
 		Users users = new Users();
-		users.setUserId(Integer.valueOf(userId));
+		users.setAccountId(accountId);
 		users.setUserAccountStatus(Integer.valueOf(1));
 		users.setAppUserToken(UUID.randomUUID().toString());
 		users.setDeleted(Integer.valueOf(0));
 		users.setUserType(Integer.valueOf(3));
-		this.baseService.save(users);
-		account.setUsers(users);
-
+		Serializable b = this.baseService.save(users);
+		
+		int userId = b.hashCode();
 		UserProfile profile = new UserProfile();
 		profile.setUserId(Integer.valueOf(userId));
-		this.baseService.save(profile);
+		Serializable c = this.baseService.save(profile);
+		int userProfileId = c.hashCode();
+		profile.setUserProfileId(userProfileId);
 		account.setUserProfile(profile);
 		return account;
 	}
@@ -199,7 +201,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 			token = "";
 		}
 		Object obj = this.baseService.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId=" + userId
-				+ " and u.appUserToken = '" + token + "') and u.userId = p.userId and p.userId = y.accountId");
+				+ " and u.appUserToken = '" + token + "') and u.userId = p.userId and u.accountId = y.accountId ");
 		Object[] object = (Object[]) obj;
 		if ((object != null) && (object.length > 0)) {
 			YAccount account = (YAccount) object[0];

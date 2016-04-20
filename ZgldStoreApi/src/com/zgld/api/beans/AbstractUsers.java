@@ -11,7 +11,7 @@ import java.util.Date;
 public abstract class AbstractUsers implements java.io.Serializable {
 
 	// Fields
-
+	private Integer accountId;
 	private Integer userId;
 	private Integer userAccountStatus;
 	private String appUserToken;
@@ -26,16 +26,6 @@ public abstract class AbstractUsers implements java.io.Serializable {
 	public AbstractUsers() {
 	}
 
-	/** full constructor */
-	public AbstractUsers(Integer userAccountStatus, String appUserToken, String userBankCard, Date lastActivity,
-			Integer deleted, Integer userType) {
-		this.userAccountStatus = userAccountStatus;
-		this.appUserToken = appUserToken;
-		this.userBankCard = userBankCard;
-		this.lastActivity = lastActivity;
-		this.deleted = deleted;
-		this.userType = userType;
-	}
 
 	// Property accessors
 
@@ -93,6 +83,16 @@ public abstract class AbstractUsers implements java.io.Serializable {
 
 	public void setUserType(Integer userType) {
 		this.userType = userType;
+	}
+
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
 	}
 
 }

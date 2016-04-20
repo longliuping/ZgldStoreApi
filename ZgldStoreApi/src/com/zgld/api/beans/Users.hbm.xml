@@ -10,6 +10,9 @@
             <column name="UserId" />
             <generator class="identity" />
         </id>
+        <property name="accountId" type="java.lang.Integer">
+            <column name="Account_ID" />
+        </property>
         <property name="userAccountStatus" type="java.lang.Integer">
             <column name="UserAccountStatus" />
         </property>
