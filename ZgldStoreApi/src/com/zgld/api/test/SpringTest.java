@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.zgld.api.beans.Products;
 import com.zgld.api.beans.Sku;
 import com.zgld.api.beans.Skugroup;
 import com.zgld.api.beans.UserProfile;
@@ -38,18 +39,22 @@ public class SpringTest {
 		// }else{
 		//
 		// }
-		try {
-			List<Skugroup> listInfo = (List<Skugroup>) baseService.findAll(" from Skugroup as sg where sg.productId = 1");
-			for (int i = 0; i < listInfo.size(); i++) {
-				listInfo.get(i).setListSkus((List<Sku>) baseService
-						.findAll(" from Sku as s where s.skugroupId = " + listInfo.get(i).getSkugroupId()));
-			}
-			System.out.println("");
-			System.out.println("");
-			System.out.println("");
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+//		try {
+//			List<Skugroup> listInfo = (List<Skugroup>) baseService.findAll(" from Skugroup as sg where sg.productId = 1");
+//			for (int i = 0; i < listInfo.size(); i++) {
+//				listInfo.get(i).setListSkus((List<Sku>) baseService
+//						.findAll(" from Sku as s where s.skugroupId = " + listInfo.get(i).getSkugroupId()));
+//			}
+//			System.out.println("");
+//			System.out.println("");
+//			System.out.println("");
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
+		List<Products> listInfo = (List<Products>)baseService.findAll(" from Products ");
+		for (Products products : listInfo) {
+			System.out.println(products.getProductName());
 		}
 	}
 }

@@ -109,9 +109,9 @@
         <property name="attachment" type="java.lang.String">
             <column name="Attachment" />
         </property>
-        <property name="shipperId" type="java.lang.Integer">
-            <column name="ShipperId" />
-        </property>
+<!--         <property name="shipperId" type="java.lang.Integer"> -->
+<!--             <column name="ShipperId" /> -->
+<!--         </property> -->
         <property name="createdDate" type="java.util.Date">
             <column name="CreatedDate" length="16" />
         </property>
