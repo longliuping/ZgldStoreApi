@@ -73,7 +73,7 @@ public class ProductAction extends BaseAction {
 	public String home_all_product() {
 		Map json = new HashMap();
 		try {
-			List listCategories = this.baseService.findAll(" from Categories as hc where hc.depth = 1");
+			List listCategories = this.baseService.findAll(" from Categories as hc ");
 			for (int i = 0; i < listCategories.size(); i++) {
 				String hql = " from Products as hp where hp.categoryId ="
 						+ ((Categories) listCategories.get(i)).getCategoryId() + " order by hp.addedDate asc ";
