@@ -34,7 +34,8 @@ public abstract class AbstractYArticleComment implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYArticleComment(Integer arId, Integer unitSetId, Integer accountActId, String arCommentContent, Integer arCommentOrder, Integer arCommentTopOrder, Integer isDelete, Date arCommentTime) {
+	public AbstractYArticleComment(Integer arId, Integer unitSetId, Integer accountActId, String arCommentContent,
+			Integer arCommentOrder, Integer arCommentTopOrder, Integer isDelete, Date arCommentTime) {
 		this.arId = arId;
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;

@@ -32,7 +32,8 @@ public abstract class AbstractYCart implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYCart(Integer goId, Integer shipId, Integer accountActId, Integer goodsCount, Double goodsPrice, Date cartTime) {
+	public AbstractYCart(Integer goId, Integer shipId, Integer accountActId, Integer goodsCount, Double goodsPrice,
+			Date cartTime) {
 		this.goId = goId;
 		this.shipId = shipId;
 		this.accountActId = accountActId;

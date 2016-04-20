@@ -28,7 +28,8 @@ public abstract class AbstractOrderLeaveWords implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractOrderLeaveWords(Integer orderId, String publishContent, Integer userId, Date publishDate, Integer isAgentVisited, Integer isMemberVisited, Integer isadminVisited) {
+	public AbstractOrderLeaveWords(Integer orderId, String publishContent, Integer userId, Date publishDate,
+			Integer isAgentVisited, Integer isMemberVisited, Integer isadminVisited) {
 		this.orderId = orderId;
 		this.publishContent = publishContent;
 		this.userId = userId;

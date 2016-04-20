@@ -14,8 +14,11 @@ public class ProductConsultations extends AbstractProductConsultations implement
 	}
 
 	/** full constructor */
-	public ProductConsultations(Integer shopId, Integer productId, Integer userId, String userName, String userEmail, String consultationText, Timestamp consultationDate, String replyText, Timestamp replyDate, String replyUserId) {
-		super(shopId, productId, userId, userName, userEmail, consultationText, consultationDate, replyText, replyDate, replyUserId);
+	public ProductConsultations(Integer shopId, Integer productId, Integer userId, String userName, String userEmail,
+			String consultationText, Timestamp consultationDate, String replyText, Timestamp replyDate,
+			String replyUserId) {
+		super(shopId, productId, userId, userName, userEmail, consultationText, consultationDate, replyText, replyDate,
+				replyUserId);
 	}
 
 }

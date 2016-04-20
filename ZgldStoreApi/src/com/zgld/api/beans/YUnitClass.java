@@ -19,8 +19,11 @@ public class YUnitClass extends AbstractYUnitClass implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YUnitClass(Integer unitClassSetId, Integer unitParentClassId, Integer accountActId, String unitClassName, Integer unitClassTotal, Integer unitClassOrder, Integer unitClassTopOrder, Integer isDelete, Date unitClassTime) {
-		super(unitClassSetId, unitParentClassId, accountActId, unitClassName, unitClassTotal, unitClassOrder, unitClassTopOrder, isDelete, unitClassTime);
+	public YUnitClass(Integer unitClassSetId, Integer unitParentClassId, Integer accountActId, String unitClassName,
+			Integer unitClassTotal, Integer unitClassOrder, Integer unitClassTopOrder, Integer isDelete,
+			Date unitClassTime) {
+		super(unitClassSetId, unitParentClassId, accountActId, unitClassName, unitClassTotal, unitClassOrder,
+				unitClassTopOrder, isDelete, unitClassTime);
 	}
 
 }

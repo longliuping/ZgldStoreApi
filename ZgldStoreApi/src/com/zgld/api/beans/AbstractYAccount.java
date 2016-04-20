@@ -41,7 +41,10 @@ public abstract class AbstractYAccount implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYAccount(Integer roleSetId, Integer unitSetId, String accountName, String accountRealName, String accountPassword, Integer accountSex, String accountHead, String accountEmail, String accountMobile, Integer accountState, String accountIntro, String accountPlace, Integer accountLeavel, Integer isDelete, Date accountRegisterTime) {
+	public AbstractYAccount(Integer roleSetId, Integer unitSetId, String accountName, String accountRealName,
+			String accountPassword, Integer accountSex, String accountHead, String accountEmail, String accountMobile,
+			Integer accountState, String accountIntro, String accountPlace, Integer accountLeavel, Integer isDelete,
+			Date accountRegisterTime) {
 		this.roleSetId = roleSetId;
 		this.unitSetId = unitSetId;
 		this.accountName = accountName;

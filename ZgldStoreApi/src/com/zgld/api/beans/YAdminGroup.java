@@ -19,7 +19,8 @@ public class YAdminGroup extends AbstractYAdminGroup implements java.io.Serializ
 	}
 
 	/** full constructor */
-	public YAdminGroup(Integer adminParentGroupId, Integer adminGroupSetId, String adminGroupName, Integer accountActId, Integer isDelete, Timestamp adminGroupTime) {
+	public YAdminGroup(Integer adminParentGroupId, Integer adminGroupSetId, String adminGroupName, Integer accountActId,
+			Integer isDelete, Timestamp adminGroupTime) {
 		super(adminParentGroupId, adminGroupSetId, adminGroupName, accountActId, isDelete, adminGroupTime);
 	}
 

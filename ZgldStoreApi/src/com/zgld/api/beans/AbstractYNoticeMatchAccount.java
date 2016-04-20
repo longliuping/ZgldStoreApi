@@ -30,7 +30,8 @@ public abstract class AbstractYNoticeMatchAccount implements java.io.Serializabl
 	}
 
 	/** full constructor */
-	public AbstractYNoticeMatchAccount(Integer noId, Integer accountId, Integer noMatchState, Integer isDelete, Date noticeMatchTime) {
+	public AbstractYNoticeMatchAccount(Integer noId, Integer accountId, Integer noMatchState, Integer isDelete,
+			Date noticeMatchTime) {
 		this.noId = noId;
 		this.accountId = accountId;
 		this.noMatchState = noMatchState;

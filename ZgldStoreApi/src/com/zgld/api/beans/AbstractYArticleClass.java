@@ -40,7 +40,10 @@ public abstract class AbstractYArticleClass implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYArticleClass(Integer unitSetId, Integer accountActId, Integer arClassSetId, Integer arParentClassId, String arClassName, Integer arClassTotal, Integer arClassOrder, Integer arClassTopOrder, String arClassDefaultImg, String arClassHoverImg, String arClassVisitedImg, String arClassIntro, Integer isDelete, Date arClassTime) {
+	public AbstractYArticleClass(Integer unitSetId, Integer accountActId, Integer arClassSetId, Integer arParentClassId,
+			String arClassName, Integer arClassTotal, Integer arClassOrder, Integer arClassTopOrder,
+			String arClassDefaultImg, String arClassHoverImg, String arClassVisitedImg, String arClassIntro,
+			Integer isDelete, Date arClassTime) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.arClassSetId = arClassSetId;

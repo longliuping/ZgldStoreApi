@@ -6,7 +6,8 @@ import java.sql.Date;
  * AspNetSqlCacheTablesForChangeNotification entity. @author MyEclipse
  * Persistence Tools
  */
-public class AspNetSqlCacheTablesForChangeNotification extends AbstractAspNetSqlCacheTablesForChangeNotification implements java.io.Serializable {
+public class AspNetSqlCacheTablesForChangeNotification extends AbstractAspNetSqlCacheTablesForChangeNotification
+		implements java.io.Serializable {
 
 	// Constructors
 

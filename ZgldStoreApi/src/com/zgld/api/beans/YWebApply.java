@@ -19,8 +19,11 @@ public class YWebApply extends AbstractYWebApply implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public YWebApply(Integer unitSetId, Integer accountActId, String webDnsName, String webApplyIdCard, String webApplyIdCardImg, String webApplyContent, Integer webApplyState, String webApplyStateNote, Integer isDelete, Date webApplyTime) {
-		super(unitSetId, accountActId, webDnsName, webApplyIdCard, webApplyIdCardImg, webApplyContent, webApplyState, webApplyStateNote, isDelete, webApplyTime);
+	public YWebApply(Integer unitSetId, Integer accountActId, String webDnsName, String webApplyIdCard,
+			String webApplyIdCardImg, String webApplyContent, Integer webApplyState, String webApplyStateNote,
+			Integer isDelete, Date webApplyTime) {
+		super(unitSetId, accountActId, webDnsName, webApplyIdCard, webApplyIdCardImg, webApplyContent, webApplyState,
+				webApplyStateNote, isDelete, webApplyTime);
 	}
 
 }

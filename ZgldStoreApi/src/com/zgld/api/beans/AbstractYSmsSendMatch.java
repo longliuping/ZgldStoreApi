@@ -30,7 +30,8 @@ public abstract class AbstractYSmsSendMatch implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYSmsSendMatch(Integer accountId, Integer smsSendId, Integer isScan, Integer isDelete, Date smsScanTime) {
+	public AbstractYSmsSendMatch(Integer accountId, Integer smsSendId, Integer isScan, Integer isDelete,
+			Date smsScanTime) {
 		this.accountId = accountId;
 		this.smsSendId = smsSendId;
 		this.isScan = isScan;

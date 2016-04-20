@@ -30,7 +30,10 @@ public abstract class AbstractYFunConfig implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYFunConfig(Integer sysFunIsCache, Integer sysFunCacheTime, Integer sysFunIsArticlePages, Integer sysFunArticlePagesLength, Integer sysFunIsFileUpload, Integer sysFunFileUploadKiloByte, Integer sysFunIsAppApi, Integer sysFunIsMsg, Integer sysFunIsComment, Integer sysFunIsWebApply, Integer sysFunIsUnitWebApply, Integer sysFunIsRecursive) {
+	public AbstractYFunConfig(Integer sysFunIsCache, Integer sysFunCacheTime, Integer sysFunIsArticlePages,
+			Integer sysFunArticlePagesLength, Integer sysFunIsFileUpload, Integer sysFunFileUploadKiloByte,
+			Integer sysFunIsAppApi, Integer sysFunIsMsg, Integer sysFunIsComment, Integer sysFunIsWebApply,
+			Integer sysFunIsUnitWebApply, Integer sysFunIsRecursive) {
 		this.sysFunIsCache = sysFunIsCache;
 		this.sysFunCacheTime = sysFunCacheTime;
 		this.sysFunIsArticlePages = sysFunIsArticlePages;

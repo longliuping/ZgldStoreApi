@@ -30,7 +30,8 @@ public abstract class AbstractYRightsMatch implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYRightsMatch(Integer riSetId, Integer accountId, Integer accountActId, Integer isDelete, Date rightsMatchTime) {
+	public AbstractYRightsMatch(Integer riSetId, Integer accountId, Integer accountActId, Integer isDelete,
+			Date rightsMatchTime) {
 		this.riSetId = riSetId;
 		this.accountId = accountId;
 		this.accountActId = accountActId;

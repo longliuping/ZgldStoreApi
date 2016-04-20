@@ -34,7 +34,8 @@ public abstract class AbstractYSmsSend implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYSmsSend(Integer accountActId, Integer unitSetId, Integer smsSendType, String smsSendTitle, String smsSendContent, Integer smsOrder, Integer smsTopOrder, Integer isDelete, Date smsSendTime) {
+	public AbstractYSmsSend(Integer accountActId, Integer unitSetId, Integer smsSendType, String smsSendTitle,
+			String smsSendContent, Integer smsOrder, Integer smsTopOrder, Integer isDelete, Date smsSendTime) {
 		this.accountActId = accountActId;
 		this.unitSetId = unitSetId;
 		this.smsSendType = smsSendType;

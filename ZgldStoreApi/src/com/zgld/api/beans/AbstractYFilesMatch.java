@@ -23,7 +23,8 @@ public abstract class AbstractYFilesMatch implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYFilesMatch(Integer fiId, Integer primaryKey, String tableEnName, String tableCnName, Integer isDelete) {
+	public AbstractYFilesMatch(Integer fiId, Integer primaryKey, String tableEnName, String tableCnName,
+			Integer isDelete) {
 		this.fiId = fiId;
 		this.primaryKey = primaryKey;
 		this.tableEnName = tableEnName;

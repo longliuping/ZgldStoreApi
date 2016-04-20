@@ -31,7 +31,8 @@ public abstract class AbstractYShipping implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYShipping(Integer unitSetId, Integer accountActId, String shipName, String shipGoodsPlace, Integer shipSendInTime, Date shipTime) {
+	public AbstractYShipping(Integer unitSetId, Integer accountActId, String shipName, String shipGoodsPlace,
+			Integer shipSendInTime, Date shipTime) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.shipName = shipName;

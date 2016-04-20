@@ -30,7 +30,8 @@ public abstract class AbstractYUnitMatchAccount implements java.io.Serializable 
 	}
 
 	/** full constructor */
-	public AbstractYUnitMatchAccount(Integer unitSetId, Integer accountId, Integer unitMatchState, Integer isDelete, Date unitMatchTime) {
+	public AbstractYUnitMatchAccount(Integer unitSetId, Integer accountId, Integer unitMatchState, Integer isDelete,
+			Date unitMatchTime) {
 		this.unitSetId = unitSetId;
 		this.accountId = accountId;
 		this.unitMatchState = unitMatchState;

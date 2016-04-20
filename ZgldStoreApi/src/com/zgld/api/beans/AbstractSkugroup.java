@@ -1,33 +1,21 @@
 package com.zgld.api.beans;
 
-/**
- * AbstractSkugroup entity provides the base persistence definition of the
- * Skugroup entity. @author MyEclipse Persistence Tools
- */
+import java.io.Serializable;
 
-public abstract class AbstractSkugroup implements java.io.Serializable {
-
-	// Fields
-
+public abstract class AbstractSkugroup implements Serializable {
 	private Integer skugroupId;
 	private Integer shopId;
 	private Integer productId;
 	private String skugroupName;
 
-	// Constructors
-
-	/** default constructor */
 	public AbstractSkugroup() {
 	}
 
-	/** full constructor */
 	public AbstractSkugroup(Integer shopId, Integer productId, String skugroupName) {
 		this.shopId = shopId;
 		this.productId = productId;
 		this.skugroupName = skugroupName;
 	}
-
-	// Property accessors
 
 	public Integer getSkugroupId() {
 		return this.skugroupId;
@@ -60,5 +48,4 @@ public abstract class AbstractSkugroup implements java.io.Serializable {
 	public void setSkugroupName(String skugroupName) {
 		this.skugroupName = skugroupName;
 	}
-
 }

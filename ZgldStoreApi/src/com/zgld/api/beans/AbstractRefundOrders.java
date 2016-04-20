@@ -27,7 +27,8 @@ public abstract class AbstractRefundOrders implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractRefundOrders(Integer orderId, Integer isOrderRefund, Double totalBalance, String remark, String cellPhone, Date addedDate) {
+	public AbstractRefundOrders(Integer orderId, Integer isOrderRefund, Double totalBalance, String remark,
+			String cellPhone, Date addedDate) {
 		this.orderId = orderId;
 		this.isOrderRefund = isOrderRefund;
 		this.totalBalance = totalBalance;

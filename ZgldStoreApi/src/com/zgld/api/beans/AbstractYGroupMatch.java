@@ -31,7 +31,8 @@ public abstract class AbstractYGroupMatch implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYGroupMatch(Integer chatGroupId, Integer accountId, Integer isAdmin, Integer isDelete, Date matchTime) {
+	public AbstractYGroupMatch(Integer chatGroupId, Integer accountId, Integer isAdmin, Integer isDelete,
+			Date matchTime) {
 		this.chatGroupId = chatGroupId;
 		this.accountId = accountId;
 		this.isAdmin = isAdmin;

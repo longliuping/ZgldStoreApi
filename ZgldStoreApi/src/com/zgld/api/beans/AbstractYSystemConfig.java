@@ -34,7 +34,10 @@ public abstract class AbstractYSystemConfig implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYSystemConfig(Integer sysConState, String sysConName, String sysConImgWater, String sysConTextWater, String sysConWebUrl, String sysConKeyWords, String sysConWebDescription, String sysConWebCopyRight, Integer sysConLogLevel, Integer sysConIsRegister, Integer sysConIsLogin, Integer sysConIsComment, Integer sysConIsAnonymityComment, Integer sysConIsMsg, Integer sysConIsAnonymityMsg, Integer sysIsLocked) {
+	public AbstractYSystemConfig(Integer sysConState, String sysConName, String sysConImgWater, String sysConTextWater,
+			String sysConWebUrl, String sysConKeyWords, String sysConWebDescription, String sysConWebCopyRight,
+			Integer sysConLogLevel, Integer sysConIsRegister, Integer sysConIsLogin, Integer sysConIsComment,
+			Integer sysConIsAnonymityComment, Integer sysConIsMsg, Integer sysConIsAnonymityMsg, Integer sysIsLocked) {
 		this.sysConState = sysConState;
 		this.sysConName = sysConName;
 		this.sysConImgWater = sysConImgWater;

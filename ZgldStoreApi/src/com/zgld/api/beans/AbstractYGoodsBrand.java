@@ -40,7 +40,10 @@ public abstract class AbstractYGoodsBrand implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYGoodsBrand(Integer goParentBrandId, Integer goBrandSetId, String goBrandName, String goBrandIntro, Integer goBrandTotal, Integer unitSetId, Integer accountActId, Integer goBrandOrder, Integer goBrandTopOrder, String goBrandDefaultImg, String goBrandHoverImg, String goBrandVisitedImg, Integer isDelete, Date goBrandTime) {
+	public AbstractYGoodsBrand(Integer goParentBrandId, Integer goBrandSetId, String goBrandName, String goBrandIntro,
+			Integer goBrandTotal, Integer unitSetId, Integer accountActId, Integer goBrandOrder,
+			Integer goBrandTopOrder, String goBrandDefaultImg, String goBrandHoverImg, String goBrandVisitedImg,
+			Integer isDelete, Date goBrandTime) {
 		this.goParentBrandId = goParentBrandId;
 		this.goBrandSetId = goBrandSetId;
 		this.goBrandName = goBrandName;

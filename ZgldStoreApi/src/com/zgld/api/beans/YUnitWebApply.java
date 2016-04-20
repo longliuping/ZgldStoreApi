@@ -19,8 +19,11 @@ public class YUnitWebApply extends AbstractYUnitWebApply implements java.io.Seri
 	}
 
 	/** full constructor */
-	public YUnitWebApply(Integer unitSetId, Integer accountActId, String unitWebDnsName, String unitWebApplyIdCard, String unitWebApplyIdCardImg, String unitWebApplyContent, Integer unitWebApplyState, String unitWebApplyStateNote, Integer isDelete, Date unitWebApplyTime) {
-		super(unitSetId, accountActId, unitWebDnsName, unitWebApplyIdCard, unitWebApplyIdCardImg, unitWebApplyContent, unitWebApplyState, unitWebApplyStateNote, isDelete, unitWebApplyTime);
+	public YUnitWebApply(Integer unitSetId, Integer accountActId, String unitWebDnsName, String unitWebApplyIdCard,
+			String unitWebApplyIdCardImg, String unitWebApplyContent, Integer unitWebApplyState,
+			String unitWebApplyStateNote, Integer isDelete, Date unitWebApplyTime) {
+		super(unitSetId, accountActId, unitWebDnsName, unitWebApplyIdCard, unitWebApplyIdCardImg, unitWebApplyContent,
+				unitWebApplyState, unitWebApplyStateNote, isDelete, unitWebApplyTime);
 	}
 
 }

@@ -72,7 +72,8 @@ public class BaseBizImpl implements BaseBiz {
 
 	public YAccount findUserinfoByUserName(String username) {
 		// TODO Auto-generated method stub
-		return (YAccount) baseDao.bean(" from YAccount as u where u.accountName = '" + username + "' order by u.accountId desc ");
+		return (YAccount) baseDao
+				.bean(" from YAccount as u where u.accountName = '" + username + "' order by u.accountId desc ");
 	}
 
 	public Object getObjectInfo(String hql) {
@@ -82,7 +83,8 @@ public class BaseBizImpl implements BaseBiz {
 
 	public YAccount login(String name, String password) {
 		// TODO Auto-generated method stub
-		return (YAccount) baseDao.bean(" from YAccount as au where au.accountName = '" + name + "' and au.accountPassword = '" + password + "'");
+		return (YAccount) baseDao.bean(" from YAccount as au where au.accountName = '" + name
+				+ "' and au.accountPassword = '" + password + "'");
 	}
 
 	public int saveUserinfo(YAccount account) {

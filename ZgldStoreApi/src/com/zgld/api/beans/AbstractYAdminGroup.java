@@ -32,7 +32,8 @@ public abstract class AbstractYAdminGroup implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYAdminGroup(Integer adminParentGroupId, Integer adminGroupSetId, String adminGroupName, Integer accountActId, Integer isDelete, Date adminGroupTime) {
+	public AbstractYAdminGroup(Integer adminParentGroupId, Integer adminGroupSetId, String adminGroupName,
+			Integer accountActId, Integer isDelete, Date adminGroupTime) {
 		this.adminParentGroupId = adminParentGroupId;
 		this.adminGroupSetId = adminGroupSetId;
 		this.adminGroupName = adminGroupName;

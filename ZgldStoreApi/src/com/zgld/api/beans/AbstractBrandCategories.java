@@ -23,7 +23,8 @@ public abstract class AbstractBrandCategories implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractBrandCategories(String brandName, String logo, String companyUrl, Integer displaySequence, String description) {
+	public AbstractBrandCategories(String brandName, String logo, String companyUrl, Integer displaySequence,
+			String description) {
 		this.brandName = brandName;
 		this.logo = logo;
 		this.companyUrl = companyUrl;

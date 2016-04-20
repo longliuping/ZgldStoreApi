@@ -1,14 +1,8 @@
 package com.zgld.api.beans;
 
-/**
- * AbstractUserShippingAddresses entity provides the base persistence definition
- * of the UserShippingAddresses entity. @author MyEclipse Persistence Tools
- */
+import java.io.Serializable;
 
-public abstract class AbstractUserShippingAddresses implements java.io.Serializable {
-
-	// Fields
-
+public abstract class AbstractUserShippingAddresses implements Serializable {
 	private Integer addressId;
 	private Integer regionId;
 	private Integer userId;
@@ -16,24 +10,7 @@ public abstract class AbstractUserShippingAddresses implements java.io.Serializa
 	private String address;
 	private String zipcode;
 	private String emailAddress;
-
-	// Constructors
-
-	/** default constructor */
-	public AbstractUserShippingAddresses() {
-	}
-
-	/** full constructor */
-	public AbstractUserShippingAddresses(Integer regionId, Integer userId, String shipTo, String address, String zipcode, String emailAddress) {
-		this.regionId = regionId;
-		this.userId = userId;
-		this.shipTo = shipTo;
-		this.address = address;
-		this.zipcode = zipcode;
-		this.emailAddress = emailAddress;
-	}
-
-	// Property accessors
+	private String mobile;
 
 	public Integer getAddressId() {
 		return this.addressId;
@@ -91,4 +68,11 @@ public abstract class AbstractUserShippingAddresses implements java.io.Serializa
 		this.emailAddress = emailAddress;
 	}
 
+	public String getMobile() {
+		return this.mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 }

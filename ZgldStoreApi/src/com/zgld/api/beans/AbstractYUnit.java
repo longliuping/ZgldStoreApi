@@ -46,7 +46,11 @@ public abstract class AbstractYUnit implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYUnit(Integer areaId, Integer unitSetId, Integer unitClassSetId, Integer accountActId, Integer unitParentId, String unitTitle, String unitTel, String unitContact, String unitMobile, String unitEmail, String unitQq, String unitAddress, String unitImg, String unitY, String unitX, String unitIntro, Integer unitOrder, Integer unitTopOrder, Integer isDelete, Integer unitState, Date unitTime) {
+	public AbstractYUnit(Integer areaId, Integer unitSetId, Integer unitClassSetId, Integer accountActId,
+			Integer unitParentId, String unitTitle, String unitTel, String unitContact, String unitMobile,
+			String unitEmail, String unitQq, String unitAddress, String unitImg, String unitY, String unitX,
+			String unitIntro, Integer unitOrder, Integer unitTopOrder, Integer isDelete, Integer unitState,
+			Date unitTime) {
 		this.areaId = areaId;
 		this.unitSetId = unitSetId;
 		this.unitClassSetId = unitClassSetId;

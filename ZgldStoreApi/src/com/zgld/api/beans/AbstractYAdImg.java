@@ -37,7 +37,9 @@ public abstract class AbstractYAdImg implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYAdImg(Integer adId, String adImgUrl, String adImgSrc, String adImgTitle, String adImgIntro, Integer unitSetId, Integer accountActId, Integer adImgOrder, Integer adImgTopOrder, Integer isDelete, Date adImgTime) {
+	public AbstractYAdImg(Integer adId, String adImgUrl, String adImgSrc, String adImgTitle, String adImgIntro,
+			Integer unitSetId, Integer accountActId, Integer adImgOrder, Integer adImgTopOrder, Integer isDelete,
+			Date adImgTime) {
 		this.adId = adId;
 		this.adImgUrl = adImgUrl;
 		this.adImgSrc = adImgSrc;

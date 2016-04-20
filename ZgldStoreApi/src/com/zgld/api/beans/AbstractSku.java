@@ -25,7 +25,8 @@ public abstract class AbstractSku implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractSku(Integer skugroupId, Integer shopId, Integer productId, Integer stock, Double price, String attributeNames, String attributeValues) {
+	public AbstractSku(Integer skugroupId, Integer shopId, Integer productId, Integer stock, Double price,
+			String attributeNames, String attributeValues) {
 		this.skugroupId = skugroupId;
 		this.shopId = shopId;
 		this.productId = productId;

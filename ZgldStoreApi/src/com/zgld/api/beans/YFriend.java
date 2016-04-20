@@ -19,7 +19,8 @@ public class YFriend extends AbstractYFriend implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YFriend(Integer accountActId, Integer accountId, String friendName, Integer friendState, Integer friendOrder, Integer friendTopOrder, Integer isDelete, Timestamp friendTime) {
+	public YFriend(Integer accountActId, Integer accountId, String friendName, Integer friendState, Integer friendOrder,
+			Integer friendTopOrder, Integer isDelete, Timestamp friendTime) {
 		super(accountActId, accountId, friendName, friendState, friendOrder, friendTopOrder, isDelete, friendTime);
 	}
 

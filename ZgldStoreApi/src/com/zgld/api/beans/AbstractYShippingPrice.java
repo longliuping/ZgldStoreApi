@@ -33,7 +33,8 @@ public abstract class AbstractYShippingPrice implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYShippingPrice(Integer unitSetId, Integer accountActId, Integer shipId, Integer shipGoodsCount, Double shipPrice, Integer shipGoodsAddCount, Double shipGoodsAddPrice, Date shipPriceTime) {
+	public AbstractYShippingPrice(Integer unitSetId, Integer accountActId, Integer shipId, Integer shipGoodsCount,
+			Double shipPrice, Integer shipGoodsAddCount, Double shipGoodsAddPrice, Date shipPriceTime) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.shipId = shipId;

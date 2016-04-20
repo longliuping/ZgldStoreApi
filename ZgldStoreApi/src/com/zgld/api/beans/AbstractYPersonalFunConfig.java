@@ -33,7 +33,9 @@ public abstract class AbstractYPersonalFunConfig implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public AbstractYPersonalFunConfig(Integer unitSetId, Integer accountId, Integer personalIsMessage, Integer personalIsNotice, Integer personalIsComment, Integer personalIsEmail, Integer isDelete, Date personalTime) {
+	public AbstractYPersonalFunConfig(Integer unitSetId, Integer accountId, Integer personalIsMessage,
+			Integer personalIsNotice, Integer personalIsComment, Integer personalIsEmail, Integer isDelete,
+			Date personalTime) {
 		this.unitSetId = unitSetId;
 		this.accountId = accountId;
 		this.personalIsMessage = personalIsMessage;

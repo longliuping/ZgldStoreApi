@@ -31,7 +31,8 @@ public abstract class AbstractYFormControl implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYFormControl(Integer tagId, String controlName, String fieldName, String controlValue, Date controlTime) {
+	public AbstractYFormControl(Integer tagId, String controlName, String fieldName, String controlValue,
+			Date controlTime) {
 		this.tagId = tagId;
 		this.controlName = controlName;
 		this.fieldName = fieldName;

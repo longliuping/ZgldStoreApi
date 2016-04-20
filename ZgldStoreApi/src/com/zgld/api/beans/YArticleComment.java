@@ -19,8 +19,10 @@ public class YArticleComment extends AbstractYArticleComment implements java.io.
 	}
 
 	/** full constructor */
-	public YArticleComment(Integer arId, Integer unitSetId, Integer accountActId, String arCommentContent, Integer arCommentOrder, Integer arCommentTopOrder, Integer isDelete, Timestamp arCommentTime) {
-		super(arId, unitSetId, accountActId, arCommentContent, arCommentOrder, arCommentTopOrder, isDelete, arCommentTime);
+	public YArticleComment(Integer arId, Integer unitSetId, Integer accountActId, String arCommentContent,
+			Integer arCommentOrder, Integer arCommentTopOrder, Integer isDelete, Timestamp arCommentTime) {
+		super(arId, unitSetId, accountActId, arCommentContent, arCommentOrder, arCommentTopOrder, isDelete,
+				arCommentTime);
 	}
 
 }

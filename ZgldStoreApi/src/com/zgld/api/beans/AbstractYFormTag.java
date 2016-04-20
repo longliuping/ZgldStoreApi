@@ -39,7 +39,9 @@ public abstract class AbstractYFormTag implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYFormTag(Integer formId, String tagName, String tagType, Integer isCombine, Integer isDisabled, Integer isNull, Integer isValidate, String validateType, String fieldName, String tagUnit, String tagPlaceholder, Integer isDelete, Date tagTime) {
+	public AbstractYFormTag(Integer formId, String tagName, String tagType, Integer isCombine, Integer isDisabled,
+			Integer isNull, Integer isValidate, String validateType, String fieldName, String tagUnit,
+			String tagPlaceholder, Integer isDelete, Date tagTime) {
 		this.formId = formId;
 		this.tagName = tagName;
 		this.tagType = tagType;

@@ -19,8 +19,13 @@ public class YAdmin extends AbstractYAdmin implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YAdmin(Integer accountId, Integer unitSetId, Integer adminGroupSetId, Integer roleSetId, String adminName, String adminPassword, Integer adminSex, Integer adminState, String adminRealName, String adminEmail, String adminMobile, String adminIntro, String adminIdCard, String adminIdImg, Integer accountActId, Integer isDelete, Timestamp adminTime) {
-		super(accountId, unitSetId, adminGroupSetId, roleSetId, adminName, adminPassword, adminSex, adminState, adminRealName, adminEmail, adminMobile, adminIntro, adminIdCard, adminIdImg, accountActId, isDelete, adminTime);
+	public YAdmin(Integer accountId, Integer unitSetId, Integer adminGroupSetId, Integer roleSetId, String adminName,
+			String adminPassword, Integer adminSex, Integer adminState, String adminRealName, String adminEmail,
+			String adminMobile, String adminIntro, String adminIdCard, String adminIdImg, Integer accountActId,
+			Integer isDelete, Timestamp adminTime) {
+		super(accountId, unitSetId, adminGroupSetId, roleSetId, adminName, adminPassword, adminSex, adminState,
+				adminRealName, adminEmail, adminMobile, adminIntro, adminIdCard, adminIdImg, accountActId, isDelete,
+				adminTime);
 	}
 
 }

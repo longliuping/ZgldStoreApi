@@ -14,7 +14,8 @@ public class RefundOrders extends AbstractRefundOrders implements java.io.Serial
 	}
 
 	/** full constructor */
-	public RefundOrders(Integer orderId, Integer isOrderRefund, Double totalBalance, String remark, String cellPhone, Timestamp addedDate) {
+	public RefundOrders(Integer orderId, Integer isOrderRefund, Double totalBalance, String remark, String cellPhone,
+			Timestamp addedDate) {
 		super(orderId, isOrderRefund, totalBalance, remark, cellPhone, addedDate);
 	}
 

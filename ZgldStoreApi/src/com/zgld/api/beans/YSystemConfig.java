@@ -12,8 +12,13 @@ public class YSystemConfig extends AbstractYSystemConfig implements java.io.Seri
 	}
 
 	/** full constructor */
-	public YSystemConfig(Integer sysConState, String sysConName, String sysConImgWater, String sysConTextWater, String sysConWebUrl, String sysConKeyWords, String sysConWebDescription, String sysConWebCopyRight, Integer sysConLogLevel, Integer sysConIsRegister, Integer sysConIsLogin, Integer sysConIsComment, Integer sysConIsAnonymityComment, Integer sysConIsMsg, Integer sysConIsAnonymityMsg, Integer sysIsLocked) {
-		super(sysConState, sysConName, sysConImgWater, sysConTextWater, sysConWebUrl, sysConKeyWords, sysConWebDescription, sysConWebCopyRight, sysConLogLevel, sysConIsRegister, sysConIsLogin, sysConIsComment, sysConIsAnonymityComment, sysConIsMsg, sysConIsAnonymityMsg, sysIsLocked);
+	public YSystemConfig(Integer sysConState, String sysConName, String sysConImgWater, String sysConTextWater,
+			String sysConWebUrl, String sysConKeyWords, String sysConWebDescription, String sysConWebCopyRight,
+			Integer sysConLogLevel, Integer sysConIsRegister, Integer sysConIsLogin, Integer sysConIsComment,
+			Integer sysConIsAnonymityComment, Integer sysConIsMsg, Integer sysConIsAnonymityMsg, Integer sysIsLocked) {
+		super(sysConState, sysConName, sysConImgWater, sysConTextWater, sysConWebUrl, sysConKeyWords,
+				sysConWebDescription, sysConWebCopyRight, sysConLogLevel, sysConIsRegister, sysConIsLogin,
+				sysConIsComment, sysConIsAnonymityComment, sysConIsMsg, sysConIsAnonymityMsg, sysIsLocked);
 	}
 
 }

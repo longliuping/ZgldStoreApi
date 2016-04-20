@@ -19,8 +19,11 @@ public class YAdPosition extends AbstractYAdPosition implements java.io.Serializ
 	}
 
 	/** full constructor */
-	public YAdPosition(Integer adPositionSetId, String adPositionName, String adPositionIntro, Integer unitSetId, Integer accountActId, Integer adPositionOrder, Integer adPositionTopOrder, Integer isDelete, Timestamp adPositionTime) {
-		super(adPositionSetId, adPositionName, adPositionIntro, unitSetId, accountActId, adPositionOrder, adPositionTopOrder, isDelete, adPositionTime);
+	public YAdPosition(Integer adPositionSetId, String adPositionName, String adPositionIntro, Integer unitSetId,
+			Integer accountActId, Integer adPositionOrder, Integer adPositionTopOrder, Integer isDelete,
+			Timestamp adPositionTime) {
+		super(adPositionSetId, adPositionName, adPositionIntro, unitSetId, accountActId, adPositionOrder,
+				adPositionTopOrder, isDelete, adPositionTime);
 	}
 
 }

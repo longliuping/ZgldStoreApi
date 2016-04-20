@@ -20,11 +20,16 @@ public class YShop extends AbstractYShop implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YShop(String shopKeyWords, String shopX, String shopY, Integer areaId, String shopAddress, String shopContact, String shopMobile, String shopCell, String shopIdCard, String shopIdCardImg, String shopLicenseImg, Integer userId, Integer shopIsOpen, Integer shopIsVerify, Date shopTime) {
-		super(shopKeyWords, shopX, shopY, areaId, shopAddress, shopContact, shopMobile, shopCell, shopIdCard, shopIdCardImg, shopLicenseImg, userId, shopIsOpen, shopIsVerify, shopTime);
+	public YShop(String shopKeyWords, String shopX, String shopY, Integer areaId, String shopAddress,
+			String shopContact, String shopMobile, String shopCell, String shopIdCard, String shopIdCardImg,
+			String shopLicenseImg, Integer userId, Integer shopIsOpen, Integer shopIsVerify, Date shopTime) {
+		super(shopKeyWords, shopX, shopY, areaId, shopAddress, shopContact, shopMobile, shopCell, shopIdCard,
+				shopIdCardImg, shopLicenseImg, userId, shopIsOpen, shopIsVerify, shopTime);
 	}
+
 	Products products;
 	List<Products> listProducts;
+
 	public Products getProducts() {
 		return products;
 	}
@@ -40,5 +45,5 @@ public class YShop extends AbstractYShop implements java.io.Serializable {
 	public void setListProducts(List<Products> listProducts) {
 		this.listProducts = listProducts;
 	}
-	
+
 }

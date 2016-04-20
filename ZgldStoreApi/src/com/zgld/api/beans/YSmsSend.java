@@ -19,8 +19,10 @@ public class YSmsSend extends AbstractYSmsSend implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YSmsSend(Integer accountActId, Integer unitSetId, Integer smsSendType, String smsSendTitle, String smsSendContent, Integer smsOrder, Integer smsTopOrder, Integer isDelete, Date smsSendTime) {
-		super(accountActId, unitSetId, smsSendType, smsSendTitle, smsSendContent, smsOrder, smsTopOrder, isDelete, smsSendTime);
+	public YSmsSend(Integer accountActId, Integer unitSetId, Integer smsSendType, String smsSendTitle,
+			String smsSendContent, Integer smsOrder, Integer smsTopOrder, Integer isDelete, Date smsSendTime) {
+		super(accountActId, unitSetId, smsSendType, smsSendTitle, smsSendContent, smsOrder, smsTopOrder, isDelete,
+				smsSendTime);
 	}
 
 }

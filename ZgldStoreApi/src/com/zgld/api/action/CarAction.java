@@ -1,237 +1,212 @@
 package com.zgld.api.action;
 
+import com.zgld.api.base.BaseForm;
+import com.zgld.api.beans.Products;
+import com.zgld.api.beans.ShoppingCarts;
+import com.zgld.api.beans.Sku;
+import com.zgld.api.beans.Users;
+import com.zgld.api.beans.YAccount;
+import com.zgld.api.beans.YShop;
+import com.zgld.api.biz.BaseBiz;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.zgld.api.beans.Products;
-import com.zgld.api.beans.ShoppingCarts;
-import com.zgld.api.beans.Sku;
-import com.zgld.api.beans.YAccount;
-import com.zgld.api.beans.YShop;
-/**
- * 购物车
- * @author Am
- *
- */
 public class CarAction extends BaseAction {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 加入产品到购物车
-	 * 
-	 * @return
-	 */
 	public String add_product_car() {
-		Map<String, Object> json = new HashMap<String, Object>();
+		Map json = new HashMap();
 		try {
-			// if (form.getSkuId() == null) {
-			// form.setJsonMsg("skuId不能为空", false, json, 1001);
-			// } else if (form.getProductId() == null ||
-			// form.getSkuId().isEmpty()) {
-			// form.setJsonMsg("productuId不能为空", false, json, 1001);
-			// } else if (form.getNumber() == null) {
-			// form.setJsonMsg("number不能为空", false, json, 1001);
-			// } else {
-			// AspnetUsers aspnetUsers = getUserInfo();
-			// if (aspnetUsers == null) {
-			// form.setJsonMsg(NO_USER, false, json, 201);
-			// } else {
-			// int userId = aspnetUsers.getUserId();
-			// String skuId = form.getSkuId();
-			// int productId = form.getProductId();
-			// int number = form.getNumber();
-			// HishopSkus hishopSkus = (HishopSkus)
-			// baseBiz.bean(" from HishopSkus as hs where hs.skuId = '" + skuId
-			// + "' and hs.productId = " + productId);
-			// if (hishopSkus == null) {
-			// form.setJsonMsg("产品信息不存在", true, json, 1001);
-			// } else if (number > hishopSkus.getStock()) {
-			// form.setJsonMsg("购买数量不能大于库存数量:" + hishopSkus.getStock(), true,
-			// json, 1001);
-			// } else {
-			// HishopShoppingCarts hishopShoppingCarts = (HishopShoppingCarts)
-			// baseBiz.bean(" from HishopShoppingCarts as sc where sc.skuId = '"
-			// + skuId + "' and sc.productId = " + productId);
-			// if (hishopShoppingCarts != null) {
-			// if (hishopShoppingCarts.getQuantity() + number >
-			// hishopSkus.getStock()) {
-			// form.setJsonMsg("购买数量不能大于库存数量:" + hishopSkus.getStock(), true,
-			// json, 1001);
-			// } else {
-			// hishopShoppingCarts.setQuantity(hishopShoppingCarts.getQuantity()
-			// + number);
-			// baseBiz.update(hishopShoppingCarts);
-			// form.setJsonMsg("添加成功", true, json, 200);
-			// }
-			// } else {
-			// HishopShoppingCarts carts = new HishopShoppingCarts();
-			// carts.setAddTime(new Date());
-			// carts.setProductId(productId);
-			// carts.setQuantity(number);
-			// carts.setSkuId(skuId);
-			// carts.setUserId(userId);
-			// baseBiz.save(carts);
-			// form.setJsonMsg("添加成功", true, json, 200);
-			// }
-			// }
-			// }
-			// }
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			form.setJsonMsg("系统出错", false, json, 1001);
-		}
-		return JSON_PAGE;
-	}
-
-	/**
-	 * 删除购物车产品
-	 * 
-	 * @return
-	 */
-	public String delete_car_product() {
-		Map<String, Object> json = new HashMap<String, Object>();
-		try {
-			if (form.getProductId() == null) {
-				form.setJsonMsg("productId不能为空", false, json, 1001);
-			} else if (form.getSkuId() == null || form.getSkuId().isEmpty()) {
-				form.setJsonMsg("skuId不能为空", false, json, 1001);
+			if (this.form.getSkuId() == null) {
+				this.form.setJsonMsg("skuId不能为空", false, json, 1001);
+			} else if ((this.form.getProductId() == null) || (this.form.getSkuId().isEmpty())) {
+				this.form.setJsonMsg("productuId不能为空", false, json, 1001);
+			} else if (this.form.getNumber() == null) {
+				this.form.setJsonMsg("number不能为空", false, json, 1001);
 			} else {
 				YAccount account = getUserInfo();
 				if (account == null) {
-					form.setJsonMsg(NO_USER, false, json, 201);
+					this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
 				} else {
-					int userId = account.getUsers().getUserId();
-					String skuId = form.getSkuId();
-					int productId = form.getProductId();
-					ShoppingCarts shoppingCarts = (ShoppingCarts) baseBiz.bean(" from ShoppingCarts as hsc where hsc.userId = " + userId + " and hsc.sku='" + skuId + "' and hsc.productId=" + productId);
-					if (shoppingCarts == null) {
-						form.setJsonMsg("购物车产品信息不存在", true, json, 1001);
+					int userId = account.getUsers().getUserId().intValue();
+					String skuId = this.form.getSkuId();
+					int productId = this.form.getProductId().intValue();
+					int number = this.form.getNumber().intValue();
+					Sku hishopSkus = (Sku) this.baseBiz
+							.bean(" from Sku as hs where hs.sku = " + skuId + " and hs.productId = " + productId);
+					if (hishopSkus == null) {
+						this.form.setJsonMsg("产品信息不存在", true, json, 1001);
+					} else if (number > hishopSkus.getStock().intValue()) {
+						this.form.setJsonMsg("购买数量不能大于库存数量:" + hishopSkus.getStock(), true, json, 1001);
 					} else {
-						baseBiz.delete(shoppingCarts);
-						form.setJsonMsg("删除成功", true, json, 200);
+						ShoppingCarts hishopShoppingCarts = (ShoppingCarts) this.baseBiz
+								.bean(" from ShoppingCarts as sc where sc.sku = " + skuId + " and sc.userId = " + userId
+										+ " and sc.productId = " + productId);
+						if (hishopShoppingCarts != null) {
+							if (hishopShoppingCarts.getQuantity().intValue() + number > hishopSkus.getStock()
+									.intValue()) {
+								this.form.setJsonMsg("购买数量不能大于库存数量:" + hishopSkus.getStock(), true, json, 1001);
+							} else {
+								hishopShoppingCarts.setQuantity(
+										Integer.valueOf(hishopShoppingCarts.getQuantity().intValue() + number));
+								this.baseBiz.update(hishopShoppingCarts);
+								this.form.setJsonMsg("加入购物车成功", true, json, 200);
+							}
+						} else {
+							ShoppingCarts carts = new ShoppingCarts();
+							carts.setProductId(Integer.valueOf(productId));
+							carts.setQuantity(Integer.valueOf(number));
+							carts.setSku(Integer.valueOf(Integer.parseInt(skuId)));
+							if (hishopSkus.getShopId() != null) {
+								carts.setShopId(hishopSkus.getShopId());
+							}
+							carts.setUserId(Integer.valueOf(userId));
+							this.baseBiz.save(carts);
+							this.form.setJsonMsg("加入购物车成功", true, json, 200);
+						}
 					}
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-			form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg("系统出错", false, json, 1001);
 		}
-		return JSON_PAGE;
+		return "jsonPage";
 	}
 
-	/**
-	 * 更新购物车产品数量
-	 * 
-	 * @return
-	 */
-	public String update_car_product_quantity() {
-		Map<String, Object> json = new HashMap<String, Object>();
+	public String delete_car_product() {
+		Map json = new HashMap();
 		try {
-			if (form.getSkuId() == null || form.getSkuId().isEmpty()) {
-				form.setJsonMsg("skuId不能为空", false, json, 1001);
-			} else if (form.getSkuNumber() == null) {
-				form.setJsonMsg("skuNumber不能为空", false, json, 1001);
+			if (this.form.getProductId() == null) {
+				this.form.setJsonMsg("productId不能为空", false, json, 1001);
+			} else if ((this.form.getSkuId() == null) || (this.form.getSkuId().isEmpty())) {
+				this.form.setJsonMsg("skuId不能为空", false, json, 1001);
 			} else {
-				String skuIds[] = form.getSkuId().split("|");
-				String skuNumbers[] = form.getSkuNumber().split("|");
+				YAccount account = getUserInfo();
+				if (account == null) {
+					this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				} else {
+					int userId = account.getUsers().getUserId().intValue();
+					String skuId = this.form.getSkuId();
+					int productId = this.form.getProductId().intValue();
+					ShoppingCarts shoppingCarts = (ShoppingCarts) this.baseBiz
+							.bean(" from ShoppingCarts as hsc where hsc.userId = " + userId + " and hsc.sku=" + skuId
+									+ " and hsc.productId=" + productId);
+					if (shoppingCarts == null) {
+						this.form.setJsonMsg("购物车产品信息不存在", true, json, 1001);
+					} else {
+						this.baseBiz.delete(shoppingCarts);
+						this.form.setJsonMsg("删除购物车产品成功", true, json, 200);
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.form.setJsonMsg("系统出错", false, json, 1001);
+		}
+		return "jsonPage";
+	}
+
+	public String update_car_product_quantity() {
+		Map json = new HashMap();
+		try {
+			if ((this.form.getSkuId() == null) || (this.form.getSkuId().isEmpty())) {
+				this.form.setJsonMsg("skuId不能为空", false, json, 1001);
+			} else if (this.form.getSkuNumber() == null) {
+				this.form.setJsonMsg("skuNumber不能为空", false, json, 1001);
+			} else {
+				String[] skuIds = this.form.getSkuId().split("|");
+				String[] skuNumbers = this.form.getSkuNumber().split("|");
 				if (skuIds.length != skuNumbers.length) {
-					form.setJsonMsg("数据格式错误", false, json, 1001);
+					this.form.setJsonMsg("数据格式错误", false, json, 1001);
 				} else {
 					YAccount account = getUserInfo();
 					if (account == null) {
-						form.setJsonMsg(NO_USER, false, json, 201);
+						this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
 					} else {
-						int userId = account.getUsers().getUserId();
+						int userId = account.getUsers().getUserId().intValue();
 						StringBuffer sbHql = new StringBuffer(" select count(*) from ShoppingCarts as hsc where ");
 						for (String string : skuIds) {
 							sbHql.append(" hsc.sku = '" + string + "' or ");
 						}
 						sbHql.delete(sbHql.length() - 3, sbHql.length());
-						int count = baseBiz.count(sbHql.toString() + " and hsc.userId = " + userId);
+						int count = this.baseBiz.count(sbHql.toString() + " and hsc.userId = " + userId);
 						if (count != skuIds.length) {
-							form.setJsonMsg("购物车有部分产品已经被删除了，请刷新购物车后重试！", false, json, 1001);
+							this.form.setJsonMsg("购物车有部分产品已经被删除了，请刷新购物车后重试！", false, json, 1001);
 						} else {
 							String message = "";
 							for (int i = 0; i < skuIds.length; i++) {
-								Sku hishopSkus = (Sku) baseBiz.bean(" from Sku as hs where hs.sku = '" + skuIds[i] + "'");
-								if (skuNumbers.length > hishopSkus.getStock()) {
-									message += "商品货号:" + hishopSkus.getSku() + "   购买数量不能大于库存数量:" + hishopSkus.getStock() + "  请修改购买数量后重试!";
+								Sku hishopSkus = (Sku) this.baseBiz
+										.bean(" from Sku as hs where hs.sku = '" + skuIds[i] + "'");
+								if (skuNumbers.length > hishopSkus.getStock().intValue()) {
+									message = message + "商品货号:" + hishopSkus.getSku() + "   购买数量不能大于库存数量:"
+											+ hishopSkus.getStock() + "  请修改购买数量后重试!";
 									break;
 								}
 							}
-							if (message.length() > 5) {
-								form.setJsonMsg(message, false, json, 1001);
-							} else {
+							if (message.length() > 5)
+								this.form.setJsonMsg(message, false, json, 1001);
+							else
 								for (int i = 0; i < skuIds.length; i++) {
-									ShoppingCarts hsc = (ShoppingCarts) baseBiz.bean(" from ShoppingCarts as hsc where hsc.sku = '" + skuIds[i] + "' and hsc.userId = " + userId);
-									hsc.setQuantity(Integer.parseInt(skuNumbers[i]));
-									baseBiz.save(hsc);
-									form.setJsonMsg("修改成功", true, json, 200);
+									ShoppingCarts hsc = (ShoppingCarts) this.baseBiz
+											.bean(" from ShoppingCarts as hsc where hsc.sku = '" + skuIds[i]
+													+ "' and hsc.userId = " + userId);
+									hsc.setQuantity(Integer.valueOf(Integer.parseInt(skuNumbers[i])));
+									this.baseBiz.save(hsc);
+									this.form.setJsonMsg("修改成功", true, json, 200);
 								}
-							}
 						}
 					}
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-			form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg("系统出错", false, json, 1001);
 		}
-		return JSON_PAGE;
+		return "jsonPage";
 	}
 
-	/**
-	 * 查询用户购物车的所有产品
-	 * 
-	 * @return
-	 */
 	public String user_car_product() {
-		Map<String, Object> json = new HashMap<String, Object>();
+		Map json = new HashMap();
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				form.setJsonMsg(NO_USER, false, json, 201);
+				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
 			} else {
-				int userId = account.getUsers().getUserId();
-				List<ShoppingCarts> lsitHishopShoppingCarts = (List<ShoppingCarts>) baseBiz.findAll(" from ShoppingCarts as sc where sc.userId = " + userId + " order by sc.addTime desc ");
+				int userId = account.getUsers().getUserId().intValue();
+				List lsitHishopShoppingCarts = this.baseBiz.findAll(
+						" from ShoppingCarts as sc where sc.userId = " + userId + " order by sc.lineItemId desc ");
 				for (int i = 0; i < lsitHishopShoppingCarts.size(); i++) {
-					ShoppingCarts hishopShoppingCarts = lsitHishopShoppingCarts.get(i);
-					Products products = (Products) baseBiz.bean(" from Products as hp where hp.productId = " + hishopShoppingCarts.getProductId());
-					// 产品价格
-					Sku sku = (Sku) baseBiz.bean(" from Sku as hs where hs.productId =" + products.getProductId() + " and hs.sku = '" + hishopShoppingCarts.getSku() + "'");
+					ShoppingCarts hishopShoppingCarts = (ShoppingCarts) lsitHishopShoppingCarts.get(i);
+					Products products = (Products) this.baseBiz
+							.bean(" from Products as hp where hp.productId = " + hishopShoppingCarts.getProductId());
+
+					Sku sku = (Sku) this.baseBiz.bean(" from Sku as hs where hs.productId =" + products.getProductId()
+							+ " and hs.sku = '" + hishopShoppingCarts.getSku() + "'");
 					products.setSku(sku);
-					List<Products> listProducts = new ArrayList<Products>();
+					List listProducts = new ArrayList();
 					listProducts.add(products);
 					hishopShoppingCarts.setListProducts(listProducts);
 					lsitHishopShoppingCarts.set(i, hishopShoppingCarts);
 				}
-				if (lsitHishopShoppingCarts != null && lsitHishopShoppingCarts.size() > 0) {
+				if ((lsitHishopShoppingCarts != null) && (lsitHishopShoppingCarts.size() > 0)) {
 					for (int i = 0; i < lsitHishopShoppingCarts.size(); i++) {
-						ShoppingCarts carts = lsitHishopShoppingCarts.get(i);
-						YShop supplier = (YShop) baseBiz.bean(" from YShop as s where s.shopId = " + carts.getListProducts().get(0).getShopId());
+						ShoppingCarts carts = (ShoppingCarts) lsitHishopShoppingCarts.get(i);
+						YShop supplier = (YShop) this.baseBiz.bean(" from YShop as s where s.shopId = "
+								+ ((Products) carts.getListProducts().get(0)).getShopId());
 						carts.setyShop(supplier);
 						lsitHishopShoppingCarts.set(i, carts);
 					}
 				}
-				json.put(LISTINFO, lsitHishopShoppingCarts);
-				form.setJsonMsg(SUCCESS, true, json, 200);
+				json.put("listInfo", lsitHishopShoppingCarts);
+				this.form.setJsonMsg("success", true, json, 200);
 			}
-
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-			form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg("系统出错", false, json, 1001);
 		}
-		return JSON_PAGE;
+		return "jsonPage";
 	}
-
 }

@@ -19,8 +19,11 @@ public class YMenu extends AbstractYMenu implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YMenu(Integer meParentId, Integer meClassSetId, Integer accountActId, String meName, String meEnName, String meUrl, Integer meTarget, Integer meOrder, String meDefaultCname, String meOverCname, String meDefaultImg, String meOverImg, String meVisitedImg, Integer isDelete, Timestamp meTime) {
-		super(meParentId, meClassSetId, accountActId, meName, meEnName, meUrl, meTarget, meOrder, meDefaultCname, meOverCname, meDefaultImg, meOverImg, meVisitedImg, isDelete, meTime);
+	public YMenu(Integer meParentId, Integer meClassSetId, Integer accountActId, String meName, String meEnName,
+			String meUrl, Integer meTarget, Integer meOrder, String meDefaultCname, String meOverCname,
+			String meDefaultImg, String meOverImg, String meVisitedImg, Integer isDelete, Timestamp meTime) {
+		super(meParentId, meClassSetId, accountActId, meName, meEnName, meUrl, meTarget, meOrder, meDefaultCname,
+				meOverCname, meDefaultImg, meOverImg, meVisitedImg, isDelete, meTime);
 	}
 
 }

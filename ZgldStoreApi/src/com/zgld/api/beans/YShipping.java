@@ -19,7 +19,8 @@ public class YShipping extends AbstractYShipping implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public YShipping(Integer unitSetId, Integer accountActId, String shipName, String shipGoodsPlace, Integer shipSendInTime, Date shipTime) {
+	public YShipping(Integer unitSetId, Integer accountActId, String shipName, String shipGoodsPlace,
+			Integer shipSendInTime, Date shipTime) {
 		super(unitSetId, accountActId, shipName, shipGoodsPlace, shipSendInTime, shipTime);
 	}
 

@@ -12,7 +12,8 @@ public class ShippingPrice extends AbstractShippingPrice implements java.io.Seri
 	}
 
 	/** full constructor */
-	public ShippingPrice(Integer shippingId, Integer shopId, String name, Integer addWeight, Double price, Double addPrice, String description, Integer displaySequence) {
+	public ShippingPrice(Integer shippingId, Integer shopId, String name, Integer addWeight, Double price,
+			Double addPrice, String description, Integer displaySequence) {
 		super(shippingId, shopId, name, addWeight, price, addPrice, description, displaySequence);
 	}
 

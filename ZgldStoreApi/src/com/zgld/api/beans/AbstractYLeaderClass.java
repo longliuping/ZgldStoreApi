@@ -35,7 +35,9 @@ public abstract class AbstractYLeaderClass implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYLeaderClass(Integer unitSetId, Integer accountActId, Integer leaderParentClassId, Integer leaderClassSetId, String leaderClassName, Integer leaderClassOrder, Integer leaderClassTopOrder, Integer isDelete, Date leaderClassTime) {
+	public AbstractYLeaderClass(Integer unitSetId, Integer accountActId, Integer leaderParentClassId,
+			Integer leaderClassSetId, String leaderClassName, Integer leaderClassOrder, Integer leaderClassTopOrder,
+			Integer isDelete, Date leaderClassTime) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.leaderParentClassId = leaderParentClassId;

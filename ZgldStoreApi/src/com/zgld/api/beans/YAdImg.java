@@ -19,8 +19,11 @@ public class YAdImg extends AbstractYAdImg implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YAdImg(Integer adId, String adImgUrl, String adImgSrc, String adImgTitle, String adImgIntro, Integer unitSetId, Integer accountActId, Integer adImgOrder, Integer adImgTopOrder, Integer isDelete, Timestamp adImgTime) {
-		super(adId, adImgUrl, adImgSrc, adImgTitle, adImgIntro, unitSetId, accountActId, adImgOrder, adImgTopOrder, isDelete, adImgTime);
+	public YAdImg(Integer adId, String adImgUrl, String adImgSrc, String adImgTitle, String adImgIntro,
+			Integer unitSetId, Integer accountActId, Integer adImgOrder, Integer adImgTopOrder, Integer isDelete,
+			Timestamp adImgTime) {
+		super(adId, adImgUrl, adImgSrc, adImgTitle, adImgIntro, unitSetId, accountActId, adImgOrder, adImgTopOrder,
+				isDelete, adImgTime);
 	}
 
 }

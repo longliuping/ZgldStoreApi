@@ -19,7 +19,8 @@ public class YOrderSend extends AbstractYOrderSend implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YOrderSend(Integer shipId, String shipNumber, Integer orderId, Integer accountActId, String sendInfo, Date sendTime) {
+	public YOrderSend(Integer shipId, String shipNumber, Integer orderId, Integer accountActId, String sendInfo,
+			Date sendTime) {
 		super(shipId, shipNumber, orderId, accountActId, sendInfo, sendTime);
 	}
 

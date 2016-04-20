@@ -35,7 +35,8 @@ public abstract class AbstractYEmailSend implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYEmailSend(Integer accountActId, Integer unitSetId, Integer emailSendType, String emailSendTitle, String emailSendContent, Integer emailOrder, Integer emailTopOrder, Integer isDelete, Date emailSendTime) {
+	public AbstractYEmailSend(Integer accountActId, Integer unitSetId, Integer emailSendType, String emailSendTitle,
+			String emailSendContent, Integer emailOrder, Integer emailTopOrder, Integer isDelete, Date emailSendTime) {
 		this.accountActId = accountActId;
 		this.unitSetId = unitSetId;
 		this.emailSendType = emailSendType;

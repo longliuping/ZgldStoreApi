@@ -19,8 +19,13 @@ public class YGoodsBrand extends AbstractYGoodsBrand implements java.io.Serializ
 	}
 
 	/** full constructor */
-	public YGoodsBrand(Integer goParentBrandId, Integer goBrandSetId, String goBrandName, String goBrandIntro, Integer goBrandTotal, Integer unitSetId, Integer accountActId, Integer goBrandOrder, Integer goBrandTopOrder, String goBrandDefaultImg, String goBrandHoverImg, String goBrandVisitedImg, Integer isDelete, Timestamp goBrandTime) {
-		super(goParentBrandId, goBrandSetId, goBrandName, goBrandIntro, goBrandTotal, unitSetId, accountActId, goBrandOrder, goBrandTopOrder, goBrandDefaultImg, goBrandHoverImg, goBrandVisitedImg, isDelete, goBrandTime);
+	public YGoodsBrand(Integer goParentBrandId, Integer goBrandSetId, String goBrandName, String goBrandIntro,
+			Integer goBrandTotal, Integer unitSetId, Integer accountActId, Integer goBrandOrder,
+			Integer goBrandTopOrder, String goBrandDefaultImg, String goBrandHoverImg, String goBrandVisitedImg,
+			Integer isDelete, Timestamp goBrandTime) {
+		super(goParentBrandId, goBrandSetId, goBrandName, goBrandIntro, goBrandTotal, unitSetId, accountActId,
+				goBrandOrder, goBrandTopOrder, goBrandDefaultImg, goBrandHoverImg, goBrandVisitedImg, isDelete,
+				goBrandTime);
 	}
 
 }

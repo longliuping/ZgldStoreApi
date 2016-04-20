@@ -22,7 +22,8 @@ public abstract class AbstractPromoteSalesFee implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractPromoteSalesFee(Double amount, Integer shipChargeFree, Integer serviceChargeFree, Integer packingChargeFree) {
+	public AbstractPromoteSalesFee(Double amount, Integer shipChargeFree, Integer serviceChargeFree,
+			Integer packingChargeFree) {
 		this.amount = amount;
 		this.shipChargeFree = shipChargeFree;
 		this.serviceChargeFree = serviceChargeFree;

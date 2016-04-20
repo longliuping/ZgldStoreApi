@@ -29,7 +29,8 @@ public abstract class AbstractYFormValue implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYFormValue(Integer tagId, Integer objId, String tableName, Integer tagType, String fieldName, String controlValue) {
+	public AbstractYFormValue(Integer tagId, Integer objId, String tableName, Integer tagType, String fieldName,
+			String controlValue) {
 		this.tagId = tagId;
 		this.objId = objId;
 		this.tableName = tableName;

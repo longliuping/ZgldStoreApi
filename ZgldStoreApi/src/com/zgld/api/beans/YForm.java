@@ -19,7 +19,8 @@ public class YForm extends AbstractYForm implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YForm(Integer classSetId, String tableName, String formName, Integer accountActId, Integer isDelete, Timestamp formTime) {
+	public YForm(Integer classSetId, String tableName, String formName, Integer accountActId, Integer isDelete,
+			Timestamp formTime) {
 		super(classSetId, tableName, formName, accountActId, isDelete, formTime);
 	}
 

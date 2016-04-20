@@ -30,7 +30,8 @@ public abstract class AbstractYMenuMatch implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYMenuMatch(Integer meId, Integer accountId, Integer accountActId, Integer isDelete, Date menuMatchTime) {
+	public AbstractYMenuMatch(Integer meId, Integer accountId, Integer accountActId, Integer isDelete,
+			Date menuMatchTime) {
 		this.meId = meId;
 		this.accountId = accountId;
 		this.accountActId = accountActId;

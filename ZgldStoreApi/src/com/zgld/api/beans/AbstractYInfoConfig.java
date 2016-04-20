@@ -44,7 +44,12 @@ public abstract class AbstractYInfoConfig implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYInfoConfig(String sysInfoWelMsg, String sysInfoLogoImg, String sysInfoIcoImg, String sysInfoCellPhone, String sysInfoMobilePhone, String sysInfoEmail, String sysInfoAddress, String sysInfoQq, String sysInfoQqGroup, String sysInfoWeChat, String sysInfoWeChatImg, String sysInfoSinaWeibo, String sysInfoSinaWeiboImg, String sysInfoQqWeibo, String sysInfoQqWeiboImg, String sysInfoRenRen, String sysInfoRenRenImg, String sysInfoName, String sysInfoAim, String sysInfoIdea, String sysInfoWebQrCode) {
+	public AbstractYInfoConfig(String sysInfoWelMsg, String sysInfoLogoImg, String sysInfoIcoImg,
+			String sysInfoCellPhone, String sysInfoMobilePhone, String sysInfoEmail, String sysInfoAddress,
+			String sysInfoQq, String sysInfoQqGroup, String sysInfoWeChat, String sysInfoWeChatImg,
+			String sysInfoSinaWeibo, String sysInfoSinaWeiboImg, String sysInfoQqWeibo, String sysInfoQqWeiboImg,
+			String sysInfoRenRen, String sysInfoRenRenImg, String sysInfoName, String sysInfoAim, String sysInfoIdea,
+			String sysInfoWebQrCode) {
 		this.sysInfoWelMsg = sysInfoWelMsg;
 		this.sysInfoLogoImg = sysInfoLogoImg;
 		this.sysInfoIcoImg = sysInfoIcoImg;

@@ -14,7 +14,8 @@ public class PhotoGallery extends AbstractPhotoGallery implements java.io.Serial
 	}
 
 	/** full constructor */
-	public PhotoGallery(Integer categoryId, String photoName, String photoPath, Integer fileSize, Timestamp uploadTime, Timestamp lastUpdateTime) {
+	public PhotoGallery(Integer categoryId, String photoName, String photoPath, Integer fileSize, Timestamp uploadTime,
+			Timestamp lastUpdateTime) {
 		super(categoryId, photoName, photoPath, fileSize, uploadTime, lastUpdateTime);
 	}
 

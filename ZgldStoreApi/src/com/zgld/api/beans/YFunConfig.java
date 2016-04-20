@@ -12,8 +12,13 @@ public class YFunConfig extends AbstractYFunConfig implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YFunConfig(Integer sysFunIsCache, Integer sysFunCacheTime, Integer sysFunIsArticlePages, Integer sysFunArticlePagesLength, Integer sysFunIsFileUpload, Integer sysFunFileUploadKiloByte, Integer sysFunIsAppApi, Integer sysFunIsMsg, Integer sysFunIsComment, Integer sysFunIsWebApply, Integer sysFunIsUnitWebApply, Integer sysFunIsRecursive) {
-		super(sysFunIsCache, sysFunCacheTime, sysFunIsArticlePages, sysFunArticlePagesLength, sysFunIsFileUpload, sysFunFileUploadKiloByte, sysFunIsAppApi, sysFunIsMsg, sysFunIsComment, sysFunIsWebApply, sysFunIsUnitWebApply, sysFunIsRecursive);
+	public YFunConfig(Integer sysFunIsCache, Integer sysFunCacheTime, Integer sysFunIsArticlePages,
+			Integer sysFunArticlePagesLength, Integer sysFunIsFileUpload, Integer sysFunFileUploadKiloByte,
+			Integer sysFunIsAppApi, Integer sysFunIsMsg, Integer sysFunIsComment, Integer sysFunIsWebApply,
+			Integer sysFunIsUnitWebApply, Integer sysFunIsRecursive) {
+		super(sysFunIsCache, sysFunCacheTime, sysFunIsArticlePages, sysFunArticlePagesLength, sysFunIsFileUpload,
+				sysFunFileUploadKiloByte, sysFunIsAppApi, sysFunIsMsg, sysFunIsComment, sysFunIsWebApply,
+				sysFunIsUnitWebApply, sysFunIsRecursive);
 	}
 
 }

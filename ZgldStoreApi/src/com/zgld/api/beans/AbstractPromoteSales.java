@@ -27,7 +27,8 @@ public abstract class AbstractPromoteSales implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractPromoteSales(Integer shopId, String name, Integer promoteType, String description, Date startTime, Date closingTime) {
+	public AbstractPromoteSales(Integer shopId, String name, Integer promoteType, String description, Date startTime,
+			Date closingTime) {
 		this.shopId = shopId;
 		this.name = name;
 		this.promoteType = promoteType;

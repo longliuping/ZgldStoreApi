@@ -30,7 +30,8 @@ public abstract class AbstractYWebConfig implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYWebConfig(Integer unitSetId, Integer accountActId, Integer webConState, Integer webConAdminState, String webConName, String webConKeyWord, String webConDescription) {
+	public AbstractYWebConfig(Integer unitSetId, Integer accountActId, Integer webConState, Integer webConAdminState,
+			String webConName, String webConKeyWord, String webConDescription) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.webConState = webConState;

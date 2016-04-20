@@ -31,7 +31,8 @@ public abstract class AbstractYMenuClass implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYMenuClass(Integer meParentClassId, Integer meClassSetId, Integer accountActId, String meClassName, Integer isDelete, Date meClassTime) {
+	public AbstractYMenuClass(Integer meParentClassId, Integer meClassSetId, Integer accountActId, String meClassName,
+			Integer isDelete, Date meClassTime) {
 		this.meParentClassId = meParentClassId;
 		this.meClassSetId = meClassSetId;
 		this.accountActId = accountActId;

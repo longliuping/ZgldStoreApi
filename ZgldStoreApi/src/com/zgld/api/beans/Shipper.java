@@ -12,7 +12,8 @@ public class Shipper extends AbstractShipper implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Shipper(Integer shopId, Integer isDefault, String shipperTag, String shipperName, Integer regionId, String address, String cellPhone, String telPhone, String zipcode, String remark) {
+	public Shipper(Integer shopId, Integer isDefault, String shipperTag, String shipperName, Integer regionId,
+			String address, String cellPhone, String telPhone, String zipcode, String remark) {
 		super(shopId, isDefault, shipperTag, shipperName, regionId, address, cellPhone, telPhone, zipcode, remark);
 	}
 

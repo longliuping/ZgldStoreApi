@@ -36,7 +36,9 @@ public abstract class AbstractYArticleSpecial implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYArticleSpecial(Integer unitSetId, Integer accountActId, Integer arSpecialSetId, Integer arParentSpecialId, String arSpecialName, Integer arSpecialTotal, Integer arSpecialOrder, Integer arSpecialTopOrder, Integer isDelete, Date arSpecialTime) {
+	public AbstractYArticleSpecial(Integer unitSetId, Integer accountActId, Integer arSpecialSetId,
+			Integer arParentSpecialId, String arSpecialName, Integer arSpecialTotal, Integer arSpecialOrder,
+			Integer arSpecialTopOrder, Integer isDelete, Date arSpecialTime) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.arSpecialSetId = arSpecialSetId;

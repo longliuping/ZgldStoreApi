@@ -43,7 +43,11 @@ public abstract class AbstractUserProfile implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractUserProfile(Integer userId, Integer enablePrivateMessages, Integer enableOnlineStatus, Integer enableEmail, Integer enableHtmlEmail, String publicToken, Double expenditure, Integer enableTradePassword, String tradePassword, String realName, Integer points, Integer regionId, String address, String qq, String msn, String telPhone, String cellPhone, Integer userRank, Date birthDate, Integer gender, Double balance, Double deductMoney) {
+	public AbstractUserProfile(Integer userId, Integer enablePrivateMessages, Integer enableOnlineStatus,
+			Integer enableEmail, Integer enableHtmlEmail, String publicToken, Double expenditure,
+			Integer enableTradePassword, String tradePassword, String realName, Integer points, Integer regionId,
+			String address, String qq, String msn, String telPhone, String cellPhone, Integer userRank, Date birthDate,
+			Integer gender, Double balance, Double deductMoney) {
 		this.userId = userId;
 		this.enablePrivateMessages = enablePrivateMessages;
 		this.enableOnlineStatus = enableOnlineStatus;

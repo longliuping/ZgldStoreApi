@@ -19,8 +19,10 @@ public class YShippingPrice extends AbstractYShippingPrice implements java.io.Se
 	}
 
 	/** full constructor */
-	public YShippingPrice(Integer unitSetId, Integer accountActId, Integer shipId, Integer shipGoodsCount, Double shipPrice, Integer shipGoodsAddCount, Double shipGoodsAddPrice, Date shipPriceTime) {
-		super(unitSetId, accountActId, shipId, shipGoodsCount, shipPrice, shipGoodsAddCount, shipGoodsAddPrice, shipPriceTime);
+	public YShippingPrice(Integer unitSetId, Integer accountActId, Integer shipId, Integer shipGoodsCount,
+			Double shipPrice, Integer shipGoodsAddCount, Double shipGoodsAddPrice, Date shipPriceTime) {
+		super(unitSetId, accountActId, shipId, shipGoodsCount, shipPrice, shipGoodsAddCount, shipGoodsAddPrice,
+				shipPriceTime);
 	}
 
 }

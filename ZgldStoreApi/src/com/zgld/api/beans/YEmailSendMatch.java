@@ -19,7 +19,8 @@ public class YEmailSendMatch extends AbstractYEmailSendMatch implements java.io.
 	}
 
 	/** full constructor */
-	public YEmailSendMatch(Integer accountId, Integer emailSendId, Integer isScan, Integer isDelete, Timestamp emailScanTime) {
+	public YEmailSendMatch(Integer accountId, Integer emailSendId, Integer isScan, Integer isDelete,
+			Timestamp emailScanTime) {
 		super(accountId, emailSendId, isScan, isDelete, emailScanTime);
 	}
 

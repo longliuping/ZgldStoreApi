@@ -1,17 +1,9 @@
 package com.zgld.api.beans;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * AbstractOrders entity provides the base persistence definition of the Orders
- * entity. @author MyEclipse Persistence Tools
- */
-
-public abstract class AbstractOrders implements java.io.Serializable {
-
-	// Fields
-
+public abstract class AbstractOrders implements Serializable {
 	private Integer orderId;
 	private Integer shopId;
 	private Integer userId;
@@ -27,32 +19,18 @@ public abstract class AbstractOrders implements java.io.Serializable {
 	private Double orderRealPrice;
 	private String remark;
 	private Date orderDate;
-
-	// Constructors
-
-	/** default constructor */
-	public AbstractOrders() {
-	}
-
-	/** full constructor */
-	public AbstractOrders(Integer shopId, Integer userId, Double freight, Integer shippingId, String shipOrderNumber, Integer shippingStatus, Integer refundStatus, Integer paymentStatus, Double orderTotalPrice, Integer orderPoint, Double otherCost, Double orderRealPrice, String remark, Date orderDate) {
-		this.shopId = shopId;
-		this.userId = userId;
-		this.freight = freight;
-		this.shippingId = shippingId;
-		this.shipOrderNumber = shipOrderNumber;
-		this.shippingStatus = shippingStatus;
-		this.refundStatus = refundStatus;
-		this.paymentStatus = paymentStatus;
-		this.orderTotalPrice = orderTotalPrice;
-		this.orderPoint = orderPoint;
-		this.otherCost = otherCost;
-		this.orderRealPrice = orderRealPrice;
-		this.remark = remark;
-		this.orderDate = orderDate;
-	}
-
-	// Property accessors
+	private String mobile;
+	private String shipTo;
+	private String address;
+	private String zipcode;
+	private Integer payTypeId;
+	private String payTradeNo;
+	private Date payDateTime;
+	private Double payTotalFee;
+	private String buyerId;
+	private String buyerAccount;
+	private Date refundDateTime;
+	private Double refundTotalFee;
 
 	public Integer getOrderId() {
 		return this.orderId;
@@ -174,4 +152,99 @@ public abstract class AbstractOrders implements java.io.Serializable {
 		this.orderDate = orderDate;
 	}
 
+	public String getMobile() {
+		return this.mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getShipTo() {
+		return this.shipTo;
+	}
+
+	public void setShipTo(String shipTo) {
+		this.shipTo = shipTo;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getZipcode() {
+		return this.zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public Integer getPayTypeId() {
+		return this.payTypeId;
+	}
+
+	public void setPayTypeId(Integer payTypeId) {
+		this.payTypeId = payTypeId;
+	}
+
+	public String getPayTradeNo() {
+		return this.payTradeNo;
+	}
+
+	public void setPayTradeNo(String payTradeNo) {
+		this.payTradeNo = payTradeNo;
+	}
+
+	public Date getPayDateTime() {
+		return this.payDateTime;
+	}
+
+	public void setPayDateTime(Date payDateTime) {
+		this.payDateTime = payDateTime;
+	}
+
+	public Double getPayTotalFee() {
+		return this.payTotalFee;
+	}
+
+	public void setPayTotalFee(Double payTotalFee) {
+		this.payTotalFee = payTotalFee;
+	}
+
+	public String getBuyerId() {
+		return this.buyerId;
+	}
+
+	public void setBuyerId(String buyerId) {
+		this.buyerId = buyerId;
+	}
+
+	public String getBuyerAccount() {
+		return this.buyerAccount;
+	}
+
+	public void setBuyerAccount(String buyerAccount) {
+		this.buyerAccount = buyerAccount;
+	}
+
+	public Date getRefundDateTime() {
+		return this.refundDateTime;
+	}
+
+	public void setRefundDateTime(Date refundDateTime) {
+		this.refundDateTime = refundDateTime;
+	}
+
+	public Double getRefundTotalFee() {
+		return this.refundTotalFee;
+	}
+
+	public void setRefundTotalFee(Double refundTotalFee) {
+		this.refundTotalFee = refundTotalFee;
+	}
 }

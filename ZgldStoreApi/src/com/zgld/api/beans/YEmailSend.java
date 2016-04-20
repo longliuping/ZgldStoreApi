@@ -19,8 +19,11 @@ public class YEmailSend extends AbstractYEmailSend implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YEmailSend(Integer accountActId, Integer unitSetId, Integer emailSendType, String emailSendTitle, String emailSendContent, Integer emailOrder, Integer emailTopOrder, Integer isDelete, Timestamp emailSendTime) {
-		super(accountActId, unitSetId, emailSendType, emailSendTitle, emailSendContent, emailOrder, emailTopOrder, isDelete, emailSendTime);
+	public YEmailSend(Integer accountActId, Integer unitSetId, Integer emailSendType, String emailSendTitle,
+			String emailSendContent, Integer emailOrder, Integer emailTopOrder, Integer isDelete,
+			Timestamp emailSendTime) {
+		super(accountActId, unitSetId, emailSendType, emailSendTitle, emailSendContent, emailOrder, emailTopOrder,
+				isDelete, emailSendTime);
 	}
 
 }

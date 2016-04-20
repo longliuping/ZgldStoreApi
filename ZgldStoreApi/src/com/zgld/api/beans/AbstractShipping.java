@@ -23,7 +23,8 @@ public abstract class AbstractShipping implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractShipping(Integer shopId, Integer isDefault, Integer displaySequence, String expressCompanyName, String expressCompanyAbb) {
+	public AbstractShipping(Integer shopId, Integer isDefault, Integer displaySequence, String expressCompanyName,
+			String expressCompanyAbb) {
 		this.shopId = shopId;
 		this.isDefault = isDefault;
 		this.displaySequence = displaySequence;

@@ -14,7 +14,8 @@ public class OrderLeaveWords extends AbstractOrderLeaveWords implements java.io.
 	}
 
 	/** full constructor */
-	public OrderLeaveWords(Integer orderId, String publishContent, Integer userId, Timestamp publishDate, Integer isAgentVisited, Integer isMemberVisited, Integer isadminVisited) {
+	public OrderLeaveWords(Integer orderId, String publishContent, Integer userId, Timestamp publishDate,
+			Integer isAgentVisited, Integer isMemberVisited, Integer isadminVisited) {
 		super(orderId, publishContent, userId, publishDate, isAgentVisited, isMemberVisited, isadminVisited);
 	}
 

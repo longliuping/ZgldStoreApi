@@ -34,7 +34,8 @@ public abstract class AbstractYAd implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYAd(String adName, Integer adType, Integer unitSetId, Integer accountActId, Integer adOrder, Integer adTopOrder, Integer isDelete, Date adTime) {
+	public AbstractYAd(String adName, Integer adType, Integer unitSetId, Integer accountActId, Integer adOrder,
+			Integer adTopOrder, Integer isDelete, Date adTime) {
 		this.adName = adName;
 		this.adType = adType;
 		this.unitSetId = unitSetId;

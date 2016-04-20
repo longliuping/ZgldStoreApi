@@ -17,7 +17,8 @@ public class YFormCombineValue extends AbstractYFormCombineValue implements java
 	}
 
 	/** full constructor */
-	public YFormCombineValue(String conbineFieldName, String tableName, Integer objId, Integer goStore, Double goBidPrice, Double goSalePrice) {
+	public YFormCombineValue(String conbineFieldName, String tableName, Integer objId, Integer goStore,
+			Double goBidPrice, Double goSalePrice) {
 		super(conbineFieldName, tableName, objId, goStore, goBidPrice, goSalePrice);
 	}
 

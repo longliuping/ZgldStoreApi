@@ -30,7 +30,8 @@ public abstract class AbstractYServiceChat implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYServiceChat(Integer accountId, String connectionId, String chatInfo, Integer isDelete, Date chatTime) {
+	public AbstractYServiceChat(Integer accountId, String connectionId, String chatInfo, Integer isDelete,
+			Date chatTime) {
 		this.accountId = accountId;
 		this.connectionId = connectionId;
 		this.chatInfo = chatInfo;

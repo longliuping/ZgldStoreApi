@@ -19,8 +19,13 @@ public class YGoodsClass extends AbstractYGoodsClass implements java.io.Serializ
 	}
 
 	/** full constructor */
-	public YGoodsClass(Integer goParentClassId, Integer goClassSetId, String goClassName, String goClassIntro, Integer goClassTotal, Integer unitSetId, Integer accountActId, Integer goClassOrder, Integer goClassTopOrder, String goClassDefaultImg, String goClassHoverImg, String goClassVisitedImg, Integer isDelete, Timestamp goClassTime) {
-		super(goParentClassId, goClassSetId, goClassName, goClassIntro, goClassTotal, unitSetId, accountActId, goClassOrder, goClassTopOrder, goClassDefaultImg, goClassHoverImg, goClassVisitedImg, isDelete, goClassTime);
+	public YGoodsClass(Integer goParentClassId, Integer goClassSetId, String goClassName, String goClassIntro,
+			Integer goClassTotal, Integer unitSetId, Integer accountActId, Integer goClassOrder,
+			Integer goClassTopOrder, String goClassDefaultImg, String goClassHoverImg, String goClassVisitedImg,
+			Integer isDelete, Timestamp goClassTime) {
+		super(goParentClassId, goClassSetId, goClassName, goClassIntro, goClassTotal, unitSetId, accountActId,
+				goClassOrder, goClassTopOrder, goClassDefaultImg, goClassHoverImg, goClassVisitedImg, isDelete,
+				goClassTime);
 	}
 
 }

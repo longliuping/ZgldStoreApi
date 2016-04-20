@@ -31,7 +31,8 @@ public abstract class AbstractYImageSize implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYImageSize(Integer imgSizeWidth, Integer imgSizeHeight, Integer isDefault, Integer isDelete, Date imgSizeTime) {
+	public AbstractYImageSize(Integer imgSizeWidth, Integer imgSizeHeight, Integer isDefault, Integer isDelete,
+			Date imgSizeTime) {
 		this.imgSizeWidth = imgSizeWidth;
 		this.imgSizeHeight = imgSizeHeight;
 		this.isDefault = isDefault;

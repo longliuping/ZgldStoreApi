@@ -26,7 +26,8 @@ public abstract class AbstractShippingPrice implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractShippingPrice(Integer shippingId, Integer shopId, String name, Integer addWeight, Double price, Double addPrice, String description, Integer displaySequence) {
+	public AbstractShippingPrice(Integer shippingId, Integer shopId, String name, Integer addWeight, Double price,
+			Double addPrice, String description, Integer displaySequence) {
 		this.shippingId = shippingId;
 		this.shopId = shopId;
 		this.name = name;

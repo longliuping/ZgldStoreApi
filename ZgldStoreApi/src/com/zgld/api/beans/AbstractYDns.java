@@ -33,7 +33,8 @@ public abstract class AbstractYDns implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYDns(Integer accountActId, Integer unitSetId, Integer dnsType, String dnsName, Integer isState, Integer isDelete, Date dnsTime) {
+	public AbstractYDns(Integer accountActId, Integer unitSetId, Integer dnsType, String dnsName, Integer isState,
+			Integer isDelete, Date dnsTime) {
 		this.accountActId = accountActId;
 		this.unitSetId = unitSetId;
 		this.dnsType = dnsType;

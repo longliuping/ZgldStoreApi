@@ -19,7 +19,8 @@ public class YFiles extends AbstractYFiles implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YFiles(Integer unitSetId, Integer accountActId, String fiName, String fiExtension, String fiTotalBytes, String fiUrl, String fiActUrl, Integer isDelete, Timestamp fiTime) {
+	public YFiles(Integer unitSetId, Integer accountActId, String fiName, String fiExtension, String fiTotalBytes,
+			String fiUrl, String fiActUrl, Integer isDelete, Timestamp fiTime) {
 		super(unitSetId, accountActId, fiName, fiExtension, fiTotalBytes, fiUrl, fiActUrl, isDelete, fiTime);
 	}
 

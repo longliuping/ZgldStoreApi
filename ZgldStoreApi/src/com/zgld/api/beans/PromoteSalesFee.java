@@ -12,7 +12,8 @@ public class PromoteSalesFee extends AbstractPromoteSalesFee implements java.io.
 	}
 
 	/** full constructor */
-	public PromoteSalesFee(Double amount, Integer shipChargeFree, Integer serviceChargeFree, Integer packingChargeFree) {
+	public PromoteSalesFee(Double amount, Integer shipChargeFree, Integer serviceChargeFree,
+			Integer packingChargeFree) {
 		super(amount, shipChargeFree, serviceChargeFree, packingChargeFree);
 	}
 

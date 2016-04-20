@@ -17,7 +17,8 @@ public class YFormValue extends AbstractYFormValue implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YFormValue(Integer tagId, Integer objId, String tableName, Integer tagType, String fieldName, String controlValue) {
+	public YFormValue(Integer tagId, Integer objId, String tableName, Integer tagType, String fieldName,
+			String controlValue) {
 		super(tagId, objId, tableName, tagType, fieldName, controlValue);
 	}
 

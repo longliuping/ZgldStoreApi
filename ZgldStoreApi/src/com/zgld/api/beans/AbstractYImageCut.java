@@ -32,7 +32,8 @@ public abstract class AbstractYImageCut implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYImageCut(Integer fiId, Integer imgCutWidth, Integer imgCutHeight, String imgCutUrl, Integer isDelete, Date imgCutTime) {
+	public AbstractYImageCut(Integer fiId, Integer imgCutWidth, Integer imgCutHeight, String imgCutUrl,
+			Integer isDelete, Date imgCutTime) {
 		this.fiId = fiId;
 		this.imgCutWidth = imgCutWidth;
 		this.imgCutHeight = imgCutHeight;

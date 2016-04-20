@@ -19,7 +19,8 @@ public class YThemeConfig extends AbstractYThemeConfig implements java.io.Serial
 	}
 
 	/** full constructor */
-	public YThemeConfig(String themeName, String themeTitle, String themeIntro, Integer isDefault, Integer isDelete, Date themeTime) {
+	public YThemeConfig(String themeName, String themeTitle, String themeIntro, Integer isDefault, Integer isDelete,
+			Date themeTime) {
 		super(themeName, themeTitle, themeIntro, isDefault, isDelete, themeTime);
 	}
 

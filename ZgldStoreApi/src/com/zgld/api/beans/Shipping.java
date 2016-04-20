@@ -12,7 +12,8 @@ public class Shipping extends AbstractShipping implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Shipping(Integer shopId, Integer isDefault, Integer displaySequence, String expressCompanyName, String expressCompanyAbb) {
+	public Shipping(Integer shopId, Integer isDefault, Integer displaySequence, String expressCompanyName,
+			String expressCompanyAbb) {
 		super(shopId, isDefault, displaySequence, expressCompanyName, expressCompanyAbb);
 	}
 

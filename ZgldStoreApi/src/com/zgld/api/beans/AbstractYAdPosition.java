@@ -35,7 +35,9 @@ public abstract class AbstractYAdPosition implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYAdPosition(Integer adPositionSetId, String adPositionName, String adPositionIntro, Integer unitSetId, Integer accountActId, Integer adPositionOrder, Integer adPositionTopOrder, Integer isDelete, Date adPositionTime) {
+	public AbstractYAdPosition(Integer adPositionSetId, String adPositionName, String adPositionIntro,
+			Integer unitSetId, Integer accountActId, Integer adPositionOrder, Integer adPositionTopOrder,
+			Integer isDelete, Date adPositionTime) {
 		this.adPositionSetId = adPositionSetId;
 		this.adPositionName = adPositionName;
 		this.adPositionIntro = adPositionIntro;

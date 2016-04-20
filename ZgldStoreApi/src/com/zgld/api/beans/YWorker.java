@@ -19,8 +19,11 @@ public class YWorker extends AbstractYWorker implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YWorker(Integer workerClassSetId, Integer unitSetId, Integer accountActId, Integer accountId, String workerTitle, String accountRealName, String accountName, String accountPassword, String workerIntro, Integer workerOrder, Integer workerTopOrder, Integer isDelete, Date workerTime) {
-		super(workerClassSetId, unitSetId, accountActId, accountId, workerTitle, accountRealName, accountName, accountPassword, workerIntro, workerOrder, workerTopOrder, isDelete, workerTime);
+	public YWorker(Integer workerClassSetId, Integer unitSetId, Integer accountActId, Integer accountId,
+			String workerTitle, String accountRealName, String accountName, String accountPassword, String workerIntro,
+			Integer workerOrder, Integer workerTopOrder, Integer isDelete, Date workerTime) {
+		super(workerClassSetId, unitSetId, accountActId, accountId, workerTitle, accountRealName, accountName,
+				accountPassword, workerIntro, workerOrder, workerTopOrder, isDelete, workerTime);
 	}
 
 }

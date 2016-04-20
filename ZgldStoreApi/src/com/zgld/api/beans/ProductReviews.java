@@ -14,10 +14,13 @@ public class ProductReviews extends AbstractProductReviews implements java.io.Se
 	}
 
 	/** full constructor */
-	public ProductReviews(Integer shopId, Integer productId, Integer userId, String reviewText, String userName, String userEmail, Timestamp reviewDate) {
+	public ProductReviews(Integer shopId, Integer productId, Integer userId, String reviewText, String userName,
+			String userEmail, Timestamp reviewDate) {
 		super(shopId, productId, userId, reviewText, userName, userEmail, reviewDate);
 	}
+
 	YAccount userInfo;
+
 	public YAccount getUserInfo() {
 		return userInfo;
 	}
@@ -25,5 +28,5 @@ public class ProductReviews extends AbstractProductReviews implements java.io.Se
 	public void setUserInfo(YAccount userInfo) {
 		this.userInfo = userInfo;
 	}
-	
+
 }

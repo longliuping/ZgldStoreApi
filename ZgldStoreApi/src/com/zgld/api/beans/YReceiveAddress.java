@@ -19,7 +19,8 @@ public class YReceiveAddress extends AbstractYReceiveAddress implements java.io.
 	}
 
 	/** full constructor */
-	public YReceiveAddress(Integer accountActId, Integer areaId, String addressDetail, String userName, String userMobile, Integer isDefault, Date addressTime) {
+	public YReceiveAddress(Integer accountActId, Integer areaId, String addressDetail, String userName,
+			String userMobile, Integer isDefault, Date addressTime) {
 		super(accountActId, areaId, addressDetail, userName, userMobile, isDefault, addressTime);
 	}
 

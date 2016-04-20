@@ -28,7 +28,8 @@ public abstract class AbstractPointDetails implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractPointDetails(Integer orderId, Integer userId, Date tradeDate, Integer increased, Integer reduced, Integer points, String remark) {
+	public AbstractPointDetails(Integer orderId, Integer userId, Date tradeDate, Integer increased, Integer reduced,
+			Integer points, String remark) {
 		this.orderId = orderId;
 		this.userId = userId;
 		this.tradeDate = tradeDate;

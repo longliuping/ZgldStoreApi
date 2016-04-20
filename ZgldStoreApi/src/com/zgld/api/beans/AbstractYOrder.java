@@ -35,7 +35,9 @@ public abstract class AbstractYOrder implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYOrder(Integer addressId, String orderTitle, String orderPay, Integer accountActId, String orderNumber, Integer goodsCount, Double goodsPrice, Double shipPrice, Integer orderState, Date orderTime) {
+	public AbstractYOrder(Integer addressId, String orderTitle, String orderPay, Integer accountActId,
+			String orderNumber, Integer goodsCount, Double goodsPrice, Double shipPrice, Integer orderState,
+			Date orderTime) {
 		this.addressId = addressId;
 		this.orderTitle = orderTitle;
 		this.orderPay = orderPay;

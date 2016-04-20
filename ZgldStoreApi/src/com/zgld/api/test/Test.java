@@ -9,7 +9,8 @@ import com.zgld.api.utils.HttpUtil;
 
 public class Test {
 	public static String pwd(String pwd, String passwordformat) {
-		String json = HttpUtil.submitPost("http://114.215.198.143:55/Home/index", "password=" + pwd + "&passwordformat=1&PasswordSalt=" + passwordformat).toString();
+		String json = HttpUtil.submitPost("http://114.215.198.143:55/Home/index",
+				"password=" + pwd + "&passwordformat=1&PasswordSalt=" + passwordformat).toString();
 		if (json != null && !json.isEmpty()) {
 			Gson g = new Gson();
 			Type entityType = new TypeToken<GsonBean>() {

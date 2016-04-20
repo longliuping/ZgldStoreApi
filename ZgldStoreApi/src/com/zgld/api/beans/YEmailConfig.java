@@ -17,8 +17,10 @@ public class YEmailConfig extends AbstractYEmailConfig implements java.io.Serial
 	}
 
 	/** full constructor */
-	public YEmailConfig(String emailConHost, String emailConPort, String emailConEmail, String emailConUser, String emailConPassword, String emailConSender, String emailConRegTitle, String emailConRegContent) {
-		super(emailConHost, emailConPort, emailConEmail, emailConUser, emailConPassword, emailConSender, emailConRegTitle, emailConRegContent);
+	public YEmailConfig(String emailConHost, String emailConPort, String emailConEmail, String emailConUser,
+			String emailConPassword, String emailConSender, String emailConRegTitle, String emailConRegContent) {
+		super(emailConHost, emailConPort, emailConEmail, emailConUser, emailConPassword, emailConSender,
+				emailConRegTitle, emailConRegContent);
 	}
 
 }

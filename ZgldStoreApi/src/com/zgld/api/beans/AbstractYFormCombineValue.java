@@ -31,7 +31,8 @@ public abstract class AbstractYFormCombineValue implements java.io.Serializable 
 	}
 
 	/** full constructor */
-	public AbstractYFormCombineValue(String conbineFieldName, String tableName, Integer objId, Integer goStore, Double goBidPrice, Double goSalePrice) {
+	public AbstractYFormCombineValue(String conbineFieldName, String tableName, Integer objId, Integer goStore,
+			Double goBidPrice, Double goSalePrice) {
 		this.conbineFieldName = conbineFieldName;
 		this.tableName = tableName;
 		this.objId = objId;

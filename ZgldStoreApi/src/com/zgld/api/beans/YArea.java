@@ -19,7 +19,8 @@ public class YArea extends AbstractYArea implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YArea(Integer areaParentId, String areaName, String areaCode, Integer areaLevel, Integer areaOrder, String areaX, String areaY, Integer accountActId, Integer isDelete, Timestamp areaTime) {
+	public YArea(Integer areaParentId, String areaName, String areaCode, Integer areaLevel, Integer areaOrder,
+			String areaX, String areaY, Integer accountActId, Integer isDelete, Timestamp areaTime) {
 		super(areaParentId, areaName, areaCode, areaLevel, areaOrder, areaX, areaY, accountActId, isDelete, areaTime);
 	}
 

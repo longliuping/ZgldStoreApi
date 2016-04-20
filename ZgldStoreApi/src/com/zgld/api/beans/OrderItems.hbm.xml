@@ -16,8 +16,8 @@
         <property name="productId" type="java.lang.Integer">
             <column name="ProductId" />
         </property>
-        <property name="sku" type="java.lang.Double">
-            <column name="SKU" scale="4" />
+        <property name="sku" type="java.lang.Integer">
+            <column name="SKU" />
         </property>
         <property name="quantity" type="java.lang.Integer">
             <column name="Quantity" />

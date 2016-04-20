@@ -78,7 +78,8 @@ public class SupplierAction extends BaseAction {
 			// List<Supplier> listInfo = new ArrayList<Supplier>();
 			// List<?> obj = baseBiz.findPage(form.getPageNum(),
 			// form.getPageSize(),
-			// " from Supplier as s,SupperArea as sa,SupperHot as sh where s.userId = sa.userid and  sa.userid = sh.userid and sa.areaid = "
+			// " from Supplier as s,SupperArea as sa,SupperHot as sh where
+			// s.userId = sa.userid and sa.userid = sh.userid and sa.areaid = "
 			// + form.getAreaid() + " and sh.hotid = " + form.getHotid());
 			// for (Object object : obj) {
 			// listInfo.add((Supplier) ((Object[]) object)[0]);

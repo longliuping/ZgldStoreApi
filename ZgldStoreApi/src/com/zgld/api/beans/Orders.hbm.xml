@@ -52,5 +52,41 @@
         <property name="orderDate" type="java.util.Date">
             <column name="OrderDate" length="16" />
         </property>
+        <property name="mobile" type="java.lang.String">
+            <column name="Mobile" />
+        </property>
+        <property name="shipTo" type="java.lang.String">
+            <column name="ShipTo" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="Address" />
+        </property>
+        <property name="zipcode" type="java.lang.String">
+            <column name="Zipcode" />
+        </property>
+         <property name="payTypeId" type="java.lang.Integer">
+            <column name="PayTypeId" />
+        </property>
+         <property name="payTradeNo" type="java.lang.String">
+            <column name="PayTradeNo" />
+        </property>
+        <property name="payDateTime" type="java.util.Date">
+            <column name="PayDateTime" length="16" />
+        </property>
+        <property name="payTotalFee" type="java.lang.Double">
+            <column name="PayTotalFee" scale="4" />
+        </property>
+        <property name="buyerId" type="java.lang.String">
+            <column name="BuyerId" />
+        </property>
+        <property name="buyerAccount" type="java.lang.String">
+            <column name="BuyerAccount" />
+        </property>
+        <property name="refundDateTime" type="java.util.Date">
+            <column name="RefundDateTime" length="16" />
+        </property>
+        <property name="refundTotalFee" type="java.lang.Double">
+            <column name="RefundTotalFee" scale="4" />
+        </property>
     </class>
 </hibernate-mapping>

@@ -19,7 +19,8 @@ public class YAd extends AbstractYAd implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YAd(String adName, Integer adType, Integer unitSetId, Integer accountActId, Integer adOrder, Integer adTopOrder, Integer isDelete, Timestamp adTime) {
+	public YAd(String adName, Integer adType, Integer unitSetId, Integer accountActId, Integer adOrder,
+			Integer adTopOrder, Integer isDelete, Timestamp adTime) {
 		super(adName, adType, unitSetId, accountActId, adOrder, adTopOrder, isDelete, adTime);
 	}
 

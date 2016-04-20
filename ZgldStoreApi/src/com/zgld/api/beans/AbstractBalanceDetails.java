@@ -1,48 +1,25 @@
 package com.zgld.api.beans;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * AbstractBalanceDetails entity provides the base persistence definition of the
- * BalanceDetails entity. @author MyEclipse Persistence Tools
- */
-
-public abstract class AbstractBalanceDetails implements java.io.Serializable {
-
-	// Fields
-
+public abstract class AbstractBalanceDetails implements Serializable {
 	private Integer balanceId;
 	private Integer userId;
 	private Date tradeDate;
-	private Date income;
+	private Double income;
 	private Double expenses;
 	private Double reduced;
 	private Double balance;
 	private Integer payer;
 	private Integer payee;
 	private String remark;
-
-	// Constructors
-
-	/** default constructor */
-	public AbstractBalanceDetails() {
-	}
-
-	/** full constructor */
-	public AbstractBalanceDetails(Integer userId, Date tradeDate, Date income, Double expenses, Double reduced, Double balance, Integer payer, Integer payee, String remark) {
-		this.userId = userId;
-		this.tradeDate = tradeDate;
-		this.income = income;
-		this.expenses = expenses;
-		this.reduced = reduced;
-		this.balance = balance;
-		this.payer = payer;
-		this.payee = payee;
-		this.remark = remark;
-	}
-
-	// Property accessors
+	private Integer payTypeId;
+	private String payTradeNo;
+	private Date payDateTime;
+	private Double payTotalFee;
+	private String buyerId;
+	private String buyerAccount;
 
 	public Integer getBalanceId() {
 		return this.balanceId;
@@ -68,11 +45,11 @@ public abstract class AbstractBalanceDetails implements java.io.Serializable {
 		this.tradeDate = tradeDate;
 	}
 
-	public Date getIncome() {
+	public Double getIncome() {
 		return this.income;
 	}
 
-	public void setIncome(Date income) {
+	public void setIncome(Double income) {
 		this.income = income;
 	}
 
@@ -124,4 +101,51 @@ public abstract class AbstractBalanceDetails implements java.io.Serializable {
 		this.remark = remark;
 	}
 
+	public Integer getPayTypeId() {
+		return this.payTypeId;
+	}
+
+	public void setPayTypeId(Integer payTypeId) {
+		this.payTypeId = payTypeId;
+	}
+
+	public String getPayTradeNo() {
+		return this.payTradeNo;
+	}
+
+	public void setPayTradeNo(String payTradeNo) {
+		this.payTradeNo = payTradeNo;
+	}
+
+	public Date getPayDateTime() {
+		return this.payDateTime;
+	}
+
+	public void setPayDateTime(Date payDateTime) {
+		this.payDateTime = payDateTime;
+	}
+
+	public Double getPayTotalFee() {
+		return this.payTotalFee;
+	}
+
+	public void setPayTotalFee(Double payTotalFee) {
+		this.payTotalFee = payTotalFee;
+	}
+
+	public String getBuyerId() {
+		return this.buyerId;
+	}
+
+	public void setBuyerId(String buyerId) {
+		this.buyerId = buyerId;
+	}
+
+	public String getBuyerAccount() {
+		return this.buyerAccount;
+	}
+
+	public void setBuyerAccount(String buyerAccount) {
+		this.buyerAccount = buyerAccount;
+	}
 }

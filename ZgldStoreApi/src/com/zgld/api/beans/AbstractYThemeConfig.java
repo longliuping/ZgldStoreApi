@@ -31,7 +31,8 @@ public abstract class AbstractYThemeConfig implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYThemeConfig(String themeName, String themeTitle, String themeIntro, Integer isDefault, Integer isDelete, Date themeTime) {
+	public AbstractYThemeConfig(String themeName, String themeTitle, String themeIntro, Integer isDefault,
+			Integer isDelete, Date themeTime) {
 		this.themeName = themeName;
 		this.themeTitle = themeTitle;
 		this.themeIntro = themeIntro;

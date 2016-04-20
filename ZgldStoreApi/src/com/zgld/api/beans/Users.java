@@ -14,7 +14,8 @@ public class Users extends AbstractUsers implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Users(Integer userAccountStatus, String appUserToken, String userBankCard, Timestamp lastActivity, Integer deleted, Integer userType) {
+	public Users(Integer userAccountStatus, String appUserToken, String userBankCard, Timestamp lastActivity,
+			Integer deleted, Integer userType) {
 		super(userAccountStatus, appUserToken, userBankCard, lastActivity, deleted, userType);
 	}
 

@@ -19,8 +19,11 @@ public class YFormTag extends AbstractYFormTag implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YFormTag(Integer formId, String tagName, String tagType, Integer isCombine, Integer isDisabled, Integer isNull, Integer isValidate, String validateType, String fieldName, String tagUnit, String tagPlaceholder, Integer isDelete, Timestamp tagTime) {
-		super(formId, tagName, tagType, isCombine, isDisabled, isNull, isValidate, validateType, fieldName, tagUnit, tagPlaceholder, isDelete, tagTime);
+	public YFormTag(Integer formId, String tagName, String tagType, Integer isCombine, Integer isDisabled,
+			Integer isNull, Integer isValidate, String validateType, String fieldName, String tagUnit,
+			String tagPlaceholder, Integer isDelete, Timestamp tagTime) {
+		super(formId, tagName, tagType, isCombine, isDisabled, isNull, isValidate, validateType, fieldName, tagUnit,
+				tagPlaceholder, isDelete, tagTime);
 	}
 
 }

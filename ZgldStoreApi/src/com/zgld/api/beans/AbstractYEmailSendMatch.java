@@ -31,7 +31,8 @@ public abstract class AbstractYEmailSendMatch implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYEmailSendMatch(Integer accountId, Integer emailSendId, Integer isScan, Integer isDelete, Date emailScanTime) {
+	public AbstractYEmailSendMatch(Integer accountId, Integer emailSendId, Integer isScan, Integer isDelete,
+			Date emailScanTime) {
 		this.accountId = accountId;
 		this.emailSendId = emailSendId;
 		this.isScan = isScan;

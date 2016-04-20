@@ -12,7 +12,8 @@ public class YCartMatch extends AbstractYCartMatch implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YCartMatch(Integer cartId, Integer goId, Integer accountActId, Integer combineValueId, Integer goodsCount, Double goodsPrice) {
+	public YCartMatch(Integer cartId, Integer goId, Integer accountActId, Integer combineValueId, Integer goodsCount,
+			Double goodsPrice) {
 		super(cartId, goId, accountActId, combineValueId, goodsCount, goodsPrice);
 	}
 

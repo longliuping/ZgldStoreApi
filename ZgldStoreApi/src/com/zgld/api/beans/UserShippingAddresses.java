@@ -11,9 +11,4 @@ public class UserShippingAddresses extends AbstractUserShippingAddresses impleme
 	public UserShippingAddresses() {
 	}
 
-	/** full constructor */
-	public UserShippingAddresses(Integer regionId, Integer userId, String shipTo, String address, String zipcode, String emailAddress) {
-		super(regionId, userId, shipTo, address, zipcode, emailAddress);
-	}
-
 }

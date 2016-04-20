@@ -23,7 +23,8 @@ public abstract class AbstractUserRanks implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractUserRanks(Integer userId, String name, String description, Integer point, Integer numberOfMemberRanks) {
+	public AbstractUserRanks(Integer userId, String name, String description, Integer point,
+			Integer numberOfMemberRanks) {
 		this.userId = userId;
 		this.name = name;
 		this.description = description;

@@ -28,7 +28,9 @@ public abstract class AbstractCategories implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractCategories(Integer parentCategoryId, String name, Integer displaysequence, String iconUrl, String indexChar, String title, String metaDescription, String metaKeywords, String description, Integer depth) {
+	public AbstractCategories(Integer parentCategoryId, String name, Integer displaysequence, String iconUrl,
+			String indexChar, String title, String metaDescription, String metaKeywords, String description,
+			Integer depth) {
 		this.parentCategoryId = parentCategoryId;
 		this.name = name;
 		this.displaysequence = displaysequence;

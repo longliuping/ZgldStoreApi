@@ -32,7 +32,8 @@ public abstract class AbstractYRights implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYRights(Integer riSetId, String tableEnName, String riName, Integer accountActId, String riDes, Integer isDelete, Date riTime) {
+	public AbstractYRights(Integer riSetId, String tableEnName, String riName, Integer accountActId, String riDes,
+			Integer isDelete, Date riTime) {
 		this.riSetId = riSetId;
 		this.tableEnName = tableEnName;
 		this.riName = riName;

@@ -24,7 +24,8 @@ public abstract class AbstractYFormCombine implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYFormCombine(String conbineFieldName, String tableName, Integer objId, String fieldName, String controlName, String controlValue) {
+	public AbstractYFormCombine(String conbineFieldName, String tableName, Integer objId, String fieldName,
+			String controlName, String controlValue) {
 		this.conbineFieldName = conbineFieldName;
 		this.tableName = tableName;
 		this.objId = objId;

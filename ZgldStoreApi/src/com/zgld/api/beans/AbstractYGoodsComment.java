@@ -34,7 +34,8 @@ public abstract class AbstractYGoodsComment implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYGoodsComment(Integer goId, Integer goCommentType, String goCommentContent, Integer goCommentState, Integer accountActId, Integer accountId, String goReplyContent, Date goCommentTime) {
+	public AbstractYGoodsComment(Integer goId, Integer goCommentType, String goCommentContent, Integer goCommentState,
+			Integer accountActId, Integer accountId, String goReplyContent, Date goCommentTime) {
 		this.goId = goId;
 		this.goCommentType = goCommentType;
 		this.goCommentContent = goCommentContent;

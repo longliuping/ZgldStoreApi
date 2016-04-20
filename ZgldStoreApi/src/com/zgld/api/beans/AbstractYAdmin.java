@@ -43,7 +43,10 @@ public abstract class AbstractYAdmin implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYAdmin(Integer accountId, Integer unitSetId, Integer adminGroupSetId, Integer roleSetId, String adminName, String adminPassword, Integer adminSex, Integer adminState, String adminRealName, String adminEmail, String adminMobile, String adminIntro, String adminIdCard, String adminIdImg, Integer accountActId, Integer isDelete, Date adminTime) {
+	public AbstractYAdmin(Integer accountId, Integer unitSetId, Integer adminGroupSetId, Integer roleSetId,
+			String adminName, String adminPassword, Integer adminSex, Integer adminState, String adminRealName,
+			String adminEmail, String adminMobile, String adminIntro, String adminIdCard, String adminIdImg,
+			Integer accountActId, Integer isDelete, Date adminTime) {
 		this.accountId = accountId;
 		this.unitSetId = unitSetId;
 		this.adminGroupSetId = adminGroupSetId;

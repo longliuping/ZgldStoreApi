@@ -19,8 +19,13 @@ public class YArticleClass extends AbstractYArticleClass implements java.io.Seri
 	}
 
 	/** full constructor */
-	public YArticleClass(Integer unitSetId, Integer accountActId, Integer arClassSetId, Integer arParentClassId, String arClassName, Integer arClassTotal, Integer arClassOrder, Integer arClassTopOrder, String arClassDefaultImg, String arClassHoverImg, String arClassVisitedImg, String arClassIntro, Integer isDelete, Timestamp arClassTime) {
-		super(unitSetId, accountActId, arClassSetId, arParentClassId, arClassName, arClassTotal, arClassOrder, arClassTopOrder, arClassDefaultImg, arClassHoverImg, arClassVisitedImg, arClassIntro, isDelete, arClassTime);
+	public YArticleClass(Integer unitSetId, Integer accountActId, Integer arClassSetId, Integer arParentClassId,
+			String arClassName, Integer arClassTotal, Integer arClassOrder, Integer arClassTopOrder,
+			String arClassDefaultImg, String arClassHoverImg, String arClassVisitedImg, String arClassIntro,
+			Integer isDelete, Timestamp arClassTime) {
+		super(unitSetId, accountActId, arClassSetId, arParentClassId, arClassName, arClassTotal, arClassOrder,
+				arClassTopOrder, arClassDefaultImg, arClassHoverImg, arClassVisitedImg, arClassIntro, isDelete,
+				arClassTime);
 	}
 
 }

@@ -35,7 +35,9 @@ public abstract class AbstractYUnitWebApply implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYUnitWebApply(Integer unitSetId, Integer accountActId, String unitWebDnsName, String unitWebApplyIdCard, String unitWebApplyIdCardImg, String unitWebApplyContent, Integer unitWebApplyState, String unitWebApplyStateNote, Integer isDelete, Date unitWebApplyTime) {
+	public AbstractYUnitWebApply(Integer unitSetId, Integer accountActId, String unitWebDnsName,
+			String unitWebApplyIdCard, String unitWebApplyIdCardImg, String unitWebApplyContent,
+			Integer unitWebApplyState, String unitWebApplyStateNote, Integer isDelete, Date unitWebApplyTime) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.unitWebDnsName = unitWebDnsName;

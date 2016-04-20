@@ -36,7 +36,9 @@ public abstract class AbstractYNotice implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYNotice(Integer noClassSetId, Integer noType, Integer noState, Integer unitSetId, Integer accountActId, String noTitle, String noContent, Integer noOrder, Integer noTopOrder, Integer isDelete, Date noTime) {
+	public AbstractYNotice(Integer noClassSetId, Integer noType, Integer noState, Integer unitSetId,
+			Integer accountActId, String noTitle, String noContent, Integer noOrder, Integer noTopOrder,
+			Integer isDelete, Date noTime) {
 		this.noClassSetId = noClassSetId;
 		this.noType = noType;
 		this.noState = noState;

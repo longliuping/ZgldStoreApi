@@ -29,7 +29,9 @@ public abstract class AbstractYWxpayConfig implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYWxpayConfig(String appId, String mchId, String mchKey, String appSecret, String sslcertPath, String sslcertPassword, String ip, String proxyUrl, String notifyUrl, Integer reportLevel, Integer logLevel) {
+	public AbstractYWxpayConfig(String appId, String mchId, String mchKey, String appSecret, String sslcertPath,
+			String sslcertPassword, String ip, String proxyUrl, String notifyUrl, Integer reportLevel,
+			Integer logLevel) {
 		this.appId = appId;
 		this.mchId = mchId;
 		this.mchKey = mchKey;

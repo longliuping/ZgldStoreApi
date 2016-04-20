@@ -19,7 +19,8 @@ public class YImageCut extends AbstractYImageCut implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public YImageCut(Integer fiId, Integer imgCutWidth, Integer imgCutHeight, String imgCutUrl, Integer isDelete, Timestamp imgCutTime) {
+	public YImageCut(Integer fiId, Integer imgCutWidth, Integer imgCutHeight, String imgCutUrl, Integer isDelete,
+			Timestamp imgCutTime) {
 		super(fiId, imgCutWidth, imgCutHeight, imgCutUrl, isDelete, imgCutTime);
 	}
 

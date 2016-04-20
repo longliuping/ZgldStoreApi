@@ -19,8 +19,10 @@ public class YOrder extends AbstractYOrder implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YOrder(Integer addressId, String orderTitle, String orderPay, Integer accountActId, String orderNumber, Integer goodsCount, Double goodsPrice, Double shipPrice, Integer orderState, Date orderTime) {
-		super(addressId, orderTitle, orderPay, accountActId, orderNumber, goodsCount, goodsPrice, shipPrice, orderState, orderTime);
+	public YOrder(Integer addressId, String orderTitle, String orderPay, Integer accountActId, String orderNumber,
+			Integer goodsCount, Double goodsPrice, Double shipPrice, Integer orderState, Date orderTime) {
+		super(addressId, orderTitle, orderPay, accountActId, orderNumber, goodsCount, goodsPrice, shipPrice, orderState,
+				orderTime);
 	}
 
 }

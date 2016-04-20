@@ -19,7 +19,8 @@ public class YUnitMatchAccount extends AbstractYUnitMatchAccount implements java
 	}
 
 	/** full constructor */
-	public YUnitMatchAccount(Integer unitSetId, Integer accountId, Integer unitMatchState, Integer isDelete, Date unitMatchTime) {
+	public YUnitMatchAccount(Integer unitSetId, Integer accountId, Integer unitMatchState, Integer isDelete,
+			Date unitMatchTime) {
 		super(unitSetId, accountId, unitMatchState, isDelete, unitMatchTime);
 	}
 

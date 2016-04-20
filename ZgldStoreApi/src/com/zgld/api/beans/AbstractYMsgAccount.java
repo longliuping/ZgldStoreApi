@@ -31,7 +31,8 @@ public abstract class AbstractYMsgAccount implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYMsgAccount(String corpId, String pwd, String corpName, String linkMan, String tel, String mobile, String email, String memo) {
+	public AbstractYMsgAccount(String corpId, String pwd, String corpName, String linkMan, String tel, String mobile,
+			String email, String memo) {
 		this.corpId = corpId;
 		this.pwd = pwd;
 		this.corpName = corpName;

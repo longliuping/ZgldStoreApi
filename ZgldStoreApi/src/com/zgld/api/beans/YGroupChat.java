@@ -19,7 +19,8 @@ public class YGroupChat extends AbstractYGroupChat implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YGroupChat(Integer chatGroupId, Integer accountActId, String chatGroupInfo, Integer isDelete, Timestamp chatGoupTime) {
+	public YGroupChat(Integer chatGroupId, Integer accountActId, String chatGroupInfo, Integer isDelete,
+			Timestamp chatGoupTime) {
 		super(chatGroupId, accountActId, chatGroupInfo, isDelete, chatGoupTime);
 	}
 

@@ -19,8 +19,11 @@ public class YArticleSpecial extends AbstractYArticleSpecial implements java.io.
 	}
 
 	/** full constructor */
-	public YArticleSpecial(Integer unitSetId, Integer accountActId, Integer arSpecialSetId, Integer arParentSpecialId, String arSpecialName, Integer arSpecialTotal, Integer arSpecialOrder, Integer arSpecialTopOrder, Integer isDelete, Timestamp arSpecialTime) {
-		super(unitSetId, accountActId, arSpecialSetId, arParentSpecialId, arSpecialName, arSpecialTotal, arSpecialOrder, arSpecialTopOrder, isDelete, arSpecialTime);
+	public YArticleSpecial(Integer unitSetId, Integer accountActId, Integer arSpecialSetId, Integer arParentSpecialId,
+			String arSpecialName, Integer arSpecialTotal, Integer arSpecialOrder, Integer arSpecialTopOrder,
+			Integer isDelete, Timestamp arSpecialTime) {
+		super(unitSetId, accountActId, arSpecialSetId, arParentSpecialId, arSpecialName, arSpecialTotal, arSpecialOrder,
+				arSpecialTopOrder, isDelete, arSpecialTime);
 	}
 
 }

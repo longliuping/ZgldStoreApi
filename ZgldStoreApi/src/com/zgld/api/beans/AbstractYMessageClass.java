@@ -39,7 +39,10 @@ public abstract class AbstractYMessageClass implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYMessageClass(Integer unitSetId, Integer accountActId, Integer msgClassSetId, Integer msgParentClassId, String msgClassName, Integer msgClassTotal, Integer msgClassOrder, Integer msgClassTopOrder, String msgClassDefaultImg, String msgClassHoverImg, String msgClassVisitedImg, String msgClassIntro, Integer isDelete, Date msgClassTime) {
+	public AbstractYMessageClass(Integer unitSetId, Integer accountActId, Integer msgClassSetId,
+			Integer msgParentClassId, String msgClassName, Integer msgClassTotal, Integer msgClassOrder,
+			Integer msgClassTopOrder, String msgClassDefaultImg, String msgClassHoverImg, String msgClassVisitedImg,
+			String msgClassIntro, Integer isDelete, Date msgClassTime) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.msgClassSetId = msgClassSetId;

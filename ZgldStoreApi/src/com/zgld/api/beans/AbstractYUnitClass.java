@@ -34,7 +34,9 @@ public abstract class AbstractYUnitClass implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYUnitClass(Integer unitClassSetId, Integer unitParentClassId, Integer accountActId, String unitClassName, Integer unitClassTotal, Integer unitClassOrder, Integer unitClassTopOrder, Integer isDelete, Date unitClassTime) {
+	public AbstractYUnitClass(Integer unitClassSetId, Integer unitParentClassId, Integer accountActId,
+			String unitClassName, Integer unitClassTotal, Integer unitClassOrder, Integer unitClassTopOrder,
+			Integer isDelete, Date unitClassTime) {
 		this.unitClassSetId = unitClassSetId;
 		this.unitParentClassId = unitParentClassId;
 		this.accountActId = accountActId;

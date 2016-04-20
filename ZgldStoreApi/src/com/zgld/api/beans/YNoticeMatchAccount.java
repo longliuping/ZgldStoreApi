@@ -19,7 +19,8 @@ public class YNoticeMatchAccount extends AbstractYNoticeMatchAccount implements 
 	}
 
 	/** full constructor */
-	public YNoticeMatchAccount(Integer noId, Integer accountId, Integer noMatchState, Integer isDelete, Date noticeMatchTime) {
+	public YNoticeMatchAccount(Integer noId, Integer accountId, Integer noMatchState, Integer isDelete,
+			Date noticeMatchTime) {
 		super(noId, accountId, noMatchState, isDelete, noticeMatchTime);
 	}
 

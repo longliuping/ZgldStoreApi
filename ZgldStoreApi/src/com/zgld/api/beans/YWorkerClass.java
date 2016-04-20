@@ -19,8 +19,11 @@ public class YWorkerClass extends AbstractYWorkerClass implements java.io.Serial
 	}
 
 	/** full constructor */
-	public YWorkerClass(Integer unitSetId, Integer accountActId, Integer workerParentClassId, Integer workerClassSetId, String workerClassName, Integer workerClassOrder, Integer workerClassTopOrder, Integer isDelete, Date workerClassTime) {
-		super(unitSetId, accountActId, workerParentClassId, workerClassSetId, workerClassName, workerClassOrder, workerClassTopOrder, isDelete, workerClassTime);
+	public YWorkerClass(Integer unitSetId, Integer accountActId, Integer workerParentClassId, Integer workerClassSetId,
+			String workerClassName, Integer workerClassOrder, Integer workerClassTopOrder, Integer isDelete,
+			Date workerClassTime) {
+		super(unitSetId, accountActId, workerParentClassId, workerClassSetId, workerClassName, workerClassOrder,
+				workerClassTopOrder, isDelete, workerClassTime);
 	}
 
 }

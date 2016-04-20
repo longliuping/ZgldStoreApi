@@ -36,7 +36,9 @@ public abstract class AbstractYLinksClass implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYLinksClass(Integer liParentClassId, Integer liClassSetId, String liClassName, Integer liClassTotal, Integer unitSetId, Integer accountActId, Integer liClassOrder, Integer liClassTopOrder, Integer isDelete, Date liClassTime) {
+	public AbstractYLinksClass(Integer liParentClassId, Integer liClassSetId, String liClassName, Integer liClassTotal,
+			Integer unitSetId, Integer accountActId, Integer liClassOrder, Integer liClassTopOrder, Integer isDelete,
+			Date liClassTime) {
 		this.liParentClassId = liParentClassId;
 		this.liClassSetId = liClassSetId;
 		this.liClassName = liClassName;

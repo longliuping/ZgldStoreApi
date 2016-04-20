@@ -1,59 +1,44 @@
 package com.zgld.api.action;
 
+import com.zgld.api.base.BaseForm;
+import com.zgld.api.beans.HomeBanner;
+import com.zgld.api.biz.BaseBiz;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.zgld.api.beans.Categories;
-import com.zgld.api.beans.HomeBanner;
-
 public class JsonAction extends BaseAction {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 首页的banner
-	 * 
-	 * @return
-	 */
 	public String home_banner() {
-		Map<String, Object> json = new HashMap<String, Object>();
+		Map json = new HashMap();
 		try {
-			List<HomeBanner> listBanner = new ArrayList<HomeBanner>();
+			List listBanner = new ArrayList();
 			for (int i = 1; i < 6; i++) {
 				HomeBanner banner = new HomeBanner();
 				banner.setImgUrl("http://115.28.20.167:8090/webapi/banner/banner" + i + ".jpg");
 				listBanner.add(banner);
 			}
 			json.put("items", listBanner);
-			form.setJsonMsg(SUCCESS, true, json, 200);
+			this.form.setJsonMsg("success", true, json, 200);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-			form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg("系统出错", false, json, 1001);
 		}
-		return JSON_PAGE;
+		return "jsonPage";
 	}
 
-	/**
-	 * 首页热门标签
-	 * 
-	 * @return
-	 */
 	public String home_hot_category() {
-		Map<String, Object> json = new HashMap<String, Object>();
+		Map json = new HashMap();
 		try {
-			List<Categories> listInfo = (List<Categories>) baseBiz.findAll(" from Categories as h ");
-			json.put(LISTINFO, listInfo);
-			form.setJsonMsg(SUCCESS, true, json, 200);
+			List listInfo = this.baseBiz.findAll(" from HotCategory as h ");
+			json.put("listInfo", listInfo);
+			this.form.setJsonMsg("success", true, json, 200);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-			form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg("系统出错", false, json, 1001);
 		}
-		return JSON_PAGE;
+		return "jsonPage";
 	}
 }

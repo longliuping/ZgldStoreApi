@@ -31,7 +31,8 @@ public abstract class AbstractYGroupChat implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYGroupChat(Integer chatGroupId, Integer accountActId, String chatGroupInfo, Integer isDelete, Date chatGoupTime) {
+	public AbstractYGroupChat(Integer chatGroupId, Integer accountActId, String chatGroupInfo, Integer isDelete,
+			Date chatGoupTime) {
 		this.chatGroupId = chatGroupId;
 		this.accountActId = accountActId;
 		this.chatGroupInfo = chatGroupInfo;

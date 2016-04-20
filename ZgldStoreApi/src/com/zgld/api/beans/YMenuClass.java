@@ -19,7 +19,8 @@ public class YMenuClass extends AbstractYMenuClass implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YMenuClass(Integer meParentClassId, Integer meClassSetId, Integer accountActId, String meClassName, Integer isDelete, Date meClassTime) {
+	public YMenuClass(Integer meParentClassId, Integer meClassSetId, Integer accountActId, String meClassName,
+			Integer isDelete, Date meClassTime) {
 		super(meParentClassId, meClassSetId, accountActId, meClassName, isDelete, meClassTime);
 	}
 

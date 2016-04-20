@@ -2,7 +2,6 @@ package com.zgld.api.beans;
 
 import java.util.Date;
 
-
 /**
  * AbstractYShop entity provides the base persistence definition of the YShop
  * entity. @author MyEclipse Persistence Tools
@@ -41,7 +40,9 @@ public abstract class AbstractYShop implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYShop(String shopKeyWords, String shopX, String shopY, Integer areaId, String shopAddress, String shopContact, String shopMobile, String shopCell, String shopIdCard, String shopIdCardImg, String shopLicenseImg, Integer userId, Integer shopIsOpen, Integer shopIsVerify, Date shopTime) {
+	public AbstractYShop(String shopKeyWords, String shopX, String shopY, Integer areaId, String shopAddress,
+			String shopContact, String shopMobile, String shopCell, String shopIdCard, String shopIdCardImg,
+			String shopLicenseImg, Integer userId, Integer shopIsOpen, Integer shopIsVerify, Date shopTime) {
 		this.shopKeyWords = shopKeyWords;
 		this.shopX = shopX;
 		this.shopY = shopY;

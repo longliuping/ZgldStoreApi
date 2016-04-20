@@ -31,7 +31,8 @@ public abstract class AbstractYEmailConfig implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYEmailConfig(String emailConHost, String emailConPort, String emailConEmail, String emailConUser, String emailConPassword, String emailConSender, String emailConRegTitle, String emailConRegContent) {
+	public AbstractYEmailConfig(String emailConHost, String emailConPort, String emailConEmail, String emailConUser,
+			String emailConPassword, String emailConSender, String emailConRegTitle, String emailConRegContent) {
 		this.emailConHost = emailConHost;
 		this.emailConPort = emailConPort;
 		this.emailConEmail = emailConEmail;

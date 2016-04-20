@@ -30,7 +30,8 @@ public abstract class AbstractYSearchLabel implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYSearchLabel(Integer accountActId, String labelTitle, Integer labelHits, Integer isShow, Date labelTime) {
+	public AbstractYSearchLabel(Integer accountActId, String labelTitle, Integer labelHits, Integer isShow,
+			Date labelTime) {
 		this.accountActId = accountActId;
 		this.labelTitle = labelTitle;
 		this.labelHits = labelHits;

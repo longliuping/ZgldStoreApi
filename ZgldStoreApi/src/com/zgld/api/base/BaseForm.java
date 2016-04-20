@@ -1,27 +1,62 @@
 package com.zgld.api.base;
 
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-//import javax.servlet.http.HttpServletRequest;
-
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-
-import org.apache.struts2.ServletActionContext;
-
 import com.zgld.api.beans.UserShippingAddresses;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.utils.DateJsonValueProcessor;
 import com.zgld.api.utils.JsonWrapper;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 
 public class BaseForm {
-
 	private String popMessage;
 	private boolean resultBoolean;
 	private String jsonText;
+	private Integer pageNum = Integer.valueOf(1);
+	private Integer pageSize = Integer.valueOf(50);
+	private Integer newPageSize = Integer.valueOf(0);
+	private Integer id;
+	private Integer userId = Integer.valueOf(0);
+	private Integer code;
+	private String orderid;
+	private Integer productId;
+	private Integer hotid;
+	private Integer areaid;
+	private Integer number;
+	private String skuId;
+	private String skuNumber;
+	private Integer shippingId;
+	private Integer modeId;
+	private Integer templateId;
+	private Double money;
+	private String content;
+	private Integer display;
+	private String name;
+	private String password;
+	private String okPassword;
+	private String oldPassword;
+	private String token;
+	private String ip;
+	private Object object;
+	private Object object1;
+	private Object object2;
+	private Object object3;
+	private Object object4;
+	private String exportToExcel;
+	private Map<Integer, Integer> selectedUser = new HashMap();
+	private String startDate;
+	private String endDate;
+	private Object totalMoney;
+	private Object totalPageMoney;
+	private YAccount userinfo;
+	private String telPhone;
+	private String cellPhone;
+	private Double amount;
+	private String remark;
+	private UserShippingAddresses address;
 
 	public String getJsonText() {
 		return this.jsonText;
@@ -57,49 +92,8 @@ public class BaseForm {
 		setJsonMsg(this.popMessage, this.resultBoolean, null);
 	}
 
-	private Integer pageNum = 1;
-	private Integer pageSize = 50;
-	private Integer newPageSize = 0;
-	private Integer id;
-	private Integer userId = 0;// 用戶id
-	private Integer code;
-	private String orderid;// 订单ID
-	private Integer productId;// 产品ID
-	private Integer hotid;// 热门标签ID
-	private Integer areaid;// 地址ID
-	private Integer number;
-	private String skuId;// 产品skuId
-	private String skuNumber;// 产品数量
-	private Integer shippingId;// 用户地址ID
-	private Integer modeId;// 快递公司模板
-	private Integer templateId;// 快递模板
-	private Double money;
-	private String content;
-	private Integer display;
-	private String name;
-	private String password;
-	private String okPassword;
-	private String oldPassword;
-	private String token;
-	private String ip;
-	private Object object;
-	private Object object1;
-	private Object object2;
-	private Object object3;
-	private Object object4;
-	private String exportToExcel;
-	private Map<Integer, Integer> selectedUser = new HashMap<Integer, Integer>();
-	private String startDate;
-	private String endDate;
-	private Object totalMoney;
-	private Object totalPageMoney;
-	private YAccount userinfo;
-	private String telPhone;
-	private String cellPhone;
-	private UserShippingAddresses address;
-
 	public UserShippingAddresses getAddress() {
-		return address;
+		return this.address;
 	}
 
 	public void setAddress(UserShippingAddresses address) {
@@ -107,7 +101,7 @@ public class BaseForm {
 	}
 
 	public Integer getHotid() {
-		return hotid;
+		return this.hotid;
 	}
 
 	public void setHotid(Integer hotid) {
@@ -115,7 +109,7 @@ public class BaseForm {
 	}
 
 	public Integer getAreaid() {
-		return areaid;
+		return this.areaid;
 	}
 
 	public void setAreaid(Integer areaid) {
@@ -123,7 +117,7 @@ public class BaseForm {
 	}
 
 	public String getSkuNumber() {
-		return skuNumber;
+		return this.skuNumber;
 	}
 
 	public void setSkuNumber(String skuNumber) {
@@ -131,7 +125,7 @@ public class BaseForm {
 	}
 
 	public String getToken() {
-		return token;
+		return this.token;
 	}
 
 	public void setToken(String token) {
@@ -139,7 +133,7 @@ public class BaseForm {
 	}
 
 	public Integer getNumber() {
-		return number;
+		return this.number;
 	}
 
 	public void setNumber(Integer number) {
@@ -147,7 +141,7 @@ public class BaseForm {
 	}
 
 	public Integer getProductId() {
-		return productId;
+		return this.productId;
 	}
 
 	public void setProductId(Integer productId) {
@@ -155,7 +149,7 @@ public class BaseForm {
 	}
 
 	public String getSkuId() {
-		return skuId;
+		return this.skuId;
 	}
 
 	public void setSkuId(String skuId) {
@@ -167,7 +161,7 @@ public class BaseForm {
 	}
 
 	public Integer getCode() {
-		return code;
+		return this.code;
 	}
 
 	public void setCode(Integer code) {
@@ -175,7 +169,7 @@ public class BaseForm {
 	}
 
 	public Integer getUserId() {
-		return userId;
+		return this.userId;
 	}
 
 	public void setUserId(Integer userId) {
@@ -183,7 +177,7 @@ public class BaseForm {
 	}
 
 	public String getOrderid() {
-		return orderid;
+		return this.orderid;
 	}
 
 	public void setOrderid(String orderid) {
@@ -191,7 +185,7 @@ public class BaseForm {
 	}
 
 	public Double getMoney() {
-		return money;
+		return this.money;
 	}
 
 	public void setMoney(Double money) {
@@ -199,11 +193,11 @@ public class BaseForm {
 	}
 
 	public Integer getNewPageSize() {
-		return newPageSize;
+		return this.newPageSize;
 	}
 
 	public YAccount getUserinfo() {
-		return userinfo;
+		return this.userinfo;
 	}
 
 	public void setUserinfo(YAccount userinfo) {
@@ -215,7 +209,7 @@ public class BaseForm {
 	}
 
 	public String getExportToExcel() {
-		return exportToExcel;
+		return this.exportToExcel;
 	}
 
 	public void setExportToExcel(String exportToExcel) {
@@ -223,7 +217,7 @@ public class BaseForm {
 	}
 
 	public Object getObject3() {
-		return object3;
+		return this.object3;
 	}
 
 	public void setObject3(Object object3) {
@@ -231,7 +225,7 @@ public class BaseForm {
 	}
 
 	public Object getObject4() {
-		return object4;
+		return this.object4;
 	}
 
 	public void setObject4(Object object4) {
@@ -239,7 +233,7 @@ public class BaseForm {
 	}
 
 	public Object getTotalPageMoney() {
-		return totalPageMoney;
+		return this.totalPageMoney;
 	}
 
 	public void setTotalPageMoney(Object totalPageMoney) {
@@ -247,7 +241,7 @@ public class BaseForm {
 	}
 
 	public Object getTotalMoney() {
-		return totalMoney;
+		return this.totalMoney;
 	}
 
 	public void setTotalMoney(Object totalMoney) {
@@ -255,7 +249,7 @@ public class BaseForm {
 	}
 
 	public String getStartDate() {
-		return startDate;
+		return this.startDate;
 	}
 
 	public void setStartDate(String startDate) {
@@ -263,7 +257,7 @@ public class BaseForm {
 	}
 
 	public String getEndDate() {
-		return endDate;
+		return this.endDate;
 	}
 
 	public void setEndDate(String endDate) {
@@ -271,7 +265,7 @@ public class BaseForm {
 	}
 
 	public Object getObject1() {
-		return object1;
+		return this.object1;
 	}
 
 	public void setObject1(Object object1) {
@@ -279,7 +273,7 @@ public class BaseForm {
 	}
 
 	public Object getObject2() {
-		return object2;
+		return this.object2;
 	}
 
 	public void setObject2(Object object2) {
@@ -287,7 +281,7 @@ public class BaseForm {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -295,7 +289,7 @@ public class BaseForm {
 	}
 
 	public String getContent() {
-		return content;
+		return this.content;
 	}
 
 	public void setContent(String content) {
@@ -303,24 +297,15 @@ public class BaseForm {
 	}
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-//	public String getIp() {
-//		HttpServletRequest request = ServletActionContext.getRequest();
-//		return ip = request.getRemoteAddr();
-//	}
-
-//	public void setIp(String ip) {
-//		this.ip = ip;
-//	}
-
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -328,7 +313,7 @@ public class BaseForm {
 	}
 
 	public Integer getPageNum() {
-		return pageNum;
+		return this.pageNum;
 	}
 
 	public void setPageNum(Integer pageNum) {
@@ -336,7 +321,7 @@ public class BaseForm {
 	}
 
 	public Integer getPageSize() {
-		return pageSize;
+		return this.pageSize;
 	}
 
 	public void setPageSize(Integer pageSize) {
@@ -344,7 +329,7 @@ public class BaseForm {
 	}
 
 	public String getPopMessage() {
-		return popMessage;
+		return this.popMessage;
 	}
 
 	public void setPopMessage(String popMessage) {
@@ -352,7 +337,7 @@ public class BaseForm {
 	}
 
 	public boolean isResultBoolean() {
-		return resultBoolean;
+		return this.resultBoolean;
 	}
 
 	public void setResultBoolean(boolean resultBoolean) {
@@ -360,7 +345,7 @@ public class BaseForm {
 	}
 
 	public String getOkPassword() {
-		return okPassword;
+		return this.okPassword;
 	}
 
 	public void setOkPassword(String okPassword) {
@@ -368,7 +353,7 @@ public class BaseForm {
 	}
 
 	public String getOldPassword() {
-		return oldPassword;
+		return this.oldPassword;
 	}
 
 	public void setOldPassword(String oldPassword) {
@@ -376,7 +361,7 @@ public class BaseForm {
 	}
 
 	public Object getObject() {
-		return object;
+		return this.object;
 	}
 
 	public void setObject(Object object) {
@@ -384,7 +369,7 @@ public class BaseForm {
 	}
 
 	public Integer getDisplay() {
-		return display;
+		return this.display;
 	}
 
 	public void setDisplay(Integer display) {
@@ -392,7 +377,7 @@ public class BaseForm {
 	}
 
 	public Map<Integer, Integer> getSelectedUser() {
-		return selectedUser;
+		return this.selectedUser;
 	}
 
 	public void setSelectedUser(Map<Integer, Integer> selectedUser) {
@@ -400,7 +385,7 @@ public class BaseForm {
 	}
 
 	public Integer getShippingId() {
-		return shippingId;
+		return this.shippingId;
 	}
 
 	public void setShippingId(Integer shippingId) {
@@ -408,7 +393,7 @@ public class BaseForm {
 	}
 
 	public Integer getModeId() {
-		return modeId;
+		return this.modeId;
 	}
 
 	public void setModeId(Integer modeId) {
@@ -416,7 +401,7 @@ public class BaseForm {
 	}
 
 	public Integer getTemplateId() {
-		return templateId;
+		return this.templateId;
 	}
 
 	public void setTemplateId(Integer templateId) {
@@ -424,7 +409,7 @@ public class BaseForm {
 	}
 
 	public String getTelPhone() {
-		return telPhone;
+		return this.telPhone;
 	}
 
 	public void setTelPhone(String telPhone) {
@@ -432,11 +417,26 @@ public class BaseForm {
 	}
 
 	public String getCellPhone() {
-		return cellPhone;
+		return this.cellPhone;
 	}
 
 	public void setCellPhone(String cellPhone) {
 		this.cellPhone = cellPhone;
 	}
 
+	public Double getAmount() {
+		return this.amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public String getRemark() {
+		return this.remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 }

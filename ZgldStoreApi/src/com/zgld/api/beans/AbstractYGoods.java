@@ -53,7 +53,12 @@ public abstract class AbstractYGoods implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYGoods(Integer unitSetId, Integer accountActId, Integer shipId, Integer goClassSetId, Integer goBrandSetId, String goName, String goKeywords, String goIntro, String goDetail, String goMobileDetail, String goNumber, Integer goSellCount, Integer goCount, Integer goHits, Double goBidPrice, Double goSalePrice, String goThumb, Integer goFreeShipping, Integer goIsNew, Integer goIsHot, Integer goIsState, Integer goIsPromote, Integer goOrder, Integer goTopOrder, Integer isDelete, Date goTime) {
+	public AbstractYGoods(Integer unitSetId, Integer accountActId, Integer shipId, Integer goClassSetId,
+			Integer goBrandSetId, String goName, String goKeywords, String goIntro, String goDetail,
+			String goMobileDetail, String goNumber, Integer goSellCount, Integer goCount, Integer goHits,
+			Double goBidPrice, Double goSalePrice, String goThumb, Integer goFreeShipping, Integer goIsNew,
+			Integer goIsHot, Integer goIsState, Integer goIsPromote, Integer goOrder, Integer goTopOrder,
+			Integer isDelete, Date goTime) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.shipId = shipId;

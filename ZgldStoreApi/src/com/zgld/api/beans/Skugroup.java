@@ -1,29 +1,32 @@
 package com.zgld.api.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
-/**
- * Skugroup entity. @author MyEclipse Persistence Tools
- */
-public class Skugroup extends AbstractSkugroup implements java.io.Serializable {
+public class Skugroup extends AbstractSkugroup implements Serializable {
+	Sku sku;
+	List<Sku> listSkus;
 
-	// Constructors
-
-	/** default constructor */
 	public Skugroup() {
 	}
 
-	/** full constructor */
 	public Skugroup(Integer shopId, Integer productId, String skugroupName) {
 		super(shopId, productId, skugroupName);
 	}
-	List<Sku> listSkus;
+
+	public Sku getSku() {
+		return this.sku;
+	}
+
+	public void setSku(Sku sku) {
+		this.sku = sku;
+	}
+
 	public List<Sku> getListSkus() {
-		return listSkus;
+		return this.listSkus;
 	}
 
 	public void setListSkus(List<Sku> listSkus) {
 		this.listSkus = listSkus;
 	}
-	
 }

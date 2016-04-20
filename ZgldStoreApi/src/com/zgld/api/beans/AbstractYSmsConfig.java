@@ -30,7 +30,8 @@ public abstract class AbstractYSmsConfig implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYSmsConfig(String smsConHost, String smsConPort, String smsConUser, String smsConPassword, String smsConSender, String smsConRegTitle, String smsConRegContent) {
+	public AbstractYSmsConfig(String smsConHost, String smsConPort, String smsConUser, String smsConPassword,
+			String smsConSender, String smsConRegTitle, String smsConRegContent) {
 		this.smsConHost = smsConHost;
 		this.smsConPort = smsConPort;
 		this.smsConUser = smsConUser;

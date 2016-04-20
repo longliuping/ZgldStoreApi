@@ -35,7 +35,8 @@ public abstract class AbstractYFiles implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYFiles(Integer unitSetId, Integer accountActId, String fiName, String fiExtension, String fiTotalBytes, String fiUrl, String fiActUrl, Integer isDelete, Date fiTime) {
+	public AbstractYFiles(Integer unitSetId, Integer accountActId, String fiName, String fiExtension,
+			String fiTotalBytes, String fiUrl, String fiActUrl, Integer isDelete, Date fiTime) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.fiName = fiName;

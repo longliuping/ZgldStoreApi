@@ -27,7 +27,8 @@ public abstract class AbstractUsers implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractUsers(Integer userAccountStatus, String appUserToken, String userBankCard, Date lastActivity, Integer deleted, Integer userType) {
+	public AbstractUsers(Integer userAccountStatus, String appUserToken, String userBankCard, Date lastActivity,
+			Integer deleted, Integer userType) {
 		this.userAccountStatus = userAccountStatus;
 		this.appUserToken = appUserToken;
 		this.userBankCard = userBankCard;

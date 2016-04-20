@@ -28,7 +28,8 @@ public abstract class AbstractProductReviews implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractProductReviews(Integer shopId, Integer productId, Integer userId, String reviewText, String userName, String userEmail, Date reviewDate) {
+	public AbstractProductReviews(Integer shopId, Integer productId, Integer userId, String reviewText, String userName,
+			String userEmail, Date reviewDate) {
 		this.shopId = shopId;
 		this.productId = productId;
 		this.userId = userId;

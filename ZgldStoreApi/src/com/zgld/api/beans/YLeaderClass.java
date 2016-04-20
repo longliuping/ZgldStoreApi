@@ -19,8 +19,11 @@ public class YLeaderClass extends AbstractYLeaderClass implements java.io.Serial
 	}
 
 	/** full constructor */
-	public YLeaderClass(Integer unitSetId, Integer accountActId, Integer leaderParentClassId, Integer leaderClassSetId, String leaderClassName, Integer leaderClassOrder, Integer leaderClassTopOrder, Integer isDelete, Timestamp leaderClassTime) {
-		super(unitSetId, accountActId, leaderParentClassId, leaderClassSetId, leaderClassName, leaderClassOrder, leaderClassTopOrder, isDelete, leaderClassTime);
+	public YLeaderClass(Integer unitSetId, Integer accountActId, Integer leaderParentClassId, Integer leaderClassSetId,
+			String leaderClassName, Integer leaderClassOrder, Integer leaderClassTopOrder, Integer isDelete,
+			Timestamp leaderClassTime) {
+		super(unitSetId, accountActId, leaderParentClassId, leaderClassSetId, leaderClassName, leaderClassOrder,
+				leaderClassTopOrder, isDelete, leaderClassTime);
 	}
 
 }

@@ -1,31 +1,22 @@
 package com.zgld.api.beans;
 
-/**
- * AbstractOrderItems entity provides the base persistence definition of the
- * OrderItems entity. @author MyEclipse Persistence Tools
- */
+import java.io.Serializable;
 
-public abstract class AbstractOrderItems implements java.io.Serializable {
-
-	// Fields
-
+public abstract class AbstractOrderItems implements Serializable {
 	private Integer itemId;
 	private Integer orderId;
 	private Integer productId;
-	private Double sku;
+	private Integer sku;
 	private Integer quantity;
 	private Double listPrice;
 	private Double cellPrice;
 	private String remark;
 
-	// Constructors
-
-	/** default constructor */
 	public AbstractOrderItems() {
 	}
 
-	/** full constructor */
-	public AbstractOrderItems(Integer orderId, Integer productId, Double sku, Integer quantity, Double listPrice, Double cellPrice, String remark) {
+	public AbstractOrderItems(Integer orderId, Integer productId, Integer sku, Integer quantity, Double listPrice,
+			Double cellPrice, String remark) {
 		this.orderId = orderId;
 		this.productId = productId;
 		this.sku = sku;
@@ -34,8 +25,6 @@ public abstract class AbstractOrderItems implements java.io.Serializable {
 		this.cellPrice = cellPrice;
 		this.remark = remark;
 	}
-
-	// Property accessors
 
 	public Integer getItemId() {
 		return this.itemId;
@@ -61,11 +50,11 @@ public abstract class AbstractOrderItems implements java.io.Serializable {
 		this.productId = productId;
 	}
 
-	public Double getSku() {
+	public Integer getSku() {
 		return this.sku;
 	}
 
-	public void setSku(Double sku) {
+	public void setSku(Integer sku) {
 		this.sku = sku;
 	}
 
@@ -100,5 +89,4 @@ public abstract class AbstractOrderItems implements java.io.Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
 }

@@ -1,174 +1,137 @@
 package com.zgld.api.action;
 
+import com.zgld.api.base.BaseForm;
+import com.zgld.api.beans.UserShippingAddresses;
+import com.zgld.api.beans.Users;
+import com.zgld.api.beans.YAccount;
+import com.zgld.api.biz.BaseBiz;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.zgld.api.beans.UserShippingAddresses;
-import com.zgld.api.beans.YAccount;
-/**
- * 地址
- * @author Am
- *
- */
 public class AddressesAction extends BaseAction {
-	public void aa1122(int a,int b,int c){
-		
-	}
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 删除用户收货地址信息
-	 * 
-	 * @return
-	 */
 	public String delete_user_shipping_addresses() {
-		Map<String, Object> json = new HashMap<String, Object>();
+		Map json = new HashMap();
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				form.setJsonMsg(NO_USER, false, json, 201);
+				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
 			} else {
-				int userId = account.getUsers().getUserId();
-				UserShippingAddresses info = (UserShippingAddresses) baseBiz.bean(" from UserShippingAddresses as hu where hu.userId = " + userId + " and hu.addressId = " + form.getAddress().getAddressId());
+				int userId = account.getUsers().getUserId().intValue();
+				UserShippingAddresses info = (UserShippingAddresses) this.baseBiz
+						.bean(" from UserShippingAddresses as hu where hu.userId = " + userId + " and hu.addressId = "
+								+ this.form.getAddress().getAddressId());
 				if (info == null) {
-					form.setJsonMsg("要删除的地址信息不存在", false, json, 1001);
+					this.form.setJsonMsg("要删除的地址信息不存在", false, json, 1001);
 				} else {
-					baseBiz.delete(info);
-					form.setJsonMsg("删除成功", true, json, 200);
+					this.baseBiz.delete(info);
+					this.form.setJsonMsg("删除成功", true, json, 200);
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-			form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg("系统出错", false, json, 1001);
 		}
-		return JSON_PAGE;
+		return "jsonPage";
 	}
 
-	/**
-	 * 添加收货地址
-	 * 
-	 * @return
-	 */
 	public String add_user_shipping_addresses() {
-		Map<String, Object> json = new HashMap<String, Object>();
+		Map json = new HashMap();
 		try {
-			UserShippingAddresses info = form.getAddress();
+			UserShippingAddresses info = this.form.getAddress();
 			YAccount account = getUserInfo();
 			if (account == null) {
-				form.setJsonMsg(NO_USER, false, json, 201);
+				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
 			} else {
-				int userId = account.getUsers().getUserId();
+				int userId = account.getUsers().getUserId().intValue();
 				if (info.getRegionId() == null) {
-					form.setJsonMsg("address.regionId不能为空", false, json, 1001);
+					this.form.setJsonMsg("address.regionId不能为空", false, json, 1001);
 				} else if (info.getShipTo() == null) {
-					form.setJsonMsg("address.shipTo不能为空", false, json, 1001);
+					this.form.setJsonMsg("address.shipTo不能为空", false, json, 1001);
 				} else if (info.getAddress() == null) {
-					form.setJsonMsg("address.address不能为空", false, json, 1001);
+					this.form.setJsonMsg("address.address不能为空", false, json, 1001);
 				} else if (info.getZipcode() == null) {
-					form.setJsonMsg("address.zipcode不能为空", false, json, 1001);
-					// } else if (info.getTelPhone() == null) {
-					// form.setJsonMsg("address.telPhone不能为空", false, json,
-					// 1001);
-					// } else if (info.getCellPhone() == null) {
-					// form.setJsonMsg("address.cellPhone不能为空", false, json,
-					// 1001);
+					this.form.setJsonMsg("address.zipcode不能为空", false, json, 1001);
+				} else if (info.getMobile() == null) {
+					this.form.setJsonMsg("address.mobile不能为空", false, json, 1001);
 				} else {
-					info.setUserId(userId);
-					baseBiz.save(info);
-					form.setJsonMsg("添加成功", true, json, 200);
+					info.setUserId(Integer.valueOf(userId));
+					this.baseBiz.save(info);
+					this.form.setJsonMsg("添加成功", true, json, 200);
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-			form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg("系统出错", false, json, 1001);
 		}
-		return JSON_PAGE;
+		return "jsonPage";
 	}
 
-	/**
-	 * 用户 所有的收货地址
-	 * 
-	 * @return
-	 */
 	public String user_shipping_addresses() {
-		Map<String, Object> json = new HashMap<String, Object>();
+		Map json = new HashMap();
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				form.setJsonMsg(NO_USER, false, json, 201);
+				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
 			} else {
-				int userId = account.getUsers().getUserId();
-				List<UserShippingAddresses> listInfo = (List<UserShippingAddresses>) baseBiz.findAll(" from UserShippingAddresses as hu where hu.userId = " + userId);
-				json.put(LISTINFO, listInfo);
-				form.setJsonMsg(SUCCESS, true, json, 200);
+				int userId = account.getUsers().getUserId().intValue();
+				List listInfo = this.baseBiz.findAll(" from UserShippingAddresses as hu where hu.userId = " + userId);
+				json.put("listInfo", listInfo);
+				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-			form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg("系统出错", false, json, 1001);
 		}
-		return JSON_PAGE;
+		return "jsonPage";
 	}
 
-	/**
-	 * 修改用户收货地址信息
-	 * 
-	 * @return
-	 */
 	public String update_user_shipping_addresses() {
-		Map<String, Object> json = new HashMap<String, Object>();
+		Map json = new HashMap();
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				form.setJsonMsg(NO_USER, false, json, 201);
+				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
 			} else {
-				int userId = account.getUsers().getUserId();
-				UserShippingAddresses obj = form.getAddress();
+				int userId = account.getUsers().getUserId().intValue();
+				UserShippingAddresses obj = this.form.getAddress();
 				if (obj.getAddressId() == null) {
-					form.setJsonMsg("address.addressId不能为空", false, json, 1001);
+					this.form.setJsonMsg("address.addressId不能为空", false, json, 1001);
 				} else if (obj.getRegionId() == null) {
-					form.setJsonMsg("address.regionId不能为空", false, json, 1001);
+					this.form.setJsonMsg("address.regionId不能为空", false, json, 1001);
 				} else if (obj.getShipTo() == null) {
-					form.setJsonMsg("address.shipTo不能为空", false, json, 1001);
+					this.form.setJsonMsg("address.shipTo不能为空", false, json, 1001);
 				} else if (obj.getAddress() == null) {
-					form.setJsonMsg("address.address不能为空", false, json, 1001);
+					this.form.setJsonMsg("address.address不能为空", false, json, 1001);
 				} else if (obj.getZipcode() == null) {
-					form.setJsonMsg("address.zipcode不能为空", false, json, 1001);
-					// } else if (obj.getTelPhone() == null) {
-					// form.setJsonMsg("address.telPhone不能为空", false, json,
-					// 1001);
-					// } else if (obj.getCellPhone() == null) {
-					// form.setJsonMsg("address.cellPhone不能为空", false, json,
-					// 1001);
+					this.form.setJsonMsg("address.zipcode不能为空", false, json, 1001);
+				} else if (obj.getMobile() == null) {
+					this.form.setJsonMsg("address.mobile不能为空", false, json, 1001);
 				} else {
-					UserShippingAddresses info = (UserShippingAddresses) baseBiz.bean(" from UserShippingAddresses as hu where hu.userId = " + userId + " and hu.addressId = " + form.getAddress().getAddressId());
+					UserShippingAddresses info = (UserShippingAddresses) this.baseBiz
+							.bean(" from UserShippingAddresses as hu where hu.userId = " + userId
+									+ " and hu.addressId = " + this.form.getAddress().getAddressId());
 					if (info == null) {
-						form.setJsonMsg("要修改的地址信息不存在", false, json, 1001);
-					} else if (!info.getUserId().equals(userId)) {
-						form.setJsonMsg("你没有权限修改", false, json, 1001);
+						this.form.setJsonMsg("要修改的地址信息不存在", false, json, 1001);
+					} else if (!info.getUserId().equals(Integer.valueOf(userId))) {
+						this.form.setJsonMsg("你没有权限修改", false, json, 1001);
 					} else {
-						info.setAddress(form.getAddress().getAddress());
-						// info.setCellPhone(form.getAddress().getCellPhone());
-						info.setRegionId(form.getAddress().getRegionId());
-						info.setShipTo(form.getAddress().getShipTo());
-						// info.setTelPhone(form.getAddress().getTelPhone());
-						info.setZipcode(form.getAddress().getZipcode());
-						baseBiz.update(info);
-						form.setJsonMsg("修改成功", true, json, 200);
+						info.setAddress(this.form.getAddress().getAddress());
+						info.setRegionId(this.form.getAddress().getRegionId());
+						info.setShipTo(this.form.getAddress().getShipTo());
+						info.setMobile(this.form.getAddress().getMobile());
+						info.setZipcode(this.form.getAddress().getZipcode());
+						this.baseBiz.update(info);
+						this.form.setJsonMsg("修改成功", true, json, 200);
 					}
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-			form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg("系统出错", false, json, 1001);
 		}
-		return JSON_PAGE;
+		return "jsonPage";
 	}
 }

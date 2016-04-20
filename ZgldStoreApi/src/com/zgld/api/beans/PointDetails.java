@@ -14,7 +14,8 @@ public class PointDetails extends AbstractPointDetails implements java.io.Serial
 	}
 
 	/** full constructor */
-	public PointDetails(Integer orderId, Integer userId, Timestamp tradeDate, Integer increased, Integer reduced, Integer points, String remark) {
+	public PointDetails(Integer orderId, Integer userId, Timestamp tradeDate, Integer increased, Integer reduced,
+			Integer points, String remark) {
 		super(orderId, userId, tradeDate, increased, reduced, points, remark);
 	}
 

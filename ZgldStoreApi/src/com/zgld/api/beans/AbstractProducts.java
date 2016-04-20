@@ -60,8 +60,15 @@ public abstract class AbstractProducts implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractProducts(Integer shopId, Integer categoryId, Integer brandId, String productName, String shortDescription, String unit, Double weight, String description, String title, String metaDescription, String metaKeywords, String thumbnailsUrl, String inFocusImageUrl, Integer recommended, Integer latest, Integer hotsale, Integer specialOffer, Double costPrice, Double marketPrice, Integer upselling, Double salePrice, Integer stock, Integer quantityLimit, Integer minQuantity, Date addedDate, Integer vistiCounts, Integer order, Date productionDate, Integer isCustom, Integer customCycle, Integer minCustomQuantity, Integer maxCustomQuantity, String attachment, Integer shipperId, Date createdDate, Integer userId, Date updatedDate, Integer updatedUserId,
-			Date expiryTime) {
+	public AbstractProducts(Integer shopId, Integer categoryId, Integer brandId, String productName,
+			String shortDescription, String unit, Double weight, String description, String title,
+			String metaDescription, String metaKeywords, String thumbnailsUrl, String inFocusImageUrl,
+			Integer recommended, Integer latest, Integer hotsale, Integer specialOffer, Double costPrice,
+			Double marketPrice, Integer upselling, Double salePrice, Integer stock, Integer quantityLimit,
+			Integer minQuantity, Date addedDate, Integer vistiCounts, Integer order, Date productionDate,
+			Integer isCustom, Integer customCycle, Integer minCustomQuantity, Integer maxCustomQuantity,
+			String attachment, Integer shipperId, Date createdDate, Integer userId, Date updatedDate,
+			Integer updatedUserId, Date expiryTime) {
 		this.shopId = shopId;
 		this.categoryId = categoryId;
 		this.brandId = brandId;

@@ -35,7 +35,10 @@ public abstract class AbstractGifts implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractGifts(Integer shopId, String name, String shortDescription, String unit, Integer weight, String longDescription, String title, String metaDescription, String metaKeywords, String thumbnailsUrl, String inFocusImageUrl, Double costPrice, Double marketPrice, Integer enabled, Double salePrice, Integer stock, Integer needPoint) {
+	public AbstractGifts(Integer shopId, String name, String shortDescription, String unit, Integer weight,
+			String longDescription, String title, String metaDescription, String metaKeywords, String thumbnailsUrl,
+			String inFocusImageUrl, Double costPrice, Double marketPrice, Integer enabled, Double salePrice,
+			Integer stock, Integer needPoint) {
 		this.shopId = shopId;
 		this.name = name;
 		this.shortDescription = shortDescription;

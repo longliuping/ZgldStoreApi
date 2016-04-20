@@ -19,7 +19,8 @@ public class YRightsMatch extends AbstractYRightsMatch implements java.io.Serial
 	}
 
 	/** full constructor */
-	public YRightsMatch(Integer riSetId, Integer accountId, Integer accountActId, Integer isDelete, Date rightsMatchTime) {
+	public YRightsMatch(Integer riSetId, Integer accountId, Integer accountActId, Integer isDelete,
+			Date rightsMatchTime) {
 		super(riSetId, accountId, accountActId, isDelete, rightsMatchTime);
 	}
 

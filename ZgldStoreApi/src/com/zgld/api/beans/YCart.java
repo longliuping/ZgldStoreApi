@@ -19,7 +19,8 @@ public class YCart extends AbstractYCart implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YCart(Integer goId, Integer shipId, Integer accountActId, Integer goodsCount, Double goodsPrice, Timestamp cartTime) {
+	public YCart(Integer goId, Integer shipId, Integer accountActId, Integer goodsCount, Double goodsPrice,
+			Timestamp cartTime) {
 		super(goId, shipId, accountActId, goodsCount, goodsPrice, cartTime);
 	}
 

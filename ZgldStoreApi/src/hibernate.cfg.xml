@@ -20,6 +20,7 @@
 		<property name="myeclipse.connection.profile">
 			www.shop.com
 		</property>
+		<property name="hibernate.show_sql">true</property>
 		<mapping resource="com/zgld/api/beans/PhotoCategories.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/YFiles.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/YEmailSend.hbm.xml" />

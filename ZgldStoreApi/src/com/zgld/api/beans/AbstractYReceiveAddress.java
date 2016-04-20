@@ -32,7 +32,8 @@ public abstract class AbstractYReceiveAddress implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYReceiveAddress(Integer accountActId, Integer areaId, String addressDetail, String userName, String userMobile, Integer isDefault, Date addressTime) {
+	public AbstractYReceiveAddress(Integer accountActId, Integer areaId, String addressDetail, String userName,
+			String userMobile, Integer isDefault, Date addressTime) {
 		this.accountActId = accountActId;
 		this.areaId = areaId;
 		this.addressDetail = addressDetail;

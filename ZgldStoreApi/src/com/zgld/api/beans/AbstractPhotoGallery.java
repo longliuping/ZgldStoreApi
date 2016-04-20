@@ -27,7 +27,8 @@ public abstract class AbstractPhotoGallery implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractPhotoGallery(Integer categoryId, String photoName, String photoPath, Integer fileSize, Date uploadTime, Date lastUpdateTime) {
+	public AbstractPhotoGallery(Integer categoryId, String photoName, String photoPath, Integer fileSize,
+			Date uploadTime, Date lastUpdateTime) {
 		this.categoryId = categoryId;
 		this.photoName = photoName;
 		this.photoPath = photoPath;

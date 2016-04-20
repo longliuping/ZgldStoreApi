@@ -36,7 +36,8 @@ public abstract class AbstractYArea implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYArea(Integer areaParentId, String areaName, String areaCode, Integer areaLevel, Integer areaOrder, String areaX, String areaY, Integer accountActId, Integer isDelete, Date areaTime) {
+	public AbstractYArea(Integer areaParentId, String areaName, String areaCode, Integer areaLevel, Integer areaOrder,
+			String areaX, String areaY, Integer accountActId, Integer isDelete, Date areaTime) {
 		this.areaParentId = areaParentId;
 		this.areaName = areaName;
 		this.areaCode = areaCode;

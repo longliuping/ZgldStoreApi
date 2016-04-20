@@ -31,7 +31,8 @@ public abstract class AbstractYOrderSend implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYOrderSend(Integer shipId, String shipNumber, Integer orderId, Integer accountActId, String sendInfo, Date sendTime) {
+	public AbstractYOrderSend(Integer shipId, String shipNumber, Integer orderId, Integer accountActId, String sendInfo,
+			Date sendTime) {
 		this.shipId = shipId;
 		this.shipNumber = shipNumber;
 		this.orderId = orderId;

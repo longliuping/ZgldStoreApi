@@ -24,7 +24,8 @@ public abstract class AbstractYCartMatch implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYCartMatch(Integer cartId, Integer goId, Integer accountActId, Integer combineValueId, Integer goodsCount, Double goodsPrice) {
+	public AbstractYCartMatch(Integer cartId, Integer goId, Integer accountActId, Integer combineValueId,
+			Integer goodsCount, Double goodsPrice) {
 		this.cartId = cartId;
 		this.goId = goId;
 		this.accountActId = accountActId;

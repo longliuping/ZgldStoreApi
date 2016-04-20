@@ -14,7 +14,8 @@ public class PromoteSales extends AbstractPromoteSales implements java.io.Serial
 	}
 
 	/** full constructor */
-	public PromoteSales(Integer shopId, String name, Integer promoteType, String description, Timestamp startTime, Timestamp closingTime) {
+	public PromoteSales(Integer shopId, String name, Integer promoteType, String description, Timestamp startTime,
+			Timestamp closingTime) {
 		super(shopId, name, promoteType, description, startTime, closingTime);
 	}
 

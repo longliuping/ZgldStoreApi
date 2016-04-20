@@ -15,14 +15,26 @@ public class Products extends AbstractProducts implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Products(Integer shopId, Integer categoryId, Integer brandId, String productName, String shortDescription, String unit, Double weight, String description, String title, String metaDescription, String metaKeywords, String thumbnailsUrl, String inFocusImageUrl, Integer recommended, Integer latest, Integer hotsale, Integer specialOffer, Double costPrice, Double marketPrice, Integer upselling, Double salePrice, Integer stock, Integer quantityLimit, Integer minQuantity, Timestamp addedDate, Integer vistiCounts, Integer order, Timestamp productionDate, Integer isCustom, Integer customCycle, Integer minCustomQuantity, Integer maxCustomQuantity, String attachment, Integer shipperId, Timestamp createdDate, Integer userId, Timestamp updatedDate, Integer updatedUserId, Timestamp expiryTime) {
-		super(shopId, categoryId, brandId, productName, shortDescription, unit, weight, description, title, metaDescription, metaKeywords, thumbnailsUrl, inFocusImageUrl, recommended, latest, hotsale, specialOffer, costPrice, marketPrice, upselling, salePrice, stock, quantityLimit, minQuantity, addedDate, vistiCounts, order, productionDate, isCustom, customCycle, minCustomQuantity, maxCustomQuantity, attachment, shipperId, createdDate, userId, updatedDate, updatedUserId, expiryTime);
+	public Products(Integer shopId, Integer categoryId, Integer brandId, String productName, String shortDescription,
+			String unit, Double weight, String description, String title, String metaDescription, String metaKeywords,
+			String thumbnailsUrl, String inFocusImageUrl, Integer recommended, Integer latest, Integer hotsale,
+			Integer specialOffer, Double costPrice, Double marketPrice, Integer upselling, Double salePrice,
+			Integer stock, Integer quantityLimit, Integer minQuantity, Timestamp addedDate, Integer vistiCounts,
+			Integer order, Timestamp productionDate, Integer isCustom, Integer customCycle, Integer minCustomQuantity,
+			Integer maxCustomQuantity, String attachment, Integer shipperId, Timestamp createdDate, Integer userId,
+			Timestamp updatedDate, Integer updatedUserId, Timestamp expiryTime) {
+		super(shopId, categoryId, brandId, productName, shortDescription, unit, weight, description, title,
+				metaDescription, metaKeywords, thumbnailsUrl, inFocusImageUrl, recommended, latest, hotsale,
+				specialOffer, costPrice, marketPrice, upselling, salePrice, stock, quantityLimit, minQuantity,
+				addedDate, vistiCounts, order, productionDate, isCustom, customCycle, minCustomQuantity,
+				maxCustomQuantity, attachment, shipperId, createdDate, userId, updatedDate, updatedUserId, expiryTime);
 	}
+
 	Sku sku;
 	List<Skugroup> listSkugroups;
 	List<Sku> listSkus;
 	List<ProductImages> listProductImages;
-	
+
 	public List<Skugroup> getListSkugroups() {
 		return listSkugroups;
 	}
@@ -54,6 +66,5 @@ public class Products extends AbstractProducts implements java.io.Serializable {
 	public void setListProductImages(List<ProductImages> listProductImages) {
 		this.listProductImages = listProductImages;
 	}
-	
-	
+
 }

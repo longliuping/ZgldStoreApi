@@ -34,7 +34,8 @@ public abstract class AbstractYFriend implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYFriend(Integer accountActId, Integer accountId, String friendName, Integer friendState, Integer friendOrder, Integer friendTopOrder, Integer isDelete, Date friendTime) {
+	public AbstractYFriend(Integer accountActId, Integer accountId, String friendName, Integer friendState,
+			Integer friendOrder, Integer friendTopOrder, Integer isDelete, Date friendTime) {
 		this.accountActId = accountActId;
 		this.accountId = accountId;
 		this.friendName = friendName;

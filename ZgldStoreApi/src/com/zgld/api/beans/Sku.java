@@ -12,7 +12,8 @@ public class Sku extends AbstractSku implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Sku(Integer skugroupId, Integer shopId, Integer productId, Integer stock, Double price, String attributeNames, String attributeValues) {
+	public Sku(Integer skugroupId, Integer shopId, Integer productId, Integer stock, Double price,
+			String attributeNames, String attributeValues) {
 		super(skugroupId, shopId, productId, stock, price, attributeNames, attributeValues);
 	}
 

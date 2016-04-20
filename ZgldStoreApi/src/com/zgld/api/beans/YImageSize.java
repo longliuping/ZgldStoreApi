@@ -19,7 +19,8 @@ public class YImageSize extends AbstractYImageSize implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YImageSize(Integer imgSizeWidth, Integer imgSizeHeight, Integer isDefault, Integer isDelete, Timestamp imgSizeTime) {
+	public YImageSize(Integer imgSizeWidth, Integer imgSizeHeight, Integer isDefault, Integer isDelete,
+			Timestamp imgSizeTime) {
 		super(imgSizeWidth, imgSizeHeight, isDefault, isDelete, imgSizeTime);
 	}
 

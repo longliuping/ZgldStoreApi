@@ -17,7 +17,8 @@ public class YSmsConfig extends AbstractYSmsConfig implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YSmsConfig(String smsConHost, String smsConPort, String smsConUser, String smsConPassword, String smsConSender, String smsConRegTitle, String smsConRegContent) {
+	public YSmsConfig(String smsConHost, String smsConPort, String smsConUser, String smsConPassword,
+			String smsConSender, String smsConRegTitle, String smsConRegContent) {
 		super(smsConHost, smsConPort, smsConUser, smsConPassword, smsConSender, smsConRegTitle, smsConRegContent);
 	}
 

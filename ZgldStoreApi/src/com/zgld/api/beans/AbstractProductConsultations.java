@@ -31,7 +31,9 @@ public abstract class AbstractProductConsultations implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public AbstractProductConsultations(Integer shopId, Integer productId, Integer userId, String userName, String userEmail, String consultationText, Date consultationDate, String replyText, Date replyDate, String replyUserId) {
+	public AbstractProductConsultations(Integer shopId, Integer productId, Integer userId, String userName,
+			String userEmail, String consultationText, Date consultationDate, String replyText, Date replyDate,
+			String replyUserId) {
 		this.shopId = shopId;
 		this.productId = productId;
 		this.userId = userId;

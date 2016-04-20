@@ -41,7 +41,9 @@ public abstract class AbstractYMenu implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYMenu(Integer meParentId, Integer meClassSetId, Integer accountActId, String meName, String meEnName, String meUrl, Integer meTarget, Integer meOrder, String meDefaultCname, String meOverCname, String meDefaultImg, String meOverImg, String meVisitedImg, Integer isDelete, Date meTime) {
+	public AbstractYMenu(Integer meParentId, Integer meClassSetId, Integer accountActId, String meName, String meEnName,
+			String meUrl, Integer meTarget, Integer meOrder, String meDefaultCname, String meOverCname,
+			String meDefaultImg, String meOverImg, String meVisitedImg, Integer isDelete, Date meTime) {
 		this.meParentId = meParentId;
 		this.meClassSetId = meClassSetId;
 		this.accountActId = accountActId;

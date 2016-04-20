@@ -19,7 +19,8 @@ public class YRights extends AbstractYRights implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YRights(Integer riSetId, String tableEnName, String riName, Integer accountActId, String riDes, Integer isDelete, Date riTime) {
+	public YRights(Integer riSetId, String tableEnName, String riName, Integer accountActId, String riDes,
+			Integer isDelete, Date riTime) {
 		super(riSetId, tableEnName, riName, accountActId, riDes, isDelete, riTime);
 	}
 

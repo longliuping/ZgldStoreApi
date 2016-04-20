@@ -19,8 +19,10 @@ public class YNotice extends AbstractYNotice implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YNotice(Integer noClassSetId, Integer noType, Integer noState, Integer unitSetId, Integer accountActId, String noTitle, String noContent, Integer noOrder, Integer noTopOrder, Integer isDelete, Date noTime) {
-		super(noClassSetId, noType, noState, unitSetId, accountActId, noTitle, noContent, noOrder, noTopOrder, isDelete, noTime);
+	public YNotice(Integer noClassSetId, Integer noType, Integer noState, Integer unitSetId, Integer accountActId,
+			String noTitle, String noContent, Integer noOrder, Integer noTopOrder, Integer isDelete, Date noTime) {
+		super(noClassSetId, noType, noState, unitSetId, accountActId, noTitle, noContent, noOrder, noTopOrder, isDelete,
+				noTime);
 	}
 
 }

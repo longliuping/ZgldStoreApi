@@ -19,7 +19,8 @@ public class YDns extends AbstractYDns implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public YDns(Integer accountActId, Integer unitSetId, Integer dnsType, String dnsName, Integer isState, Integer isDelete, Timestamp dnsTime) {
+	public YDns(Integer accountActId, Integer unitSetId, Integer dnsType, String dnsName, Integer isState,
+			Integer isDelete, Timestamp dnsTime) {
 		super(accountActId, unitSetId, dnsType, dnsName, isState, isDelete, dnsTime);
 	}
 

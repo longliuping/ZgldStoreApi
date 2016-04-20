@@ -17,7 +17,8 @@ public class YWebConfig extends AbstractYWebConfig implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YWebConfig(Integer unitSetId, Integer accountActId, Integer webConState, Integer webConAdminState, String webConName, String webConKeyWord, String webConDescription) {
+	public YWebConfig(Integer unitSetId, Integer accountActId, Integer webConState, Integer webConAdminState,
+			String webConName, String webConKeyWord, String webConDescription) {
 		super(unitSetId, accountActId, webConState, webConAdminState, webConName, webConKeyWord, webConDescription);
 	}
 

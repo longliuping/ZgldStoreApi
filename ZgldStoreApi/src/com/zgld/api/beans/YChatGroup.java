@@ -19,8 +19,11 @@ public class YChatGroup extends AbstractYChatGroup implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public YChatGroup(Integer accountActId, String chatGroupName, Integer chatGroupTotal, Integer chatGroupOrder, Integer chatGroupTopOrder, String chatGroupDefaultImg, String chatGroupHoverImg, String chatGroupVisitedImg, String chatGroupIntro, Integer isDelete, Timestamp chatGroupTime) {
-		super(accountActId, chatGroupName, chatGroupTotal, chatGroupOrder, chatGroupTopOrder, chatGroupDefaultImg, chatGroupHoverImg, chatGroupVisitedImg, chatGroupIntro, isDelete, chatGroupTime);
+	public YChatGroup(Integer accountActId, String chatGroupName, Integer chatGroupTotal, Integer chatGroupOrder,
+			Integer chatGroupTopOrder, String chatGroupDefaultImg, String chatGroupHoverImg, String chatGroupVisitedImg,
+			String chatGroupIntro, Integer isDelete, Timestamp chatGroupTime) {
+		super(accountActId, chatGroupName, chatGroupTotal, chatGroupOrder, chatGroupTopOrder, chatGroupDefaultImg,
+				chatGroupHoverImg, chatGroupVisitedImg, chatGroupIntro, isDelete, chatGroupTime);
 	}
 
 }

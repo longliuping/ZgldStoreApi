@@ -19,8 +19,10 @@ public class YGoodsComment extends AbstractYGoodsComment implements java.io.Seri
 	}
 
 	/** full constructor */
-	public YGoodsComment(Integer goId, Integer goCommentType, String goCommentContent, Integer goCommentState, Integer accountActId, Integer accountId, String goReplyContent, Timestamp goCommentTime) {
-		super(goId, goCommentType, goCommentContent, goCommentState, accountActId, accountId, goReplyContent, goCommentTime);
+	public YGoodsComment(Integer goId, Integer goCommentType, String goCommentContent, Integer goCommentState,
+			Integer accountActId, Integer accountId, String goReplyContent, Timestamp goCommentTime) {
+		super(goId, goCommentType, goCommentContent, goCommentState, accountActId, accountId, goReplyContent,
+				goCommentTime);
 	}
 
 }

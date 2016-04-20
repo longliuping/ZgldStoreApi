@@ -19,8 +19,10 @@ public class YPersonalFunConfig extends AbstractYPersonalFunConfig implements ja
 	}
 
 	/** full constructor */
-	public YPersonalFunConfig(Integer unitSetId, Integer accountId, Integer personalIsMessage, Integer personalIsNotice, Integer personalIsComment, Integer personalIsEmail, Integer isDelete, Date personalTime) {
-		super(unitSetId, accountId, personalIsMessage, personalIsNotice, personalIsComment, personalIsEmail, isDelete, personalTime);
+	public YPersonalFunConfig(Integer unitSetId, Integer accountId, Integer personalIsMessage, Integer personalIsNotice,
+			Integer personalIsComment, Integer personalIsEmail, Integer isDelete, Date personalTime) {
+		super(unitSetId, accountId, personalIsMessage, personalIsNotice, personalIsComment, personalIsEmail, isDelete,
+				personalTime);
 	}
 
 }

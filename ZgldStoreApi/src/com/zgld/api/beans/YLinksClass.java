@@ -19,8 +19,11 @@ public class YLinksClass extends AbstractYLinksClass implements java.io.Serializ
 	}
 
 	/** full constructor */
-	public YLinksClass(Integer liParentClassId, Integer liClassSetId, String liClassName, Integer liClassTotal, Integer unitSetId, Integer accountActId, Integer liClassOrder, Integer liClassTopOrder, Integer isDelete, Timestamp liClassTime) {
-		super(liParentClassId, liClassSetId, liClassName, liClassTotal, unitSetId, accountActId, liClassOrder, liClassTopOrder, isDelete, liClassTime);
+	public YLinksClass(Integer liParentClassId, Integer liClassSetId, String liClassName, Integer liClassTotal,
+			Integer unitSetId, Integer accountActId, Integer liClassOrder, Integer liClassTopOrder, Integer isDelete,
+			Timestamp liClassTime) {
+		super(liParentClassId, liClassSetId, liClassName, liClassTotal, unitSetId, accountActId, liClassOrder,
+				liClassTopOrder, isDelete, liClassTime);
 	}
 
 }

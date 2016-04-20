@@ -34,7 +34,9 @@ public abstract class AbstractYWorkerClass implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYWorkerClass(Integer unitSetId, Integer accountActId, Integer workerParentClassId, Integer workerClassSetId, String workerClassName, Integer workerClassOrder, Integer workerClassTopOrder, Integer isDelete, Date workerClassTime) {
+	public AbstractYWorkerClass(Integer unitSetId, Integer accountActId, Integer workerParentClassId,
+			Integer workerClassSetId, String workerClassName, Integer workerClassOrder, Integer workerClassTopOrder,
+			Integer isDelete, Date workerClassTime) {
 		this.unitSetId = unitSetId;
 		this.accountActId = accountActId;
 		this.workerParentClassId = workerParentClassId;

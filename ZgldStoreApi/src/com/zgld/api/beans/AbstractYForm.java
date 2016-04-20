@@ -32,7 +32,8 @@ public abstract class AbstractYForm implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractYForm(Integer classSetId, String tableName, String formName, Integer accountActId, Integer isDelete, Date formTime) {
+	public AbstractYForm(Integer classSetId, String tableName, String formName, Integer accountActId, Integer isDelete,
+			Date formTime) {
 		this.classSetId = classSetId;
 		this.tableName = tableName;
 		this.formName = formName;

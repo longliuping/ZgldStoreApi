@@ -25,7 +25,8 @@ public abstract class AbstractBalanceDrawRequest implements java.io.Serializable
 	}
 
 	/** full constructor */
-	public AbstractBalanceDrawRequest(Date requestTime, Double amount, Integer userId, Integer requestStatus, String remark) {
+	public AbstractBalanceDrawRequest(Date requestTime, Double amount, Integer userId, Integer requestStatus,
+			String remark) {
 		this.requestTime = requestTime;
 		this.amount = amount;
 		this.userId = userId;
