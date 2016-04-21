@@ -31,7 +31,6 @@ public abstract class AbstractOrders implements Serializable {
 	private String buyerAccount;
 	private Date refundDateTime;
 	private Double refundTotalFee;
-
 	public Integer getOrderId() {
 		return this.orderId;
 	}
