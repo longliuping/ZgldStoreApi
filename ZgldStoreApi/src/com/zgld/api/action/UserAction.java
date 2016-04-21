@@ -25,7 +25,7 @@ public class UserAction extends BaseAction {
 				this.form.setJsonMsg("id不能为空", false, json, 1001);
 			} else {
 				Object obj = this.baseService
-						.bean(" from YAccount as y, Users as u,UserProfile as p where u.userId = p.userId and p.userId = y.accountId and y.accountName = '"
+						.bean(" from YAccount as y, Users as u,UserProfile as p where u.userId = p.userId and u.accountId = y.accountId and y.accountName = '"
 								+ this.form.getName() + "'");
 				Object[] object = (Object[]) obj;
 				if ((object == null) || (object.length < 0)) {
