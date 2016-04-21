@@ -18,10 +18,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 订单相关
+ * @author Am
+ *
+ */
 public class OrderAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * 根据订单orderId获取订单要支付的信息
+	 * @return
+	 */
 	public String alipay_order_config() {
 		Map json = new HashMap();
 		try {
@@ -78,7 +85,10 @@ public class OrderAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 提交订单
+	 * @return
+	 */
 	public String submit_order() {
 		Map json = new HashMap();
 		try {
@@ -89,8 +99,6 @@ public class OrderAction extends BaseAction {
 				this.form.setJsonMsg("skuId不能为空", false, json, 1001);
 			} else if (this.form.getSkuNumber() == null) {
 				this.form.setJsonMsg("skuNumber不能为空", false, json, 1001);
-			} else if (this.form.getShippingId() == null) {
-				this.form.setJsonMsg("shippingId不能为空", false, json, 1001);
 			} else {
 				String[] skuId = this.form.getSkuId().split(",");
 				String[] skuNumber = this.form.getSkuNumber().split(",");
@@ -114,59 +122,45 @@ public class OrderAction extends BaseAction {
 					this.form.setJsonMsg("购买的产品不存在", false, json, 1001);
 				} else {
 					int userId = account.getUsers().getUserId().intValue();
-					Users users = account.getUsers();
-
-					UserShippingAddresses address = (UserShippingAddresses) this.baseService
-							.bean(" from UserShippingAddresses as usa where usa.addressId = "
-									+ this.form.getShippingId() + " and usa.userId = " + userId);
-					if (address == null) {
-						this.form.setJsonMsg("请填写收货地址", false, json, 1001);
-					} else {
-						Orders orders = new Orders();
-						orders.setUserId(Integer.valueOf(userId));
-						orders.setFreight(Double.valueOf(0.0D));
-						orders.setShippingId(Integer.valueOf(0));
-						orders.setShipOrderNumber("");
-						orders.setShippingStatus(Integer.valueOf(0));
-						orders.setRefundStatus(Integer.valueOf(0));
-						orders.setPaymentStatus(Integer.valueOf(0));
-						orders.setOrderTotalPrice(Double.valueOf(0.0D));
-						orders.setOtherCost(Double.valueOf(0.0D));
-						orders.setOrderRealPrice(Double.valueOf(0.0D));
-						orders.setRemark("");
-						orders.setOrderDate(new Date());
-						orders.setMobile(address.getMobile());
-						orders.setShipTo(address.getShipTo());
-						orders.setAddress(
-								AddressXmlUtils.readXML(address.getRegionId().intValue()) + " " + address.getAddress());
-						orders.setZipcode(address.getZipcode());
-						Serializable s = this.baseService.save(orders);
-						String orderId = s.toString();
-						double salePrice = 0.0D;
-						for (int i = 0; i < skuId.length; i++) {
-							Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
-							OrderItems items = new OrderItems();
-							items.setOrderId(Integer.valueOf(Integer.parseInt(orderId)));
-							items.setProductId(hishopSkus.getProductId());
-							items.setSku(hishopSkus.getSku());
-							items.setQuantity(Integer.valueOf(Integer.parseInt(skuNumber[i])));
-							items.setListPrice(Double
-									.valueOf(hishopSkus.getPrice().doubleValue() * Integer.parseInt(skuNumber[i])));
-							items.setCellPrice(hishopSkus.getPrice());
-							items.setRemark("");
-							salePrice += Integer.parseInt(skuNumber[i]) * hishopSkus.getPrice().doubleValue();
-							this.baseService.updateListObject(" delete from ShoppingCarts as hsc where hsc.sku = '"
-									+ hishopSkus.getSku() + "' and hsc.userId = " + userId);
-							this.baseService.save(items);
-						}
-						Orders ho = (Orders) this.baseService.bean(" from Orders as ho where ho.orderId = " + orderId);
-						if (ho != null) {
-							ho.setOrderTotalPrice(Double.valueOf(salePrice));
-							this.baseService.update(ho);
-						}
-						json.put("orderId", orderId);
-						this.form.setJsonMsg("提交订单成功", true, json, 200);
+					Orders orders = new Orders();
+					orders.setUserId(Integer.valueOf(userId));
+					orders.setFreight(Double.valueOf(0.0D));
+					orders.setShippingId(Integer.valueOf(0));
+					orders.setShipOrderNumber("");
+					orders.setShippingStatus(Integer.valueOf(0));
+					orders.setRefundStatus(Integer.valueOf(0));
+					orders.setPaymentStatus(Integer.valueOf(0));
+					orders.setOrderTotalPrice(Double.valueOf(0.0D));
+					orders.setOtherCost(Double.valueOf(0.0D));
+					orders.setOrderRealPrice(Double.valueOf(0.0D));
+					orders.setRemark("");
+					orders.setOrderDate(new Date());
+					Serializable s = this.baseService.save(orders);
+					String orderId = s.toString();
+					double salePrice = 0.0D;
+					for (int i = 0; i < skuId.length; i++) {
+						Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
+						OrderItems items = new OrderItems();
+						items.setOrderId(Integer.valueOf(Integer.parseInt(orderId)));
+						items.setProductId(hishopSkus.getProductId());
+						items.setSku(hishopSkus.getSku());
+						items.setQuantity(Integer.valueOf(Integer.parseInt(skuNumber[i])));
+						items.setListPrice(
+								Double.valueOf(hishopSkus.getPrice().doubleValue() * Integer.parseInt(skuNumber[i])));
+						items.setCellPrice(hishopSkus.getPrice());
+						items.setRemark("");
+						salePrice += Integer.parseInt(skuNumber[i]) * hishopSkus.getPrice().doubleValue();
+						this.baseService.updateListObject(" delete from ShoppingCarts as hsc where hsc.sku = '"
+								+ hishopSkus.getSku() + "' and hsc.userId = " + userId);
+						this.baseService.save(items);
 					}
+					Orders ho = (Orders) this.baseService.bean(" from Orders as ho where ho.orderId = " + orderId);
+					if (ho != null) {
+						ho.setOrderTotalPrice(Double.valueOf(salePrice));
+						this.baseService.update(ho);
+					}
+					json.put("orderId", orderId);
+					this.form.setJsonMsg("提交订单成功", true, json, 200);
 				}
 			}
 		} catch (Exception e) {
@@ -175,7 +169,10 @@ public class OrderAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 查询用户的订单
+	 * @return
+	 */
 	public String user_order() {
 		Map json = new HashMap();
 		try {

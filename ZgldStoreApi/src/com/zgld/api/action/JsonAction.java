@@ -11,7 +11,10 @@ import java.util.Map;
 
 public class JsonAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * 主页banner
+	 * @return
+	 */
 	public String home_banner() {
 		Map json = new HashMap();
 		try {
@@ -29,7 +32,10 @@ public class JsonAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 主页热门标签
+	 * @return
+	 */
 	public String home_hot_category() {
 		Map json = new HashMap();
 		try {

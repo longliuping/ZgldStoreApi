@@ -11,10 +11,17 @@ import com.zgld.api.service.BaseService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 产品action
+ * @author Am
+ *
+ */
 public class ProductAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * 根据分类ID查询产品信息
+	 * @return
+	 */
 	public String home_type_product() {
 		Map json = new HashMap();
 		try {
@@ -33,7 +40,10 @@ public class ProductAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 产品详情
+	 * @return
+	 */
 	public String product_detail() {
 		Map json = new HashMap();
 		try {
@@ -69,7 +79,10 @@ public class ProductAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 每一个分类下的前几条数据
+	 * @return
+	 */
 	public String home_all_product() {
 		Map json = new HashMap();
 		try {

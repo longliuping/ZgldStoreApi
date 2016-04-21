@@ -14,7 +14,7 @@ public class AlipayTrade {
 	static {
 		baseService = Contents.getBaseService();
 	}
-
+	
 	public static String alipay_recharge(AlipayInfo info) {
 		String result = "fail";
 		try {

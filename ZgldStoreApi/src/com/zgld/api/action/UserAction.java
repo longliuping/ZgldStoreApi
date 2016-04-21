@@ -1,19 +1,24 @@
 package com.zgld.api.action;
 
-import com.zgld.api.base.BaseForm;
 import com.zgld.api.beans.UserProfile;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.beans.YRebateRelation;
-import com.zgld.api.service.BaseService;
 import com.zgld.api.utils.EmailUtil;
 import com.zgld.api.utils.ImageBase64;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * 用户action
+ * @author Am
+ *
+ */
 public class UserAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * 用户登录
+	 * @return
+	 */
 	public String user_login() {
 		Map json = new HashMap();
 		try {
@@ -50,7 +55,10 @@ public class UserAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 用户注册
+	 * @return
+	 */
 	public String user_register() {
 		Map json = new HashMap();
 		try {
@@ -89,7 +97,10 @@ public class UserAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 获取用户信息
+	 * @return
+	 */
 	public String userinfo() {
 		Map json = new HashMap();
 		try {
@@ -106,7 +117,10 @@ public class UserAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 修改用户密码
+	 * @return
+	 */
 	public String update_user_password() {
 		Map json = new HashMap();
 		try {
@@ -133,7 +147,10 @@ public class UserAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 更新用户性别
+	 * @return
+	 */
 	public String update_user_gender() {
 		Map json = new HashMap();
 		try {
@@ -157,7 +174,10 @@ public class UserAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 更新用户邮箱
+	 * @return
+	 */
 	public String update_user_email() {
 		Map json = new HashMap();
 		try {
@@ -181,7 +201,10 @@ public class UserAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 更新用户头像
+	 * @return
+	 */
 	public String update_user_head() {
 		Map json = new HashMap();
 		try {
@@ -189,7 +212,7 @@ public class UserAction extends BaseAction {
 			if (account == null) {
 				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
 			} else if (this.form.getUserinfo().getAccountHead() == null) {
-				this.form.setJsonMsg("userinfo.accountEmail不能为空", false, json, 1001);
+				this.form.setJsonMsg("userinfo.accountHead不能为空", false, json, 1001);
 			} else {
 				String url = ImageBase64.GenerateImage(account.getAccountId().intValue(), "0.png",
 						this.form.getUserinfo().getAccountHead());
@@ -208,7 +231,10 @@ public class UserAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 修改用户信息
+	 * @return
+	 */
 	public String update_telphone() {
 		Map json = new HashMap();
 		try {
@@ -229,7 +255,10 @@ public class UserAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 修改用户信息
+	 * @return
+	 */
 	public String update_cellphone() {
 		Map json = new HashMap();
 		try {

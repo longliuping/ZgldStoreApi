@@ -16,7 +16,10 @@ import java.util.Map;
 
 public class CarAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * 添加产品到购物车
+	 * @return
+	 */
 	public String add_product_car() {
 		Map json = new HashMap();
 		try {
@@ -76,7 +79,10 @@ public class CarAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 删除购物车产品
+	 * @return
+	 */
 	public String delete_car_product() {
 		Map json = new HashMap();
 		try {
@@ -109,7 +115,10 @@ public class CarAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 更新购物车产品数量
+	 * @return
+	 */
 	public String update_car_product_quantity() {
 		Map json = new HashMap();
 		try {
@@ -168,7 +177,10 @@ public class CarAction extends BaseAction {
 		}
 		return "jsonPage";
 	}
-
+	/**
+	 * 用户购物车的所有产品
+	 * @return
+	 */
 	public String user_car_product() {
 		Map json = new HashMap();
 		try {
