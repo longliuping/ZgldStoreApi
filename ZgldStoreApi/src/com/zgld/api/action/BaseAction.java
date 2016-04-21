@@ -145,11 +145,23 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		users.setAppUserToken(UUID.randomUUID().toString());
 		users.setDeleted(Integer.valueOf(0));
 		users.setUserType(Integer.valueOf(3));
+		users.setLastActivity(new Date());
 		Serializable b = this.baseService.save(users);
 		
 		int userId = b.hashCode();
 		UserProfile profile = new UserProfile();
 		profile.setUserId(Integer.valueOf(userId));
+		profile.setEnablePrivateMessages(0);
+		profile.setEnableOnlineStatus(0);
+		profile.setEnableEmail(0);
+		profile.setEnableHtmlEmail(0);
+		profile.setExpenditure(0.0);
+		profile.setEnableTradePassword(0);
+		profile.setBalance(0.0);
+		profile.setDeductMoney(0.0);
+		profile.setExpenditure(0.0);
+		profile.setGender(0);
+		
 		Serializable c = this.baseService.save(profile);
 		int userProfileId = c.hashCode();
 		profile.setUserProfileId(userProfileId);
