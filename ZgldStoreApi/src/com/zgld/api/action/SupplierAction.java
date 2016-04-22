@@ -1,10 +1,12 @@
 package com.zgld.api.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.zgld.api.beans.Products;
+import com.zgld.api.beans.YShop;
 
 /**
  * 商家action
@@ -26,10 +28,11 @@ public class SupplierAction extends BaseAction {
 	public String supplier_product() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			if(form.getShopId()==null){
+			if (form.getShopId() == null) {
 				this.form.setJsonMsg("shopId不能为空", false, json, 1001);
-			}else{
-				List<Products> listInfo = (List<Products>) baseService.findPage(form.getPageNum(), form.getPageSize()," from Products as hp where hp.shopId = " + form.getShopId());
+			} else {
+				List<Products> listInfo = (List<Products>) baseService.findPage(form.getPageNum(), form.getPageSize(),
+						" from Products as hp where hp.shopId = " + form.getShopId());
 				json.put(LISTINFO, listInfo);
 				form.setJsonMsg(SUCCESS, true, json, 200);
 			}
@@ -75,17 +78,15 @@ public class SupplierAction extends BaseAction {
 	public String hot_area_supplier() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			// List<Supplier> listInfo = new ArrayList<Supplier>();
-			// List<?> obj = baseService.findPage(form.getPageNum(),
-			// form.getPageSize(),
-			// " from Supplier as s,SupperArea as sa,SupperHot as sh where
-			// s.userId = sa.userid and sa.userid = sh.userid and sa.areaid = "
-			// + form.getAreaid() + " and sh.hotid = " + form.getHotid());
-			// for (Object object : obj) {
-			// listInfo.add((Supplier) ((Object[]) object)[0]);
-			// }
-			// json.put(LISTINFO, listInfo);
-			// form.setJsonMsg(SUCCESS, true, json, 200);
+			List<YShop> listInfo = new ArrayList<YShop>();
+			List<?> obj = baseService.findPage(form.getPageNum(), form.getPageSize(),
+					" from YShop as s,SupperArea as sa,SupperHot as sh where s.shopId = sa.userid and sa.userid = sh.userid and sa.areaid = "
+							+ form.getAreaid() + " and sh.hotid = " + form.getHotid());
+			for (Object object : obj) {
+				listInfo.add((YShop) ((Object[]) object)[0]);
+			}
+			json.put(LISTINFO, listInfo);
+			form.setJsonMsg(SUCCESS, true, json, 200);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
