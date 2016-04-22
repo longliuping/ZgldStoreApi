@@ -34,7 +34,7 @@ public class OrderAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if (this.form.getOrderid() == null) {
 				this.form.setJsonMsg("orderid不能为空", false, json, 1001);
 			} else {
@@ -81,7 +81,7 @@ public class OrderAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -94,7 +94,7 @@ public class OrderAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if (this.form.getSkuId() == null) {
 				this.form.setJsonMsg("skuId不能为空", false, json, 1001);
 			} else if (this.form.getSkuNumber() == null) {
@@ -165,7 +165,7 @@ public class OrderAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -178,7 +178,7 @@ public class OrderAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				StringBuffer sb = new StringBuffer(
 						" from Orders as ho where ho.userId = " + account.getUsers().getUserId());
@@ -210,7 +210,7 @@ public class OrderAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}

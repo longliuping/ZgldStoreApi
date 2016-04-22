@@ -27,6 +27,7 @@ public class BaseForm {
 	private Integer areaid;
 	private Integer number;
 	private String skuId;
+	private Integer shopId;
 	private String skuNumber;
 	private Integer shippingId;
 	private Integer modeId;
@@ -439,4 +440,13 @@ public class BaseForm {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+
+	public Integer getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(Integer shopId) {
+		this.shopId = shopId;
+	}
+	
 }

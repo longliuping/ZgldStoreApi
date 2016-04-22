@@ -16,7 +16,7 @@ public class AddressesAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 				UserShippingAddresses info = (UserShippingAddresses) this.baseService
@@ -31,7 +31,7 @@ public class AddressesAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -45,7 +45,7 @@ public class AddressesAction extends BaseAction {
 			UserShippingAddresses info = this.form.getAddress();
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 				if (info.getRegionId() == null) {
@@ -66,7 +66,7 @@ public class AddressesAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -79,7 +79,7 @@ public class AddressesAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 				List listInfo = this.baseService.findAll(" from UserShippingAddresses as hu where hu.userId = " + userId);
@@ -88,7 +88,7 @@ public class AddressesAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -101,7 +101,7 @@ public class AddressesAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 				UserShippingAddresses obj = this.form.getAddress();
@@ -138,7 +138,7 @@ public class AddressesAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}

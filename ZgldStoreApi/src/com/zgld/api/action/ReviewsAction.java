@@ -36,7 +36,7 @@ public class ReviewsAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}

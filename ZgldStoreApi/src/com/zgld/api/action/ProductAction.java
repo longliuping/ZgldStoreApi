@@ -36,7 +36,7 @@ public class ProductAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -75,7 +75,7 @@ public class ProductAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -97,7 +97,7 @@ public class ProductAction extends BaseAction {
 			this.form.setJsonMsg("success", true, json, 200);
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}

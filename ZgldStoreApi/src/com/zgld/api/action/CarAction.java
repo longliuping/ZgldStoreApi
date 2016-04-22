@@ -32,7 +32,7 @@ public class CarAction extends BaseAction {
 			} else {
 				YAccount account = getUserInfo();
 				if (account == null) {
-					this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+					this.form.setJsonMsg(NO_USER, false, json, 201);
 				} else {
 					int userId = account.getUsers().getUserId().intValue();
 					String skuId = this.form.getSkuId();
@@ -75,7 +75,7 @@ public class CarAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -93,7 +93,7 @@ public class CarAction extends BaseAction {
 			} else {
 				YAccount account = getUserInfo();
 				if (account == null) {
-					this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+					this.form.setJsonMsg(NO_USER, false, json, 201);
 				} else {
 					int userId = account.getUsers().getUserId().intValue();
 					String skuId = this.form.getSkuId();
@@ -111,7 +111,7 @@ public class CarAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -134,7 +134,7 @@ public class CarAction extends BaseAction {
 				} else {
 					YAccount account = getUserInfo();
 					if (account == null) {
-						this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+						this.form.setJsonMsg(NO_USER, false, json, 201);
 					} else {
 						int userId = account.getUsers().getUserId().intValue();
 						StringBuffer sbHql = new StringBuffer(" select count(*) from ShoppingCarts as hsc where ");
@@ -173,7 +173,7 @@ public class CarAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -186,7 +186,7 @@ public class CarAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 				List lsitHishopShoppingCarts = this.baseService.findAll(
@@ -218,7 +218,7 @@ public class CarAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}

@@ -14,7 +14,7 @@ public class AccountAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 
@@ -25,7 +25,7 @@ public class AccountAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -35,7 +35,7 @@ public class AccountAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 
@@ -46,7 +46,7 @@ public class AccountAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -56,7 +56,7 @@ public class AccountAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 
@@ -67,7 +67,7 @@ public class AccountAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -77,7 +77,7 @@ public class AccountAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 
@@ -89,7 +89,7 @@ public class AccountAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -99,7 +99,7 @@ public class AccountAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 
@@ -111,7 +111,7 @@ public class AccountAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -121,7 +121,7 @@ public class AccountAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if ((this.form.getAmount() == null) || (this.form.getAmount().doubleValue() <= 0.0D)) {
 				this.form.setJsonMsg("amount不能为空", false, json, 1001);
 			} else {
@@ -137,7 +137,7 @@ public class AccountAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -147,7 +147,7 @@ public class AccountAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if ((this.form.getAmount() == null) || (this.form.getAmount().doubleValue() <= 0.0D)) {
 				this.form.setJsonMsg("amount不能为空", false, json, 1001);
 			} else {
@@ -165,7 +165,7 @@ public class AccountAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}

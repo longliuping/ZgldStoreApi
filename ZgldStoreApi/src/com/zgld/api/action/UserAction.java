@@ -51,7 +51,7 @@ public class UserAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -93,7 +93,7 @@ public class UserAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -106,14 +106,14 @@ public class UserAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				json.put("info", account);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -126,7 +126,7 @@ public class UserAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if (this.form.getOldPassword() == null) {
 				this.form.setJsonMsg("密码oldPassword不能为空", false, json, 1001);
 			} else if (this.form.getPassword() == null) {
@@ -143,7 +143,7 @@ public class UserAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -156,7 +156,7 @@ public class UserAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if (this.form.getUserinfo() == null) {
 				this.form.setJsonMsg("userinfo.gender不能为空", false, json, 1001);
 			} else if ((this.form.getUserinfo().getAccountSex().intValue() > 1)
@@ -170,7 +170,7 @@ public class UserAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -183,8 +183,8 @@ public class UserAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if (this.form.getUserinfo().getAccountEmail() == null) {
 				this.form.setJsonMsg("userinfo.accountEmail不能为空", false, json, 1001);
 			} else if (!EmailUtil.emailMatches(this.form.getUserinfo().getAccountEmail())) {
@@ -197,7 +197,7 @@ public class UserAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -210,7 +210,7 @@ public class UserAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if (this.form.getUserinfo().getAccountHead() == null) {
 				this.form.setJsonMsg("userinfo.accountHead不能为空", false, json, 1001);
 			} else {
@@ -227,7 +227,7 @@ public class UserAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -240,7 +240,7 @@ public class UserAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if (this.form.getTelPhone() == null) {
 				this.form.setJsonMsg("userinfo.telPhone不能为空", false, json, 1001);
 			} else {
@@ -251,7 +251,7 @@ public class UserAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
@@ -264,7 +264,7 @@ public class UserAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
-				this.form.setJsonMsg("该账号已经在其它设备登录", false, json, 201);
+				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if (this.form.getCellPhone() == null) {
 				this.form.setJsonMsg("userinfo.cellPhone不能为空", false, json, 1001);
 			} else {
@@ -275,7 +275,7 @@ public class UserAction extends BaseAction {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.form.setJsonMsg("系统出错", false, json, 1001);
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return "jsonPage";
 	}
