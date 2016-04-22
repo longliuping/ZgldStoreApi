@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.zgld.api.beans.Products;
+import com.zgld.api.beans.ShopArea;
 import com.zgld.api.beans.YShop;
 
 /**
@@ -44,31 +45,31 @@ public class SupplierAction extends BaseAction {
 		return JSON_PAGE;
 	}
 
-	public String hot_supplier() {
-		Map<String, Object> json = new HashMap<String, Object>();
-		try {
-			// List<SupperHot> listSupperHots = (List<SupperHot>)
-			// baseService.findPage(form.getPageNum(), form.getPageSize(),
-			// " from SupperHot as sh where sh.hotid = " + form.getHotid());
-			// List<Supplier> listInfo = new ArrayList<Supplier>();
-			// if (listSupperHots != null && listSupperHots.size() > 0) {
-			// StringBuffer sb = new StringBuffer(" from Supplier as s where ");
-			// for (int i = 0; i < listSupperHots.size(); i++) {
-			// SupperHot supperHot = listSupperHots.get(i);
-			// sb.append(" s.userId = " + supperHot.getUserid() + " or ");
-			// }
-			// sb.delete(sb.toString().length() - 3, sb.toString().length());
-			// listInfo = (List<Supplier>) baseService.findAll(sb.toString());
-			// }
-			// json.put(LISTINFO, listInfo);
-			// form.setJsonMsg(SUCCESS, true, json, 200);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
-		}
-		return JSON_PAGE;
-	}
+//	public String hot_supplier() {
+//		Map<String, Object> json = new HashMap<String, Object>();
+//		try {
+//			 List<SupperHot> listSupperHots = (List<SupperHot>)
+//			 baseService.findPage(form.getPageNum(), form.getPageSize(),
+//			 " from SupperHot as sh where sh.hotid = " + form.getHotid());
+//			 List<Supplier> listInfo = new ArrayList<Supplier>();
+//			 if (listSupperHots != null && listSupperHots.size() > 0) {
+//			 StringBuffer sb = new StringBuffer(" from Supplier as s where ");
+//			 for (int i = 0; i < listSupperHots.size(); i++) {
+//			 SupperHot supperHot = listSupperHots.get(i);
+//			 sb.append(" s.userId = " + supperHot.getUserid() + " or ");
+//			 }
+//			 sb.delete(sb.toString().length() - 3, sb.toString().length());
+//			 listInfo = (List<Supplier>) baseService.findAll(sb.toString());
+//			 }
+//			 json.put(LISTINFO, listInfo);
+//			 form.setJsonMsg(SUCCESS, true, json, 200);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//			form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
+//		}
+//		return JSON_PAGE;
+//	}
 
 	/**
 	 * 根据地址和热门标签查询商家
@@ -80,8 +81,8 @@ public class SupplierAction extends BaseAction {
 		try {
 			List<YShop> listInfo = new ArrayList<YShop>();
 			List<?> obj = baseService.findPage(form.getPageNum(), form.getPageSize(),
-					" from YShop as s,SupperArea as sa,SupperHot as sh where s.shopId = sa.userid and sa.userid = sh.userid and sa.areaid = "
-							+ form.getAreaid() + " and sh.hotid = " + form.getHotid());
+					" from YShop as s,ShopArea as sa,ShopHot as sh where s.shopId = sa.shopId and sa.shopId = sh.shopId and sa.areaId = "
+							+ form.getAreaid() + " and sh.hotId = " + form.getHotid());
 			for (Object object : obj) {
 				listInfo.add((YShop) ((Object[]) object)[0]);
 			}
