@@ -49,31 +49,31 @@ public class SupplierAction extends BaseAction {
 		return JSON_PAGE;
 	}
 
-//	public String hot_supplier() {
-//		Map<String, Object> json = new HashMap<String, Object>();
-//		try {
-//			 List<SupperHot> listSupperHots = (List<SupperHot>)
-//			 baseService.findPage(form.getPageNum(), form.getPageSize(),
-//			 " from SupperHot as sh where sh.hotid = " + form.getHotid());
-//			 List<Supplier> listInfo = new ArrayList<Supplier>();
-//			 if (listSupperHots != null && listSupperHots.size() > 0) {
-//			 StringBuffer sb = new StringBuffer(" from Supplier as s where ");
-//			 for (int i = 0; i < listSupperHots.size(); i++) {
-//			 SupperHot supperHot = listSupperHots.get(i);
-//			 sb.append(" s.userId = " + supperHot.getUserid() + " or ");
-//			 }
-//			 sb.delete(sb.toString().length() - 3, sb.toString().length());
-//			 listInfo = (List<Supplier>) baseService.findAll(sb.toString());
-//			 }
-//			 json.put(LISTINFO, listInfo);
-//			 form.setJsonMsg(SUCCESS, true, json, 200);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//			form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
-//		}
-//		return JSON_PAGE;
-//	}
+	// public String hot_supplier() {
+	// Map<String, Object> json = new HashMap<String, Object>();
+	// try {
+	// List<SupperHot> listSupperHots = (List<SupperHot>)
+	// baseService.findPage(form.getPageNum(), form.getPageSize(),
+	// " from SupperHot as sh where sh.hotid = " + form.getHotid());
+	// List<Supplier> listInfo = new ArrayList<Supplier>();
+	// if (listSupperHots != null && listSupperHots.size() > 0) {
+	// StringBuffer sb = new StringBuffer(" from Supplier as s where ");
+	// for (int i = 0; i < listSupperHots.size(); i++) {
+	// SupperHot supperHot = listSupperHots.get(i);
+	// sb.append(" s.userId = " + supperHot.getUserid() + " or ");
+	// }
+	// sb.delete(sb.toString().length() - 3, sb.toString().length());
+	// listInfo = (List<Supplier>) baseService.findAll(sb.toString());
+	// }
+	// json.put(LISTINFO, listInfo);
+	// form.setJsonMsg(SUCCESS, true, json, 200);
+	// } catch (Exception e) {
+	// // TODO: handle exception
+	// e.printStackTrace();
+	// form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
+	// }
+	// return JSON_PAGE;
+	// }
 
 	/**
 	 * 根据地址和热门标签查询商家
@@ -99,25 +99,32 @@ public class SupplierAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
-	public String offline_payment(){
+
+	public String offline_payment() {
 		Map<String, Object> json = new HashMap<String, Object>();
 		try {
-			YShop shop = (YShop)baseService.bean(" from YShop as s where s.shopId = "+form.getShopId());
-			if(shop==null){
-				this.form.setJsonMsg("商家不存在", false, json, 1001);
-			}else{
-				UserProfile userProfile = (UserProfile)this.baseService.bean(" from UserProfile as p where p.userId = "+shop.getUserId());
-				if(userProfile==null){
-					this.form.setJsonMsg("商户已被删除", false, json, 1001);
-				}else if(form.getMoney()==null){
-					this.form.setJsonMsg("money不能为空", false, json, 1001);
-				}else if(userProfile.getBalance()<form.getMoney()){
-					this.form.setJsonMsg("商户账户余额不足"+PriceUtil.price(form.getMoney())+",请提醒商户充值！", false, json, 1001);
-				}else{
-					form.setJsonMsg("提交成功，等待商户审核!", true, json, 200);
+			YAccount account = getUserInfo();
+			if (account == null) {
+				this.form.setJsonMsg(NO_USER, false, json, 201);
+			} else {
+				YShop shop = (YShop) baseService.bean(" from YShop as s where s.shopId = " + form.getShopId());
+				if (shop == null) {
+					this.form.setJsonMsg("商家不存在", false, json, 1001);
+				} else {
+					UserProfile userProfile = (UserProfile) this.baseService
+							.bean(" from UserProfile as p where p.userId = " + shop.getUserId());
+					if (userProfile == null) {
+						this.form.setJsonMsg("商户已被删除", false, json, 1001);
+					} else if (form.getMoney() == null) {
+						this.form.setJsonMsg("money不能为空", false, json, 1001);
+					} else if (userProfile.getBalance() < form.getMoney()) {
+						this.form.setJsonMsg("商户账户余额不足" + PriceUtil.price(form.getMoney()) + ",请提醒商户充值！", false, json,
+								1001);
+					} else {
+						form.setJsonMsg("提交成功，等待商户审核!", true, json, 200);
+					}
 				}
 			}
-			form.setJsonMsg(SUCCESS, true, json, 200);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
