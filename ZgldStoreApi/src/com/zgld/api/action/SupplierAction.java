@@ -7,7 +7,11 @@ import java.util.Map;
 
 import com.zgld.api.beans.Products;
 import com.zgld.api.beans.ShopArea;
+import com.zgld.api.beans.UserProfile;
+import com.zgld.api.beans.Users;
+import com.zgld.api.beans.YAccount;
 import com.zgld.api.beans.YShop;
+import com.zgld.api.utils.PriceUtil;
 
 /**
  * 商家action
@@ -87,6 +91,32 @@ public class SupplierAction extends BaseAction {
 				listInfo.add((YShop) ((Object[]) object)[0]);
 			}
 			json.put(LISTINFO, listInfo);
+			form.setJsonMsg(SUCCESS, true, json, 200);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
+		}
+		return JSON_PAGE;
+	}
+	public String offline_payment(){
+		Map<String, Object> json = new HashMap<String, Object>();
+		try {
+			YShop shop = (YShop)baseService.bean(" from YShop as s where s.shopId = "+form.getShopId());
+			if(shop==null){
+				this.form.setJsonMsg("商家不存在", false, json, 1001);
+			}else{
+				UserProfile userProfile = (UserProfile)this.baseService.bean(" from UserProfile as p where p.userId = "+shop.getUserId());
+				if(userProfile==null){
+					this.form.setJsonMsg("商户已被删除", false, json, 1001);
+				}else if(form.getMoney()==null){
+					this.form.setJsonMsg("money不能为空", false, json, 1001);
+				}else if(userProfile.getBalance()<form.getMoney()){
+					this.form.setJsonMsg("商户账户余额不足"+PriceUtil.price(form.getMoney())+",请提醒商户充值！", false, json, 1001);
+				}else{
+					form.setJsonMsg("提交成功，等待商户审核!", true, json, 200);
+				}
+			}
 			form.setJsonMsg(SUCCESS, true, json, 200);
 		} catch (Exception e) {
 			// TODO: handle exception
