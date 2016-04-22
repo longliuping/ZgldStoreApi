@@ -1,5 +1,6 @@
 package com.zgld.api.beans;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -12,6 +13,10 @@ public abstract class AbstractYShop implements java.io.Serializable {
 	// Fields
 
 	private Integer shopId;
+	private String shopName;
+	private String shopTags;
+	private String shopTitle;
+	private String shopDescribe;
 	private String shopKeyWords;
 	private String shopX;
 	private String shopY;
@@ -23,6 +28,8 @@ public abstract class AbstractYShop implements java.io.Serializable {
 	private String shopIdCard;
 	private String shopIdCardImg;
 	private String shopLicenseImg;
+	private String shopImg;
+	private String shopIntroduction;
 	private Integer userId;
 	private Integer shopIsOpen;
 	private Integer shopIsVerify;
@@ -34,32 +41,6 @@ public abstract class AbstractYShop implements java.io.Serializable {
 	public AbstractYShop() {
 	}
 
-	/** minimal constructor */
-	public AbstractYShop(Date shopTime) {
-		this.shopTime = shopTime;
-	}
-
-	/** full constructor */
-	public AbstractYShop(String shopKeyWords, String shopX, String shopY, Integer areaId, String shopAddress,
-			String shopContact, String shopMobile, String shopCell, String shopIdCard, String shopIdCardImg,
-			String shopLicenseImg, Integer userId, Integer shopIsOpen, Integer shopIsVerify, Date shopTime) {
-		this.shopKeyWords = shopKeyWords;
-		this.shopX = shopX;
-		this.shopY = shopY;
-		this.areaId = areaId;
-		this.shopAddress = shopAddress;
-		this.shopContact = shopContact;
-		this.shopMobile = shopMobile;
-		this.shopCell = shopCell;
-		this.shopIdCard = shopIdCard;
-		this.shopIdCardImg = shopIdCardImg;
-		this.shopLicenseImg = shopLicenseImg;
-		this.userId = userId;
-		this.shopIsOpen = shopIsOpen;
-		this.shopIsVerify = shopIsVerify;
-		this.shopTime = shopTime;
-	}
-
 	// Property accessors
 
 	public Integer getShopId() {
@@ -68,6 +49,38 @@ public abstract class AbstractYShop implements java.io.Serializable {
 
 	public void setShopId(Integer shopId) {
 		this.shopId = shopId;
+	}
+
+	public String getShopName() {
+		return this.shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+
+	public String getShopTags() {
+		return this.shopTags;
+	}
+
+	public void setShopTags(String shopTags) {
+		this.shopTags = shopTags;
+	}
+
+	public String getShopTitle() {
+		return this.shopTitle;
+	}
+
+	public void setShopTitle(String shopTitle) {
+		this.shopTitle = shopTitle;
+	}
+
+	public String getShopDescribe() {
+		return this.shopDescribe;
+	}
+
+	public void setShopDescribe(String shopDescribe) {
+		this.shopDescribe = shopDescribe;
 	}
 
 	public String getShopKeyWords() {
@@ -156,6 +169,22 @@ public abstract class AbstractYShop implements java.io.Serializable {
 
 	public void setShopLicenseImg(String shopLicenseImg) {
 		this.shopLicenseImg = shopLicenseImg;
+	}
+
+	public String getShopImg() {
+		return this.shopImg;
+	}
+
+	public void setShopImg(String shopImg) {
+		this.shopImg = shopImg;
+	}
+
+	public String getShopIntroduction() {
+		return this.shopIntroduction;
+	}
+
+	public void setShopIntroduction(String shopIntroduction) {
+		this.shopIntroduction = shopIntroduction;
 	}
 
 	public Integer getUserId() {
