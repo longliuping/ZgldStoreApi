@@ -38,6 +38,6 @@ public class ReviewsAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 }

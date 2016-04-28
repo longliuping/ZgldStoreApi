@@ -83,7 +83,7 @@ public class OrderAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 	/**
 	 * 提交订单
@@ -167,7 +167,7 @@ public class OrderAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 	/**
 	 * 查询用户的订单
@@ -212,23 +212,23 @@ public class OrderAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public String user_order_item() {
 		Map json = new HashMap();
 
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public String cancel_order() {
 		Map json = new HashMap();
 
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public String offline_payment() {
 		this.form.setJsonMsg();
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 }

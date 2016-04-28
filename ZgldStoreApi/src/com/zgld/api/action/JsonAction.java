@@ -30,7 +30,7 @@ public class JsonAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 	/**
 	 * 主页热门标签
@@ -46,6 +46,6 @@ public class JsonAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 }

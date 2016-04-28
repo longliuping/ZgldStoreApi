@@ -27,7 +27,7 @@ public class AccountAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public String find_point_details() {
@@ -48,7 +48,7 @@ public class AccountAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public String find_balance_details() {
@@ -69,7 +69,7 @@ public class AccountAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public String find_balance_draw_request() {
@@ -91,7 +91,7 @@ public class AccountAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public String find_balance_freeze_details() {
@@ -114,7 +114,7 @@ public class AccountAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public String user_apply_withdrawal() {
@@ -140,7 +140,7 @@ public class AccountAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public String user_recharge() {
@@ -168,6 +168,6 @@ public class AccountAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 }

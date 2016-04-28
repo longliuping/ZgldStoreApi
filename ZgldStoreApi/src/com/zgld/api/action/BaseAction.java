@@ -115,7 +115,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	}
 
 	public String save_modify_data() {
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public Object getModel() {
@@ -178,7 +178,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 			e.printStackTrace();
 			this.form.setJsonMsg("系统出错", false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 
 	public String pwd(String pwd, String passwordformat) {

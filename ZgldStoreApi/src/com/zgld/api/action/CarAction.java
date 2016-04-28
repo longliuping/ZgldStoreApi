@@ -77,7 +77,7 @@ public class CarAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 	/**
 	 * 删除购物车产品
@@ -113,7 +113,7 @@ public class CarAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 	/**
 	 * 更新购物车产品数量
@@ -175,7 +175,7 @@ public class CarAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 	/**
 	 * 用户购物车的所有产品
@@ -220,6 +220,6 @@ public class CarAction extends BaseAction {
 			e.printStackTrace();
 			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
-		return "jsonPage";
+		return JSON_PAGE;
 	}
 }
