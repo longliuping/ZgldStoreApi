@@ -99,6 +99,7 @@ public class AccountAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account == null) {
+				
 				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
