@@ -1,5 +1,6 @@
 package com.zgld.api.action;
 
+import com.alipay.config.OrderPayConfig;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.opensymphony.xwork2.ActionSupport;
@@ -246,5 +247,33 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	/**
+	 * 获取支付宝配置
+	 * @param body
+	 * @param subject
+	 * @param expenses
+	 * @param totalFee
+	 * @param orderId
+	 * @param notifyUrl
+	 * @return
+	 */
+	public OrderPayConfig getAlipayconfig(String body,String subject,Double expenses,Double totalFee,int orderId,String notifyUrl){
+		OrderPayConfig config = new OrderPayConfig();
+		config.setBody(body);
+		config.setSubject(subject);
+		config.setExpenses(expenses);
+		config.setTotal_fee(totalFee);
+		config.setNotify_url(notifyUrl);
+		config.setOrderId(orderId);
+		config.setPartner("2088221599054403");
+		config.setSeller_id("709877070@qq.com");
+		config.setRsa_private(
+				"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALhgnZ3yOtEbHr0WD/a7ekU3+UBdPz1+Rq1FGkM+duEKCMqWlJE2ow+WG8tR/WT3VtvYjeZGQsDpaEK6IuoBbkIl1+a2n4i8amMp5bELaLkwbsN24fuMrO6zno3uVD4BXcn9GxTPHn7yiimuE2hvLuCD8OkHseCDc/rf7+4B6SbpAgMBAAECgYBdi8+MipDi9TKUVzRER/ySUALrcCQc7Aup78ySX4frR68MMngwcRssVknFz9STvJZaNrZQJkfKHuJiMJR0S8OHeZ7wZt2u3cXn3tbvkqoYscc7WMmBM10k16npC8uw0eB1XU/y4dT53zFPtGe6HQ5UG9AiOKoerWQtTqSp1FD1AQJBAOBgEa4g6lhuobs4D4kE1BsQ+xK4utbvuKG+YLfebfsLUZZ1NmBbrzO3qYEa8PeB95YPK1OkFlPi6wRLBkO31OECQQDSXVb0oWeplZO1t/O858DOgVIKtRkJs7GSPFAfUak1p0/GZ+fbokUhiaNS6HLfcnMx3LyE7PFyZS4MFitm7QsJAkB7LQJHv5YnGgT7jJkqtVXjzfynmHYpzMxlLuhVyGxEJ0CRAqPpXivejnMlhy7GEbljzcwRTMFdJ/OxFabIwkDBAkEAjkvbJREFGP538yTid7bggg+SGnIT5K8rf3rSy8ymRAfP+6qPeM8UKjJ7Svq3sZQufd0NnHDWhgYRFtXsN+xCWQJAGWVeTpdFzdlPNaOflq7D2TFqo7H5kqz2s+FbByGVsNz4At5DsITBTvneHazkvWSrY11kWXui/Vd41fMl5pEBAA==");
+
+		config.setRsa_public(
+				"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4YJ2d8jrRGx69Fg/2u3pFN/lA\nXT89fkatRRpDPnbhCgjKlpSRNqMPlhvLUf1k91bb2I3mRkLA6WhCuiLqAW5CJdfmtp+IvGpjKeWxC2i5MG7DduH7jKzus56N7lQ+AV3J/RsUzx5+8ooprhNoby7gg/DpB7Hgg3P63+/uAekm6QIDAQAB");
+
+		return config;
 	}
 }

@@ -171,7 +171,8 @@ public class AccountAction extends BaseAction {
 				BalanceDetails info = (BalanceDetails) this.baseService
 						.bean(" from BalanceDetails as b where b.balanceId = " + id.toString());
 				json.put("info", info);
-				this.form.setJsonMsg("success", true, json, 200);
+				json.put("config", getAlipayconfig("在线充值", "用户使用手机端充值", 0.0D, form.getAmount(), Integer.parseInt(id.toString()), "http://115.28.20.167:8090/webapi/notify_url2.jsp"));
+				this.form.setJsonMsg("提交成功，请充值!", true, json, 200);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
