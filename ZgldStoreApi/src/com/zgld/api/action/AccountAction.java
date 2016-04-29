@@ -138,6 +138,7 @@ public class AccountAction extends BaseAction {
 				UserProfile up = account.getUserProfile();
 				up.setBalance(up.getBalance()-form.getAmount());
 				baseService.update(up);
+				json.put("info", account);
 				this.form.setJsonMsg("申请成功，等待审核!", true, json, 200);
 			}
 		} catch (Exception e) {
