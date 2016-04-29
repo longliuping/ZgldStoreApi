@@ -3,6 +3,7 @@ package com.zgld.api.action;
 import com.alipay.util.AlipayInfo;
 import com.zgld.api.beans.BalanceDetails;
 import com.zgld.api.beans.Orders;
+import com.zgld.api.beans.UserProfile;
 import com.zgld.api.service.BaseService;
 import com.zgld.api.utils.Contents;
 import com.zgld.api.utils.DateUtils;
@@ -116,6 +117,11 @@ public class AlipayTrade {
 					balance.setPayDateTime(DateUtils.strDateTimeToDate(info.getGmt_payment()));
 					balance.setPayTradeNo(info.getTrade_no());
 					baseService.update(balance);
+					UserProfile up = (UserProfile)baseService.bean(" from UserProfile as up where up.userId = "+balance.getUserId());
+					if(up!=null){
+						up.setBalance(up.getBalance()+balance.getBalance());
+						baseService.update(up);
+					}
 					result = "success";
 					System.out.println("修改充值号状态成功");
 				}else{
