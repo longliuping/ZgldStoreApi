@@ -24,7 +24,7 @@ public class AccountAction extends BaseAction {
 				int userId = account.getUsers().getUserId().intValue();
 
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
-						this.form.getPageSize().intValue(), " from InpourRequest as hsc where hsc.userId = " + userId);
+						this.form.getPageSize().intValue(), " from InpourRequest as hsc where hsc.userId = " + userId+" order by hsc.tradeDate desc ");
 				json.put("listInfo", listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
@@ -48,7 +48,7 @@ public class AccountAction extends BaseAction {
 				int userId = account.getUsers().getUserId().intValue();
 
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
-						this.form.getPageSize().intValue(), " from PointDetails as hsc where hsc.userId = " + userId);
+						this.form.getPageSize().intValue(), " from PointDetails as hsc where hsc.userId = " + userId +" order by hsc.tradeDate desc ");
 				json.put("listInfo", listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
@@ -70,7 +70,7 @@ public class AccountAction extends BaseAction {
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
-						this.form.getPageSize().intValue(), " from BalanceDetails as hsc where hsc.userId = " + userId);
+						this.form.getPageSize().intValue(), " from BalanceDetails as hsc where hsc.userId = " + userId+" order by hsc.tradeDate desc ");
 				json.put("listInfo", listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
@@ -95,7 +95,7 @@ public class AccountAction extends BaseAction {
 
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(),
-						" from BalanceDrawRequest as hsc where hsc.userId = " + userId);
+						" from BalanceDrawRequest as hsc where hsc.userId = " + userId +" order by hsc.requestTime desc ");
 				json.put("listInfo", listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
@@ -121,7 +121,7 @@ public class AccountAction extends BaseAction {
 
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(),
-						" from BalanceFreezeDetails as hsc where hsc.userId = " + userId);
+						" from BalanceFreezeDetails as hsc where hsc.userId = " + userId+" order by hsc.freezeTime desc ");
 				json.put("listInfo", listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
