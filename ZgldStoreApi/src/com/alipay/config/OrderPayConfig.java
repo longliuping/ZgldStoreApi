@@ -3,7 +3,7 @@ package com.alipay.config;
 import java.io.Serializable;
 
 public class OrderPayConfig implements Serializable {
-	Integer orderId;
+	String orderId;
 	String subject;
 	String body;
 	Double expenses;
@@ -14,11 +14,11 @@ public class OrderPayConfig implements Serializable {
 	String rsa_public;
 	String notify_url;
 
-	public Integer getOrderId() {
+	public String getOrderId() {
 		return this.orderId;
 	}
 
-	public void setOrderId(Integer orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 

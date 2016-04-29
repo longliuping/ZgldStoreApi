@@ -258,7 +258,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	 * @param notifyUrl
 	 * @return
 	 */
-	public OrderPayConfig getAlipayconfig(String body,String subject,Double expenses,Double totalFee,int orderId,String notifyUrl){
+	public OrderPayConfig getAlipayconfig(String body,String subject,Double expenses,Double totalFee,String orderId,String notifyUrl){
 		OrderPayConfig config = new OrderPayConfig();
 		config.setBody(body);
 		config.setSubject(subject);

@@ -102,7 +102,7 @@
 			}
 			if ("REFUND_SUCCESS".equals(refund_status) && "TRADE_CLOSED".equals(trade_status)) {
 				System.out.println("全额退款");
-				result = AlipayTrade.full_refund(info);
+				//result = AlipayTrade.full_refund(info);
 			} else if ("REFUND_SUCCESS".equals(refund_status) && "TRADE_SUCCESS".equals(trade_status)) {
 				System.out.println("非全额退款");
 				result = AlipayTrade.full_refund(info);
@@ -111,7 +111,7 @@
 				result = "success";
 			} else if ("TRADE_SUCCESS".equals(trade_status)) {
 				System.out.println("支付成功");
-				result = AlipayTrade.alipay_order(info);
+				result = AlipayTrade.alipay_user_recharge(info);
 			} else if ("WAIT_BUYER_PAY".equals(trade_status)) {
 				System.out.println("交易创建");
 				result = "success";

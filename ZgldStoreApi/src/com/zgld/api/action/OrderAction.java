@@ -74,7 +74,7 @@ public class OrderAction extends BaseAction {
 					config.setExpenses(Double.valueOf(0.0D));
 					config.setTotal_fee(order.getOrderTotalPrice());
 					config.setNotify_url("http://115.28.20.167:8090/webapi/notify_url.jsp");
-					config.setOrderId(order.getOrderId());
+					config.setOrderId(order.getOrderId()+"");
 					config.setPartner("2088221599054403");
 					config.setSeller_id("709877070@qq.com");
 					config.setRsa_private(

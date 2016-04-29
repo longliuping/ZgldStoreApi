@@ -1,6 +1,7 @@
 package com.zgld.api.action;
 
 import com.alipay.util.AlipayInfo;
+import com.zgld.api.beans.BalanceDetails;
 import com.zgld.api.beans.Orders;
 import com.zgld.api.service.BaseService;
 import com.zgld.api.utils.Contents;
@@ -89,6 +90,39 @@ public class AlipayTrade {
 					System.out.println("订单，退款状态：" + order.getRefundStatus());
 					System.out.println("订单存在，订单号：" + order.getOrderId());
 					if ("1".equals(order.getRefundStatus()))
+						result = "success";
+				} else {
+					System.out.println("订单不存在");
+				}
+			} else {
+				System.out.println("参数错误");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("订单出现异常:" + e.getMessage());
+		}
+		return result;
+	}
+	public static String alipay_user_recharge(AlipayInfo info) {
+		String result = "fail";
+		try {
+			if (info != null) {
+				BalanceDetails balance = (BalanceDetails)baseService.bean(" from BalanceDetails as b where b.balanceId = "+info.getOut_trade_no());
+				if(balance!=null){
+					System.out.println("修改充值号付款状态");
+					balance.setPayTotalFee(Double.parseDouble(info.getTotal_fee()));
+					balance.setBuyerAccount(info.getBuyer_email());
+					balance.setPayDateTime(DateUtils.strDateTimeToDate(info.getGmt_payment()));
+					balance.setPayTradeNo(info.getTrade_no());
+					baseService.update(balance);
+					result = "success";
+					System.out.println("修改充值号状态成功");
+				}else{
+					System.out.println("充值号不存在");
+				}
+				if (balance != null) {
+//					System.out.println("订单存在，订单状态：" + balance.getPaymentStatus());
+					System.out.println("订单存在，订单号：" + balance.getBalanceId());
 						result = "success";
 				} else {
 					System.out.println("订单不存在");
