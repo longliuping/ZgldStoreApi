@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 public class AccountAction extends BaseAction {
+	/**
+	 * 收入明细
+	 * @return
+	 */
 	public String find_inpour_request() {
 		Map json = new HashMap();
 		try {
@@ -30,7 +34,10 @@ public class AccountAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
-
+	/**
+	 * 积分详细
+	 * @return
+	 */
 	public String find_point_details() {
 		Map json = new HashMap();
 		try {
@@ -51,7 +58,9 @@ public class AccountAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
-
+	/**
+	 * 充值明细
+	 */
 	public String find_balance_details() {
 		Map json = new HashMap();
 		try {
@@ -60,7 +69,6 @@ public class AccountAction extends BaseAction {
 				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
-
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(), " from BalanceDetails as hsc where hsc.userId = " + userId);
 				json.put("listInfo", listInfo);
@@ -72,7 +80,10 @@ public class AccountAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
-
+	/**
+	 * 提现明细
+	 * @return
+	 */
 	public String find_balance_draw_request() {
 		Map json = new HashMap();
 		try {
@@ -94,7 +105,10 @@ public class AccountAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
-
+	/**
+	 * 冻结明细
+	 * @return
+	 */
 	public String find_balance_freeze_details() {
 		Map json = new HashMap();
 		try {
@@ -117,7 +131,10 @@ public class AccountAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
-
+	/**
+	 * 用户申请提现
+	 * @return
+	 */
 	public String user_apply_withdrawal() {
 		Map json = new HashMap();
 		try {
@@ -151,7 +168,10 @@ public class AccountAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
-
+	/**
+	 * 在线充值 生成充值
+	 * @return
+	 */
 	public String user_recharge() {
 		Map json = new HashMap();
 		try {
@@ -171,7 +191,7 @@ public class AccountAction extends BaseAction {
 //				BalanceDetails info = (BalanceDetails) this.baseService
 //						.bean(" from BalanceDetails as b where b.balanceId = " + id.toString());
 //				json.put("info", info);
-				json.put(INFO, getAlipayconfig("在线充值", "用户使用手机端充值", 0.0D, form.getAmount(),id.toString(), "http://115.28.20.167:8090/webapi/notify_url2.jsp"));
+				json.put(INFO, getAlipayconfig("在线充值", "用户使用手机端充值", 0.0D, form.getAmount(),"ZXCZ"+id.toString(), "http://115.28.20.167:8090/webapi/notify_url2.jsp"));
 				this.form.setJsonMsg("提交成功，请充值!", true, json, 200);
 			}
 		} catch (Exception e) {

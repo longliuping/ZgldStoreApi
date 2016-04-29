@@ -107,7 +107,7 @@ public class AlipayTrade {
 		String result = "fail";
 		try {
 			if (info != null) {
-				BalanceDetails balance = (BalanceDetails)baseService.bean(" from BalanceDetails as b where b.balanceId = "+info.getOut_trade_no());
+				BalanceDetails balance = (BalanceDetails)baseService.bean(" from BalanceDetails as b where b.balanceId = "+info.getOut_trade_no().replace("ZXCZ", ""));
 				if(balance!=null){
 					System.out.println("修改充值号付款状态");
 					balance.setPayTotalFee(Double.parseDouble(info.getTotal_fee()));
