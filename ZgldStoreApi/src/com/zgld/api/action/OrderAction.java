@@ -283,7 +283,7 @@ public class OrderAction extends BaseAction {
 					this.form.setJsonMsg("此订单暂时不能删除", false, json, 1001);
 				} else {
 					baseService.delete(order);
-					baseService.updateListObject(" delete from Orders as o where o.orderId = "+order.getOrderId());
+					baseService.updateListObject(" delete from OrderItems as o where o.orderId = "+order.getOrderId());
 					form.setJsonMsg("删除成功!", true, json, 200);
 				}
 			}

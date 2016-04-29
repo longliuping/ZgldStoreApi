@@ -1,6 +1,7 @@
 package com.zgld.api.action;
 import com.zgld.api.beans.BalanceDetails;
 import com.zgld.api.beans.BalanceDrawRequest;
+import com.zgld.api.beans.UserProfile;
 import com.zgld.api.beans.YAccount;
 import java.io.Serializable;
 import java.util.Date;
@@ -123,8 +124,8 @@ public class AccountAction extends BaseAction {
 			YAccount account = getUserInfo();
 			if (account == null) {
 				this.form.setJsonMsg(NO_USER, false, json, 201);
-			} else if ((this.form.getAmount() == null) || (this.form.getAmount().doubleValue() <= 0.0D)) {
-				this.form.setJsonMsg("amount不能为空", false, json, 1001);
+			} else if ((this.form.getAmount() == null) || (this.form.getAmount().doubleValue() <= 0.0D) || account.getUserProfile().getBalance()==null || account.getUserProfile().getBalance()<=0.0D) {
+				this.form.setJsonMsg("账户余额为0，不能申请提现!", false, json, 1001);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 				BalanceDrawRequest req = new BalanceDrawRequest();
@@ -134,7 +135,10 @@ public class AccountAction extends BaseAction {
 				req.setAmount(this.form.getAmount());
 				req.setRemark(this.form.getRemark());
 				this.baseService.save(req);
-				this.form.setJsonMsg("申请成功，等待审核!(接口调试中...)", true, json, 200);
+				UserProfile up = account.getUserProfile();
+				up.setBalance(up.getBalance()-form.getAmount());
+				baseService.update(up);
+				this.form.setJsonMsg("申请成功，等待审核!", true, json, 200);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
