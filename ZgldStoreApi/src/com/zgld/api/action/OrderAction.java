@@ -6,11 +6,15 @@ import com.zgld.api.beans.OrderItems;
 import com.zgld.api.beans.Orders;
 import com.zgld.api.beans.Products;
 import com.zgld.api.beans.Sku;
+import com.zgld.api.beans.UserProfile;
 import com.zgld.api.beans.UserShippingAddresses;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
+import com.zgld.api.beans.YShop;
 import com.zgld.api.service.BaseService;
 import com.zgld.api.utils.AddressXmlUtils;
+import com.zgld.api.utils.PriceUtil;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,15 +22,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 /**
  * 订单相关
+ * 
  * @author Am
  *
  */
 public class OrderAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 根据订单orderId获取订单要支付的信息
+	 * 
 	 * @return
 	 */
 	public String alipay_order_config() {
@@ -85,8 +93,10 @@ public class OrderAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+
 	/**
 	 * 提交订单
+	 * 
 	 * @return
 	 */
 	public String submit_order() {
@@ -172,8 +182,10 @@ public class OrderAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+
 	/**
 	 * 查询用户的订单
+	 * 
 	 * @return
 	 */
 	public String user_order() {
@@ -218,20 +230,67 @@ public class OrderAction extends BaseAction {
 		return JSON_PAGE;
 	}
 
-	public String user_order_item() {
+	/**
+	 * 用户订单申请退款
+	 * 
+	 * @return
+	 */
+	public String user_order_apply_refound() {
 		Map json = new HashMap();
-
+		try {
+			YAccount account = getUserInfo();
+			if (account == null) {
+				this.form.setJsonMsg(NO_USER, false, json, 201);
+			} else if (this.form.getOrderid() == null) {
+				this.form.setJsonMsg("orderid不能为空", false, json, 1001);
+			} else {
+				Orders order = (Orders) this.baseService
+						.bean(" from Orders as o where o.userId = "+account.getUsers().getUserId()+" and o.orderId = " + this.form.getOrderid());
+				if (order == null) {
+					this.form.setJsonMsg("订单不存在", false, json, 1001);
+				} else if ((order == null) || (order.getPaymentStatus().intValue() != 1)) {
+					this.form.setJsonMsg("此订单暂时不能申请退款", false, json, 1001);
+				} else {
+					order.setRefundStatus(1);// 申请退款
+					baseService.update(order);
+					form.setJsonMsg("提交成功，等待商户审核!", true, json, 200);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
+		}
 		return JSON_PAGE;
 	}
-
-	public String cancel_order() {
+	/**
+	 * 用户删除订单
+	 * @return
+	 */
+	public String user_delete_order() {
 		Map json = new HashMap();
-
-		return JSON_PAGE;
-	}
-
-	public String offline_payment() {
-		this.form.setJsonMsg();
+		try {
+			YAccount account = getUserInfo();
+			if (account == null) {
+				this.form.setJsonMsg(NO_USER, false, json, 201);
+			} else if (this.form.getOrderid() == null) {
+				this.form.setJsonMsg("orderid不能为空", false, json, 1001);
+			} else {
+				Orders order = (Orders) this.baseService
+						.bean(" from Orders as o where o.userId = "+account.getUsers().getUserId()+" and o.orderId = " + this.form.getOrderid());
+				if (order == null) {
+					this.form.setJsonMsg("订单不存在", false, json, 1001);
+				} else if ((order == null) || (order.getPaymentStatus().intValue() != 0)) {
+					this.form.setJsonMsg("此订单暂时不能删除", false, json, 1001);
+				} else {
+					baseService.delete(order);
+					baseService.updateListObject(" delete from Orders as o where o.orderId = "+order.getOrderId());
+					form.setJsonMsg("删除成功!", true, json, 200);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
+		}
 		return JSON_PAGE;
 	}
 }
