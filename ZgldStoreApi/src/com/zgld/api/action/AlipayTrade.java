@@ -110,17 +110,21 @@ public class AlipayTrade {
 			if (info != null) {
 				BalanceDetails balance = (BalanceDetails)baseService.bean(" from BalanceDetails as b where b.balanceId = "+info.getOut_trade_no().replace("ZXCZ", ""));
 				if(balance!=null){
-					System.out.println("修改充值号付款状态");
-					balance.setPayTotalFee(Double.parseDouble(info.getTotal_fee()));
-					balance.setBuyerAccount(info.getBuyer_email());
-					balance.setBuyerId(info.getBuyer_id());
-					balance.setPayDateTime(DateUtils.strDateTimeToDate(info.getGmt_payment()));
-					balance.setPayTradeNo(info.getTrade_no());
-					baseService.update(balance);
-					UserProfile up = (UserProfile)baseService.bean(" from UserProfile as up where up.userId = "+balance.getUserId());
-					if(up!=null){
-						up.setBalance(up.getBalance()+balance.getBalance());
-						baseService.update(up);
+					if(balance.getPayTradeNo()!=null && balance.getPayTradeNo().length()>2){
+						System.out.println("充值号已经付款，无需重复修改");
+					}else{
+						System.out.println("修改充值号付款状态");
+						balance.setPayTotalFee(Double.parseDouble(info.getTotal_fee()));
+						balance.setBuyerAccount(info.getBuyer_email());
+						balance.setBuyerId(info.getBuyer_id());
+						balance.setPayDateTime(DateUtils.strDateTimeToDate(info.getGmt_payment()));
+						balance.setPayTradeNo(info.getTrade_no());
+						baseService.update(balance);
+						UserProfile up = (UserProfile)baseService.bean(" from UserProfile as up where up.userId = "+balance.getUserId());
+						if(up!=null){
+							up.setBalance(up.getBalance()+balance.getBalance());
+							baseService.update(up);
+						}
 					}
 					result = "success";
 					System.out.println("修改充值号状态成功");
@@ -145,7 +149,7 @@ public class AlipayTrade {
 	}
 	public static void main(String[] args) {
 		AlipayInfo info = new AlipayInfo();
-		info.setOut_trade_no("ZXCZ24");
+		info.setOut_trade_no("ZXCZ2");
 		info.setGmt_payment("2016-04-29 14:29:46");
 		info.setBuyer_email("longliuping@live.cn");
 		info.setBuyer_id("2088902255191013");
