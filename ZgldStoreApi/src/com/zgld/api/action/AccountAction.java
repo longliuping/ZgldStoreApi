@@ -185,7 +185,8 @@ public class AccountAction extends BaseAction {
 				BalanceDetails req = new BalanceDetails();
 				req.setTradeDate(new Date());
 				req.setUserId(Integer.valueOf(userId));
-				req.setIncome(this.form.getAmount());
+//				req.setIncome(this.form.getAmount());
+				req.setBalance(form.getAmount());
 				req.setRemark(this.form.getRemark());
 				Serializable id = this.baseService.save(req);
 //				BalanceDetails info = (BalanceDetails) this.baseService
