@@ -138,6 +138,7 @@ public class OrderAction extends BaseAction {
 					Serializable s = this.baseService.save(orders);
 					String orderId = s.toString();
 					double salePrice = 0.0D;
+					int shopId = 0;
 					for (int i = 0; i < skuId.length; i++) {
 						Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
 						OrderItems items = new OrderItems();
@@ -153,10 +154,12 @@ public class OrderAction extends BaseAction {
 						this.baseService.updateListObject(" delete from ShoppingCarts as hsc where hsc.sku = '"
 								+ hishopSkus.getSku() + "' and hsc.userId = " + userId);
 						this.baseService.save(items);
+						shopId = hishopSkus.getShopId();
 					}
 					Orders ho = (Orders) this.baseService.bean(" from Orders as ho where ho.orderId = " + orderId);
 					if (ho != null) {
 						ho.setOrderTotalPrice(Double.valueOf(salePrice));
+						ho.setShopId(shopId);
 						this.baseService.update(ho);
 					}
 					json.put("orderId", orderId);

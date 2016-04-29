@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alipay.config.OrderPayConfig;
+import com.zgld.api.beans.Orders;
 import com.zgld.api.beans.Products;
 import com.zgld.api.beans.ShopArea;
 import com.zgld.api.beans.UserProfile;
@@ -129,6 +131,49 @@ public class SupplierAction extends BaseAction {
 			// TODO: handle exception
 			e.printStackTrace();
 			form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
+		}
+		return JSON_PAGE;
+	}
+	/**
+	 * 订单线下支付
+	 * @return
+	 */
+	public String order_offinle_alipay() {
+		Map json = new HashMap();
+		try {
+			YAccount account = getUserInfo();
+			if (account == null) {
+				this.form.setJsonMsg(NO_USER, false, json, 201);
+			} else if (this.form.getOrderid() == null) {
+				this.form.setJsonMsg("orderid不能为空", false, json, 1001);
+			} else {
+				Orders order = (Orders) this.baseService
+						.bean(" from Orders as o where o.orderId = " + this.form.getOrderid());
+				if (order == null) {
+					this.form.setJsonMsg("订单不存在", false, json, 1001);
+				} else if ((order != null) && (order.getPaymentStatus().intValue() == 1)) {
+					this.form.setJsonMsg("订单已经支付，不能重复支付", false, json, 1001);
+				} else {
+					YShop shop = (YShop) baseService.bean(" from YShop as s where s.shopId = " + order.getShopId());
+					if (shop == null) {
+						this.form.setJsonMsg("商家不存在", false, json, 1001);
+					} else {
+						UserProfile userProfile = (UserProfile) this.baseService
+								.bean(" from UserProfile as p where p.userId = " + shop.getUserId());
+						if (userProfile == null) {
+							this.form.setJsonMsg("商户已被删除", false, json, 1001);
+						} else if (userProfile.getBalance() < order.getOrderTotalPrice()) {
+							this.form.setJsonMsg("商户账户余额不足" + PriceUtil.price(order.getOrderTotalPrice()) + ",请提醒商户充值！", false, json,
+									1001);
+						} else {
+							form.setJsonMsg("提交成功，等待商户审核!", true, json, 200);
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return JSON_PAGE;
 	}
