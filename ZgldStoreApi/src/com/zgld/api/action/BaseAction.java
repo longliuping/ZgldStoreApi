@@ -42,7 +42,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	protected BaseService baseService;
 	public static final String INFO = "info";
 	public static final String LISTINFO = "listInfo";
-	public static final String NO_USER = "该账号已经在其它设备登录";
+	public static final String NO_USER = "请重新登录";
 	public static final String SYS_RUN_ERROR = "系统出错";
 
 	public ServletContext getServletContext() {
