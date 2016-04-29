@@ -26,7 +26,7 @@
 <%
 	try {
 		//获取支付宝POST过来反馈信息
-		System.out.println("支付宝发送来的数据如下");
+		System.out.println("支付宝发送来的数据如下(在线充值)");
 		Map<String, String> params = new HashMap<String, String>();
 		Map requestParams = request.getParameterMap();
 		for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {

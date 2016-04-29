@@ -136,4 +136,9 @@ public class AlipayTrade {
 		}
 		return result;
 	}
+	public static void main(String[] args) {
+		AlipayInfo info = new AlipayInfo();
+		info.setOut_trade_no("ZXCZ22");
+		alipay_user_recharge(info);
+	}
 }
