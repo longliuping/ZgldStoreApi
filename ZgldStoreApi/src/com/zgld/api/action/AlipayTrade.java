@@ -145,7 +145,7 @@ public class AlipayTrade {
 	}
 	public static void main(String[] args) {
 		AlipayInfo info = new AlipayInfo();
-		info.setOut_trade_no("ZXCZ22");
+		info.setOut_trade_no("ZXCZ24");
 		info.setGmt_payment("2016-04-29 14:29:46");
 		info.setBuyer_email("longliuping@live.cn");
 		info.setBuyer_id("2088902255191013");
