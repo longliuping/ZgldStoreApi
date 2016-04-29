@@ -37,5 +37,23 @@
         <property name="remark" type="java.lang.String">
             <column name="Remark" />
         </property>
+            <property name="payTypeId" type="java.lang.Integer">
+            <column name="PayTypeId" />
+        </property>
+         <property name="payTradeNo" type="java.lang.String">
+            <column name="PayTradeNo" />
+        </property>
+        <property name="payDateTime" type="java.util.Date">
+            <column name="PayDateTime" length="16" />
+        </property>
+        <property name="payTotalFee" type="java.lang.Double">
+            <column name="PayTotalFee" scale="4" />
+        </property>
+        <property name="buyerId" type="java.lang.String">
+            <column name="BuyerId" />
+        </property>
+        <property name="buyerAccount" type="java.lang.String">
+            <column name="BuyerAccount" />
+        </property>
     </class>
 </hibernate-mapping>

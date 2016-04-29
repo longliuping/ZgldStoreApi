@@ -112,6 +112,7 @@ public class AlipayTrade {
 					System.out.println("修改充值号付款状态");
 					balance.setPayTotalFee(Double.parseDouble(info.getTotal_fee()));
 					balance.setBuyerAccount(info.getBuyer_email());
+					balance.setBuyerId(info.getBuyer_id());
 					balance.setPayDateTime(DateUtils.strDateTimeToDate(info.getGmt_payment()));
 					balance.setPayTradeNo(info.getTrade_no());
 					baseService.update(balance);
@@ -139,6 +140,11 @@ public class AlipayTrade {
 	public static void main(String[] args) {
 		AlipayInfo info = new AlipayInfo();
 		info.setOut_trade_no("ZXCZ22");
+		info.setGmt_payment("2016-04-29 14:29:46");
+		info.setBuyer_email("longliuping@live.cn");
+		info.setBuyer_id("2088902255191013");
+		info.setTrade_no("2016042921001004010220091513");
+		info.setTotal_fee("0.01");
 		alipay_user_recharge(info);
 	}
 }
