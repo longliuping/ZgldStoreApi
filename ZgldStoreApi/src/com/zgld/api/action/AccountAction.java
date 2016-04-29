@@ -122,14 +122,14 @@ public class AccountAction extends BaseAction {
 		Map json = new HashMap();
 		try {
 			YAccount account = getUserInfo();
-			Double balance = null;
+			Double balance = 0.0D;
 			if(account!=null){
 				balance = account.getUserProfile().getBalance();
 			}
 			if (account == null) {
 				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else if ((this.form.getAmount() == null) || (this.form.getAmount().doubleValue() <= 0.0D) || balance==null || balance<=0.0D || balance<form.getAmount()) {
-				this.form.setJsonMsg("账户余额为0，不能申请提现!", false, json, 1001);
+				this.form.setJsonMsg("账户余额为"+balance+"，不能申请提现!", false, json, 1001);
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 				BalanceDrawRequest req = new BalanceDrawRequest();
