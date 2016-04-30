@@ -25,7 +25,7 @@ public class AccountAction extends BaseAction {
 
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(), " from InpourRequest as hsc where hsc.userId = " + userId+" order by hsc.tradeDate desc ");
-				json.put("listInfo", listInfo);
+				json.put(LISTINFO, listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -49,7 +49,7 @@ public class AccountAction extends BaseAction {
 
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(), " from PointDetails as hsc where hsc.userId = " + userId +" order by hsc.tradeDate desc ");
-				json.put("listInfo", listInfo);
+				json.put(LISTINFO, listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -71,7 +71,7 @@ public class AccountAction extends BaseAction {
 				int userId = account.getUsers().getUserId().intValue();
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(), " from BalanceDetails as hsc where hsc.userId = " + userId+" order by hsc.tradeDate desc ");
-				json.put("listInfo", listInfo);
+				json.put(LISTINFO, listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -96,7 +96,7 @@ public class AccountAction extends BaseAction {
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(),
 						" from BalanceDrawRequest as hsc where hsc.userId = " + userId +" order by hsc.requestTime desc ");
-				json.put("listInfo", listInfo);
+				json.put(LISTINFO, listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -122,7 +122,7 @@ public class AccountAction extends BaseAction {
 				List listInfo = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(),
 						" from BalanceFreezeDetails as hsc where hsc.userId = " + userId+" order by hsc.freezeTime desc ");
-				json.put("listInfo", listInfo);
+				json.put(LISTINFO, listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -159,7 +159,7 @@ public class AccountAction extends BaseAction {
 				UserProfile up = account.getUserProfile();
 				up.setBalance(up.getBalance()-form.getAmount());
 				baseService.update(up);
-				json.put("info", account);
+				json.put(INFO, account);
 				this.form.setJsonMsg("申请成功，等待审核!", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -191,7 +191,7 @@ public class AccountAction extends BaseAction {
 				Serializable id = this.baseService.save(req);
 //				BalanceDetails info = (BalanceDetails) this.baseService
 //						.bean(" from BalanceDetails as b where b.balanceId = " + id.toString());
-//				json.put("info", info);
+//				json.put(INFO, info);
 				json.put(INFO, getAlipayconfig("在线充值", "用户使用手机端充值", 0.0D, form.getAmount(),"ZXCZ"+id.toString(), "http://115.28.20.167:8090/webapi/notify_url2.jsp"));
 				this.form.setJsonMsg("提交成功，请充值!", true, json, 200);
 			}

@@ -83,7 +83,7 @@ public class OrderAction extends BaseAction {
 					config.setRsa_public(
 							"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4YJ2d8jrRGx69Fg/2u3pFN/lA\nXT89fkatRRpDPnbhCgjKlpSRNqMPlhvLUf1k91bb2I3mRkLA6WhCuiLqAW5CJdfmtp+IvGpjKeWxC2i5MG7DduH7jKzus56N7lQ+AV3J/RsUzx5+8ooprhNoby7gg/DpB7Hgg3P63+/uAekm6QIDAQAB");
 
-					json.put("info", config);
+					json.put(INFO, config);
 					this.form.setJsonMsg("success", false, json, 200);
 				}
 			}
@@ -220,7 +220,7 @@ public class OrderAction extends BaseAction {
 					}
 					((Orders) hishopOrders.get(i)).setListOrderItems(items);
 				}
-				json.put("listInfo", hishopOrders);
+				json.put(LISTINFO, hishopOrders);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {

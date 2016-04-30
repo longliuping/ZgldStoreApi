@@ -31,7 +31,7 @@ public class ReviewsAction extends BaseAction {
 					pro.setUserInfo((YAccount) o[1]);
 					listInfo.add(pro);
 				}
-				json.put("listInfo", listInfo);
+				json.put(LISTINFO, listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {

@@ -45,7 +45,7 @@ public class UserAction extends BaseAction {
 							account.setUserProfile((UserProfile) object[2]);
 						}
 					}
-					json.put("info", account);
+					json.put(INFO, account);
 					this.form.setJsonMsg("登录成功", true, json, 200);
 				}
 			}
@@ -83,11 +83,11 @@ public class UserAction extends BaseAction {
 						re.setParentUserId(this.form.getId());
 						re.setCurrentUserId(account.getUserProfile().getUserId());
 						this.baseService.save(re);
-						json.put("info", account);
+						json.put(INFO, account);
 						this.form.setJsonMsg("注册成功", true, json, 200);
 					}
 				} else {
-					json.put("info", reg_user());
+					json.put(INFO, reg_user());
 					this.form.setJsonMsg("注册成功", true, json, 200);
 				}
 			}
@@ -108,7 +108,7 @@ public class UserAction extends BaseAction {
 			if (account == null) {
 				this.form.setJsonMsg(NO_USER, false, json, 201);
 			} else {
-				json.put("info", account);
+				json.put(INFO, account);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -138,7 +138,7 @@ public class UserAction extends BaseAction {
 			} else {
 				account.setAccountPassword(this.form.getPassword());
 				this.baseService.update(account);
-				json.put("info", account);
+				json.put(INFO, account);
 				this.form.setJsonMsg("修改成功", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -165,7 +165,7 @@ public class UserAction extends BaseAction {
 			} else {
 				account.setAccountSex(this.form.getUserinfo().getAccountSex());
 				this.baseService.update(account);
-				json.put("info", account);
+				json.put(INFO, account);
 				this.form.setJsonMsg("修改成功", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -192,7 +192,7 @@ public class UserAction extends BaseAction {
 			} else {
 				account.setAccountEmail(this.form.getUserinfo().getAccountEmail());
 				this.baseService.update(account);
-				json.put("info", account);
+				json.put(INFO, account);
 				this.form.setJsonMsg("修改成功", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -219,7 +219,7 @@ public class UserAction extends BaseAction {
 				if ((url != null) && (url.length() > 10)) {
 					account.setAccountHead(url);
 					this.baseService.update(account);
-					json.put("info", account);
+					json.put(INFO, account);
 					this.form.setJsonMsg("修改成功", true, json, 200);
 				} else {
 					this.form.setJsonMsg("base64图片处理失败,请重试", false, json, 1001);
@@ -246,7 +246,7 @@ public class UserAction extends BaseAction {
 			} else {
 				account.getUserProfile().setTelPhone(this.form.getTelPhone());
 				this.baseService.update(account.getUserProfile());
-				json.put("info", account);
+				json.put(INFO, account);
 				this.form.setJsonMsg("修改成功", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -270,7 +270,7 @@ public class UserAction extends BaseAction {
 			} else {
 				account.getUserProfile().setCellPhone(this.form.getCellPhone());
 				this.baseService.update(account.getUserProfile());
-				json.put("info", account);
+				json.put(INFO, account);
 				this.form.setJsonMsg("修改成功", true, json, 200);
 			}
 		} catch (Exception e) {

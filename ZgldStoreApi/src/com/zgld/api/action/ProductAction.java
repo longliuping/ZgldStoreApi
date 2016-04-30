@@ -31,7 +31,7 @@ public class ProductAction extends BaseAction {
 				List listProducts = this.baseService.findPage(this.form.getPageNum().intValue(),
 						this.form.getPageSize().intValue(), " from Products as p where p.categoryId = "
 								+ this.form.getId() + " order by p.addedDate desc ");
-				json.put("listInfo", listProducts);
+				json.put(LISTINFO, listProducts);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {
@@ -69,7 +69,7 @@ public class ProductAction extends BaseAction {
 					}
 					product.setListSkugroups(listSkugroups);
 					info.setProducts(product);
-					json.put("info", info);
+					json.put(INFO, info);
 					this.form.setJsonMsg("success", true, json, 200);
 				}
 			}
@@ -93,7 +93,7 @@ public class ProductAction extends BaseAction {
 				List listInfo = this.baseService.findPage(1, 6, hql);
 				((Categories) listCategories.get(i)).setListProducts(listInfo);
 			}
-			json.put("listInfo", listCategories);
+			json.put(LISTINFO, listCategories);
 			this.form.setJsonMsg("success", true, json, 200);
 		} catch (Exception e) {
 			e.printStackTrace();

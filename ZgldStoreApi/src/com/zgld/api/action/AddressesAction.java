@@ -83,7 +83,7 @@ public class AddressesAction extends BaseAction {
 			} else {
 				int userId = account.getUsers().getUserId().intValue();
 				List listInfo = this.baseService.findAll(" from UserShippingAddresses as hu where hu.userId = " + userId);
-				json.put("listInfo", listInfo);
+				json.put(LISTINFO, listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {

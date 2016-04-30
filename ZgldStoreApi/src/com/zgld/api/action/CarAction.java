@@ -213,7 +213,7 @@ public class CarAction extends BaseAction {
 						lsitHishopShoppingCarts.set(i, carts);
 					}
 				}
-				json.put("listInfo", lsitHishopShoppingCarts);
+				json.put(LISTINFO, lsitHishopShoppingCarts);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
 		} catch (Exception e) {

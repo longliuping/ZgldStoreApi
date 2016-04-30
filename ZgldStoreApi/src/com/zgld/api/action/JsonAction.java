@@ -40,7 +40,7 @@ public class JsonAction extends BaseAction {
 		Map json = new HashMap();
 		try {
 			List listInfo = this.baseService.findAll(" from HotCategory as h ");
-			json.put("listInfo", listInfo);
+			json.put(LISTINFO, listInfo);
 			this.form.setJsonMsg("success", true, json, 200);
 		} catch (Exception e) {
 			e.printStackTrace();
