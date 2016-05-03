@@ -16,7 +16,7 @@
         <property name="tradeDate" type="java.util.Date">
             <column name="TradeDate" length="16" />
         </property>
-        <property name="income" type="java.lang.Double">
+        <property name="income" type="java.util.Date">
             <column name="Income" length="16" />
         </property>
         <property name="expenses" type="java.lang.Double">

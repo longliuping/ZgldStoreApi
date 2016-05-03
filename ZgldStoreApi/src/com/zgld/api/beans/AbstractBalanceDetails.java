@@ -7,7 +7,7 @@ public abstract class AbstractBalanceDetails implements Serializable {
 	private Integer balanceId;
 	private Integer userId;
 	private Date tradeDate;
-	private Double income;
+	private Date income;
 	private Double expenses;
 	private Double reduced;
 	private Double balance;
@@ -45,11 +45,11 @@ public abstract class AbstractBalanceDetails implements Serializable {
 		this.tradeDate = tradeDate;
 	}
 
-	public Double getIncome() {
+	public Date getIncome() {
 		return this.income;
 	}
 
-	public void setIncome(Double income) {
+	public void setIncome(Date income) {
 		this.income = income;
 	}
 
