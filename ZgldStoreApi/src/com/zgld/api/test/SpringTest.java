@@ -26,9 +26,15 @@ public class SpringTest {
 		int userId = 6;
 		baseService = Contents.getBaseService();
 //		rebateLevel();
-		recommendUser(3, 1001);
+		UserProfile up = recommendUser(1, 2);
+		if(up!=null){
+			System.out.println(up.getUserId());
+		}
 	}
-
+	public static void ok_order(){
+		double totlePrice = 100;
+		
+	}
 	/**
 	 * 获取推荐的用户领导
 	 */

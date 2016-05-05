@@ -72,7 +72,7 @@ public class UserAction extends BaseAction {
 				YAccount user = this.baseService.findUserinfoByUserName(this.form.getName());
 				if (user != null) {
 					this.form.setJsonMsg("用户名已经存在", false, json, 1001);
-				} else if ((this.form.getId() != null) && (this.form.getId().intValue() > 10)) {
+				} else if ((this.form.getId() != null) && (this.form.getId().intValue() > 0)) {
 					Users u = (Users) this.baseService
 							.bean(" from Users as u where u.userId = " + this.form.getId());
 					if (u == null) {
