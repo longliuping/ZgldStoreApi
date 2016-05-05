@@ -169,6 +169,33 @@ public class SupplierAction extends BaseAction {
 									1001);
 						} else {
 							form.setJsonMsg("提交成功，等待商家审核!", true, json, 200);
+							double totalPrice = order.getOrderTotalPrice();//订单总金额
+							System.out.println("订单总金额:"+totalPrice);
+							double interestPrrice = PriceUtil.proportion(totalPrice, 10);//返利总金额
+							List<YRebateLevel> list = rebateLevel();
+							System.out.println("利益链总金额:"+interestPrrice);
+							double  u0Price = PriceUtil.proportion(interestPrrice, list.get(0).getRebatePercent());
+							double  u1Price = PriceUtil.proportion(interestPrrice, list.get(1).getRebatePercent());
+							double  u2Price = PriceUtil.proportion(interestPrrice, list.get(2).getRebatePercent());
+							double  u3Price = PriceUtil.proportion(interestPrrice, list.get(3).getRebatePercent());
+							System.out.println("消费者返利金额:"+u0Price+"\n"+"一度人脉返利金额:"+u1Price+"\n二度人脉返利金额:"+u2Price+"\n三度人脉返利金额:"+u3Price);
+							userProfile.setBalance(userProfile.getBalance()+u0Price);
+							baseService.update(userProfile);
+							UserProfile u1 = recommendUser(1, order.getUserId());
+							if(u1!=null){
+								u1.setBalance(u1.getBalance()+u1Price);
+								baseService.update(u1);
+								UserProfile u2 = recommendUser(2, u1.getUserId());
+								if(u2!=null){
+									u2.setBalance(u2.getBalance()+u2Price);
+									baseService.update(u2);
+									UserProfile u3 = recommendUser(3, u2.getUserId());
+									if(u3!=null){
+										u3.setBalance(u3.getBalance()+u3Price);
+										baseService.update(u3);
+									}
+								}
+							}
 						}
 					}
 				}
@@ -179,6 +206,7 @@ public class SupplierAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+	
 	/**
 	 * 订单确认使用
 	 */

@@ -30,7 +30,7 @@ public class PriceUtil {
 			return "" + p;
 		}
 	}
-	public static Double proportion (Double price,int number){
+	public static Double proportion (double price,double number){
 		return (price*number)/100;
 	}
 	public static String price(Double price) {

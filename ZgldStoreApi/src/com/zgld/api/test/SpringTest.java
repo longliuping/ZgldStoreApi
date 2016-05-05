@@ -3,37 +3,36 @@ package com.zgld.api.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.zgld.api.beans.Products;
-import com.zgld.api.beans.Sku;
-import com.zgld.api.beans.Skugroup;
 import com.zgld.api.beans.UserProfile;
-import com.zgld.api.beans.Users;
-import com.zgld.api.beans.YAccount;
 import com.zgld.api.beans.YRebateLevel;
 import com.zgld.api.beans.YRebateRelation;
-import com.zgld.api.beans.YWxpayConfig;
 import com.zgld.api.service.BaseService;
 import com.zgld.api.utils.Contents;
+import com.zgld.api.utils.PriceUtil;
 
 public class SpringTest {
 	static BaseService baseService = null;
 
 	public static void main(String[] args) {
-		String token = "123456";
-		int userId = 6;
+//		String token = "123456";
+//		int userId = 6;
 		baseService = Contents.getBaseService();
-//		rebateLevel();
-		UserProfile up = recommendUser(1, 2);
-		if(up!=null){
-			System.out.println(up.getUserId());
-		}
+		ok_order();
+		
+		
 	}
 	public static void ok_order(){
-		double totlePrice = 100;
-		
+		double totalPrice = 1000;//订单总金额
+		System.out.println("订单总金额:"+totalPrice);
+		double interestPrrice = PriceUtil.proportion(totalPrice, 10);//返利总金额
+		List<YRebateLevel> list = rebateLevel();
+		System.out.println("利益链总金额:"+interestPrrice);
+		double  u0Price = PriceUtil.proportion(interestPrrice, list.get(0).getRebatePercent());
+		double  u1Price = PriceUtil.proportion(interestPrrice, list.get(1).getRebatePercent());
+		double  u2Price = PriceUtil.proportion(interestPrrice, list.get(2).getRebatePercent());
+		double  u3Price = PriceUtil.proportion(interestPrrice, list.get(3).getRebatePercent());
+		System.out.println("消费者返利金额:"+u0Price+"\n"+"一度人脉返利金额:"+u1Price+"\n二度人脉返利金额:"+u2Price+"\n三度人脉返利金额:"+u3Price);
+
 	}
 	/**
 	 * 获取推荐的用户领导
