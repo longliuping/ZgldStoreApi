@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.alipay.config.OrderPayConfig;
+import com.zgld.api.beans.BalanceDetails;
 import com.zgld.api.beans.Orders;
 import com.zgld.api.beans.Products;
 import com.zgld.api.beans.ShopArea;
 import com.zgld.api.beans.UserProfile;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
+import com.zgld.api.beans.YRebateLevel;
 import com.zgld.api.beans.YShop;
 import com.zgld.api.utils.PriceUtil;
 
@@ -161,14 +163,43 @@ public class SupplierAction extends BaseAction {
 						UserProfile userProfile = (UserProfile) this.baseService
 								.bean(" from UserProfile as p where p.userId = " + shop.getUserId());
 						if (userProfile == null) {
-							this.form.setJsonMsg("商户已被删除", false, json, 1001);
+							this.form.setJsonMsg("商家已被删除", false, json, 1001);
 						} else if (userProfile.getBalance() < order.getOrderTotalPrice()) {
-							this.form.setJsonMsg("商户账户余额不足" + PriceUtil.price(order.getOrderTotalPrice()) + ",请提醒商户充值！", false, json,
+							this.form.setJsonMsg("商家账户余额不足" + PriceUtil.price(order.getOrderTotalPrice()) + ",请提醒商户充值！", false, json,
 									1001);
 						} else {
-							form.setJsonMsg("提交成功，等待商户审核!", true, json, 200);
+							form.setJsonMsg("提交成功，等待商家审核!", true, json, 200);
 						}
 					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
+		}
+		return JSON_PAGE;
+	}
+	/**
+	 * 订单确认使用
+	 */
+	public String order_ok_use(){
+		Map json = new HashMap();
+		try {
+			YAccount account = getUserInfo();
+			if (account == null) {
+				this.form.setJsonMsg(NO_USER, false, json, 201);
+			} else if (this.form.getOrderid() == null) {
+				this.form.setJsonMsg("orderid不能为空", false, json, 1001);
+			} else {
+				Orders order = (Orders) this.baseService
+						.bean(" from Orders as o where o.orderId = " + this.form.getOrderid());
+				if (order == null) {
+					this.form.setJsonMsg("订单不存在", false, json, 1001);
+				} else if ((order != null) && (order.getPaymentStatus().intValue() <= 1)) {
+					this.form.setJsonMsg("订单还没有支付，不能使用", false, json, 1001);
+				} else {
+					BalanceDetails balanceDetails = new BalanceDetails();
+					List<YRebateLevel> listInfo = (List<YRebateLevel>)baseService.findAll(" from YRebateLevel as l order by l.rebateLevel asc ");
 				}
 			}
 		} catch (Exception e) {

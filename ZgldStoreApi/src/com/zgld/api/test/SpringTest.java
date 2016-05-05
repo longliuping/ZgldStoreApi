@@ -12,6 +12,7 @@ import com.zgld.api.beans.Skugroup;
 import com.zgld.api.beans.UserProfile;
 import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
+import com.zgld.api.beans.YRebateLevel;
 import com.zgld.api.beans.YWxpayConfig;
 import com.zgld.api.service.BaseService;
 import com.zgld.api.utils.Contents;
@@ -52,9 +53,15 @@ public class SpringTest {
 //			// TODO: handle exception
 //			e.printStackTrace();
 //		}
-		List<Products> listInfo = (List<Products>)baseService.findAll(" from Products ");
-		for (Products products : listInfo) {
-			System.out.println(products.getProductName());
+//		List<Products> listInfo = (List<Products>)baseService.findAll(" from Products ");
+//		for (Products products : listInfo) {
+//			System.out.println(products.getProductName());
+//		}
+		List<YRebateLevel> listInfo = (List<YRebateLevel>)baseService.findAll(" from YRebateLevel as l order by l.rebateLevel asc ");
+		for (YRebateLevel yRebateLevel : listInfo) {
+			System.out.println(yRebateLevel.getRebatePercent());
 		}
+		
+		
 	}
 }

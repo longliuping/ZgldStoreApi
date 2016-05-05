@@ -30,7 +30,9 @@ public class PriceUtil {
 			return "" + p;
 		}
 	}
-
+	public static Double proportion (Double price,int number){
+		return (price*number)/100;
+	}
 	public static String price(Double price) {
 		if (price == null) {
 			return "0.00";

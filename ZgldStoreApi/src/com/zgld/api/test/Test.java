@@ -23,6 +23,10 @@ public class Test {
 	}
 
 	public static void main(String[] args) {
-		pwd("123456", "n2FiT+glPSuqrahoRrP7Og==");
+//		pwd("123456", "n2FiT+glPSuqrahoRrP7Og==");
+		System.out.println(proportion (100.0, 20));
+	}
+	public static Double proportion (Double price,int number){
+		return (price*number)/100;
 	}
 }
