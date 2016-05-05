@@ -16,5 +16,8 @@
         <property name="rebatePercent" type="java.lang.Double">
             <column name="Rebate_Percent" precision="53" scale="0" />
         </property>
+        <property name="rebateIntro" type="java.lang.String">
+            <column name="Rebate_Intro" />
+        </property>
     </class>
 </hibernate-mapping>

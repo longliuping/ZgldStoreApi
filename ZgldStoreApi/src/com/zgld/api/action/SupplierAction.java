@@ -198,8 +198,16 @@ public class SupplierAction extends BaseAction {
 				} else if ((order != null) && (order.getPaymentStatus().intValue() <= 1)) {
 					this.form.setJsonMsg("订单还没有支付，不能使用", false, json, 1001);
 				} else {
+					//查询一级人脉用户
+					this.baseService.bean(" from YRebateRelation as r,UserProfile as u where r.currentUserId = u.userId and r.parentUserId = " + account.getUsers().getUserId());
+					//查询二级人脉用户
+					//查询三级人脉用户
+					
 					BalanceDetails balanceDetails = new BalanceDetails();
 					List<YRebateLevel> listInfo = (List<YRebateLevel>)baseService.findAll(" from YRebateLevel as l order by l.rebateLevel asc ");
+					for (YRebateLevel info : listInfo) {
+						
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -208,4 +216,5 @@ public class SupplierAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+	
 }

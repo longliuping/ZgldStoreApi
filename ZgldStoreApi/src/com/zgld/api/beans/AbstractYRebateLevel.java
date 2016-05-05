@@ -12,17 +12,12 @@ public abstract class AbstractYRebateLevel implements java.io.Serializable {
 	private Integer rebateLevelId;
 	private Integer rebateLevel;
 	private Double rebatePercent;
+	private String rebateIntro;
 
 	// Constructors
 
 	/** default constructor */
 	public AbstractYRebateLevel() {
-	}
-
-	/** full constructor */
-	public AbstractYRebateLevel(Integer rebateLevel, Double rebatePercent) {
-		this.rebateLevel = rebateLevel;
-		this.rebatePercent = rebatePercent;
 	}
 
 	// Property accessors
@@ -49,6 +44,14 @@ public abstract class AbstractYRebateLevel implements java.io.Serializable {
 
 	public void setRebatePercent(Double rebatePercent) {
 		this.rebatePercent = rebatePercent;
+	}
+
+	public String getRebateIntro() {
+		return rebateIntro;
+	}
+
+	public void setRebateIntro(String rebateIntro) {
+		this.rebateIntro = rebateIntro;
 	}
 
 }

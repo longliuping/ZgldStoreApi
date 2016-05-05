@@ -1,10 +1,12 @@
 package com.zgld.api.test;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zgld.api.beans.GsonBean;
+import com.zgld.api.beans.YRebateLevel;
 import com.zgld.api.utils.HttpUtil;
 
 public class Test {
@@ -29,4 +31,5 @@ public class Test {
 	public static Double proportion (Double price,int number){
 		return (price*number)/100;
 	}
+	
 }
