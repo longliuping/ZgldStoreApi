@@ -22,7 +22,7 @@ public class SpringTest {
 		
 	}
 	public static void ok_order(){
-		double totalPrice = 1000;//订单总金额
+		double totalPrice = 100;//订单总金额
 		System.out.println("订单总金额:"+totalPrice);
 		double interestPrrice = PriceUtil.proportion(totalPrice, 10);//返利总金额
 		List<YRebateLevel> list = rebateLevel();
@@ -32,6 +32,7 @@ public class SpringTest {
 		double  u2Price = PriceUtil.proportion(interestPrrice, list.get(2).getRebatePercent());
 		double  u3Price = PriceUtil.proportion(interestPrrice, list.get(3).getRebatePercent());
 		System.out.println("消费者返利金额:"+u0Price+"\n"+"一度人脉返利金额:"+u1Price+"\n二度人脉返利金额:"+u2Price+"\n三度人脉返利金额:"+u3Price);
+		//修改订单
 
 	}
 	/**
