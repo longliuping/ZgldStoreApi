@@ -1,14 +1,10 @@
 package com.zgld.api.action;
 
-import com.zgld.api.base.BaseForm;
 import com.zgld.api.beans.Products;
 import com.zgld.api.beans.ShoppingCarts;
 import com.zgld.api.beans.Sku;
-import com.zgld.api.beans.Users;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.beans.YShop;
-import com.zgld.api.service.BaseService;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +12,10 @@ import java.util.Map;
 
 public class CarAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 添加产品到购物车
+	 * 
 	 * @return
 	 */
 	public String add_product_car() {
@@ -31,9 +29,7 @@ public class CarAction extends BaseAction {
 				this.form.setJsonMsg("number不能为空", false, json, 1001);
 			} else {
 				YAccount account = getUserInfo();
-				if (account == null) {
-					this.form.setJsonMsg(NO_USER, false, json, 201);
-				} else {
+				if (account != null) {
 					int userId = account.getUsers().getUserId().intValue();
 					String skuId = this.form.getSkuId();
 					int productId = this.form.getProductId().intValue();
@@ -79,8 +75,10 @@ public class CarAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+
 	/**
 	 * 删除购物车产品
+	 * 
 	 * @return
 	 */
 	public String delete_car_product() {
@@ -92,9 +90,7 @@ public class CarAction extends BaseAction {
 				this.form.setJsonMsg("skuId不能为空", false, json, 1001);
 			} else {
 				YAccount account = getUserInfo();
-				if (account == null) {
-					this.form.setJsonMsg(NO_USER, false, json, 201);
-				} else {
+				if (account != null) {
 					int userId = account.getUsers().getUserId().intValue();
 					String skuId = this.form.getSkuId();
 					int productId = this.form.getProductId().intValue();
@@ -115,8 +111,10 @@ public class CarAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+
 	/**
 	 * 更新购物车产品数量
+	 * 
 	 * @return
 	 */
 	public String update_car_product_quantity() {
@@ -133,9 +131,7 @@ public class CarAction extends BaseAction {
 					this.form.setJsonMsg("数据格式错误", false, json, 1001);
 				} else {
 					YAccount account = getUserInfo();
-					if (account == null) {
-						this.form.setJsonMsg(NO_USER, false, json, 201);
-					} else {
+					if (account != null) {
 						int userId = account.getUsers().getUserId().intValue();
 						StringBuffer sbHql = new StringBuffer(" select count(*) from ShoppingCarts as hsc where ");
 						for (String string : skuIds) {
@@ -177,17 +173,17 @@ public class CarAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+
 	/**
 	 * 用户购物车的所有产品
+	 * 
 	 * @return
 	 */
 	public String user_car_product() {
 		Map json = new HashMap();
 		try {
 			YAccount account = getUserInfo();
-			if (account == null) {
-				this.form.setJsonMsg(NO_USER, false, json, 201);
-			} else {
+			if (account != null) {
 				int userId = account.getUsers().getUserId().intValue();
 				List lsitHishopShoppingCarts = this.baseService.findAll(
 						" from ShoppingCarts as sc where sc.userId = " + userId + " order by sc.lineItemId desc ");
@@ -196,8 +192,8 @@ public class CarAction extends BaseAction {
 					Products products = (Products) this.baseService
 							.bean(" from Products as hp where hp.productId = " + hishopShoppingCarts.getProductId());
 
-					Sku sku = (Sku) this.baseService.bean(" from Sku as hs where hs.productId =" + products.getProductId()
-							+ " and hs.sku = '" + hishopShoppingCarts.getSku() + "'");
+					Sku sku = (Sku) this.baseService.bean(" from Sku as hs where hs.productId ="
+							+ products.getProductId() + " and hs.sku = '" + hishopShoppingCarts.getSku() + "'");
 					products.setSku(sku);
 					List listProducts = new ArrayList();
 					listProducts.add(products);

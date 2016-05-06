@@ -1,4 +1,5 @@
 package com.zgld.api.action;
+
 import com.zgld.api.beans.UserShippingAddresses;
 import com.zgld.api.beans.YAccount;
 import java.util.HashMap;
@@ -7,17 +8,17 @@ import java.util.Map;
 
 public class AddressesAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 删除用户收货地址
+	 * 
 	 * @return
 	 */
 	public String delete_user_shipping_addresses() {
 		Map json = new HashMap();
 		try {
 			YAccount account = getUserInfo();
-			if (account == null) {
-				this.form.setJsonMsg(NO_USER, false, json, 201);
-			} else {
+			if (account != null) {
 				int userId = account.getUsers().getUserId().intValue();
 				UserShippingAddresses info = (UserShippingAddresses) this.baseService
 						.bean(" from UserShippingAddresses as hu where hu.userId = " + userId + " and hu.addressId = "
@@ -35,8 +36,10 @@ public class AddressesAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+
 	/**
 	 * 添加用户收货地址
+	 * 
 	 * @return
 	 */
 	public String add_user_shipping_addresses() {
@@ -44,9 +47,7 @@ public class AddressesAction extends BaseAction {
 		try {
 			UserShippingAddresses info = this.form.getAddress();
 			YAccount account = getUserInfo();
-			if (account == null) {
-				this.form.setJsonMsg(NO_USER, false, json, 201);
-			} else {
+			if (account != null) {
 				int userId = account.getUsers().getUserId().intValue();
 				if (info.getRegionId() == null) {
 					this.form.setJsonMsg("address.regionId不能为空", false, json, 1001);
@@ -70,19 +71,20 @@ public class AddressesAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+
 	/**
 	 * 用户所有的收货地址
+	 * 
 	 * @return
 	 */
 	public String user_shipping_addresses() {
 		Map json = new HashMap();
 		try {
 			YAccount account = getUserInfo();
-			if (account == null) {
-				this.form.setJsonMsg(NO_USER, false, json, 201);
-			} else {
+			if (account != null) {
 				int userId = account.getUsers().getUserId().intValue();
-				List listInfo = this.baseService.findAll(" from UserShippingAddresses as hu where hu.userId = " + userId);
+				List listInfo = this.baseService
+						.findAll(" from UserShippingAddresses as hu where hu.userId = " + userId);
 				json.put(LISTINFO, listInfo);
 				this.form.setJsonMsg("success", true, json, 200);
 			}
@@ -92,17 +94,17 @@ public class AddressesAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+
 	/**
 	 * 更新用户收货地址
+	 * 
 	 * @return
 	 */
 	public String update_user_shipping_addresses() {
 		Map json = new HashMap();
 		try {
 			YAccount account = getUserInfo();
-			if (account == null) {
-				this.form.setJsonMsg(NO_USER, false, json, 201);
-			} else {
+			if (account != null) {
 				int userId = account.getUsers().getUserId().intValue();
 				UserShippingAddresses obj = this.form.getAddress();
 				if (obj.getAddressId() == null) {

@@ -101,7 +101,6 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		return sdf.format(new Date());
 	}
 
-
 	public BaseService getBaseService() {
 		return baseService;
 	}
@@ -152,7 +151,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		users.setUserType(Integer.valueOf(3));
 		users.setLastActivity(new Date());
 		Serializable b = this.baseService.save(users);
-		
+
 		int userId = b.hashCode();
 		UserProfile profile = new UserProfile();
 		profile.setUserId(Integer.valueOf(userId));
@@ -166,7 +165,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		profile.setDeductMoney(0.0);
 		profile.setExpenditure(0.0);
 		profile.setGender(0);
-		
+
 		Serializable c = this.baseService.save(profile);
 		int userProfileId = c.hashCode();
 		profile.setUserProfileId(userProfileId);
@@ -212,27 +211,36 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	}
 
 	public YAccount getUserInfo() {
-		String token = this.form.getToken();
-		int userId = this.form.getUserId().intValue();
-		if (token == null) {
-			token = "";
-		}
-		Object obj = this.baseService.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId=" + userId
-				+ " and u.appUserToken = '" + token + "') and u.userId = p.userId and u.accountId = y.accountId ");
-		Object[] object = (Object[]) obj;
-		if ((object != null) && (object.length > 0)) {
-			YAccount account = (YAccount) object[0];
-			if (object.length > 1) {
-				account.setUsers((Users) object[1]);
-				if (object.length > 2) {
-					account.setUserProfile((UserProfile) object[2]);
-				}
-				return account;
+		Map json = new HashMap();
+		YAccount account = null;
+		if (this.form.getToken() == null) {
+			this.form.setJsonMsg("token不能为空", false, json, 1001);
+		} else if (this.form.getUserId() == null) {
+			this.form.setJsonMsg("userId不能为空", false, json, 1001);
+		} else {
+			String token = this.form.getToken();
+			int userId = this.form.getUserId().intValue();
+			if (token == null) {
+				token = "";
 			}
-			return null;
+			Object obj = this.baseService.bean(" from YAccount as y, Users as u,UserProfile as p where (u.userId="
+					+ userId + " and u.appUserToken = '" + token
+					+ "') and u.userId = p.userId and u.accountId = y.accountId ");
+			Object[] object = (Object[]) obj;
+			if ((object != null) && (object.length > 0)) {
+				account = (YAccount) object[0];
+				if (object.length > 1) {
+					account.setUsers((Users) object[1]);
+					if (object.length > 2) {
+						account.setUserProfile((UserProfile) object[2]);
+					}
+				}
+			}
+			if (account == null) {
+				this.form.setJsonMsg(NO_USER, false, json, 201);
+			}
 		}
-
-		return null;
+		return account;
 	}
 
 	public Users setUserToken(int userId) {
@@ -251,8 +259,10 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		}
 		return null;
 	}
+
 	/**
 	 * 获取支付宝配置
+	 * 
 	 * @param body
 	 * @param subject
 	 * @param expenses
@@ -261,7 +271,8 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	 * @param notifyUrl
 	 * @return
 	 */
-	public OrderPayConfig getAlipayconfig(String body,String subject,Double expenses,Double totalFee,String orderId,String notifyUrl){
+	public OrderPayConfig getAlipayconfig(String body, String subject, Double expenses, Double totalFee, String orderId,
+			String notifyUrl) {
 		OrderPayConfig config = new OrderPayConfig();
 		config.setBody(body);
 		config.setSubject(subject);
@@ -279,76 +290,81 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 
 		return config;
 	}
+
 	/**
 	 * 获取推荐的用户领导
 	 */
-	public UserProfile recommendUser(int level,int userId) {
+	public UserProfile recommendUser(int level, int userId) {
 		UserProfile up = null;
-		List<?> listObj  = null;
+		List<?> listObj = null;
 		List<YRebateRelation> listOne = null;
 		StringBuffer sb = null;
 		switch (level) {
 		case 1:
-			listObj = baseService.findAll(" from YRebateRelation as r,UserProfile as u where r.currentUserId = u.userId and r.parentUserId = " + userId);
+			listObj = baseService.findAll(
+					" from YRebateRelation as r,UserProfile as u where r.currentUserId = u.userId and r.parentUserId = "
+							+ userId);
 			for (int i = 0; i < listObj.size(); i++) {
 				Object[] o = (Object[]) listObj.get(i);
-				YRebateRelation r = (YRebateRelation)o[0];
-				up = (UserProfile)o[1];
+				YRebateRelation r = (YRebateRelation) o[0];
+				up = (UserProfile) o[1];
 			}
 			break;
 		case 2:
-			listOne = (List<YRebateRelation>)baseService.findAll(
-					" from YRebateRelation as r where r.parentUserId = " + userId);
+			listOne = (List<YRebateRelation>) baseService
+					.findAll(" from YRebateRelation as r where r.parentUserId = " + userId);
 			sb = new StringBuffer(" from YRebateRelation as r,UserProfile as u where (r.currentUserId = u.userId) ");
-			if(listOne!=null && listOne.size()>0){
+			if (listOne != null && listOne.size() > 0) {
 				sb.append(" and ( ");
 			}
 			for (YRebateRelation object : listOne) {
-				 sb.append(" r.parentUserId = "+object.getCurrentUserId()+" or ");
+				sb.append(" r.parentUserId = " + object.getCurrentUserId() + " or ");
 			}
-			if(listOne!=null && listOne.size()>0){
-				sb.delete(sb.length()-3, sb.length());
+			if (listOne != null && listOne.size() > 0) {
+				sb.delete(sb.length() - 3, sb.length());
 				sb.append(" ) ");
 				listObj = baseService.findAll(sb.toString());
 				for (int i = 0; i < listObj.size(); i++) {
 					Object[] o = (Object[]) listObj.get(i);
-					YRebateRelation r = (YRebateRelation)o[0];
-					up = (UserProfile)o[1];
+					YRebateRelation r = (YRebateRelation) o[0];
+					up = (UserProfile) o[1];
 				}
 			}
 			break;
 		case 3:
-			listOne = (List<YRebateRelation>)baseService.findAll(" from YRebateRelation as r where r.parentUserId = " + userId);
+			listOne = (List<YRebateRelation>) baseService
+					.findAll(" from YRebateRelation as r where r.parentUserId = " + userId);
 			sb = new StringBuffer(" from YRebateRelation as r ");
-			if(listOne!=null && listOne.size()>0){
+			if (listOne != null && listOne.size() > 0) {
 				sb.append(" where ( ");
 				for (YRebateRelation object : listOne) {
-					 sb.append(" r.parentUserId = "+object.getCurrentUserId()+" or ");
+					sb.append(" r.parentUserId = " + object.getCurrentUserId() + " or ");
 				}
-				if(listOne!=null && listOne.size()>0){
-					sb.delete(sb.length()-3, sb.length());
+				if (listOne != null && listOne.size() > 0) {
+					sb.delete(sb.length() - 3, sb.length());
 					sb.append(" ) ");
 				}
-				listOne = (List<YRebateRelation>)baseService.findAll(sb.toString());
+				listOne = (List<YRebateRelation>) baseService.findAll(sb.toString());
 				listObj = baseService.findAll(sb.toString());
-				sb = new StringBuffer(" from YRebateRelation as r,UserProfile as u where (r.currentUserId = u.userId) ");
-				if(listOne!=null && listOne.size()>0){
+				sb = new StringBuffer(
+						" from YRebateRelation as r,UserProfile as u where (r.currentUserId = u.userId) ");
+				if (listOne != null && listOne.size() > 0) {
 					sb.append(" and ( ");
 					for (YRebateRelation object : listOne) {
-						 sb.append(" r.parentUserId = "+object.getCurrentUserId()+" or ");
+						sb.append(" r.parentUserId = " + object.getCurrentUserId() + " or ");
 					}
-					if(listOne!=null && listOne.size()>0){
-						sb.delete(sb.length()-3, sb.length());
+					if (listOne != null && listOne.size() > 0) {
+						sb.delete(sb.length() - 3, sb.length());
 						sb.append(" ) ");
 					}
 					listObj = baseService.findAll(sb.toString());
 					for (int i = 0; i < listObj.size(); i++) {
 						Object[] o = (Object[]) listObj.get(i);
-						YRebateRelation r = (YRebateRelation)o[0];
-						up = (UserProfile)o[1];
+						YRebateRelation r = (YRebateRelation) o[0];
+						up = (UserProfile) o[1];
 					}
 				}
-				
+
 			}
 			break;
 
@@ -360,7 +376,6 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	 * 利益链等级配置
 	 */
 	public List<YRebateLevel> rebateLevel() {
-		return (List<YRebateLevel>) baseService
-				.findAll(" from YRebateLevel as l order by l.rebateLevel asc ");
+		return (List<YRebateLevel>) baseService.findAll(" from YRebateLevel as l order by l.rebateLevel asc ");
 	}
 }

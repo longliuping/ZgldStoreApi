@@ -1,9 +1,6 @@
 package com.zgld.api.action;
 
-import com.zgld.api.base.BaseForm;
 import com.zgld.api.beans.HomeBanner;
-import com.zgld.api.service.BaseService;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,8 +8,10 @@ import java.util.Map;
 
 public class JsonAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 主页banner
+	 * 
 	 * @return
 	 */
 	public String home_banner() {
@@ -32,8 +31,10 @@ public class JsonAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+
 	/**
 	 * 主页热门标签
+	 * 
 	 * @return
 	 */
 	public String home_hot_category() {

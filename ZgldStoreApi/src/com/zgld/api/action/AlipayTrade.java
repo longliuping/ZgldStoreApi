@@ -16,12 +16,13 @@ public class AlipayTrade {
 	static {
 		baseService = Contents.getBaseService();
 	}
-	
+
 	public static String alipay_recharge(AlipayInfo info) {
 		String result = "fail";
 		try {
 			if (info != null) {
-				Orders order = (Orders) baseService.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
+				Orders order = (Orders) baseService
+						.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
 				if ((order != null) && (order.getPaymentStatus().intValue() != 1)) {
 					order.setPaymentStatus(Integer.valueOf(1));
 					baseService.update(order);
@@ -38,7 +39,8 @@ public class AlipayTrade {
 		String result = "fail";
 		try {
 			if (info != null) {
-				Orders order = (Orders) baseService.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
+				Orders order = (Orders) baseService
+						.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
 				if ((order != null) && (!"1".equals(order.getPaymentStatus()))) {
 					System.out.println("修改订单付款状态");
 					order.setPaymentStatus(Integer.valueOf(1));
@@ -74,7 +76,8 @@ public class AlipayTrade {
 		String result = "fail";
 		try {
 			if (info != null) {
-				Orders order = (Orders) baseService.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
+				Orders order = (Orders) baseService
+						.bean(" from Orders as o where o.orderId = " + info.getOut_trade_no());
 				if ((order != null) && (!"1".equals(order.getPaymentStatus()))
 						&& (!"1".equals(order.getRefundStatus()))) {
 					System.out.println("修改订单退款状态");
@@ -104,15 +107,17 @@ public class AlipayTrade {
 		}
 		return result;
 	}
+
 	public static String alipay_user_recharge(AlipayInfo info) {
 		String result = "fail";
 		try {
 			if (info != null) {
-				BalanceDetails balance = (BalanceDetails)baseService.bean(" from BalanceDetails as b where b.balanceId = "+info.getOut_trade_no().replace("ZXCZ", ""));
-				if(balance!=null){
-					if(balance.getPayTradeNo()!=null && balance.getPayTradeNo().length()>2){
+				BalanceDetails balance = (BalanceDetails) baseService.bean(
+						" from BalanceDetails as b where b.balanceId = " + info.getOut_trade_no().replace("ZXCZ", ""));
+				if (balance != null) {
+					if (balance.getPayTradeNo() != null && balance.getPayTradeNo().length() > 2) {
 						System.out.println("充值号已经付款，无需重复修改");
-					}else{
+					} else {
 						System.out.println("修改充值号付款状态");
 						balance.setPayTotalFee(Double.parseDouble(info.getTotal_fee()));
 						balance.setBuyerAccount(info.getBuyer_email());
@@ -120,21 +125,23 @@ public class AlipayTrade {
 						balance.setPayDateTime(DateUtils.strDateTimeToDate(info.getGmt_payment()));
 						balance.setPayTradeNo(info.getTrade_no());
 						baseService.update(balance);
-						UserProfile up = (UserProfile)baseService.bean(" from UserProfile as up where up.userId = "+balance.getUserId());
-						if(up!=null){
-							up.setBalance(up.getBalance()+balance.getBalance());
+						UserProfile up = (UserProfile) baseService
+								.bean(" from UserProfile as up where up.userId = " + balance.getUserId());
+						if (up != null) {
+							up.setBalance(up.getBalance() + balance.getBalance());
 							baseService.update(up);
 						}
 					}
 					result = "success";
 					System.out.println("修改充值号状态成功");
-				}else{
+				} else {
 					System.out.println("充值号不存在");
 				}
 				if (balance != null) {
-//					System.out.println("订单存在，订单状态：" + balance.getPaymentStatus());
+					// System.out.println("订单存在，订单状态：" +
+					// balance.getPaymentStatus());
 					System.out.println("订单存在，订单号：" + balance.getBalanceId());
-						result = "success";
+					result = "success";
 				} else {
 					System.out.println("订单不存在");
 				}
@@ -147,6 +154,7 @@ public class AlipayTrade {
 		}
 		return result;
 	}
+
 	public static void main(String[] args) {
 		AlipayInfo info = new AlipayInfo();
 		info.setOut_trade_no("ZXCZ2");
