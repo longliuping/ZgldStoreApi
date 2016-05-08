@@ -78,7 +78,19 @@ public class ProductAction extends BaseAction {
 						YFormValue fv = (YFormValue)obj[0];
 						YFormTag ft = (YFormTag)obj[1];
 						ft.setFormValue(fv);
-						List<YFormControl> listFormControl = (List<YFormControl>)baseService.findAll(" from YFormControl as fc where fc.tagId = "+fv.getTagId());
+						StringBuffer hql = new StringBuffer(" from YFormControl as fc where fc.tagId = "+fv.getTagId());
+						List<YFormCombine> listFormCombine = (List<YFormCombine>)baseService.findAll(" from YFormCombine as fc where fc.tagFieldName = '"+fv.getTagFieldName()+"' and fc.objTable = 'Products' and fc.objId = "+productId);
+						if(listFormCombine!=null && listFormCombine.size()>0){
+							hql.append(" and (");
+						}
+						for (YFormCombine form : listFormCombine) {
+							hql.append(" fc.controlValue = " + form.getControlValue() + " or ");
+						}
+						if(listFormCombine!=null && listFormCombine.size()>0){
+							hql.delete(hql.length() - 3, hql.length());
+							hql.append(" ) ");
+						}
+						List<YFormControl> listFormControl = (List<YFormControl>)baseService.findAll(hql.toString());
 						ft.setListFormControl(listFormControl);
 						listFormTag.add(ft);
 					}

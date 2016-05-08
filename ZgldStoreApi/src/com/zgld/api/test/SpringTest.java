@@ -38,14 +38,15 @@ public class SpringTest {
 //		
 //		baseService.findAll(" from YFormCombine as fc,YFormValue as fv, where fc.objTable = 'Products' and fc.objId = "+productId);
 	
-		List<?> listObj = baseService.findAll(" from YFormCombine fc,YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId+" and fv.tagFieldName = fc.tagFieldName and fc.objTable = 'Products' and fc.objId = "+productId+" and fc.combineString = '_-size-3_-color-353_'");
-		for (Object object : listObj) {
-			Object obj[] = (Object[])object;
-			YFormCombine fc = (YFormCombine)obj[0];
-			YFormValue fv = (YFormValue)obj[1];
-			YFormTag ft = (YFormTag)obj[2];
-			System.out.println(ft.getTagName()+":"+fc.getControlName());
-		}
+//		List<?> listObj = baseService.findAll(" from YFormCombine fc,YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId+" and fv.tagFieldName = fc.tagFieldName and fc.objTable = 'Products' and fc.objId = "+productId+" and fc.combineString = '_-size-3_-color-353_'");
+//		for (Object object : listObj) {
+//			Object obj[] = (Object[])object;
+//			YFormCombine fc = (YFormCombine)obj[0];
+//			YFormValue fv = (YFormValue)obj[1];
+//			YFormTag ft = (YFormTag)obj[2];
+//			System.out.println(ft.getTagName()+":"+fc.getControlName());
+//		}
+		baseService.findAll(" from ");
 		
 	}
 	public static void ok_order(){
