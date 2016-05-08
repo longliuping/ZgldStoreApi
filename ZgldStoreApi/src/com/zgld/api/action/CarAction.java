@@ -189,31 +189,65 @@ public class CarAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account != null) {
+				List<YShop> listShop = new ArrayList<>();
 				int userId = account.getUsers().getUserId().intValue();
 				List lsitHishopShoppingCarts = this.baseService.findAll(
-						" from ShoppingCarts as sc where sc.userId = " + userId + " order by sc.lineItemId desc,sc.shopId desc ");
+						" from ShoppingCarts as sc where sc.userId = " + userId + " order by sc.shopId desc,sc.lineItemId desc ");
+				int shopId = 0;
+				YShop shop = null;
+				if(lsitHishopShoppingCarts!=null && lsitHishopShoppingCarts.size()>0){
+					ShoppingCarts ca = (ShoppingCarts) lsitHishopShoppingCarts.get(0);
+					shopId = ca.getShopId();
+					shop = (YShop) this.baseService.bean(" from YShop as s where s.shopId = " + shopId);
+				}
+				List<ShoppingCarts> listCarts = new ArrayList<>();
+				
 				for (int i = 0; i < lsitHishopShoppingCarts.size(); i++) {
 					ShoppingCarts hishopShoppingCarts = (ShoppingCarts) lsitHishopShoppingCarts.get(i);
 					int productId = hishopShoppingCarts.getProductId();
-					Products products = (Products) this.baseService
-							.bean(" from Products as hp where hp.productId = " + hishopShoppingCarts.getProductId());
-					YFormCombineValue formCombineValue = (YFormCombineValue)this.baseService
-					.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.objId = " + products.getProductId()+" and fcv.combineValueId = "+hishopShoppingCarts.getSku());
-					products.setFormCombineValue(formCombineValue);
-					List<?> listObj = baseService.findAll(" from YFormCombine fc,YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId+" and fv.tagFieldName = fc.tagFieldName and fc.objTable = 'Products' and fc.objId = "+productId+" and fc.combineString = '"+formCombineValue.getCombineString()+"'");
-					String str= "";
-					for (Object object : listObj) {
-						Object obj[] = (Object[])object;
-						YFormCombine fc = (YFormCombine)obj[0];
-						YFormValue fv = (YFormValue)obj[1];
-						YFormTag ft = (YFormTag)obj[2];
-						str = str+ft.getTagName()+":"+fc.getControlName()+";";
+					if(shopId==hishopShoppingCarts.getShopId()){
+						Products products = (Products) this.baseService
+								.bean(" from Products as hp where hp.productId = " + hishopShoppingCarts.getProductId());
+						YFormCombineValue formCombineValue = (YFormCombineValue)this.baseService
+						.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.objId = " + products.getProductId()+" and fcv.combineValueId = "+hishopShoppingCarts.getSku());
+						products.setFormCombineValue(formCombineValue);
+						List<?> listObj = baseService.findAll(" from YFormCombine fc,YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId+" and fv.tagFieldName = fc.tagFieldName and fc.objTable = 'Products' and fc.objId = "+productId+" and fc.combineString = '"+formCombineValue.getCombineString()+"'");
+						String str= "";
+						for (Object object : listObj) {
+							Object obj[] = (Object[])object;
+							YFormCombine fc = (YFormCombine)obj[0];
+							YFormValue fv = (YFormValue)obj[1];
+							YFormTag ft = (YFormTag)obj[2];
+							str = str+ft.getTagName()+":"+fc.getControlName()+";";
+						}
+						products.setSelectStr(str);
+						hishopShoppingCarts.setProducts(products);
+						listCarts.add(hishopShoppingCarts);
+					}else{
+						if(listCarts!=null && listCarts.size()>0){
+							shop.setListShoppingCarts(listCarts);;
+							listCarts = new ArrayList<>();
+							shop = new YShop();
+						}
+						
+						Products products = (Products) this.baseService
+								.bean(" from Products as hp where hp.productId = " + hishopShoppingCarts.getProductId());
+						YFormCombineValue formCombineValue = (YFormCombineValue)this.baseService
+						.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.objId = " + products.getProductId()+" and fcv.combineValueId = "+hishopShoppingCarts.getSku());
+						products.setFormCombineValue(formCombineValue);
+						List<?> listObj = baseService.findAll(" from YFormCombine fc,YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId+" and fv.tagFieldName = fc.tagFieldName and fc.objTable = 'Products' and fc.objId = "+productId+" and fc.combineString = '"+formCombineValue.getCombineString()+"'");
+						String str= "";
+						for (Object object : listObj) {
+							Object obj[] = (Object[])object;
+							YFormCombine fc = (YFormCombine)obj[0];
+							YFormValue fv = (YFormValue)obj[1];
+							YFormTag ft = (YFormTag)obj[2];
+							str = str+ft.getTagName()+":"+fc.getControlName()+";";
+						}
+						products.setSelectStr(str);
+						hishopShoppingCarts.setProducts(products);
+						listCarts.add(hishopShoppingCarts);
 					}
-					products.setSelectStr(str);
-					List listProducts = new ArrayList();
-					listProducts.add(products);
-					hishopShoppingCarts.setListProducts(listProducts);
-					lsitHishopShoppingCarts.set(i, hishopShoppingCarts);
 				}
 				if ((lsitHishopShoppingCarts != null) && (lsitHishopShoppingCarts.size() > 0)) {
 					for (int i = 0; i < lsitHishopShoppingCarts.size(); i++) {

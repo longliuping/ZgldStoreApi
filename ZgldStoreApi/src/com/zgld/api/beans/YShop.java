@@ -16,7 +16,7 @@ public class YShop extends AbstractYShop implements java.io.Serializable {
 
 	Products products;
 	List<Products> listProducts;
-
+	List<ShoppingCarts> listShoppingCarts;
 	public Products getProducts() {
 		return products;
 	}
@@ -31,6 +31,14 @@ public class YShop extends AbstractYShop implements java.io.Serializable {
 
 	public void setListProducts(List<Products> listProducts) {
 		this.listProducts = listProducts;
+	}
+
+	public List<ShoppingCarts> getListShoppingCarts() {
+		return listShoppingCarts;
+	}
+
+	public void setListShoppingCarts(List<ShoppingCarts> listShoppingCarts) {
+		this.listShoppingCarts = listShoppingCarts;
 	}
 
 }

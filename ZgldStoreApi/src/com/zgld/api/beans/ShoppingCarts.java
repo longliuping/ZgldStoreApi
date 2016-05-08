@@ -20,7 +20,7 @@ public class ShoppingCarts extends AbstractShoppingCarts implements java.io.Seri
 
 	List<Products> listProducts;
 	YShop yShop;
-
+	Products products;
 	public YShop getyShop() {
 		return yShop;
 	}
@@ -35,6 +35,14 @@ public class ShoppingCarts extends AbstractShoppingCarts implements java.io.Seri
 
 	public void setListProducts(List<Products> listProducts) {
 		this.listProducts = listProducts;
+	}
+
+	public Products getProducts() {
+		return products;
+	}
+
+	public void setProducts(Products products) {
+		this.products = products;
 	}
 
 }
