@@ -194,7 +194,7 @@ public class CarAction extends BaseAction {
 					Products products = (Products) this.baseService
 							.bean(" from Products as hp where hp.productId = " + hishopShoppingCarts.getProductId());
 					YFormCombineValue formCombineValue = (YFormCombineValue)this.baseService
-					.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.objId = " + products.getProductId());
+					.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.objId = " + products.getProductId()+" and fcv.combineValueId = "+hishopShoppingCarts.getSku());
 					products.setFormCombineValue(formCombineValue);
 					List listProducts = new ArrayList();
 					listProducts.add(products);
