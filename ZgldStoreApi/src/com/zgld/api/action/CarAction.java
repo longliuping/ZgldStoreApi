@@ -4,6 +4,7 @@ import com.zgld.api.beans.Products;
 import com.zgld.api.beans.ShoppingCarts;
 import com.zgld.api.beans.Sku;
 import com.zgld.api.beans.YAccount;
+import com.zgld.api.beans.YFormCombineValue;
 import com.zgld.api.beans.YShop;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,20 +35,20 @@ public class CarAction extends BaseAction {
 					String skuId = this.form.getSkuId();
 					int productId = this.form.getProductId().intValue();
 					int number = this.form.getNumber().intValue();
-					Sku hishopSkus = (Sku) this.baseService
-							.bean(" from Sku as hs where hs.sku = " + skuId + " and hs.productId = " + productId);
+					YFormCombineValue hishopSkus = (YFormCombineValue) this.baseService
+							.bean(" from YFormCombineValue as cv where cv.objTable = 'Products' and cv.combineValueId = " + skuId + " and cv.objId = " + productId);
 					if (hishopSkus == null) {
 						this.form.setJsonMsg("产品信息不存在", true, json, 1001);
-					} else if (number > hishopSkus.getStock().intValue()) {
-						this.form.setJsonMsg("购买数量不能大于库存数量:" + hishopSkus.getStock(), true, json, 1001);
+					} else if (number > hishopSkus.getGoStore().intValue()) {
+						this.form.setJsonMsg("购买数量不能大于库存数量:" + hishopSkus.getGoStore(), true, json, 1001);
 					} else {
 						ShoppingCarts hishopShoppingCarts = (ShoppingCarts) this.baseService
 								.bean(" from ShoppingCarts as sc where sc.sku = " + skuId + " and sc.userId = " + userId
 										+ " and sc.productId = " + productId);
 						if (hishopShoppingCarts != null) {
-							if (hishopShoppingCarts.getQuantity().intValue() + number > hishopSkus.getStock()
+							if (hishopShoppingCarts.getQuantity().intValue() + number > hishopSkus.getGoStore()
 									.intValue()) {
-								this.form.setJsonMsg("购买数量不能大于库存数量:" + hishopSkus.getStock(), true, json, 1001);
+								this.form.setJsonMsg("购买数量不能大于库存数量:" + hishopSkus.getGoStore(), true, json, 1001);
 							} else {
 								hishopShoppingCarts.setQuantity(
 										Integer.valueOf(hishopShoppingCarts.getQuantity().intValue() + number));
@@ -59,9 +60,9 @@ public class CarAction extends BaseAction {
 							carts.setProductId(Integer.valueOf(productId));
 							carts.setQuantity(Integer.valueOf(number));
 							carts.setSku(Integer.valueOf(Integer.parseInt(skuId)));
-							if (hishopSkus.getShopId() != null) {
-								carts.setShopId(hishopSkus.getShopId());
-							}
+//							if (hishopSkus.getShopId() != null) {
+//								carts.setShopId(hishopSkus.getShopId());
+//							}
 							carts.setUserId(Integer.valueOf(userId));
 							this.baseService.save(carts);
 							this.form.setJsonMsg("加入购物车成功", true, json, 200);
