@@ -4,7 +4,10 @@ import com.zgld.api.beans.Products;
 import com.zgld.api.beans.ShoppingCarts;
 import com.zgld.api.beans.Sku;
 import com.zgld.api.beans.YAccount;
+import com.zgld.api.beans.YFormCombine;
 import com.zgld.api.beans.YFormCombineValue;
+import com.zgld.api.beans.YFormTag;
+import com.zgld.api.beans.YFormValue;
 import com.zgld.api.beans.YShop;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -191,11 +194,22 @@ public class CarAction extends BaseAction {
 						" from ShoppingCarts as sc where sc.userId = " + userId + " order by sc.lineItemId desc,sc.shopId desc ");
 				for (int i = 0; i < lsitHishopShoppingCarts.size(); i++) {
 					ShoppingCarts hishopShoppingCarts = (ShoppingCarts) lsitHishopShoppingCarts.get(i);
+					int productId = hishopShoppingCarts.getProductId();
 					Products products = (Products) this.baseService
 							.bean(" from Products as hp where hp.productId = " + hishopShoppingCarts.getProductId());
 					YFormCombineValue formCombineValue = (YFormCombineValue)this.baseService
 					.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.objId = " + products.getProductId()+" and fcv.combineValueId = "+hishopShoppingCarts.getSku());
 					products.setFormCombineValue(formCombineValue);
+					List<?> listObj = baseService.findAll(" from YFormCombine fc,YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId+" and fv.tagFieldName = fc.tagFieldName and fc.objTable = 'Products' and fc.objId = "+productId+" and fc.combineString = '_-size-3_-color-353_'");
+					String str= "";
+					for (Object object : listObj) {
+						Object obj[] = (Object[])object;
+						YFormCombine fc = (YFormCombine)obj[0];
+						YFormValue fv = (YFormValue)obj[1];
+						YFormTag ft = (YFormTag)obj[2];
+						str = str+ft.getTagName()+":"+fc.getControlName()+";";
+					}
+					products.setSelectStr(str);
 					List listProducts = new ArrayList();
 					listProducts.add(products);
 					hishopShoppingCarts.setListProducts(listProducts);
