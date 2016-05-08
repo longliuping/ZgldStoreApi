@@ -36,7 +36,7 @@ public class CarAction extends BaseAction {
 					int productId = this.form.getProductId().intValue();
 					int number = this.form.getNumber().intValue();
 					YFormCombineValue hishopSkus = (YFormCombineValue) this.baseService
-							.bean(" from YFormCombineValue as cv where cv.objTable = 'Products' and cv.combineValueId = " + skuId + " and cv.objId = " + productId);
+							.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = " + skuId + " and fcv.objId = " + productId);
 					if (hishopSkus == null) {
 						this.form.setJsonMsg("产品信息不存在", true, json, 1001);
 					} else if (number > hishopSkus.getGoStore().intValue()) {
@@ -57,12 +57,13 @@ public class CarAction extends BaseAction {
 							}
 						} else {
 							ShoppingCarts carts = new ShoppingCarts();
+							Products product = (Products)baseService.bean(" from Products as p where p.productId = "+productId);
 							carts.setProductId(Integer.valueOf(productId));
 							carts.setQuantity(Integer.valueOf(number));
 							carts.setSku(Integer.valueOf(Integer.parseInt(skuId)));
-//							if (hishopSkus.getShopId() != null) {
-//								carts.setShopId(hishopSkus.getShopId());
-//							}
+							if (product.getShopId() != null) {
+								carts.setShopId(product.getShopId());
+							}
 							carts.setUserId(Integer.valueOf(userId));
 							this.baseService.save(carts);
 							this.form.setJsonMsg("加入购物车成功", true, json, 200);
@@ -145,11 +146,11 @@ public class CarAction extends BaseAction {
 						} else {
 							String message = "";
 							for (int i = 0; i < skuIds.length; i++) {
-								Sku hishopSkus = (Sku) this.baseService
-										.bean(" from Sku as hs where hs.sku = '" + skuIds[i] + "'");
-								if (skuNumbers.length > hishopSkus.getStock().intValue()) {
-									message = message + "商品货号:" + hishopSkus.getSku() + "   购买数量不能大于库存数量:"
-											+ hishopSkus.getStock() + "  请修改购买数量后重试!";
+								YFormCombineValue hishopSkus = (YFormCombineValue) this.baseService
+										.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = " + skuIds[i]);
+								if (skuNumbers.length > hishopSkus.getGoStore().intValue()) {
+									message = message + "商品货号:" + hishopSkus.getObjId() + "   购买数量不能大于库存数量:"
+											+ hishopSkus.getGoStore() + "  请修改购买数量后重试!";
 									break;
 								}
 							}
@@ -180,22 +181,21 @@ public class CarAction extends BaseAction {
 	 * 
 	 * @return
 	 */
-	public String user_car_product() {
+	public String user_car_all_product() {
 		Map json = new HashMap();
 		try {
 			YAccount account = getUserInfo();
 			if (account != null) {
 				int userId = account.getUsers().getUserId().intValue();
 				List lsitHishopShoppingCarts = this.baseService.findAll(
-						" from ShoppingCarts as sc where sc.userId = " + userId + " order by sc.lineItemId desc ");
+						" from ShoppingCarts as sc where sc.userId = " + userId + " order by sc.lineItemId desc,sc.shopId desc ");
 				for (int i = 0; i < lsitHishopShoppingCarts.size(); i++) {
 					ShoppingCarts hishopShoppingCarts = (ShoppingCarts) lsitHishopShoppingCarts.get(i);
 					Products products = (Products) this.baseService
 							.bean(" from Products as hp where hp.productId = " + hishopShoppingCarts.getProductId());
-
-					Sku sku = (Sku) this.baseService.bean(" from Sku as hs where hs.productId ="
-							+ products.getProductId() + " and hs.sku = '" + hishopShoppingCarts.getSku() + "'");
-					products.setSku(sku);
+					YFormCombineValue formCombineValue = (YFormCombineValue)this.baseService
+					.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.objId = " + products.getProductId());
+					products.setFormCombineValue(formCombineValue);
 					List listProducts = new ArrayList();
 					listProducts.add(products);
 					hishopShoppingCarts.setListProducts(listProducts);

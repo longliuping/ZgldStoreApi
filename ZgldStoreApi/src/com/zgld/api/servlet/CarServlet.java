@@ -48,6 +48,7 @@ public class CarServlet extends HttpServlet {
 			int last = currentPath.indexOf(".html");
 			if (index > 0 && last > 0) {
 				String id = currentPath.substring(index, last);
+				System.out.println(id);
 				getServletContext().getRequestDispatcher("/car_" + id + ".do").forward(request, response);
 			} else {
 				getServletContext().getRequestDispatcher("/json_error.do").forward(request, response);
