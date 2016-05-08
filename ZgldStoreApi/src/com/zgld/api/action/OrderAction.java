@@ -6,6 +6,8 @@ import com.zgld.api.beans.Orders;
 import com.zgld.api.beans.Products;
 import com.zgld.api.beans.Sku;
 import com.zgld.api.beans.YAccount;
+import com.zgld.api.beans.YFormCombineValue;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -105,14 +107,25 @@ public class OrderAction extends BaseAction {
 					String message = "";
 					String skuIdStr = "";
 					for (int i = 0; i < skuId.length; i++) {
-						Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
+//						Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
+//						if (hishopSkus != null) {
+//							int number = Integer.parseInt(skuNumber[i]);
+//							if (number > hishopSkus.getStock().intValue())
+//								message = message + "skuId:" + hishopSkus.getSku() + "产品库存不能大于" + hishopSkus.getStock()
+//										+ ";";
+//							else {
+//								skuIdStr = skuIdStr + hishopSkus.getSku() + ",";
+//							}
+//						}
+						YFormCombineValue hishopSkus = (YFormCombineValue)this.baseService
+								.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = "+skuId[i]);
 						if (hishopSkus != null) {
 							int number = Integer.parseInt(skuNumber[i]);
-							if (number > hishopSkus.getStock().intValue())
-								message = message + "skuId:" + hishopSkus.getSku() + "产品库存不能大于" + hishopSkus.getStock()
+							if (number > hishopSkus.getGoStore().intValue())
+								message = message + "skuId:" + hishopSkus.getObjId()+ "产品库存不能大于" + hishopSkus.getGoStore()
 										+ ";";
 							else {
-								skuIdStr = skuIdStr + hishopSkus.getSku() + ",";
+								skuIdStr = skuIdStr + hishopSkus.getGoStore() + ",";
 							}
 						}
 					}
@@ -138,28 +151,31 @@ public class OrderAction extends BaseAction {
 						Serializable s = this.baseService.save(orders);
 						String orderId = s.toString();
 						double salePrice = 0.0D;
-						int shopId = 0;
+						int objId = 0;
 						for (int i = 0; i < skuId.length; i++) {
-							Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
+//							Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
+							YFormCombineValue hishopSkus = (YFormCombineValue)this.baseService
+									.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = "+skuId[i]);
 							OrderItems items = new OrderItems();
 							items.setOrderId(Integer.valueOf(Integer.parseInt(orderId)));
-							items.setProductId(hishopSkus.getProductId());
-							items.setSku(hishopSkus.getSku());
+							items.setProductId(hishopSkus.getObjId());
+							items.setSku(hishopSkus.getCombineValueId());
 							items.setQuantity(Integer.valueOf(Integer.parseInt(skuNumber[i])));
 							items.setListPrice(Double
-									.valueOf(hishopSkus.getPrice().doubleValue() * Integer.parseInt(skuNumber[i])));
-							items.setCellPrice(hishopSkus.getPrice());
+									.valueOf(hishopSkus.getGoSalePrice().doubleValue() * Integer.parseInt(skuNumber[i])));
+							items.setCellPrice(hishopSkus.getGoSalePrice());
 							items.setRemark("");
-							salePrice += Integer.parseInt(skuNumber[i]) * hishopSkus.getPrice().doubleValue();
+							salePrice += Integer.parseInt(skuNumber[i]) * hishopSkus.getGoSalePrice().doubleValue();
 							this.baseService.updateListObject(" delete from ShoppingCarts as hsc where hsc.sku = '"
-									+ hishopSkus.getSku() + "' and hsc.userId = " + userId);
+									+ hishopSkus.getCombineValueId() + "' and hsc.userId = " + userId);
 							this.baseService.save(items);
-							shopId = hishopSkus.getShopId();
+							objId = hishopSkus.getObjId();
 						}
+						Products product = (Products)baseService.bean(" from Products as p where p.productId = "+objId);
 						Orders ho = (Orders) this.baseService.bean(" from Orders as ho where ho.orderId = " + orderId);
 						if (ho != null) {
 							ho.setOrderTotalPrice(Double.valueOf(salePrice));
-							ho.setShopId(shopId);
+							ho.setShopId(product.getShopId());
 							this.baseService.update(ho);
 						}
 						json.put("orderId", orderId);

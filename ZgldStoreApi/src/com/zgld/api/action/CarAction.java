@@ -200,7 +200,7 @@ public class CarAction extends BaseAction {
 					YFormCombineValue formCombineValue = (YFormCombineValue)this.baseService
 					.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.objId = " + products.getProductId()+" and fcv.combineValueId = "+hishopShoppingCarts.getSku());
 					products.setFormCombineValue(formCombineValue);
-					List<?> listObj = baseService.findAll(" from YFormCombine fc,YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId+" and fv.tagFieldName = fc.tagFieldName and fc.objTable = 'Products' and fc.objId = "+productId+" and fc.combineString = '_-size-3_-color-353_'");
+					List<?> listObj = baseService.findAll(" from YFormCombine fc,YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId+" and fv.tagFieldName = fc.tagFieldName and fc.objTable = 'Products' and fc.objId = "+productId+" and fc.combineString = '"+formCombineValue.getCombineString()+"'");
 					String str= "";
 					for (Object object : listObj) {
 						Object obj[] = (Object[])object;
