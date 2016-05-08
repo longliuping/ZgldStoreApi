@@ -155,8 +155,7 @@
 		<mapping resource="com/zgld/api/beans/YRights.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/YLinksClass.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/PromoteSales.hbm.xml" />
-		<mapping
-			resource="com/zgld/api/beans/AspNetSqlCacheTablesForChangeNotification.hbm.xml" />
+		<mapping resource="com/zgld/api/beans/AspNetSqlCacheTablesForChangeNotification.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/YUnitClass.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/YLeaderClassMatch.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/Gifts.hbm.xml" />

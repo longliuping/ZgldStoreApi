@@ -10,17 +10,17 @@
             <column name="Combine_ID" />
             <generator class="identity" />
         </id>
-        <property name="conbineFieldName" type="java.lang.String">
-            <column name="Conbine_Field_Name" />
-        </property>
-        <property name="tableName" type="java.lang.String">
-            <column name="Table_Name" />
+        <property name="combineString" type="java.lang.String">
+            <column name="Combine_String" />
         </property>
         <property name="objId" type="java.lang.Integer">
             <column name="Obj_ID" />
         </property>
-        <property name="fieldName" type="java.lang.String">
-            <column name="Field_Name" />
+        <property name="objTable" type="java.lang.String">
+            <column name="Obj_Table" />
+        </property>
+        <property name="tagFieldName" type="java.lang.String">
+            <column name="Tag_Field_Name" />
         </property>
         <property name="controlName" type="java.lang.String">
             <column name="Control_Name" />

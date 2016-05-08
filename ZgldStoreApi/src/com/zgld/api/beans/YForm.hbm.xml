@@ -19,6 +19,9 @@
         <property name="formName" type="java.lang.String">
             <column name="Form_Name" />
         </property>
+        <property name="formIntro" type="java.lang.String">
+            <column name="Form_Intro" />
+        </property>
         <property name="accountActId" type="java.lang.Integer">
             <column name="Account_Act_ID" />
         </property>
@@ -26,7 +29,7 @@
             <column name="Is_Delete" />
         </property>
         <property name="formTime" type="java.util.Date">
-            <column name="Form_Time" length="16" not-null="true" />
+            <column name="Form_Time" length="16" />
         </property>
     </class>
 </hibernate-mapping>

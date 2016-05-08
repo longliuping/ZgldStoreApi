@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.zgld.api.beans.UserProfile;
+import com.zgld.api.beans.YFormCombine;
+import com.zgld.api.beans.YFormControl;
+import com.zgld.api.beans.YFormTag;
+import com.zgld.api.beans.YFormValue;
 import com.zgld.api.beans.YRebateLevel;
 import com.zgld.api.beans.YRebateRelation;
 import com.zgld.api.service.BaseService;
@@ -17,7 +21,22 @@ public class SpringTest {
 //		String token = "123456";
 //		int userId = 6;
 		baseService = Contents.getBaseService();
-		ok_order();
+		
+		int productId = 3;
+		List<?> list = baseService.findAll(" from YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId);
+		for (Object object : list) {
+			Object obj[] = (Object[])object;
+			YFormValue fv = (YFormValue)obj[0];
+			YFormTag ft = (YFormTag)obj[1];
+			List<YFormControl> listFormControl = (List<YFormControl>)baseService.findAll(" from YFormControl as fc where fc.tagId = "+fv.getTagId());
+			System.out.print(ft.getTagName()+":");
+			for (YFormControl yFormControl : listFormControl) {
+				System.out.print(yFormControl.getControlName()+",");
+			}
+			System.out.println("");
+		}
+		
+		baseService.findAll(" from YFormCombine as fc where fc.objTable = 'Products' and fc.objId = "+productId);
 		
 		
 	}

@@ -34,7 +34,9 @@ public class Products extends AbstractProducts implements java.io.Serializable {
 	List<Skugroup> listSkugroups;
 	List<Sku> listSkus;
 	List<ProductImages> listProductImages;
-
+	List<YFormTag> listFormTag;
+	List<YFormCombine> listFormCombine;
+	List<YFormCombineValue> listFormCombineValue;
 	public List<Skugroup> getListSkugroups() {
 		return listSkugroups;
 	}
@@ -65,6 +67,30 @@ public class Products extends AbstractProducts implements java.io.Serializable {
 
 	public void setListProductImages(List<ProductImages> listProductImages) {
 		this.listProductImages = listProductImages;
+	}
+
+	public List<YFormTag> getListFormTag() {
+		return listFormTag;
+	}
+
+	public void setListFormTag(List<YFormTag> listFormTag) {
+		this.listFormTag = listFormTag;
+	}
+
+	public List<YFormCombine> getListFormCombine() {
+		return listFormCombine;
+	}
+
+	public void setListFormCombine(List<YFormCombine> listFormCombine) {
+		this.listFormCombine = listFormCombine;
+	}
+
+	public List<YFormCombineValue> getListFormCombineValue() {
+		return listFormCombineValue;
+	}
+
+	public void setListFormCombineValue(List<YFormCombineValue> listFormCombineValue) {
+		this.listFormCombineValue = listFormCombineValue;
 	}
 
 }

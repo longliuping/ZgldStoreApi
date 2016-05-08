@@ -14,9 +14,10 @@ public abstract class AbstractYFormControl implements java.io.Serializable {
 
 	private Integer controlId;
 	private Integer tagId;
+	private Integer formId;
 	private String controlName;
-	private String fieldName;
 	private String controlValue;
+	private Integer isDelete;
 	private Date controlTime;
 
 	// Constructors
@@ -24,22 +25,6 @@ public abstract class AbstractYFormControl implements java.io.Serializable {
 	/** default constructor */
 	public AbstractYFormControl() {
 	}
-
-	/** minimal constructor */
-	public AbstractYFormControl(Date controlTime) {
-		this.controlTime = controlTime;
-	}
-
-	/** full constructor */
-	public AbstractYFormControl(Integer tagId, String controlName, String fieldName, String controlValue,
-			Date controlTime) {
-		this.tagId = tagId;
-		this.controlName = controlName;
-		this.fieldName = fieldName;
-		this.controlValue = controlValue;
-		this.controlTime = controlTime;
-	}
-
 	// Property accessors
 
 	public Integer getControlId() {
@@ -58,6 +43,14 @@ public abstract class AbstractYFormControl implements java.io.Serializable {
 		this.tagId = tagId;
 	}
 
+	public Integer getFormId() {
+		return this.formId;
+	}
+
+	public void setFormId(Integer formId) {
+		this.formId = formId;
+	}
+
 	public String getControlName() {
 		return this.controlName;
 	}
@@ -66,20 +59,20 @@ public abstract class AbstractYFormControl implements java.io.Serializable {
 		this.controlName = controlName;
 	}
 
-	public String getFieldName() {
-		return this.fieldName;
-	}
-
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
-	}
-
 	public String getControlValue() {
 		return this.controlValue;
 	}
 
 	public void setControlValue(String controlValue) {
 		this.controlValue = controlValue;
+	}
+
+	public Integer getIsDelete() {
+		return this.isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
 	}
 
 	public Date getControlTime() {

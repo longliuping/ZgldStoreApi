@@ -4,7 +4,14 @@ import com.zgld.api.beans.Categories;
 import com.zgld.api.beans.Products;
 import com.zgld.api.beans.Sku;
 import com.zgld.api.beans.Skugroup;
+import com.zgld.api.beans.YFormCombine;
+import com.zgld.api.beans.YFormCombineValue;
+import com.zgld.api.beans.YFormControl;
+import com.zgld.api.beans.YFormTag;
+import com.zgld.api.beans.YFormValue;
 import com.zgld.api.beans.YShop;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,14 +71,22 @@ public class ProductAction extends BaseAction {
 					product.setListProductImages(listImages);
 					YShop info = (YShop) this.baseService
 							.bean(" from YShop as s where s.shopId = " + product.getShopId());
-					List<Skugroup> listSkugroups = (List<Skugroup>) this.baseService
-							.findAll(" from Skugroup as sg where sg.productId = " + productId);
-					for (int i = 0; i < listSkugroups.size(); i++) {
-						List<Sku> listSku = (List<Sku>) this.baseService.findAll(" from Sku as s where s.skugroupId = "
-								+ ((Skugroup) listSkugroups.get(i)).getSkugroupId());
-						listSkugroups.get(i).setListSkus(listSku);
+					List<YFormTag> listFormTag = new ArrayList<>();
+					List<?> list = baseService.findAll(" from YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId);
+					for (Object object : list) {
+						Object obj[] = (Object[])object;
+						YFormValue fv = (YFormValue)obj[0];
+						YFormTag ft = (YFormTag)obj[1];
+						ft.setFormValue(fv);
+						List<YFormControl> listFormControl = (List<YFormControl>)baseService.findAll(" from YFormControl as fc where fc.tagId = "+fv.getTagId());
+						ft.setListFormControl(listFormControl);
+						listFormTag.add(ft);
 					}
-					product.setListSkugroups(listSkugroups);
+					List<YFormCombine> listFormCombine = (List<YFormCombine>)baseService.findAll(" from YFormCombine as fc where fc.objTable = 'Products' and fc.objId = "+productId);
+					List<YFormCombineValue> listFormCombineValue = (List<YFormCombineValue>)baseService.findAll(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.objId = "+productId);
+					product.setListFormTag(listFormTag);
+					product.setListFormCombine(listFormCombine);
+					product.setListFormCombineValue(listFormCombineValue);
 					info.setProducts(product);
 					json.put(INFO, info);
 					this.form.setJsonMsg("success", true, json, 200);

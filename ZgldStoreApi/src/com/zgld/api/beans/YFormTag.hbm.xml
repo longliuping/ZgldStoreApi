@@ -16,7 +16,7 @@
         <property name="tagName" type="java.lang.String">
             <column name="Tag_Name" />
         </property>
-        <property name="tagType" type="java.lang.String">
+        <property name="tagType" type="java.lang.Integer">
             <column name="Tag_Type" />
         </property>
         <property name="isCombine" type="java.lang.Integer">
@@ -28,14 +28,11 @@
         <property name="isNull" type="java.lang.Integer">
             <column name="Is_Null" />
         </property>
-        <property name="isValidate" type="java.lang.Integer">
-            <column name="Is_Validate" />
+        <property name="validateRegEx" type="java.lang.String">
+            <column name="Validate_RegEx" />
         </property>
-        <property name="validateType" type="java.lang.String">
-            <column name="Validate_Type" />
-        </property>
-        <property name="fieldName" type="java.lang.String">
-            <column name="Field_Name" />
+        <property name="tagFieldName" type="java.lang.String">
+            <column name="Tag_Field_Name" />
         </property>
         <property name="tagUnit" type="java.lang.String">
             <column name="Tag_Unit" />
@@ -43,11 +40,14 @@
         <property name="tagPlaceholder" type="java.lang.String">
             <column name="Tag_Placeholder" />
         </property>
+        <property name="tagIntro" type="java.lang.String">
+            <column name="Tag_Intro" />
+        </property>
         <property name="isDelete" type="java.lang.Integer">
             <column name="Is_Delete" />
         </property>
         <property name="tagTime" type="java.util.Date">
-            <column name="Tag_Time" length="16" not-null="true" />
+            <column name="Tag_Time" length="16" />
         </property>
     </class>
 </hibernate-mapping>

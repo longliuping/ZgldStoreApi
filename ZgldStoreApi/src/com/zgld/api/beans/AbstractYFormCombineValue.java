@@ -10,9 +10,9 @@ public abstract class AbstractYFormCombineValue implements java.io.Serializable 
 	// Fields
 
 	private Integer combineValueId;
-	private String conbineFieldName;
-	private String tableName;
+	private String combineString;
 	private Integer objId;
+	private String objTable;
 	private Integer goStore;
 	private Double goBidPrice;
 	private Double goSalePrice;
@@ -21,24 +21,6 @@ public abstract class AbstractYFormCombineValue implements java.io.Serializable 
 
 	/** default constructor */
 	public AbstractYFormCombineValue() {
-	}
-
-	/** minimal constructor */
-	public AbstractYFormCombineValue(Integer goStore, Double goBidPrice, Double goSalePrice) {
-		this.goStore = goStore;
-		this.goBidPrice = goBidPrice;
-		this.goSalePrice = goSalePrice;
-	}
-
-	/** full constructor */
-	public AbstractYFormCombineValue(String conbineFieldName, String tableName, Integer objId, Integer goStore,
-			Double goBidPrice, Double goSalePrice) {
-		this.conbineFieldName = conbineFieldName;
-		this.tableName = tableName;
-		this.objId = objId;
-		this.goStore = goStore;
-		this.goBidPrice = goBidPrice;
-		this.goSalePrice = goSalePrice;
 	}
 
 	// Property accessors
@@ -51,20 +33,12 @@ public abstract class AbstractYFormCombineValue implements java.io.Serializable 
 		this.combineValueId = combineValueId;
 	}
 
-	public String getConbineFieldName() {
-		return this.conbineFieldName;
+	public String getCombineString() {
+		return this.combineString;
 	}
 
-	public void setConbineFieldName(String conbineFieldName) {
-		this.conbineFieldName = conbineFieldName;
-	}
-
-	public String getTableName() {
-		return this.tableName;
-	}
-
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
+	public void setCombineString(String combineString) {
+		this.combineString = combineString;
 	}
 
 	public Integer getObjId() {
@@ -73,6 +47,14 @@ public abstract class AbstractYFormCombineValue implements java.io.Serializable 
 
 	public void setObjId(Integer objId) {
 		this.objId = objId;
+	}
+
+	public String getObjTable() {
+		return this.objTable;
+	}
+
+	public void setObjTable(String objTable) {
+		this.objTable = objTable;
 	}
 
 	public Integer getGoStore() {

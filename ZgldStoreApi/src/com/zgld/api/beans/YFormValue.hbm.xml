@@ -13,20 +13,23 @@
         <property name="tagId" type="java.lang.Integer">
             <column name="Tag_ID" />
         </property>
-        <property name="objId" type="java.lang.Integer">
-            <column name="Obj_ID" />
-        </property>
-        <property name="tableName" type="java.lang.String">
-            <column name="Table_Name" />
+        <property name="formId" type="java.lang.Integer">
+            <column name="Form_ID" />
         </property>
         <property name="tagType" type="java.lang.Integer">
             <column name="Tag_Type" />
         </property>
-        <property name="fieldName" type="java.lang.String">
-            <column name="Field_Name" />
+        <property name="objId" type="java.lang.Integer">
+            <column name="Obj_ID" />
         </property>
-        <property name="controlValue" type="java.lang.String">
-            <column name="Control_Value" not-null="true" />
+        <property name="objTable" type="java.lang.String">
+            <column name="Obj_Table" />
+        </property>
+        <property name="tagFieldName" type="java.lang.String">
+            <column name="Tag_Field_Name" />
+        </property>
+        <property name="tagValue" type="java.lang.String">
+            <column name="Tag_Value" />
         </property>
     </class>
 </hibernate-mapping>
