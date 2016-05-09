@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.zgld.api.beans.OrderItems;
 import com.zgld.api.beans.Orders;
 import com.zgld.api.beans.Products;
+import com.zgld.api.beans.ShoppingCarts;
 import com.zgld.api.beans.Sku;
 import com.zgld.api.beans.SubmitOrderParam;
 import com.zgld.api.beans.YAccount;
@@ -102,14 +103,13 @@ public class OrderAction extends BaseAction {
 					this.form.setJsonMsg("json不能为空", false, json, 1001);
 				} else {
 					Gson gson = new Gson();
-					System.out.println(json);
 					List<SubmitOrderParam> listParam = gson.fromJson(form.getJson(), new TypeToken<List<SubmitOrderParam>>() {
 					}.getType());
 					if (listParam == null || listParam.size() <= 0) {
 						this.form.setJsonMsg("请选择产品", false, json, 1001);
 					} else {
 						String message = null;
-						int userId = 2;
+						int userId = account.getUserProfile().getUserId();
 						double salePrice = 0.0D;
 						int shopId = 0;
 						List<Orders> listOrders = new ArrayList<>();
@@ -222,6 +222,11 @@ public class OrderAction extends BaseAction {
 								for (int j = 0; j < listOrders.get(i).getListOrderItems().size(); j++) {
 									OrderItems items = listOrders.get(i).getListOrderItems().get(j);
 									items.setOrderId(orderId);
+									String hql = " delete from ShoppingCarts as sc where sc.productId = "+items.getProductId()+" and sc.userId = "+userId;
+									if(items.getSku()!=null && items.getSku()>0){
+										hql = hql+" and sc.sku = "+items.getSku();
+									}
+									baseService.updateListObject(hql);
 									baseService.save(items);
 								}
 							}

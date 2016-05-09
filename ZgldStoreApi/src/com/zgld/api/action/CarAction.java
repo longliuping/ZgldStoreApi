@@ -263,9 +263,13 @@ public class CarAction extends BaseAction {
 						listCarts.add(hishopShoppingCarts);
 					}
 				}
-				shop = (YShop) this.baseService.bean(" from YShop as s where s.shopId = " + shopId);
-				shop.setListShoppingCarts(listCarts);
-				listShop.add(shop);
+				if(shopId>0){
+					shop = (YShop) this.baseService.bean(" from YShop as s where s.shopId = " + shopId);
+					if(shop!=null){
+						shop.setListShoppingCarts(listCarts);
+						listShop.add(shop);
+					}
+				}
 				listCarts = new ArrayList<>();
 				shop = new YShop();
 				json.put(LISTINFO, listShop);

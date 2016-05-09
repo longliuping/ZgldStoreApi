@@ -55,7 +55,8 @@ public class SpringTest {
 //			YFormTag ft = (YFormTag)obj[2];
 //			System.out.println(ft.getTagName()+":"+fc.getControlName());
 //		}
-
+		
+		baseService.updateListObject(" delete from ShoppingCarts as sc where sc.productId = 3 and sc.userId = 2");
 		
 	}
 	public static void submit_order(){
