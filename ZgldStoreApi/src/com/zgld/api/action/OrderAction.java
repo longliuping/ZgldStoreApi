@@ -41,8 +41,7 @@ public class OrderAction extends BaseAction {
 				if (this.form.getOrderid() == null) {
 					this.form.setJsonMsg("orderid不能为空", false, json, 1001);
 				} else {
-					Orders order = (Orders) this.baseService
-							.bean(" from Orders as o where o.orderId = " + this.form.getOrderid());
+					Orders order = (Orders) this.baseService.bean(" from Orders as o where o.orderId = " + this.form.getOrderid());
 					if (order == null) {
 						this.form.setJsonMsg("订单不存在", false, json, 1001);
 					} else if ((order != null) && (order.getPaymentStatus().intValue() == 1)) {
@@ -50,9 +49,7 @@ public class OrderAction extends BaseAction {
 					} else {
 						String subject = "众观利达：";
 						String body = "众观利达：";
-						List listItem = this.baseService.findAll(
-								" from OrderItems as oi,Products as p where oi.productId = p.productId and oi.orderId="
-										+ order.getOrderId());
+						List listItem = this.baseService.findAll(" from OrderItems as oi,Products as p where oi.productId = p.productId and oi.orderId=" + order.getOrderId());
 						if (listItem != null) {
 							for (int i = 0; i < listItem.size(); i++) {
 								Object[] o = (Object[]) listItem.get(i);
@@ -98,19 +95,19 @@ public class OrderAction extends BaseAction {
 	public String submit_order() {
 		Map json = new HashMap();
 		try {
-			String sku = "";//产品|数量|规格
+			String sku = "";// 产品|数量|规格
 			YAccount account = getUserInfo();
 			if (account != null) {
-				if (this.form.getJson()== null) {
+				if (this.form.getJson() == null) {
 					this.form.setJsonMsg("json不能为空", false, json, 1001);
-				}else{
+				} else {
 					Gson gson = new Gson();
 					System.out.println(json);
 					List<SubmitOrderParam> listParam = gson.fromJson(form.getJson(), new TypeToken<List<SubmitOrderParam>>() {
 					}.getType());
-					if(listParam==null || listParam.size()<=0){
+					if (listParam == null || listParam.size() <= 0) {
 						this.form.setJsonMsg("请选择产品", false, json, 1001);
-					}else{
+					} else {
 						String message = null;
 						int userId = 2;
 						double salePrice = 0.0D;
@@ -121,43 +118,42 @@ public class OrderAction extends BaseAction {
 						Orders orders = null;
 						for (int i = 0; i < listParam.size(); i++) {
 							SubmitOrderParam pa = listParam.get(i);
-							Products products = (Products)baseService.bean(" from Products as p where p.productId = "+pa.getProductId());
-							if(products==null){
-								message = "产品不存在(ID)"+pa.getProductId();
-							}else{
+							Products products = (Products) baseService.bean(" from Products as p where p.productId = " + pa.getProductId());
+							if (products == null) {
+								message = "产品不存在(ID)" + pa.getProductId();
+							} else {
 								int number = 0;
 								double price = 0.0;
-								if(pa.getValueId()>0){
-									YFormCombineValue formCombineValue = (YFormCombineValue)baseService
-											.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = "+pa.getValueId()+" and fcv.objId = "+pa.getProductId());
-									if(formCombineValue!=null){
+								if (pa.getValueId() > 0) {
+									YFormCombineValue formCombineValue = (YFormCombineValue) baseService.bean(
+											" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = " + pa.getValueId() + " and fcv.objId = " + pa.getProductId());
+									if (formCombineValue != null) {
 										number = formCombineValue.getGoStore();
 										price = formCombineValue.getGoSalePrice();
-									}else{
-										message = "产品ID"+pa.getProductId()+"规格不存在"+pa.getValueId();
+									} else {
+										message = "产品ID" + pa.getProductId() + "规格不存在" + pa.getValueId();
 									}
-								}else{
+								} else {
 									number = products.getStock();
 									price = products.getSalePrice();
 								}
-								if (pa.getNumber() > number){
-									message = "产品ID"+products.getProductId()+ "库存不能大于" + number;
+								if (pa.getNumber() > number) {
+									message = "产品ID" + products.getProductId() + "库存不能大于" + number;
 								}
-								if(message==null){
-									if(shopId==products.getShopId()){
+								if (message == null) {
+									if (shopId == products.getShopId()) {
 										OrderItems items = new OrderItems();
 										items.setProductId(pa.getProductId());
-										if(pa.getValueId()>0){
+										if (pa.getValueId() > 0) {
 											items.setSku(pa.getValueId());
 										}
 										items.setQuantity(pa.getNumber());
-										items.setListPrice(Double
-												.valueOf(price));
+										items.setListPrice(Double.valueOf(price));
 										items.setCellPrice(price);
 										items.setRemark("");
 										salePrice += pa.getNumber() * price;
 										listOrderItems.add(items);
-										
+
 										orders = new Orders();
 										orders.setUserId(Integer.valueOf(userId));
 										orders.setFreight(Double.valueOf(0.0D));
@@ -173,8 +169,8 @@ public class OrderAction extends BaseAction {
 										orders.setOrderDate(new Date());
 										orders.setOrderTotalPrice(Double.valueOf(salePrice));
 										orders.setShopId(shopId);
-										
-									}else{
+
+									} else {
 										orders.setListOrderItems(listOrderItems);
 										orders.setOrderTotalPrice(salePrice);
 										listOrders.add(orders);
@@ -194,45 +190,47 @@ public class OrderAction extends BaseAction {
 										orders.setOrderDate(new Date());
 										orders.setOrderTotalPrice(Double.valueOf(salePrice));
 										orders.setShopId(shopId);
-										
-										salePrice = 0 ;
+
+										salePrice = 0;
 										listOrderItems = new ArrayList<>();
-										
+
 										OrderItems items = new OrderItems();
 										items.setProductId(pa.getProductId());
-										if(pa.getValueId()>0){
+										if (pa.getValueId() > 0) {
 											items.setSku(pa.getValueId());
 										}
 										items.setQuantity(pa.getNumber());
-										items.setListPrice(Double
-												.valueOf(price));
+										items.setListPrice(Double.valueOf(price));
 										items.setCellPrice(price);
 										items.setRemark("");
 										salePrice += pa.getNumber() * price;
 										listOrderItems.add(items);
 									}
-									
 								}
 							}
 						}
-						orders.setListOrderItems(listOrderItems);
-						orders.setOrderTotalPrice(salePrice);
-						listOrders.add(orders);
-						int orderId = 0;
-						for (int i = 0; i < listOrders.size(); i++) {
-							Serializable s = baseService.save(listOrders.get(i));
-							orderId = Integer.parseInt(s.toString());
-							for (int j = 0; j < listOrders.get(i).getListOrderItems().size(); j++) {
-								OrderItems items = listOrders.get(i).getListOrderItems().get(j);
-								items.setOrderId(orderId);
-								baseService.save(items);
+						if (message != null) {
+							this.form.setJsonMsg(message, false, json, 1001);
+						} else {
+							orders.setListOrderItems(listOrderItems);
+							orders.setOrderTotalPrice(salePrice);
+							listOrders.add(orders);
+							int orderId = 0;
+							for (int i = 0; i < listOrders.size(); i++) {
+								Serializable s = baseService.save(listOrders.get(i));
+								orderId = Integer.parseInt(s.toString());
+								for (int j = 0; j < listOrders.get(i).getListOrderItems().size(); j++) {
+									OrderItems items = listOrders.get(i).getListOrderItems().get(j);
+									items.setOrderId(orderId);
+									baseService.save(items);
+								}
 							}
-						}
-						json.put("orderId", orderId);
-						if(listOrders.size()>1){
-							this.form.setJsonMsg("提交订单成功(含有多个商家产品,需要分"+listOrders.size()+")次付款", true, json, 200);
-						}else{ 
-							this.form.setJsonMsg("提交订单成功", true, json, 200); 
+							json.put("orderId", orderId);
+							if (listOrders.size() > 1) {
+								this.form.setJsonMsg("提交订单成功(含有多个商家产品,需要分" + listOrders.size() + ")次付款", true, json, 200);
+							} else {
+								this.form.setJsonMsg("提交订单成功", true, json, 200);
+							}
 						}
 					}
 				}
@@ -254,18 +252,14 @@ public class OrderAction extends BaseAction {
 		try {
 			YAccount account = getUserInfo();
 			if (account != null) {
-				StringBuffer sb = new StringBuffer(
-						" from Orders as ho where ho.userId = " + account.getUsers().getUserId());
+				StringBuffer sb = new StringBuffer(" from Orders as ho where ho.userId = " + account.getUsers().getUserId());
 				if ((this.form.getId() != null) && (this.form.getId().intValue() >= 0)) {
 					sb.append(" and ho.paymentStatus = " + this.form.getId());
 				}
 				sb.append(" order by ho.orderDate desc ");
-				List hishopOrders = this.baseService.findPage(this.form.getPageNum().intValue(),
-						this.form.getPageSize().intValue(), sb.toString());
+				List hishopOrders = this.baseService.findPage(this.form.getPageNum().intValue(), this.form.getPageSize().intValue(), sb.toString());
 				for (int i = 0; i < hishopOrders.size(); i++) {
-					List list = this.baseService.findAll(
-							" from OrderItems as oi, Products as p where oi.productId = p.productId and oi.orderId = "
-									+ ((Orders) hishopOrders.get(i)).getOrderId());
+					List list = this.baseService.findAll(" from OrderItems as oi, Products as p where oi.productId = p.productId and oi.orderId = " + ((Orders) hishopOrders.get(i)).getOrderId());
 					List items = new ArrayList();
 					for (Iterator localIterator = list.iterator(); localIterator.hasNext();) {
 						Object object = localIterator.next();
@@ -302,8 +296,7 @@ public class OrderAction extends BaseAction {
 				if (this.form.getOrderid() == null) {
 					this.form.setJsonMsg("orderid不能为空", false, json, 1001);
 				} else {
-					Orders order = (Orders) this.baseService.bean(" from Orders as o where o.userId = "
-							+ account.getUsers().getUserId() + " and o.orderId = " + this.form.getOrderid());
+					Orders order = (Orders) this.baseService.bean(" from Orders as o where o.userId = " + account.getUsers().getUserId() + " and o.orderId = " + this.form.getOrderid());
 					if (order == null) {
 						this.form.setJsonMsg("订单不存在", false, json, 1001);
 					} else if ((order == null) || (order.getPaymentStatus().intValue() != 1)) {
@@ -335,16 +328,14 @@ public class OrderAction extends BaseAction {
 				if (this.form.getOrderid() == null) {
 					this.form.setJsonMsg("orderid不能为空", false, json, 1001);
 				} else {
-					Orders order = (Orders) this.baseService.bean(" from Orders as o where o.userId = "
-							+ account.getUsers().getUserId() + " and o.orderId = " + this.form.getOrderid());
+					Orders order = (Orders) this.baseService.bean(" from Orders as o where o.userId = " + account.getUsers().getUserId() + " and o.orderId = " + this.form.getOrderid());
 					if (order == null) {
 						this.form.setJsonMsg("订单不存在", false, json, 1001);
 					} else if ((order == null) || (order.getPaymentStatus().intValue() != 0)) {
 						this.form.setJsonMsg("此订单暂时不能删除", false, json, 1001);
 					} else {
 						baseService.delete(order);
-						baseService.updateListObject(
-								" delete from OrderItems as o where o.orderId = " + order.getOrderId());
+						baseService.updateListObject(" delete from OrderItems as o where o.orderId = " + order.getOrderId());
 						form.setJsonMsg("删除成功!", true, json, 200);
 					}
 				}
