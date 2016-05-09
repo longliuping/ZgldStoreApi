@@ -1,10 +1,13 @@
 package com.zgld.api.action;
 
 import com.alipay.config.OrderPayConfig;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.zgld.api.beans.OrderItems;
 import com.zgld.api.beans.Orders;
 import com.zgld.api.beans.Products;
 import com.zgld.api.beans.Sku;
+import com.zgld.api.beans.SubmitOrderParam;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.beans.YFormCombineValue;
 
@@ -95,91 +98,142 @@ public class OrderAction extends BaseAction {
 	public String submit_order() {
 		Map json = new HashMap();
 		try {
+			String sku = "";//产品|数量|规格
 			YAccount account = getUserInfo();
 			if (account != null) {
-				if (this.form.getSkuId() == null) {
-					this.form.setJsonMsg("skuId不能为空", false, json, 1001);
-				} else if (this.form.getSkuNumber() == null) {
-					this.form.setJsonMsg("skuNumber不能为空", false, json, 1001);
-				} else {
-					String[] skuId = this.form.getSkuId().split(",");
-					String[] skuNumber = this.form.getSkuNumber().split(",");
-					String message = "";
-					String skuIdStr = "";
-					for (int i = 0; i < skuId.length; i++) {
-//						Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
-//						if (hishopSkus != null) {
-//							int number = Integer.parseInt(skuNumber[i]);
-//							if (number > hishopSkus.getStock().intValue())
-//								message = message + "skuId:" + hishopSkus.getSku() + "产品库存不能大于" + hishopSkus.getStock()
-//										+ ";";
-//							else {
-//								skuIdStr = skuIdStr + hishopSkus.getSku() + ",";
-//							}
-//						}
-						YFormCombineValue hishopSkus = (YFormCombineValue)this.baseService
-								.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = "+skuId[i]);
-						if (hishopSkus != null) {
-							int number = Integer.parseInt(skuNumber[i]);
-							if (number > hishopSkus.getGoStore().intValue())
-								message = message + "skuId:" + hishopSkus.getObjId()+ "产品库存不能大于" + hishopSkus.getGoStore()
-										+ ";";
-							else {
-								skuIdStr = skuIdStr + hishopSkus.getGoStore() + ",";
+				if (this.form.getJson()== null) {
+					this.form.setJsonMsg("json不能为空", false, json, 1001);
+				}else{
+					Gson gson = new Gson();
+					System.out.println(json);
+					List<SubmitOrderParam> listParam = gson.fromJson(form.getJson(), new TypeToken<List<SubmitOrderParam>>() {
+					}.getType());
+					if(listParam==null || listParam.size()<=0){
+						this.form.setJsonMsg("请选择产品", false, json, 1001);
+					}else{
+						String message = null;
+						int userId = 2;
+						double salePrice = 0.0D;
+						int shopId = 0;
+						List<Orders> listOrders = new ArrayList<>();
+						List<OrderItems> listOrderItems = new ArrayList<>();
+						shopId = listParam.get(0).getShopId();
+						Orders orders = null;
+						for (int i = 0; i < listParam.size(); i++) {
+							SubmitOrderParam pa = listParam.get(i);
+							Products products = (Products)baseService.bean(" from Products as p where p.productId = "+pa.getProductId());
+							if(products==null){
+								message = "产品不存在(ID)"+pa.getProductId();
+							}else{
+								int number = 0;
+								double price = 0.0;
+								if(pa.getValueId()>0){
+									YFormCombineValue formCombineValue = (YFormCombineValue)baseService
+											.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = "+pa.getValueId()+" and fcv.objId = "+pa.getProductId());
+									if(formCombineValue!=null){
+										number = formCombineValue.getGoStore();
+										price = formCombineValue.getGoSalePrice();
+									}else{
+										message = "产品ID"+pa.getProductId()+"规格不存在"+pa.getValueId();
+									}
+								}else{
+									number = products.getStock();
+									price = products.getSalePrice();
+								}
+								if (pa.getNumber() > number){
+									message = "产品ID"+products.getProductId()+ "库存不能大于" + number;
+								}
+								if(message==null){
+									if(shopId==products.getShopId()){
+										OrderItems items = new OrderItems();
+										items.setProductId(pa.getProductId());
+										if(pa.getValueId()>0){
+											items.setSku(pa.getValueId());
+										}
+										items.setQuantity(pa.getNumber());
+										items.setListPrice(Double
+												.valueOf(price));
+										items.setCellPrice(price);
+										items.setRemark("");
+										salePrice += pa.getNumber() * price;
+										listOrderItems.add(items);
+										
+										orders = new Orders();
+										orders.setUserId(Integer.valueOf(userId));
+										orders.setFreight(Double.valueOf(0.0D));
+										orders.setShippingId(Integer.valueOf(0));
+										orders.setShipOrderNumber("");
+										orders.setShippingStatus(Integer.valueOf(0));
+										orders.setRefundStatus(Integer.valueOf(0));
+										orders.setPaymentStatus(Integer.valueOf(0));
+										orders.setOrderTotalPrice(Double.valueOf(0.0D));
+										orders.setOtherCost(Double.valueOf(0.0D));
+										orders.setOrderRealPrice(Double.valueOf(0.0D));
+										orders.setRemark("");
+										orders.setOrderDate(new Date());
+										orders.setOrderTotalPrice(Double.valueOf(salePrice));
+										orders.setShopId(shopId);
+										
+									}else{
+										orders.setListOrderItems(listOrderItems);
+										orders.setOrderTotalPrice(salePrice);
+										listOrders.add(orders);
+										orders = new Orders();
+										salePrice = 0.0;
+										orders.setUserId(Integer.valueOf(userId));
+										orders.setFreight(Double.valueOf(0.0D));
+										orders.setShippingId(Integer.valueOf(0));
+										orders.setShipOrderNumber("");
+										orders.setShippingStatus(Integer.valueOf(0));
+										orders.setRefundStatus(Integer.valueOf(0));
+										orders.setPaymentStatus(Integer.valueOf(0));
+										orders.setOrderTotalPrice(Double.valueOf(0.0D));
+										orders.setOtherCost(Double.valueOf(0.0D));
+										orders.setOrderRealPrice(Double.valueOf(0.0D));
+										orders.setRemark("");
+										orders.setOrderDate(new Date());
+										orders.setOrderTotalPrice(Double.valueOf(salePrice));
+										orders.setShopId(shopId);
+										
+										salePrice = 0 ;
+										listOrderItems = new ArrayList<>();
+										
+										OrderItems items = new OrderItems();
+										items.setProductId(pa.getProductId());
+										if(pa.getValueId()>0){
+											items.setSku(pa.getValueId());
+										}
+										items.setQuantity(pa.getNumber());
+										items.setListPrice(Double
+												.valueOf(price));
+										items.setCellPrice(price);
+										items.setRemark("");
+										salePrice += pa.getNumber() * price;
+										listOrderItems.add(items);
+									}
+									
+								}
 							}
 						}
-					}
-					if (message.length() > 5) {
-						this.form.setJsonMsg("产品库存不足，请删减后重试!" + message, false, json, 1001);
-					} else if (skuIdStr.length() < 1) {
-						this.form.setJsonMsg("购买的产品不存在", false, json, 1001);
-					} else {
-						int userId = account.getUsers().getUserId().intValue();
-						Orders orders = new Orders();
-						orders.setUserId(Integer.valueOf(userId));
-						orders.setFreight(Double.valueOf(0.0D));
-						orders.setShippingId(Integer.valueOf(0));
-						orders.setShipOrderNumber("");
-						orders.setShippingStatus(Integer.valueOf(0));
-						orders.setRefundStatus(Integer.valueOf(0));
-						orders.setPaymentStatus(Integer.valueOf(0));
-						orders.setOrderTotalPrice(Double.valueOf(0.0D));
-						orders.setOtherCost(Double.valueOf(0.0D));
-						orders.setOrderRealPrice(Double.valueOf(0.0D));
-						orders.setRemark("");
-						orders.setOrderDate(new Date());
-						Serializable s = this.baseService.save(orders);
-						String orderId = s.toString();
-						double salePrice = 0.0D;
-						int objId = 0;
-						for (int i = 0; i < skuId.length; i++) {
-//							Sku hishopSkus = (Sku) this.baseService.bean(" from Sku as hs where hs.sku = " + skuId[i]);
-							YFormCombineValue hishopSkus = (YFormCombineValue)this.baseService
-									.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = "+skuId[i]);
-							OrderItems items = new OrderItems();
-							items.setOrderId(Integer.valueOf(Integer.parseInt(orderId)));
-							items.setProductId(hishopSkus.getObjId());
-							items.setSku(hishopSkus.getCombineValueId());
-							items.setQuantity(Integer.valueOf(Integer.parseInt(skuNumber[i])));
-							items.setListPrice(Double
-									.valueOf(hishopSkus.getGoSalePrice().doubleValue() * Integer.parseInt(skuNumber[i])));
-							items.setCellPrice(hishopSkus.getGoSalePrice());
-							items.setRemark("");
-							salePrice += Integer.parseInt(skuNumber[i]) * hishopSkus.getGoSalePrice().doubleValue();
-							this.baseService.updateListObject(" delete from ShoppingCarts as hsc where hsc.sku = '"
-									+ hishopSkus.getCombineValueId() + "' and hsc.userId = " + userId);
-							this.baseService.save(items);
-							objId = hishopSkus.getObjId();
-						}
-						Products product = (Products)baseService.bean(" from Products as p where p.productId = "+objId);
-						Orders ho = (Orders) this.baseService.bean(" from Orders as ho where ho.orderId = " + orderId);
-						if (ho != null) {
-							ho.setOrderTotalPrice(Double.valueOf(salePrice));
-							ho.setShopId(product.getShopId());
-							this.baseService.update(ho);
+						orders.setListOrderItems(listOrderItems);
+						orders.setOrderTotalPrice(salePrice);
+						listOrders.add(orders);
+						int orderId = 0;
+						for (int i = 0; i < listOrders.size(); i++) {
+							Serializable s = baseService.save(listOrders.get(i));
+							orderId = Integer.parseInt(s.toString());
+							for (int j = 0; j < listOrders.get(i).getListOrderItems().size(); j++) {
+								OrderItems items = listOrders.get(i).getListOrderItems().get(j);
+								items.setOrderId(orderId);
+								baseService.save(items);
+							}
 						}
 						json.put("orderId", orderId);
-						this.form.setJsonMsg("提交订单成功", true, json, 200);
+						if(listOrders.size()>1){
+							this.form.setJsonMsg("提交订单成功(含有多个商家产品,需要分"+listOrders.size()+")次付款", true, json, 200);
+						}else{ 
+							this.form.setJsonMsg("提交订单成功", true, json, 200); 
+						}
 					}
 				}
 			}

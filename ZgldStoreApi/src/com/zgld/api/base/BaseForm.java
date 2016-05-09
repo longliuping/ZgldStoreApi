@@ -57,6 +57,7 @@ public class BaseForm {
 	private String cellPhone;
 	private Double amount;
 	private String remark;
+	private String json;
 	private UserShippingAddresses address;
 
 	public String getJsonText() {
@@ -447,6 +448,14 @@ public class BaseForm {
 
 	public void setShopId(Integer shopId) {
 		this.shopId = shopId;
+	}
+
+	public String getJson() {
+		return json;
+	}
+
+	public void setJson(String json) {
+		this.json = json;
 	}
 	
 }

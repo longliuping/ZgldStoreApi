@@ -1,10 +1,18 @@
 package com.zgld.api.test;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.zgld.api.beans.OrderItems;
+import com.zgld.api.beans.Orders;
+import com.zgld.api.beans.Products;
+import com.zgld.api.beans.SubmitOrderParam;
 import com.zgld.api.beans.UserProfile;
 import com.zgld.api.beans.YFormCombine;
+import com.zgld.api.beans.YFormCombineValue;
 import com.zgld.api.beans.YFormControl;
 import com.zgld.api.beans.YFormTag;
 import com.zgld.api.beans.YFormValue;
@@ -13,7 +21,8 @@ import com.zgld.api.beans.YRebateRelation;
 import com.zgld.api.service.BaseService;
 import com.zgld.api.utils.Contents;
 import com.zgld.api.utils.PriceUtil;
-
+//com.google.gson.reflec
+import com.google.gson.reflect.*;
 public class SpringTest {
 	static BaseService baseService = null;
 
@@ -22,7 +31,7 @@ public class SpringTest {
 //		int userId = 6;
 		baseService = Contents.getBaseService();
 		
-		int productId = 3;
+//		int productId = 3;
 //		List<?> list = baseService.findAll(" from YFormValue as fv,YFormTag as ft where fv.tagId = ft.tagId and fv.objTable = 'Products' and fv.objId = "+productId);
 //		for (Object object : list) {
 //			Object obj[] = (Object[])object;
@@ -46,8 +55,156 @@ public class SpringTest {
 //			YFormTag ft = (YFormTag)obj[2];
 //			System.out.println(ft.getTagName()+":"+fc.getControlName());
 //		}
-		baseService.findAll(" from ");
+
 		
+	}
+	public static void submit_order(){
+		List<SubmitOrderParam> listOrder = new ArrayList<>();
+		SubmitOrderParam param1 = new SubmitOrderParam();
+		param1.setNumber(2);
+		param1.setProductId(1);
+		param1.setShopId(2);
+		
+		SubmitOrderParam param2 = new SubmitOrderParam();
+		param2.setNumber(2);
+		param2.setProductId(2);
+		param2.setShopId(2);
+		
+		SubmitOrderParam param3 = new SubmitOrderParam();
+		param3.setNumber(2);
+		param3.setProductId(3);
+		param3.setShopId(1);
+		
+		listOrder.add(param1);
+		listOrder.add(param2);
+		listOrder.add(param3);
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(listOrder);
+		System.out.println(json);
+		List<SubmitOrderParam> listParam = gson.fromJson(json, new TypeToken<List<SubmitOrderParam>>() {
+		}.getType());
+		
+		if(listParam==null || listParam.size()<=0){
+			
+		}else{
+			String message = null;
+			int userId = 2;
+			double salePrice = 0.0D;
+			int shopId = 0;
+			List<Orders> listOrders = new ArrayList<>();
+			List<OrderItems> listOrderItems = new ArrayList<>();
+			shopId = listParam.get(0).getShopId();
+			Orders orders = null;
+			for (int i = 0; i < listParam.size(); i++) {
+				SubmitOrderParam pa = listParam.get(i);
+				Products products = (Products)baseService.bean(" from Products as p where p.productId = "+pa.getProductId());
+				if(products==null){
+					message = "产品不存在(ID)"+pa.getProductId();
+				}else{
+					int number = 0;
+					double price = 0.0;
+					if(pa.getValueId()>0){
+						YFormCombineValue formCombineValue = (YFormCombineValue)baseService
+								.bean(" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = "+pa.getValueId()+" and fcv.objId = "+pa.getProductId());
+						if(formCombineValue!=null){
+							number = formCombineValue.getGoStore();
+							price = formCombineValue.getGoSalePrice();
+						}else{
+							message = "产品ID"+pa.getProductId()+"规格不存在"+pa.getValueId();
+						}
+					}else{
+						number = products.getStock();
+						price = products.getSalePrice();
+					}
+					if (pa.getNumber() > number){
+						message = "产品ID"+products.getProductId()+ "库存不能大于" + number;
+					}
+					if(message==null){
+						if(shopId==products.getShopId()){
+							OrderItems items = new OrderItems();
+							items.setProductId(pa.getProductId());
+							if(pa.getValueId()>0){
+								items.setSku(pa.getValueId());
+							}
+							items.setQuantity(pa.getNumber());
+							items.setListPrice(Double
+									.valueOf(price));
+							items.setCellPrice(price);
+							items.setRemark("");
+							salePrice += pa.getNumber() * price;
+							listOrderItems.add(items);
+							
+							orders = new Orders();
+							orders.setUserId(Integer.valueOf(userId));
+							orders.setFreight(Double.valueOf(0.0D));
+							orders.setShippingId(Integer.valueOf(0));
+							orders.setShipOrderNumber("");
+							orders.setShippingStatus(Integer.valueOf(0));
+							orders.setRefundStatus(Integer.valueOf(0));
+							orders.setPaymentStatus(Integer.valueOf(0));
+							orders.setOrderTotalPrice(Double.valueOf(0.0D));
+							orders.setOtherCost(Double.valueOf(0.0D));
+							orders.setOrderRealPrice(Double.valueOf(0.0D));
+							orders.setRemark("");
+							orders.setOrderDate(new Date());
+							orders.setOrderTotalPrice(Double.valueOf(salePrice));
+							orders.setShopId(shopId);
+							
+						}else{
+							orders.setListOrderItems(listOrderItems);
+							orders.setOrderTotalPrice(salePrice);
+							listOrders.add(orders);
+							orders = new Orders();
+							salePrice = 0.0;
+							orders.setUserId(Integer.valueOf(userId));
+							orders.setFreight(Double.valueOf(0.0D));
+							orders.setShippingId(Integer.valueOf(0));
+							orders.setShipOrderNumber("");
+							orders.setShippingStatus(Integer.valueOf(0));
+							orders.setRefundStatus(Integer.valueOf(0));
+							orders.setPaymentStatus(Integer.valueOf(0));
+							orders.setOrderTotalPrice(Double.valueOf(0.0D));
+							orders.setOtherCost(Double.valueOf(0.0D));
+							orders.setOrderRealPrice(Double.valueOf(0.0D));
+							orders.setRemark("");
+							orders.setOrderDate(new Date());
+							orders.setOrderTotalPrice(Double.valueOf(salePrice));
+							orders.setShopId(shopId);
+							
+							salePrice = 0 ;
+							listOrderItems = new ArrayList<>();
+							
+							OrderItems items = new OrderItems();
+							items.setProductId(pa.getProductId());
+							if(pa.getValueId()>0){
+								items.setSku(pa.getValueId());
+							}
+							items.setQuantity(pa.getNumber());
+							items.setListPrice(Double
+									.valueOf(price));
+							items.setCellPrice(price);
+							items.setRemark("");
+							salePrice += pa.getNumber() * price;
+							listOrderItems.add(items);
+						}
+						
+					}
+				}
+			}
+			orders.setListOrderItems(listOrderItems);
+			orders.setOrderTotalPrice(salePrice);
+			listOrders.add(orders);
+			for (int i = 0; i < listOrders.size(); i++) {
+				Serializable s = baseService.save(listOrders.get(i));
+				int orderId = Integer.parseInt(s.toString());
+				for (int j = 0; j < listOrders.get(i).getListOrderItems().size(); j++) {
+					OrderItems items = listOrders.get(i).getListOrderItems().get(j);
+					items.setOrderId(orderId);
+					baseService.save(items);
+				}
+			}
+		}
 	}
 	public static void ok_order(){
 		double totalPrice = 100;//订单总金额
