@@ -153,6 +153,8 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 		Serializable b = this.baseService.save(users);
 
 		int userId = b.hashCode();
+		users.setUserId(userId);
+		account.setUsers(users);
 		UserProfile profile = new UserProfile();
 		profile.setUserId(Integer.valueOf(userId));
 		profile.setEnablePrivateMessages(0);
