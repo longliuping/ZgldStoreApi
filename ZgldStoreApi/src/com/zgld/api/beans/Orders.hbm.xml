@@ -88,5 +88,14 @@
         <property name="refundTotalFee" type="java.lang.Double">
             <column name="RefundTotalFee" scale="4" />
         </property>
+        <property name="consumptionDate" type="java.util.Date">
+            <column name="ConsumptionDate" length="16" />
+        </property>
+         <property name="consumptionCode" type="java.lang.String">
+            <column name="ConsumptionCode" />
+        </property>
+         <property name="consumptionStatus" type="java.lang.Integer">
+            <column name="ConsumptionStatus" />
+        </property>
     </class>
 </hibernate-mapping>

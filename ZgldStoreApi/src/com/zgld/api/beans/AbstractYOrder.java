@@ -22,6 +22,7 @@ public abstract class AbstractYOrder implements java.io.Serializable {
 	private Double shipPrice;
 	private Integer orderState;
 	private Date orderTime;
+	
 
 	// Constructors
 

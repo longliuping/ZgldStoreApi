@@ -31,6 +31,9 @@ public abstract class AbstractOrders implements Serializable {
 	private String buyerAccount;
 	private Date refundDateTime;
 	private Double refundTotalFee;
+	private Date consumptionDate;
+	private String consumptionCode;
+	private Integer consumptionStatus;
 	public Integer getOrderId() {
 		return this.orderId;
 	}
@@ -246,4 +249,29 @@ public abstract class AbstractOrders implements Serializable {
 	public void setRefundTotalFee(Double refundTotalFee) {
 		this.refundTotalFee = refundTotalFee;
 	}
+
+	public Date getConsumptionDate() {
+		return consumptionDate;
+	}
+
+	public void setConsumptionDate(Date consumptionDate) {
+		this.consumptionDate = consumptionDate;
+	}
+
+	public String getConsumptionCode() {
+		return consumptionCode;
+	}
+
+	public void setConsumptionCode(String consumptionCode) {
+		this.consumptionCode = consumptionCode;
+	}
+
+	public Integer getConsumptionStatus() {
+		return consumptionStatus;
+	}
+
+	public void setConsumptionStatus(Integer consumptionStatus) {
+		this.consumptionStatus = consumptionStatus;
+	}
+	
 }
