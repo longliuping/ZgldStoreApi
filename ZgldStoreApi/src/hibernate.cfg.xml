@@ -164,6 +164,7 @@
 		<mapping resource="com/zgld/api/beans/HotCategory.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/ShopArea.hbm.xml" />
 		<mapping resource="com/zgld/api/beans/ShopHot.hbm.xml" />
+		<mapping resource="com/zgld/api/beans/OrdersRebate.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>
