@@ -296,7 +296,8 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 	/**
 	 * 获取推荐的用户领导
 	 */
-	public UserProfile recommendUser(int level, int userId) {
+	public Object[] recommendUser(int level, int userId) {
+		Object obj[] = null;
 		UserProfile up = null;
 		List<?> listObj = null;
 		List<YRebateRelation> listOne = null;
@@ -310,6 +311,8 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 				Object[] o = (Object[]) listObj.get(i);
 				YRebateRelation r = (YRebateRelation) o[0];
 				up = (UserProfile) o[1];
+				obj[0] = r;
+				obj[1] = up;
 			}
 			break;
 		case 2:
@@ -330,6 +333,8 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 					Object[] o = (Object[]) listObj.get(i);
 					YRebateRelation r = (YRebateRelation) o[0];
 					up = (UserProfile) o[1];
+					obj[0] = r;
+					obj[1] = up;
 				}
 			}
 			break;
@@ -364,6 +369,8 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 						Object[] o = (Object[]) listObj.get(i);
 						YRebateRelation r = (YRebateRelation) o[0];
 						up = (UserProfile) o[1];
+						obj[0] = r;
+						obj[1] = up;
 					}
 				}
 
@@ -371,7 +378,7 @@ public class BaseAction extends ActionSupport implements ModelDriven<Object> {
 			break;
 
 		}
-		return up;
+		return obj;
 	}
 
 	/**

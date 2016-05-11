@@ -108,6 +108,7 @@ public class RecommendAction extends BaseAction {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return JSON_PAGE;
 	}
@@ -127,8 +128,8 @@ public class RecommendAction extends BaseAction {
 					if(relation==null){
 						this.form.setJsonMsg("rebateRelationId推荐关系ID不存在", false, json, 1001);
 					}else{
-						List<OrdersRebate> listInfo = (List<OrdersRebate>)baseService.findPage(form.getPageNum(), form.getPageSize(), " from OrdersRebate as or where or.rebateRelationId = "+form.getId()+" and or.userId = "+account.getUserProfile().getUserId());
-						Double income = (Double) baseService.totalObject(" select sum(or.income) from OrdersRebate as or where or.rebateRelationId = "+form.getId()+" and or.userId = "+account.getUserProfile().getUserId());
+						List<OrdersRebate> listInfo = (List<OrdersRebate>)baseService.findPage(form.getPageNum(), form.getPageSize(), " from OrdersRebate as o where o.rebateRelationId = "+form.getId()+" and o.userId = "+account.getUserProfile().getUserId());
+						Double income = (Double) baseService.totalObject(" select sum(o.income) from OrdersRebate as o where o.rebateRelationId = "+form.getId()+" and o.userId = "+account.getUserProfile().getUserId());
 						json.put(LISTINFO, listInfo);
 						json.put("income", income);
 						this.form.setJsonMsg(SUCCESS, true, json, 200);
@@ -138,6 +139,7 @@ public class RecommendAction extends BaseAction {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
 		}
 		return JSON_PAGE;
 	}
