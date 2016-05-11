@@ -13,7 +13,7 @@ public class BaseDaoImpl extends BaseHibernateDaoSupport implements BaseDao, Clo
 		return findObjectPage(pageNum, pageSize, hql);
 	}
 
-	public Long count(String hql) {
+	public int count(String hql) {
 		// TODO Auto-generated method stub
 		return countObject(hql);
 	}
@@ -50,7 +50,7 @@ public class BaseDaoImpl extends BaseHibernateDaoSupport implements BaseDao, Clo
 
 	public Object totalObject(String hql) {
 		// TODO Auto-generated method stub
-		return totalObject(hql);
+		return totalBaseObject(hql);
 	}
 
 	public Object getObjectInfo(String hql) {

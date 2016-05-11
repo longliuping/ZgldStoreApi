@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zgld.api.beans.OrdersRebate;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.beans.YRebateRelation;
 
@@ -102,6 +103,36 @@ public class RecommendAction extends BaseAction {
 					}
 					json.put(LISTINFO, listInfo);
 					this.form.setJsonMsg(SUCCESS, true, json, 200);
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return JSON_PAGE;
+	}
+	/**
+	 * 查询我下级的用户给我产生的收益记录
+	 * @return
+	 */
+	public String find_user_order_rebate(){
+		Map json = new HashMap<>();
+		try {
+			YAccount account = getUserInfo();
+			if (account != null) {
+				if (form.getId() == null) {
+					this.form.setJsonMsg("id不能为空", false, json, 1001);
+				} else {
+					YRebateRelation relation = (YRebateRelation)baseService.bean(" from YRebateRelation as r where r.rebateRelationId = "+form.getId());
+					if(relation==null){
+						this.form.setJsonMsg("rebateRelationId推荐关系ID不存在", false, json, 1001);
+					}else{
+						List<OrdersRebate> listInfo = (List<OrdersRebate>)baseService.findPage(form.getPageNum(), form.getPageSize(), " from OrdersRebate as or where or.rebateRelationId = "+form.getId()+" and or.userId = "+account.getUserProfile().getUserId());
+						Double income = (Double) baseService.totalObject(" select sum(or.income) from OrdersRebate as or where or.rebateRelationId = "+form.getId()+" and or.userId = "+account.getUserProfile().getUserId());
+						json.put(LISTINFO, listInfo);
+						json.put("income", income);
+						this.form.setJsonMsg(SUCCESS, true, json, 200);
+					}
 				}
 			}
 		} catch (Exception e) {

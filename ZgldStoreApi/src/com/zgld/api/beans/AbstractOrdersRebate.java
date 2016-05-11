@@ -20,7 +20,8 @@ public abstract class AbstractOrdersRebate implements java.io.Serializable {
 	private Date rebateDate;
 	private String remark;
 	private Integer rebateState;
-
+	private Integer rebateRelationId;
+	private Integer incomeType;
 	// Constructors
 
 	/** default constructor */
@@ -91,6 +92,22 @@ public abstract class AbstractOrdersRebate implements java.io.Serializable {
 
 	public void setRebateState(Integer rebateState) {
 		this.rebateState = rebateState;
+	}
+
+	public Integer getRebateRelationId() {
+		return rebateRelationId;
+	}
+
+	public void setRebateRelationId(Integer rebateRelationId) {
+		this.rebateRelationId = rebateRelationId;
+	}
+
+	public Integer getIncomeType() {
+		return incomeType;
+	}
+
+	public void setIncomeType(Integer incomeType) {
+		this.incomeType = incomeType;
 	}
 
 }

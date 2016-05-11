@@ -24,20 +24,17 @@ public class BaseHibernateDaoSupport extends HibernateDaoSupport {
 		return list;
 	}
 
-	public Long countObject(String hql) {
+	public int countObject(String hql) {
 		Session session = getHibernateTemplate().getSessionFactory().openSession();
 		Query query = session.createQuery(hql);
-		Long count = (Long) query.iterate().next();
-
+		int count = ((Long) query.iterate().next()).intValue();
 		return count;
 	}
 
-	public Object totalObject(String hql) {
+	public Object totalBaseObject(String hql) {
 		Session session = getHibernateTemplate().getSessionFactory().openSession();
 		Query query = session.createQuery(hql);
-		Object o = query.iterate().next();
-
-		return o;
+		return query.iterate().next();
 	}
 
 	public void deleteObject(Object object) {

@@ -55,7 +55,7 @@ public interface BaseDao {
 	 * @param hql
 	 * @return
 	 */
-	public Long count(String hql);
+	public int count(String hql);
 
 	/**
 	 * 查询所有数据 数据量少时候使用

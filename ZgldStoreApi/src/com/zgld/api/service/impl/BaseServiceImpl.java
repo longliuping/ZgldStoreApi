@@ -27,7 +27,7 @@ public class BaseServiceImpl implements BaseService {
 
 	public int count(String hql) {
 		// TODO Auto-generated method stub
-		return baseDao.count(hql).intValue();
+		return baseDao.count(hql);
 	}
 
 	public void delete(Object object) {

@@ -31,5 +31,11 @@
         <property name="rebateState" type="java.lang.Integer">
             <column name="RebateState" />
         </property>
+        <property name="rebateRelationId" type="java.lang.Integer">
+            <column name="Rebate_Relation_ID" />
+        </property>
+        <property name="incomeType" type="java.lang.Integer">
+            <column name="IncomeType" />
+        </property>
     </class>
 </hibernate-mapping>
