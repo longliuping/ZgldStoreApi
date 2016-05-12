@@ -271,13 +271,16 @@ public class OrderAction extends BaseAction {
 				if(form.getId()!=null){
 					switch (form.getId()) {
 					case 0:
-						sb.append(" and ho.paymentStatus = 0 ");
+						sb.append(" and ho.paymentStatus = 0 ");//待付款
 						break;
 					case 1:
-						sb.append(" and ho.paymentStatus = 1 and ho.consumptionStatus = 0 ");
+						sb.append(" and ho.paymentStatus = 1 and ho.consumptionStatus = 0 ");//待使用
 						break;
 					case 2:
-						sb.append(" and ho.paymentStatus = 1 and ho.consumptionStatus = 1 ");
+						sb.append(" and ho.paymentStatus = 1 and ho.consumptionStatus = 1 ");//已完成
+						break;
+					case 3:
+						sb.append(" and ho.paymentStatus = 2 ");//线下付款
 						break;
 					}
 				}

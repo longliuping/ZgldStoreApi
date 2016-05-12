@@ -35,6 +35,7 @@ public abstract class AbstractUserProfile implements java.io.Serializable {
 	private Integer gender;
 	private Double balance;
 	private Double deductMoney;
+	private String alipayAccount;
 
 	// Constructors
 
@@ -42,35 +43,6 @@ public abstract class AbstractUserProfile implements java.io.Serializable {
 	public AbstractUserProfile() {
 	}
 
-	/** full constructor */
-	public AbstractUserProfile(Integer userId, Integer enablePrivateMessages, Integer enableOnlineStatus,
-			Integer enableEmail, Integer enableHtmlEmail, String publicToken, Double expenditure,
-			Integer enableTradePassword, String tradePassword, String realName, Integer points, Integer regionId,
-			String address, String qq, String msn, String telPhone, String cellPhone, Integer userRank, Date birthDate,
-			Integer gender, Double balance, Double deductMoney) {
-		this.userId = userId;
-		this.enablePrivateMessages = enablePrivateMessages;
-		this.enableOnlineStatus = enableOnlineStatus;
-		this.enableEmail = enableEmail;
-		this.enableHtmlEmail = enableHtmlEmail;
-		this.publicToken = publicToken;
-		this.expenditure = expenditure;
-		this.enableTradePassword = enableTradePassword;
-		this.tradePassword = tradePassword;
-		this.realName = realName;
-		this.points = points;
-		this.regionId = regionId;
-		this.address = address;
-		this.qq = qq;
-		this.msn = msn;
-		this.telPhone = telPhone;
-		this.cellPhone = cellPhone;
-		this.userRank = userRank;
-		this.birthDate = birthDate;
-		this.gender = gender;
-		this.balance = balance;
-		this.deductMoney = deductMoney;
-	}
 
 	// Property accessors
 
@@ -256,6 +228,16 @@ public abstract class AbstractUserProfile implements java.io.Serializable {
 
 	public void setDeductMoney(Double deductMoney) {
 		this.deductMoney = deductMoney;
+	}
+
+
+	public String getAlipayAccount() {
+		return alipayAccount;
+	}
+
+
+	public void setAlipayAccount(String alipayAccount) {
+		this.alipayAccount = alipayAccount;
 	}
 
 }

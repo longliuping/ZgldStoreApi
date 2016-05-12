@@ -58,6 +58,7 @@ public class BaseForm {
 	private Double amount;
 	private String remark;
 	private String json;
+	private String account;
 	private UserShippingAddresses address;
 
 	public String getJsonText() {
@@ -456,6 +457,14 @@ public class BaseForm {
 
 	public void setJson(String json) {
 		this.json = json;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
 	}
 	
 }

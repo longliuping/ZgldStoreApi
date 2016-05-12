@@ -76,5 +76,8 @@
         <property name="deductMoney" type="java.lang.Double">
             <column name="DeductMoney" scale="4" />
         </property>
+        <property name="alipayAccount" type="java.lang.String">
+            <column name="AlipayAccount" />
+        </property>
     </class>
 </hibernate-mapping>

@@ -295,4 +295,29 @@ public class UserAction extends BaseAction {
 		}
 		return JSON_PAGE;
 	}
+	public String bind_alipay(){
+		Map json = new HashMap();
+		try {
+			YAccount account = getUserInfo();
+			if (account != null) {
+				if (this.form.getName() == null) {
+					this.form.setJsonMsg("name不能为空", false, json, 1001);
+				} else if(this.form.getAccount()==null){
+					this.form.setJsonMsg("account不能为空", false, json, 1001);
+				}else{
+					UserProfile profile = account.getUserProfile();
+					profile.setAlipayAccount(form.getAccount());
+					profile.setRealName(form.getName());
+					baseService.update(profile);
+					account.setUserProfile(profile);
+					json.put(INFO, account);
+					this.form.setJsonMsg("修改成功,请保证姓名和支付宝的证实性，以便提现到账!", true, json, 200);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
+		}
+		return JSON_PAGE;
+	}
 }
