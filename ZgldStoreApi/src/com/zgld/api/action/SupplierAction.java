@@ -293,6 +293,7 @@ public class SupplierAction extends BaseAction {
 		userProfile.setBalance(userProfile.getBalance() + u0Price);
 		baseService.update(userProfile);
 		
+		//自己的收益
 		OrdersRebate rebate = new OrdersRebate();
 		rebate.setIncomeType(0);
 		rebate.setOrderId(orderId);
@@ -304,9 +305,9 @@ public class SupplierAction extends BaseAction {
 		
 		Object u1[] = recommendUser(1, order.getUserId());
 		if (u1 != null) {
+			//一度人脉收益
 			UserProfile user1 = (UserProfile) u1[1];
 			YRebateRelation relation1 = (YRebateRelation)u1[0];
-			
 			rebate = new OrdersRebate();
 			rebate.setIncomeType(1);
 			rebate.setOrderId(orderId);
@@ -322,6 +323,7 @@ public class SupplierAction extends BaseAction {
 			baseService.update(user1);
 			Object u2[] = recommendUser(2, user1.getUserId());
 			if (u2 != null) {
+				//二度人脉收益
 				UserProfile user2 = (UserProfile) u1[1];
 				YRebateRelation relation2 = (YRebateRelation)u2[0];
 				
@@ -340,6 +342,7 @@ public class SupplierAction extends BaseAction {
 				baseService.update(user2);
 				Object u3[] = recommendUser(3, user2.getUserId());
 				if (u3 != null) {
+					//三度人脉收益
 					UserProfile user3 = (UserProfile) u1[1];
 					YRebateRelation relation3 = (YRebateRelation)u3[0];
 					

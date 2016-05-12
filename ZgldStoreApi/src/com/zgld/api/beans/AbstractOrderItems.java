@@ -6,24 +6,13 @@ public abstract class AbstractOrderItems implements Serializable {
 	private Integer itemId;
 	private Integer orderId;
 	private Integer productId;
-	private Integer sku;
+	private String combineString;
 	private Integer quantity;
 	private Double listPrice;
 	private Double cellPrice;
 	private String remark;
 
 	public AbstractOrderItems() {
-	}
-
-	public AbstractOrderItems(Integer orderId, Integer productId, Integer sku, Integer quantity, Double listPrice,
-			Double cellPrice, String remark) {
-		this.orderId = orderId;
-		this.productId = productId;
-		this.sku = sku;
-		this.quantity = quantity;
-		this.listPrice = listPrice;
-		this.cellPrice = cellPrice;
-		this.remark = remark;
 	}
 
 	public Integer getItemId() {
@@ -48,14 +37,6 @@ public abstract class AbstractOrderItems implements Serializable {
 
 	public void setProductId(Integer productId) {
 		this.productId = productId;
-	}
-
-	public Integer getSku() {
-		return this.sku;
-	}
-
-	public void setSku(Integer sku) {
-		this.sku = sku;
 	}
 
 	public Integer getQuantity() {
@@ -89,4 +70,13 @@ public abstract class AbstractOrderItems implements Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+
+	public String getCombineString() {
+		return combineString;
+	}
+
+	public void setCombineString(String combineString) {
+		this.combineString = combineString;
+	}
+	
 }

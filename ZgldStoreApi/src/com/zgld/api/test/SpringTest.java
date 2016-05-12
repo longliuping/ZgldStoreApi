@@ -125,9 +125,9 @@ public class SpringTest {
 						if(shopId==products.getShopId()){
 							OrderItems items = new OrderItems();
 							items.setProductId(pa.getProductId());
-							if(pa.getValueId()>0){
-								items.setSku(pa.getValueId());
-							}
+//							if(pa.getValueId()>0){
+//								items.setSku(pa.getValueId());
+//							}
 							items.setQuantity(pa.getNumber());
 							items.setListPrice(Double
 									.valueOf(price));
@@ -178,9 +178,9 @@ public class SpringTest {
 							
 							OrderItems items = new OrderItems();
 							items.setProductId(pa.getProductId());
-							if(pa.getValueId()>0){
-								items.setSku(pa.getValueId());
-							}
+//							if(pa.getValueId()>0){
+//								items.setSku(pa.getValueId());
+//							}
 							items.setQuantity(pa.getNumber());
 							items.setListPrice(Double
 									.valueOf(price));

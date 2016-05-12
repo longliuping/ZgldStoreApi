@@ -14,7 +14,7 @@ import com.zgld.api.beans.YFormCombineValue;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Date;import java.util.FormatFlagsConversionMismatchException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -124,8 +124,9 @@ public class OrderAction extends BaseAction {
 							} else {
 								int number = 0;
 								double price = 0.0;
+								YFormCombineValue formCombineValue = null;
 								if (pa.getValueId() > 0) {
-									YFormCombineValue formCombineValue = (YFormCombineValue) baseService.bean(
+									formCombineValue = (YFormCombineValue) baseService.bean(
 											" from YFormCombineValue as fcv where fcv.objTable = 'Products' and fcv.combineValueId = " + pa.getValueId() + " and fcv.objId = " + pa.getProductId());
 									if (formCombineValue != null) {
 										number = formCombineValue.getGoStore();
@@ -144,8 +145,11 @@ public class OrderAction extends BaseAction {
 									if (shopId == products.getShopId()) {
 										OrderItems items = new OrderItems();
 										items.setProductId(pa.getProductId());
-										if (pa.getValueId() > 0) {
-											items.setSku(pa.getValueId());
+//										if (pa.getValueId() > 0) {
+//											items.setSku(pa.getValueId());
+//										}
+										if(formCombineValue!=null){
+											items.setCombineString(formCombineValue.getCombineString());
 										}
 										items.setQuantity(pa.getNumber());
 										items.setListPrice(Double.valueOf(price));
@@ -196,8 +200,11 @@ public class OrderAction extends BaseAction {
 
 										OrderItems items = new OrderItems();
 										items.setProductId(pa.getProductId());
-										if (pa.getValueId() > 0) {
-											items.setSku(pa.getValueId());
+//										if (pa.getValueId() > 0) {
+//											items.setSku(pa.getValueId());
+//										}
+										if(formCombineValue!=null){
+											items.setCombineString(formCombineValue.getCombineString());
 										}
 										items.setQuantity(pa.getNumber());
 										items.setListPrice(Double.valueOf(price));
@@ -223,8 +230,8 @@ public class OrderAction extends BaseAction {
 									OrderItems items = listOrders.get(i).getListOrderItems().get(j);
 									items.setOrderId(orderId);
 									String hql = " delete from ShoppingCarts as sc where sc.productId = "+items.getProductId()+" and sc.userId = "+userId;
-									if(items.getSku()!=null && items.getSku()>0){
-										hql = hql+" and sc.sku = "+items.getSku();
+									if(items.getCombineString()!=null && items.getCombineString().length()>0){
+										hql = hql+" and sc.combineString = '"+items.getCombineString()+"'";
 									}
 									baseService.updateListObject(hql);
 									baseService.save(items);
@@ -258,8 +265,22 @@ public class OrderAction extends BaseAction {
 			YAccount account = getUserInfo();
 			if (account != null) {
 				StringBuffer sb = new StringBuffer(" from Orders as ho where ho.userId = " + account.getUsers().getUserId());
-				if ((this.form.getId() != null) && (this.form.getId().intValue() >= 0)) {
-					sb.append(" and ho.paymentStatus = " + this.form.getId());
+				if(form.getId()!=null){
+					switch (form.getId()) {
+					case 0:
+						sb.append(" and ho.paymentStatus = 0 ");
+						break;
+
+					case 1:
+						sb.append(" and ho.paymentStatus = 1 ");
+						break;
+					case 2:
+						sb.append(" and ho.paymentStatus = 1 and ho.consumptionStatus = 0 ");
+						break;
+					case 3:
+						sb.append(" and ho.paymentStatus = 1 and ho.consumptionStatus = 1 ");
+						break;
+					}
 				}
 				sb.append(" order by ho.orderDate desc ");
 				List hishopOrders = this.baseService.findPage(this.form.getPageNum().intValue(), this.form.getPageSize().intValue(), sb.toString());

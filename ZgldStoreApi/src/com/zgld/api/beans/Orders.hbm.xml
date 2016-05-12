@@ -71,7 +71,7 @@
             <column name="PayTradeNo" />
         </property>
         <property name="payDateTime" type="java.util.Date">
-            <column name="PaySmalltime" length="16" />
+            <column name="PaySmalldatetime" length="16" />
         </property>
         <property name="payTotalFee" type="java.lang.Double">
             <column name="PayTotalFee" scale="4" />
@@ -83,7 +83,7 @@
             <column name="BuyerAccount" />
         </property>
         <property name="refundDateTime" type="java.util.Date">
-            <column name="RefundSmalltime" length="16" />
+            <column name="RefundSmalldatetime" length="16" />
         </property>
         <property name="refundTotalFee" type="java.lang.Double">
             <column name="RefundTotalFee" scale="4" />

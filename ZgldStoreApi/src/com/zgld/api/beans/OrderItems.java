@@ -8,11 +8,6 @@ public class OrderItems extends AbstractOrderItems implements Serializable {
 	public OrderItems() {
 	}
 
-	public OrderItems(Integer orderId, Integer productId, Integer sku, Integer quantity, Double listPrice,
-			Double cellPrice, String remark) {
-		super(orderId, productId, sku, quantity, listPrice, cellPrice, remark);
-	}
-
 	public Products getProducts() {
 		return this.products;
 	}
