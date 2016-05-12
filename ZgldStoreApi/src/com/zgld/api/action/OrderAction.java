@@ -11,6 +11,7 @@ import com.zgld.api.beans.Sku;
 import com.zgld.api.beans.SubmitOrderParam;
 import com.zgld.api.beans.YAccount;
 import com.zgld.api.beans.YFormCombineValue;
+import com.zgld.api.beans.YShop;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -173,6 +174,7 @@ public class OrderAction extends BaseAction {
 										orders.setOrderDate(new Date());
 										orders.setOrderTotalPrice(Double.valueOf(salePrice));
 										orders.setShopId(shopId);
+										orders.setConsumptionStatus(0);
 
 									} else {
 										orders.setListOrderItems(listOrderItems);
@@ -194,7 +196,8 @@ public class OrderAction extends BaseAction {
 										orders.setOrderDate(new Date());
 										orders.setOrderTotalPrice(Double.valueOf(salePrice));
 										orders.setShopId(shopId);
-
+										orders.setConsumptionStatus(0);
+										
 										salePrice = 0;
 										listOrderItems = new ArrayList<>();
 
@@ -270,14 +273,10 @@ public class OrderAction extends BaseAction {
 					case 0:
 						sb.append(" and ho.paymentStatus = 0 ");
 						break;
-
 					case 1:
-						sb.append(" and ho.paymentStatus = 1 ");
-						break;
-					case 2:
 						sb.append(" and ho.paymentStatus = 1 and ho.consumptionStatus = 0 ");
 						break;
-					case 3:
+					case 2:
 						sb.append(" and ho.paymentStatus = 1 and ho.consumptionStatus = 1 ");
 						break;
 					}
@@ -301,6 +300,63 @@ public class OrderAction extends BaseAction {
 				}
 				json.put(LISTINFO, hishopOrders);
 				this.form.setJsonMsg("success", true, json, 200);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.form.setJsonMsg(SYS_RUN_ERROR, false, json, 1001);
+		}
+		return JSON_PAGE;
+	}
+	/**
+	 * 客户订单
+	 * @return
+	 */
+	public String customer_user_order() {
+		Map json = new HashMap();
+		try {
+			YAccount account = getUserInfo();
+			if (account != null) {
+				YShop shop = (YShop)baseService.bean(" from YShop as s where s.userId = "+account.getUserProfile().getUserId());
+				if(shop==null){
+					this.form.setJsonMsg("请以商家账号登录", false, json, 1001);
+				}else{
+					StringBuffer sb = new StringBuffer(" from Orders as ho where ho.shopId = " + shop.getShopId());
+					if(form.getId()!=null){
+						switch (form.getId()) {
+						case 0:
+							sb.append(" and ho.paymentStatus = 0 ");
+							break;
+						case 1:
+							sb.append(" and ho.paymentStatus = 1 and ho.consumptionStatus = 0 ");
+							break;
+						case 2:
+							sb.append(" and ho.paymentStatus = 1 and ho.consumptionStatus = 1 ");
+							break;
+						case 3:
+							sb.append(" and ho.paymentStatus = 2 ");
+							break;
+						}
+					}
+					sb.append(" order by ho.orderDate desc ");
+					List hishopOrders = this.baseService.findPage(this.form.getPageNum().intValue(), this.form.getPageSize().intValue(), sb.toString());
+					for (int i = 0; i < hishopOrders.size(); i++) {
+						List list = this.baseService.findAll(" from OrderItems as oi, Products as p where oi.productId = p.productId and oi.orderId = " + ((Orders) hishopOrders.get(i)).getOrderId());
+						List items = new ArrayList();
+						for (Iterator localIterator = list.iterator(); localIterator.hasNext();) {
+							Object object = localIterator.next();
+							Object[] obj = (Object[]) object;
+							OrderItems item = (OrderItems) obj[0];
+							if (obj.length > 1) {
+								Products pro = (Products) obj[1];
+								item.setProducts(pro);
+							}
+							items.add(item);
+						}
+						((Orders) hishopOrders.get(i)).setListOrderItems(items);
+					}
+					json.put(LISTINFO, hishopOrders);
+					this.form.setJsonMsg("success", true, json, 200);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
